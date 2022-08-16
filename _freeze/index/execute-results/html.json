@@ -1,8 +1,10 @@
 {
-  "hash": "3cc56e646ac9f7991dbf56d596f0b47b",
+  "hash": "50a04db2f7e19d8ee43b6e1f0234e0fa",
   "result": {
-    "markdown": "---\ntitle: \"stat230-materials\"\n---\n\n\nThis is a Quarto website!\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
-    "supporting": [],
+    "markdown": "---\ntitle: \"stat230-materials\"\n---\n\n\nThis is a Quarto website!\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 3\n```\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
