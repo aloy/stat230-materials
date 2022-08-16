@@ -1,0 +1,289 @@
+---
+title: "Writing a statistical model"
+subtitle: "Making connections"
+author: "Stat 230"
+format: revealjs
+editor: visual
+---
+
+```{r setup, include=FALSE}
+library(mosaic)
+library(tidyverse)
+library(resampledata)
+library(ggthemes)
+library(kableExtra)
+library(fontawesome)
+data("BookPrices")
+
+book_means <- round(mean(Price ~ Area, data = BookPrices), 2)
+```
+
+## What is a statistical model?
+
+::: incremental
+-   A representation for a particular purpose (Daniel Kaplan)
+
+-   A simplification of reality (Cannon et al., 2010)
+
+-   Embodies a set of assumptions concerning the generation of the observed data, and similar data from a larger population (Wikipedia)
+
+-   Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful (George Box)
+:::
+
+## How to write a statistical model
+
+**observed response = signal + noise**
+
+. . .
+
+signal:
+
+-   a mathematical function
+
+-   e.g., mean (expectation)
+
+. . .
+
+noise:
+
+-   a random error term
+
+-   e.g., "white noise"
+
+::: aside
+This is called an *additive model*
+:::
+
+## Examples
+
+::: columns
+::: {.column width="45%"}
+```{r echo=FALSE, fig.width=3, fig.height=3}
+library(Stat2Data)
+library(ggplot2)
+data(TextPrices)
+
+qplot(x = Pages, y = Price, data = TextPrices) + 
+  geom_smooth(method = "lm", se = FALSE, colour = I("steelblue"), alpha = I(0.8)) +
+  ylab("Textbook price") + 
+  xlab("No. of pages") +
+  theme_classic()
+```
+:::
+
+::: {.column width="45%"}
+```{r echo=FALSE, fig.width=5, fig.height=3}
+library(fpp)
+library(forecast)
+data(ausbeer)
+
+ausbeer.df <- data.frame(quarter = as.numeric(time(ausbeer)), production = as.numeric(ausbeer))
+
+ausbeer.arima <- auto.arima(ausbeer)
+ausbeer.df$arima <- as.numeric(fitted(ausbeer.arima))
+
+qplot(x = quarter, y = production, data = ausbeer.df) + 
+  # geom_line(aes(y = arima), colour = I("#377eb8"), alpha = I(0.8)) +
+  geom_smooth(se = FALSE, colour = I("steelblue"), alpha = I(0.8)) + 
+  ylab("Beer production") + 
+  xlab("Year") + 
+  theme_classic()
+```
+:::
+:::
+
+::: columns
+::: {.column width="45%"}
+:::
+
+::: {.column width="45%"}
+```{r echo=FALSE, fig.width=5, fig.height=3}
+library(fpp)
+library(forecast)
+data(ausbeer)
+
+ausbeer.df <- data.frame(quarter = as.numeric(time(ausbeer)), production = as.numeric(ausbeer))
+
+ausbeer.arima <- auto.arima(ausbeer)
+ausbeer.df$arima <- as.numeric(fitted(ausbeer.arima))
+
+qplot(x = quarter, y = production, data = ausbeer.df) + 
+  geom_line(aes(y = arima), colour = I("steelblue"), alpha = I(0.8)) +
+  # geom_smooth(se = FALSE, colour = I("steelblue"), alpha = I(0.8)) +
+  ylab("Beer production") + 
+  xlab("Year") + 
+  theme_classic()
+```
+:::
+:::
+
+## Comparing groups
+
+::: columns
+::: {.column width="50%"}
+```{r fig.height = 3, fig.width = 5}
+ggplot(data = BookPrices, aes(x = Area, y = Price, fill = Area, color = Area)) +
+  geom_boxplot(alpha = 0.3) +
+  geom_jitter(height = 0, width = 0.25) +
+  scale_fill_colorblind() +
+  scale_color_colorblind() +
+  theme_classic() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="50%"}
+-   Two Carls collected a random sample of hardcover textbook prices
+
+-   Two disciplinary areas:
+
+    -   Math & Natural Sciences
+    -   Social sciences
+:::
+:::
+
+. . .
+
+Is the average textbook price different between the two areas?
+
+## Writing a two-sample model
+
+::: columns
+::: {.column width="40%"}
+```{r echo=FALSE}
+set.seed(1234)
+BookPrices %>%
+  sample_frac(replace = FALSE) %>%
+  select(Area, Price) %>%
+  as_tibble()
+```
+:::
+
+::: {.column width="60%"}
+**observed response = signal + noise**
+
+::: fragment
+$$y_{ij} = \underbrace{\mu_i}_{\rm \ \ mean \\ response} + \underbrace{\varepsilon_{ij}}_{\rm random \\ \ \  error}$$
+
+::: fragment
+$i =$ group index
+
+$j =$ observation index
+:::
+:::
+:::
+:::
+
+## Two-sample model
+
+Let group 1 = STEM and group 2 = social sciences
+
+. . .
+
+::: columns
+::: {.column width="43%"}
+STEM model:
+:::
+
+::: {.column width="35%"}
+$y_{1j} = \mu_1 + \varepsilon_{1j}$
+:::
+
+::: {.column width="15%"}
+$j=1,\ldots,n_1$
+:::
+
+:::
+
+. . .
+
+::: columns
+::: {.column width="43%"}
+Social science model:
+:::
+
+::: {.column width="35%"}
+$y_{2j} = \mu_2 + \varepsilon_{2j}$
+:::
+
+::: {.column width="15%"}
+$j=1,\ldots,n_2$
+:::
+
+:::
+
+
+## Fitting the model
+
+We don't know the population means for each group, but can estimate them
+
+<br>
+
+$\widehat{\mu}_1 = \frac{1}{n_1} \sum_{j=1}^{n_1}y_{11} + y_{12} + \cdots + y_{1n_1} = \bar{y}_1$
+
+<br>
+
+$\widehat{\mu}_2 = \frac{1}{n_2} \sum_{j=1}^{n_2}y_{21} + y_{22} + \cdots + y_{2n_2} = \bar{y}_2$
+
+## Fitted model
+
+In `r fa("r-project")`:
+
+```{r echo=TRUE}
+mean(Price ~ Area, data = BookPrices)
+```
+
+. . .
+
+<br>
+
+We can write the fitted model as
+
+$\widehat{\mu}_1 = `r book_means[1]`$
+
+$\widehat{\mu}_2 = `r book_means[2]`$
+
+## Visualizing the model
+
+::: columns
+::: {.column width="80%"}
+```{r fig.height = 3, fig.width = 5, out.width="100%"}
+
+
+ggplot(data = BookPrices, aes(x = Area, y = Price, fill = Area, color = Area)) +
+   stat_summary(fun = mean, fun.min = mean, fun.max = mean,
+                 geom = "crossbar", width = 0.6, aes(color = Area)) +
+  geom_jitter(height = 0, width = 0.25) +
+  scale_fill_colorblind() +
+  scale_color_colorblind() +
+  theme_classic() +
+  theme(legend.position = "none")
+```
+:::
+
+::: {.column width="20%"}
+<br>
+
+<br>
+
+$\widehat{\mu}_1 = `r book_means[1]`$
+
+<font color = '#E69F00'>$\widehat{\mu}_2 = `r book_means[2]`$</font>
+:::
+:::
+
+## Errors (residuals)
+
+Not all points will fall at the group mean
+
+$\widehat{\varepsilon}_{1j} = Y_{1j} - \widehat{\mu}_1 = {\rm observed} - {\rm fitted}$
+
+$\widehat{\varepsilon}_{2j} = Y_{2j} - \widehat{\mu}_2$
+
+. . .
+
+<br>
+
+::: callout-note
+We use the residuals to *estimate* the random errors from the model
+:::
