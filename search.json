@@ -1,5 +1,75 @@
 [
   {
+    "objectID": "slides/01-2sample-model.html#what-is-a-statistical-model",
+    "href": "slides/01-2sample-model.html#what-is-a-statistical-model",
+    "title": "Writing a statistical model",
+    "section": "What is a statistical model?",
+    "text": "What is a statistical model?\n\n\nA representation for a particular purpose (Daniel Kaplan)\nA simplification of reality (Cannon et al., 2010)\nEmbodies a set of assumptions concerning the generation of the observed data, and similar data from a larger population (Wikipedia)\nRemember that all models are wrong; the practical question is how wrong do they have to be to not be useful (George Box)"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#how-to-write-a-statistical-model",
+    "href": "slides/01-2sample-model.html#how-to-write-a-statistical-model",
+    "title": "Writing a statistical model",
+    "section": "How to write a statistical model",
+    "text": "How to write a statistical model\nobserved response = signal + noise\n\nsignal:\n\na mathematical function\ne.g., mean (expectation)\n\n\n\nnoise:\n\na random error term\ne.g., “white noise”\n\n\n\n\nThis is called an additive model"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#examples",
+    "href": "slides/01-2sample-model.html#examples",
+    "title": "Writing a statistical model",
+    "section": "Examples",
+    "text": "Examples"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#comparing-groups",
+    "href": "slides/01-2sample-model.html#comparing-groups",
+    "title": "Writing a statistical model",
+    "section": "Comparing groups",
+    "text": "Comparing groups\n\n\n\n\n\n\n\n\n\nTwo Carls collected a random sample of hardcover textbook prices\nTwo disciplinary areas:\n\nMath & Natural Sciences\nSocial sciences\n\n\n\n\n\nIs the average textbook price different between the two areas?"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#writing-a-two-sample-model",
+    "href": "slides/01-2sample-model.html#writing-a-two-sample-model",
+    "title": "Writing a statistical model",
+    "section": "Writing a two-sample model",
+    "text": "Writing a two-sample model\n\n\n\n\n# A tibble: 44 × 2\n   Area            Price\n   <fct>           <dbl>\n 1 Math & Science  107. \n 2 Social Sciences 209  \n 3 Social Sciences  15  \n 4 Social Sciences  27.0\n 5 Math & Science  198. \n 6 Math & Science  223. \n 7 Social Sciences  17  \n 8 Social Sciences 139. \n 9 Math & Science  115. \n10 Math & Science   85.4\n# … with 34 more rows\n# ℹ Use `print(n = ...)` to see more rows\n\n\n\nobserved response = signal + noise\n\n\\[y_{ij} = \\underbrace{\\mu_i}_{\\rm \\ \\ mean \\\\ response} + \\underbrace{\\varepsilon_{ij}}_{\\rm random \\\\ \\ \\  error}\\]\n\n\\(i =\\) group index\n\\(j =\\) observation index"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#two-sample-model",
+    "href": "slides/01-2sample-model.html#two-sample-model",
+    "title": "Writing a statistical model",
+    "section": "Two-sample model",
+    "text": "Two-sample model\nLet group 1 = STEM and group 2 = social sciences\n\n\n\nSTEM model:\n\n\\(y_{1j} = \\mu_1 + \\varepsilon_{1j}\\)\n\n\\(j=1,\\ldots,n_1\\)\n\n\n\n\n\n\nSocial science model:\n\n\\(y_{2j} = \\mu_2 + \\varepsilon_{2j}\\)\n\n\\(j=1,\\ldots,n_2\\)"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#fitting-the-model",
+    "href": "slides/01-2sample-model.html#fitting-the-model",
+    "title": "Writing a statistical model",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nWe don’t know the population means for each group, but can estimate them\n\n\\(\\widehat{\\mu}_1 = \\frac{1}{n_1} \\sum_{j=1}^{n_1}y_{11} + y_{12} + \\cdots + y_{1n_1} = \\bar{y}_1\\)\n\n\\(\\widehat{\\mu}_2 = \\frac{1}{n_2} \\sum_{j=1}^{n_2}y_{21} + y_{22} + \\cdots + y_{2n_2} = \\bar{y}_2\\)"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#fitted-model",
+    "href": "slides/01-2sample-model.html#fitted-model",
+    "title": "Writing a statistical model",
+    "section": "Fitted model",
+    "text": "Fitted model\nIn :\n\nmean(Price ~ Area, data = BookPrices)\n\n Math & Science Social Sciences \n       156.7341         98.9900 \n\n\n\n\nWe can write the fitted model as\n\\(\\widehat{\\mu}_1 = 156.73\\)\n\\(\\widehat{\\mu}_2 = 98.99\\)"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#visualizing-the-model",
+    "href": "slides/01-2sample-model.html#visualizing-the-model",
+    "title": "Writing a statistical model",
+    "section": "Visualizing the model",
+    "text": "Visualizing the model\n\n\n\n\n\n\n\n\n\n\n\\(\\widehat{\\mu}_1 = 156.73\\)\n\\(\\widehat{\\mu}_2 = 98.99\\)"
+  },
+  {
+    "objectID": "slides/01-2sample-model.html#errors-residuals",
+    "href": "slides/01-2sample-model.html#errors-residuals",
+    "title": "Writing a statistical model",
+    "section": "Errors (residuals)",
+    "text": "Errors (residuals)\nNot all points will fall at the group mean\n\\(\\widehat{\\varepsilon}_{1j} = Y_{1j} - \\widehat{\\mu}_1 = {\\rm observed} - {\\rm fitted}\\)\n\\(\\widehat{\\varepsilon}_{2j} = Y_{2j} - \\widehat{\\mu}_2\\)\n\n\n\n\n\n\n\n\nNote\n\n\nWe use the residuals to estimate the random errors from the model"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
