@@ -2,8 +2,11 @@
 title: "Using a regression model to compare means"
 subtitle: "Making connections"
 author: "Stat 230"
-format: revealjs
-editor: visual
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
 ---
 
 ```{r setup, include=FALSE}
@@ -54,7 +57,6 @@ How can we use a categorical explanatory variable in a regression model?
 
     -   $x_{\rm social} = 1$ if a book is social science
 
-
 ## Regression model with indicator
 
 We can rewrite the two-sample t-test as a regression model using an indicator
@@ -67,12 +69,12 @@ but... we need to be careful with our interpretations of the regression coeffici
 
 ## Review: Interpretations
 
-:::columns
-:::{.column width="10%"}
+::: columns
+::: {.column width="10%"}
 $\beta_0$
 :::
 
-:::{.column width="90%"}
+::: {.column width="90%"}
 -   y-intercept
 -   expected value of $y$ when $x=0$
 :::
@@ -82,12 +84,12 @@ $\beta_0$
 
 . . .
 
-:::columns
-:::{.column width="10%"}
+::: columns
+::: {.column width="10%"}
 $\beta_1$
 :::
 
-:::{.column width="90%"}
+::: {.column width="90%"}
 -   slope
 -   expected change in $y$ when $x$ increases by one unit
 :::
@@ -99,12 +101,12 @@ $y_i = \beta_0 + \beta_1 x_{\rm social\ i} + \varepsilon_i$
 
 <br>
 
-:::columns
-:::{.column width="10%"}
+::: columns
+::: {.column width="10%"}
 $\beta_0$
 :::
 
-:::{.column width="90%"}
+::: {.column width="90%"}
 -   y-intercept
 -   expected value of $y$ when $x=0$
 -   If $x_{\rm social}=0$, the book is for a STEM course (i.e., baseline group)
@@ -253,20 +255,14 @@ $H_0: \beta_1 = 0$
 
 . . .
 
-
 ::: columns
 ::: {.column width="20%"}
-
 Test statistic
-
 :::
 
 ::: {.column width="40%"}
-
 $t=\dfrac{(\bar{y}_1- \bar{y}_2) - 0}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$
-
 :::
-
 
 ::: {.column width="40%"}
 $t = \dfrac{\widehat{\beta}_1 - 0}{SE(\widehat{\beta}_1)}$, where $SE(\widehat{\beta}_1) = \widehat{\sigma} \sqrt{\dfrac{1}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x} \right)^2}}}$
@@ -279,11 +275,8 @@ $t = \dfrac{\widehat{\beta}_1 - 0}{SE(\widehat{\beta}_1)}$, where $SE(\widehat{\
 
 ::: columns
 ::: {.column width="20%"}
-
 Null distribution
-
 :::
-
 
 ::: {.column width="40%"}
 $t_{n_1 + n_2 - 2}$
@@ -298,10 +291,8 @@ $t_{n - 2}$
 
 General formula: $\rm statistic \pm q^* \times SE$
 
-
 ::: columns
 ::: {.column width="20%"}
-
 :::
 
 ::: {.column width="40%"}
@@ -317,10 +308,8 @@ General formula: $\rm statistic \pm q^* \times SE$
 
 . . .
 
-
 ::: columns
 ::: {.column width="20%"}
-
 t-test
 :::
 
@@ -328,7 +317,7 @@ t-test
 $s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
 :::
 
-:::{ .column width="40%"}
+::: {.column width="40%"}
 $t_{n_1 + n_2 - 2}$
 :::
 :::
@@ -343,7 +332,6 @@ Regression slope
 :::
 
 ::: {.column width="40%"}
-
 $\widehat{\sigma} \sqrt{\frac{1}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x} \right)^2}}}$
 :::
 
