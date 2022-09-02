@@ -1,5 +1,96 @@
 [
   {
+    "objectID": "slides/03-2sample-regression.html#simple-linear-regression-model",
+    "href": "slides/03-2sample-regression.html#simple-linear-regression-model",
+    "title": "Using a regression model to compare means",
+    "section": "Simple linear regression model",
+    "text": "Simple linear regression model\nobserved response = signal + noise \n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} \\mathcal{N} (0, \\sigma^2)\\)\n\nThis model requires\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors follow normal distribution\nErrors have mean 0\nVariance of the errors don’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#indicatordummy-variables",
+    "href": "slides/03-2sample-regression.html#indicatordummy-variables",
+    "title": "Using a regression model to compare means",
+    "section": "Indicator/dummy variables",
+    "text": "Indicator/dummy variables\nHow can we use a categorical explanatory variable in a regression model?\n\n\nCreate an indicator variable that takes on either 0 or 1\n\n\n\n\nDisciplinary area of textbook – STEM vs. Social sciences\n\n\\(x_{\\rm social} = 0\\) if a book is STEM\n\\(x_{\\rm social} = 1\\) if a book is social science"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#regression-model-with-indicator",
+    "href": "slides/03-2sample-regression.html#regression-model-with-indicator",
+    "title": "Using a regression model to compare means",
+    "section": "Regression model with indicator",
+    "text": "Regression model with indicator\nWe can rewrite the two-sample t-test as a regression model using an indicator\n\\[y_i = \\beta_0 + \\beta_1 x_{\\rm social\\ i} + \\varepsilon_i\\]\n\nbut… we need to be careful with our interpretations of the regression coefficients!"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#review-interpretations",
+    "href": "slides/03-2sample-regression.html#review-interpretations",
+    "title": "Using a regression model to compare means",
+    "section": "Review: Interpretations",
+    "text": "Review: Interpretations\n\n\n\\(\\beta_0\\)\n\n\ny-intercept\nexpected value of \\(y\\) when \\(x=0\\)\n\n\n\n\n\n\n\n\\(\\beta_1\\)\n\n\nslope\nexpected change in \\(y\\) when \\(x\\) increases by one unit"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#interpretations",
+    "href": "slides/03-2sample-regression.html#interpretations",
+    "title": "Using a regression model to compare means",
+    "section": "Interpretations",
+    "text": "Interpretations\n\\(y_i = \\beta_0 + \\beta_1 x_{\\rm social\\ i} + \\varepsilon_i\\)\n\n\n\n\\(\\beta_0\\)\n\n\ny-intercept\nexpected value of \\(y\\) when \\(x=0\\)\nIf \\(x_{\\rm social}=0\\), the book is for a STEM course (i.e., baseline group)\n\\(\\beta_0 =\\) mean textbook price for STEM courses"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#interpretations-1",
+    "href": "slides/03-2sample-regression.html#interpretations-1",
+    "title": "Using a regression model to compare means",
+    "section": "Interpretations",
+    "text": "Interpretations\n\\(y_i = \\beta_0 + \\beta_1 x_{\\rm social\\ i} + \\varepsilon_i\\)\n\n\\(\\mu_{\\rm social} = \\beta_0 + \\beta_1 \\Longleftrightarrow \\beta_0 + \\beta_1(1)\\)\n\nIf \\(x_{\\rm social}=1\\), the book is for a social science course\nLinear equation gives the mean (expected) response"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#interpretations-2",
+    "href": "slides/03-2sample-regression.html#interpretations-2",
+    "title": "Using a regression model to compare means",
+    "section": "Interpretations",
+    "text": "Interpretations\n\\(y_i = \\beta_0 + \\beta_1 x_{\\rm social\\ i} + \\varepsilon_i\\)\n\n\\(\\beta_1 = \\mu_{\\rm social} - \\mu_{\\rm STEM}\\)\n\n\\(\\mu_{\\rm STEM} = \\beta_0\\)\n\\(\\mu_{\\rm social} = \\beta_0 + \\beta_1\\)\nexpected difference in mean response for social science books compared to STEM books"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#fitting-the-model",
+    "href": "slides/03-2sample-regression.html#fitting-the-model",
+    "title": "Using a regression model to compare means",
+    "section": "Fitting the model",
+    "text": "Fitting the model\n\n\nModel\n\n\\(y_i = \\beta_0 + \\beta_1 x_{i} + \\varepsilon_i\\), \\(\\qquad \\varepsilon_i \\overset{\\rm iid}{\\sim} \\mathcal{N} (0, \\sigma^2)\\)\n\n\n\n\n\nProblem\n\nWe need estimates for \\(\\beta_0\\), \\(\\beta_1\\), and \\(\\sigma^2\\)\n\n\n\n\n\n\nProcedure\n\n\nFind \\(\\widehat{\\beta}_0\\) and \\(\\widehat{\\beta}_1\\) that minimize\n\\(\\sum_{i=1}^n \\left(y_i - (\\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i )\\right)^2 = \\text{SSR}\\)\nUse SSR as basis for \\(\\widehat{\\sigma}^2\\)"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#least-squares-estimates",
+    "href": "slides/03-2sample-regression.html#least-squares-estimates",
+    "title": "Using a regression model to compare means",
+    "section": "Least squares estimates",
+    "text": "Least squares estimates\n\\[\\begin{align}\n\\widehat{\\beta}_0 &= \\overline{y} - \\widehat{\\beta}_1 \\overline{x}\\\\\n& \\\\\n\\widehat{\\beta}_1 &= \\dfrac{\\displaystyle \\sum_{i=1}^n \\left(y_i - \\overline{y} \\right) \\left(x_i - \\overline{x} \\right)}{\\displaystyle \\sum_{i=1}^n \\left(x_i - \\overline{x} \\right)^2} = r \\dfrac{s_y}{s_x}\n\\end{align}\\]\n\n\nIt’s common to use \\(b_0 = \\widehat{\\beta}_0\\) and \\(b_1 = \\widehat{\\beta}_1\\). Recall that \\(r\\) is the correlation between \\(x\\) and \\(y\\)."
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#estimated-residual-variance",
+    "href": "slides/03-2sample-regression.html#estimated-residual-variance",
+    "title": "Using a regression model to compare means",
+    "section": "Estimated residual variance",
+    "text": "Estimated residual variance\nTo obtain an estimate of \\(\\sigma^2\\), we use the sum of the squared errors\n\\[\\widehat{\\sigma}^2 = \\displaystyle \\dfrac{\\sum_{i=1}^n (y_i - \\widehat{y}_i)^2}{n - 2} = \\displaystyle \\dfrac{\\text{SSR}}{n-2}\\] \nwhere \\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#regression-output",
+    "href": "slides/03-2sample-regression.html#regression-output",
+    "title": "Using a regression model to compare means",
+    "section": "Regression output",
+    "text": "Regression output\n\nCall:\nlm(formula = Price ~ Area, data = BookPrices)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-87.990 -39.972   4.138  40.359 110.010 \n\nCoefficients:\n                    Estimate Std. Error t value Pr(>|t|)    \n(Intercept)           156.73      10.40  15.075  < 2e-16 ***\nAreaSocial Sciences   -57.74      16.73  -3.452  0.00128 ** \n---\nSignif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1\n\nResidual standard error: 54.03 on 42 degrees of freedom\nMultiple R-squared:  0.221, Adjusted R-squared:  0.2025 \nF-statistic: 11.92 on 1 and 42 DF,  p-value: 0.001281\n\n\n\nThe residual standard error is \\(\\widehat{\\sigma}\\)"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#hypothesis-tests",
+    "href": "slides/03-2sample-regression.html#hypothesis-tests",
+    "title": "Using a regression model to compare means",
+    "section": "Hypothesis tests",
+    "text": "Hypothesis tests\n\n\n\nNull hypothesis\n\nt-test\n\\(H_0: \\mu_1 - \\mu_2 = 0\\)\n\nRegression\n\\(H_0: \\beta_1 = 0\\)\n\n\n\n\n\n\nTest statistic\n\n\\(t=\\dfrac{(\\bar{y}_1- \\bar{y}_2) - 0}{s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}\\)\n\n\\(t = \\dfrac{\\widehat{\\beta}_1 - 0}{SE(\\widehat{\\beta}_1)}\\), where \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{\\sqrt{\\sum_{i=1}^n \\left(x_i - \\overline{x} \\right)^2}}}\\)\n\n\n\n\n\n\n\nNull distribution\n\n\\(t_{n_1 + n_2 - 2}\\)\n\n\\(t_{n - 2}\\)"
+  },
+  {
+    "objectID": "slides/03-2sample-regression.html#confidence-intervals",
+    "href": "slides/03-2sample-regression.html#confidence-intervals",
+    "title": "Using a regression model to compare means",
+    "section": "Confidence intervals",
+    "text": "Confidence intervals\nGeneral formula: \\(\\rm statistic \\pm q^* \\times SE\\)\n\n\n\n\nSE\n\nSampling distribution\n\n\n\n\n\n\nt-test\n\n\\(s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}\\)\n\n\\(t_{n_1 + n_2 - 2}\\)\n\n\n\n\n\n\n\nRegression slope\n\n\\(\\widehat{\\sigma} \\sqrt{\\frac{1}{\\sqrt{\\sum_{i=1}^n \\left(x_i - \\overline{x} \\right)^2}}}\\)\n\n\\(t_{n - 2}\\)"
+  },
+  {
     "objectID": "slides/01-2sample-model.html#what-is-a-statistical-model",
     "href": "slides/01-2sample-model.html#what-is-a-statistical-model",
     "title": "Writing a statistical model",
@@ -70,6 +161,132 @@
     "text": "Errors (residuals)\nNot all points will fall at the group mean\n\\(\\widehat{\\varepsilon}_{1j} = Y_{1j} - \\widehat{\\mu}_1 = {\\rm observed} - {\\rm fitted}\\)\n\\(\\widehat{\\varepsilon}_{2j} = Y_{2j} - \\widehat{\\mu}_2\\)\n\n\n\n\n\n\n\n\nNote\n\n\nWe use the residuals to estimate the random errors from the model"
   },
   {
+    "objectID": "slides/02-2sample-inference.html#textbook-prices-revisited",
+    "href": "slides/02-2sample-inference.html#textbook-prices-revisited",
+    "title": "Inference for a two-sample model",
+    "section": "Textbook prices revisited",
+    "text": "Textbook prices revisited\nIs the average textbook price different between STEM and the social sciences?\n\n\n\n\n\n\n\n\n\n\n\\(\\widehat{\\mu}_1 = 156.73\\)\n\\(\\widehat{\\mu}_2 = 98.99\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#model-review",
+    "href": "slides/02-2sample-inference.html#model-review",
+    "title": "Inference for a two-sample model",
+    "section": "Model review",
+    "text": "Model review\nIn the two-sample problem, we can write the model as\n\\[y_{ij} = \\underbrace{\\mu_i}_{\\rm \\ \\ mean \\\\ response} + \\underbrace{\\varepsilon_{ij}}_{\\rm random \\\\ \\ \\  error}\\]\n\n\nWhat assumptions/conditions do we place on the random errors?"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#assumptions-on-error-terms",
+    "href": "slides/02-2sample-inference.html#assumptions-on-error-terms",
+    "title": "Inference for a two-sample model",
+    "section": "Assumptions on error terms",
+    "text": "Assumptions on error terms\n\\(\\varepsilon_{ij} \\overset{\\rm iid}{\\sim} \\mathcal{N}(0, \\sigma^2)\\)\n\nErrors are independent and identically distributed (iid)\nErrors follow normal distribution\nErrors have mean 0\nBoth groups have the same population standard deviation\n\n\n\nNote: The textbook uses variance rather than the standard deviation to specify the normal distribution."
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#assumptions-on-error-terms-1",
+    "href": "slides/02-2sample-inference.html#assumptions-on-error-terms-1",
+    "title": "Inference for a two-sample model",
+    "section": "Assumptions on error terms",
+    "text": "Assumptions on error terms"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#hypothesis-testing-review",
+    "href": "slides/02-2sample-inference.html#hypothesis-testing-review",
+    "title": "Inference for a two-sample model",
+    "section": "Hypothesis testing review",
+    "text": "Hypothesis testing review\n\nFormulate competing hypotheses: \\(H_0\\) and \\(H_a\\)\nChoose a test statistic that characterizes the information in the sample relevant to \\(H_0\\)\nDetermine the distribution of the chosen statistic when \\(H_0\\) is true\nCompare the calculated test statistic to that distribution and determine whether is it “extreme” (i.e., too far in the tail)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#formulate-competing-hypotheses",
+    "href": "slides/02-2sample-inference.html#formulate-competing-hypotheses",
+    "title": "Inference for a two-sample model",
+    "section": "1. Formulate competing hypotheses",
+    "text": "1. Formulate competing hypotheses\n\n\nBe sure to use parameters from the model in your hypotheses!\n\\[y_{ij} = \\mu_i + \\varepsilon_{ij}\\]\nLink the hypotheses to the research question!\nIs the average textbook price different between STEM and the social sciences?\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2\\)\n\\(H_a: \\mu_1 \\ne \\mu_2\\)\n\n\n\\(\\Longleftrightarrow \\mu_1-\\mu_2=0\\)\n\\(\\Longleftrightarrow \\mu_1-\\mu_2\\ne0\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#choose-a-test-statistic",
+    "href": "slides/02-2sample-inference.html#choose-a-test-statistic",
+    "title": "Inference for a two-sample model",
+    "section": "2. Choose a test statistic",
+    "text": "2. Choose a test statistic\nYour test statistic should characterize the information in the sample relevant to your hypotheses\n\n\n\n\\(t = \\dfrac{{\\rm statistic} - {\\rm H_0 \\ value}}{SE}\\)\n\n\n\\(= \\dfrac{(\\bar{y}_1- \\bar{y}_2) - (\\mu_1-\\mu_2)}{s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}}\\)\n\n\n\n\n\nwhere\n\\(s_p = \\sqrt{\\dfrac{(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#determine-the-null-distribution",
+    "href": "slides/02-2sample-inference.html#determine-the-null-distribution",
+    "title": "Inference for a two-sample model",
+    "section": "3. Determine the null distribution",
+    "text": "3. Determine the null distribution\nNull distribution = distribution of the test statistic under \\(H_0\\)\n\n\nTwo-sample CLT assuming equal variances:\n\\[\n\\bar{y}_1- \\bar{y}_2 \\overset{\\cdot}{\\sim} \\mathcal{N} \\left( \\mu_1 - \\mu_2, \\sigma^2 \\left[\\frac{1}{n_1} + \\frac{1}{n_2} \\right] \\right)\n\\]\n\n\nIf we knew \\(\\sigma^2\\), then \\(\\dfrac{(\\bar{y}_1- \\bar{y}_2) - (\\mu_1-\\mu_2)}{\\sigma \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} \\overset{\\cdot}{\\sim} \\mathcal{N}(0, 1)\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#determine-the-null-distribution-1",
+    "href": "slides/02-2sample-inference.html#determine-the-null-distribution-1",
+    "title": "Inference for a two-sample model",
+    "section": "3. Determine the null distribution",
+    "text": "3. Determine the null distribution\nWhen we don’t know \\(\\sigma^2\\), we plug in \\(s^2_p\\) as our best estimate (assuming equal variances)\n\\[\\dfrac{(\\bar{y}_1- \\bar{y}_2) - (\\mu_1-\\mu_2)}{s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}} \\overset{\\cdot}{\\sim} t_{n_1 + n_2 - 2}\\]"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#compare-the-test-statistic-to-the-null-distribution",
+    "href": "slides/02-2sample-inference.html#compare-the-test-statistic-to-the-null-distribution",
+    "title": "Inference for a two-sample model",
+    "section": "4. Compare the test statistic to the null distribution",
+    "text": "4. Compare the test statistic to the null distribution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLook to the tail specified by \\(H_a\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#compare-the-test-statistic-to-the-null-distribution-1",
+    "href": "slides/02-2sample-inference.html#compare-the-test-statistic-to-the-null-distribution-1",
+    "title": "Inference for a two-sample model",
+    "section": "4. Compare the test statistic to the null distribution",
+    "text": "4. Compare the test statistic to the null distribution\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np-value is the tail area specified by \\(H_a\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#draw-a-conclusion-in-context",
+    "href": "slides/02-2sample-inference.html#draw-a-conclusion-in-context",
+    "title": "Inference for a two-sample model",
+    "section": "5. Draw a conclusion in context",
+    "text": "5. Draw a conclusion in context\n\n\np-value: probability of observing a test statistic at least as contrary to \\(H_0\\), given that \\(H_0\\) is true.\nSmaller p-values provide stronger evidence against \\(H_0\\)\nA “small enough” p-value tells us that there is a statistical discernible difference\nThis does not mean the difference is important"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#book-price-example",
+    "href": "slides/02-2sample-inference.html#book-price-example",
+    "title": "Inference for a two-sample model",
+    "section": "Book price example",
+    "text": "Book price example\n\n\n\n\n \n  \n    Area \n    mean \n    sd \n    n \n  \n \n\n  \n    Math & Science \n    156.734 \n    39.145 \n    27 \n  \n  \n    Social Sciences \n    98.990 \n    71.914 \n    17 \n  \n\n\n\n\n\n\\(H_0: \\mu_1-\\mu_2=0\\)\n\n\\(t=\\dfrac{(\\overline{y}_1-\\overline{y}_2)-0}{s_p \\sqrt{\\frac{1}{n_1}+\\frac{1}{n_2}}}\\)\n\n\n\n\n\\(s_p=\\sqrt{\\dfrac {(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\\)\n\n\n\\(= \\sqrt{\\dfrac{(27-1)39.145^2 + (17-1)71.914^2}{27 + 17 - 2}}\\)\n\n\n\n\\(\\phantom{\\dfrac{1}{1}}\\approx 54.03\\)\n\n\n\n\n\n\\(t=\\dfrac{(156.734-98.990)-0}{54.03\\sqrt{\\dfrac{1}{27} + \\dfrac{1}{17}}} \\approx 3.04\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#book-price-example-1",
+    "href": "slides/02-2sample-inference.html#book-price-example-1",
+    "title": "Inference for a two-sample model",
+    "section": "Book price example",
+    "text": "Book price example\n\n\n\\(df = n_1 + n_2 - 2 = 27 + 17 - 2\\)\n\n\n\n\n\n\n\n\n2 * (1 - pt(3.04, df = 27 + 17 - 2))\n\n[1] 0.004062084\n\n\n\n\n\n\nThere is a statistically discernible difference between the average textbook prices between STEM and social science sources (\\(t=3.04\\), \\(df=42\\), \\(p=0.004\\))."
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#confidence-interval-review",
+    "href": "slides/02-2sample-inference.html#confidence-interval-review",
+    "title": "Inference for a two-sample model",
+    "section": "Confidence interval review",
+    "text": "Confidence interval review\n\n\nGeneral equation for confidence interval from intro\n\\[\n  \\rm statistic \\pm q^* \\times SE\n  \\]\nSet of plausible values for our population parameter\nOur confidence is in the entire process used to construct the interval"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#two-sample-interval",
+    "href": "slides/02-2sample-inference.html#two-sample-interval",
+    "title": "Inference for a two-sample model",
+    "section": "Two-sample interval",
+    "text": "Two-sample interval\nConstruct an 89% confidence interval for the difference in average textbook price between the areas.\n\\[\\rm statistic \\pm q^* \\times SE \\Longrightarrow \\bar{y}_1- \\bar{y}_2 \\pm t^*  \\cdot s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}}\\] where\n\n\\(s_p = \\sqrt{\\dfrac{(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\\)\n\\({\\rm df} = n_1 + n_2 - 2\\)"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#book-price-example-2",
+    "href": "slides/02-2sample-inference.html#book-price-example-2",
+    "title": "Inference for a two-sample model",
+    "section": "Book price example",
+    "text": "Book price example\n\n\n\n\n \n  \n    Area \n    mean \n    sd \n    n \n  \n \n\n  \n    Math & Science \n    156.734 \n    39.145 \n    27 \n  \n  \n    Social Sciences \n    98.990 \n    71.914 \n    17 \n  \n\n\n\n\n\n\n\nRecall:\n\n\\(SE = 54.03\\sqrt{\\dfrac{1}{27} + \\dfrac{1}{17}} \\approx 16.73\\)\n\\(\\rm{df}=27+17-2 = 42\\)\n\n\n\nFind the quantile\n\n\n\n\n\n\n\n\nqt(0.945, df= 42)\n\n[1] 1.632738"
+  },
+  {
+    "objectID": "slides/02-2sample-inference.html#book-price-example-3",
+    "href": "slides/02-2sample-inference.html#book-price-example-3",
+    "title": "Inference for a two-sample model",
+    "section": "Book price example",
+    "text": "Book price example\n\\[\\begin{align*}\n\\bar{y}_1- \\bar{y}_2 \\pm t^*  \\cdot s_p \\sqrt{\\frac{1}{n_1} + \\frac{1}{n_2}} &= (156.734-98.990) \\pm 1.633 (16.73)\\\\\n&= (30.42, 85.06)\n\\end{align*}\\]\nWe are 89% confident that, on average, STEM textbooks are between $30.42 and $85.06 more expensive than social science textbook prices."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -82,5 +299,89 @@
     "title": "stat230-materials",
     "section": "",
     "text": "To learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1 + 1\n\n[1] 3"
+  },
+  {
+    "objectID": "activity/01-eda-activity.html",
+    "href": "activity/01-eda-activity.html",
+    "title": "EDA Using R/RStudio",
+    "section": "",
+    "text": "Explore the HELPrct data set to try to find some interesting insights. You may want to check out the codebook on Moodle to get a glimpse at what this data set contains. Next, start exploring the data set using plots, tables, and other numeric summaries. Select three of your favorite plots and tell a story (in writing) about each of them.\n\n# load the data set from the url\nHELPrct <- read.csv(\"https://aloy.rbind.io/data/HELPrct.csv\")\n\n# loading the necessary packages\nlibrary(ggformula)\nlibrary(dplyr)"
+  },
+  {
+    "objectID": "activity/01-eda-activity.html#plot-1",
+    "href": "activity/01-eda-activity.html#plot-1",
+    "title": "EDA Using R/RStudio",
+    "section": "PLOT 1",
+    "text": "PLOT 1\n\n# put the code for your plot here\n\n(Include the description for your plot here.)"
+  },
+  {
+    "objectID": "activity/01-eda-activity.html#plot-2",
+    "href": "activity/01-eda-activity.html#plot-2",
+    "title": "EDA Using R/RStudio",
+    "section": "PLOT 2",
+    "text": "PLOT 2\n\n# put the code for your plot here\n\n(Include the description for your plot here.)"
+  },
+  {
+    "objectID": "activity/01-eda-activity.html#plot-3",
+    "href": "activity/01-eda-activity.html#plot-3",
+    "title": "EDA Using R/RStudio",
+    "section": "PLOT 3",
+    "text": "PLOT 3\n\n# put the code for your plot here\n\n(Include the description for your plot here.)"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html",
+    "href": "activity/01-edaR-review.html",
+    "title": "Review of R/RStudio and EDA",
+    "section": "",
+    "text": "In this course we will work with R Markdown files in class.\nTry executing this chunk by clicking the Run button within the chunk or by placing your cursor inside it and pressing Cmd/Cntrl+Shift+Enter.\nAdd a new chunk by clicking the Insert Chunk button on the toolbar or by pressing Cmd/Cntrl+Option+I.\nWhen you save your work, a file containing the code and output will be saved alongside it (click the Knit button or press Cmd+Shift+K to preview the PDF file; you may need to change the output type to HTML or Word if you don’t have LaTeX installed on your computer)."
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#installing-and-loading-r-packages",
+    "href": "activity/01-edaR-review.html#installing-and-loading-r-packages",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Installing and loading R packages",
+    "text": "Installing and loading R packages\nR does not enable all of its functionality when you open it. To enable additional functionality we need to load R packages. In this class, we will often use the dplyr R package to enable better tools for data manipulation and the ggformula package to enable better tools for plotting. Below is an example of installation and loading:\n\n# You only need to install a package once\n# If you use the server, then these packages are already installed\ninstall.packages(\"dplyr\")\ninstall.packages(\"ggformula\")\n\n\n# You will need to load the package in each R markdown notebook\nlibrary(dplyr)\nlibrary(ggformula)\n\nNote: I added the message = FALSE argument to this code chunk to avoid unnecessary messages\nAdditionally, if you are using your own computer and do not have LaTeX installed, then you can run the following command in the console to install a LaTeX distribution so that you can knit your R Markdown files to PDF.\n\ninstall.packages('tinytex')\ntinytex::install_tinytex()"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#loading-data-and-assignment",
+    "href": "activity/01-edaR-review.html#loading-data-and-assignment",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Loading data and assignment",
+    "text": "Loading data and assignment\nRegression models are fit to data sets, so data will play a central role in this course. There are multiple ways to load data sets (and we’ll learn more about them later), but we often need to load a .csv (comma separated value) file.\nToday, we’ll look at a data set containing information on health evaluation and linkage to primary care.\n\n# Load the data and assign it a name\nHELPrct <- read.csv(\"https://aloy.rbind.io/data/HELPrct.csv\")"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#data-frames",
+    "href": "activity/01-edaR-review.html#data-frames",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Data frames",
+    "text": "Data frames\nThe HELPrct object is our first example of a data frame, which is essentially a list of vectors. We can get a first glimpse of our data set in a few ways:\n\n# Printing the first 6 rows\n# Note that missing values are denoted by NA\nhead(HELPrct)\n\n\n# Looking at the number of rows and columns\ndim(HELPrct)\n\n\n# Looking at the structure\nstr(HELPrct)\n\n\n# Another way to look at the structure\ndplyr::glimpse(HELPrct)\n\n\n# looking at quick summary statistics\nsummary(HELPrct)"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#graphics-via-ggformula",
+    "href": "activity/01-edaR-review.html#graphics-via-ggformula",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Graphics via ggformula",
+    "text": "Graphics via ggformula\nThe ggformula package provides a formula interface to the ggplot2 package. I have found this interface easier to learn, allowing you to focus on your analysis.\nThe basic syntax to create a plot using ggformula is:\ngoal ( y ~ x, data = mydata, ...)\nwhere\n\ngoal: specifies what plot you want to create,\ny: is the response variable,\nx: is the explanatory variable, and\nmydata: is the name of your data set\n\nCommon goals (i.e. graph types) include:\n\nUnivariate graphics\n\nbar chart: gf_bar,\nhistogram: gf_histogram\ndensity plot: gf_density\n\nBivariate graphics\n\nsegmented/stacked bar chart: gf_bar\nboxplots: gf_boxplot\nscatterplots: gf_point"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#summaries-by-group-with-dplyr",
+    "href": "activity/01-edaR-review.html#summaries-by-group-with-dplyr",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Summaries by group with dplyr",
+    "text": "Summaries by group with dplyr\nTo summarize numeric variables across groups, I prefer the tools in dplyr. Why? dplyr…\n\neasily allows you to use split-apply-combine thought process,\nmakes your code more readable,\nprovides logically named functions,\nworks with chaining syntax, and\nprovides tools for subsetting and other data manipulation tasks.\n\nFrom your previous statistics course, you may be familiar with the tapply function. For example, the below code calculates the standard deviation of age by sex:\n\ntapply(HELPrct$age, HELPrct$sex, sd)\n\n  female     male \n7.584858 7.750110 \n\n\nHere is the analogous dplyr version:\n\nHELPrct %>%\n  group_by(sex) %>%\n  summarize(sd = sd(age))\n\n# A tibble: 2 × 2\n  sex       sd\n  <chr>  <dbl>\n1 female  7.58\n2 male    7.75\n\n\nWhat’s up with the %>%? That is known at the pipe operator and allows us to chain together commands by passing the object on the left side into the first argument of the function on the right. For example, the above code\n\ntakes the HELPrct data set, and then\ngroups it by sex, and then\nsummarizes the grouped data set by calculating the standard deviation of age.\n\nWhile this might not seem easier now, it will help as we progress through the course."
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#univariate-summaries",
+    "href": "activity/01-edaR-review.html#univariate-summaries",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Univariate summaries",
+    "text": "Univariate summaries\n\nCategorical variables\n\ntable(HELPrct$sex)\n\n\nfemale   male \n   107    346 \n\ngf_bar(~ sex, data = HELPrct)\n\n\n\n\n\n\nQuantitative variables\n\nsummary(HELPrct$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  19.00   30.00   35.00   35.65   40.00   60.00 \n\nsd(HELPrct$age)\n\n[1] 7.710266\n\n\n\ngf_histogram(~ age, data = HELPrct)\ngf_density(~ age, data = HELPrct)"
+  },
+  {
+    "objectID": "activity/01-edaR-review.html#bivariate-summaries",
+    "href": "activity/01-edaR-review.html#bivariate-summaries",
+    "title": "Review of R/RStudio and EDA",
+    "section": "Bivariate summaries",
+    "text": "Bivariate summaries\n\nCategorical vs. categorical\n\ntable(HELPrct$sex, HELPrct$substance)\n\n        \n         alcohol cocaine heroin\n  female      36      41     30\n  male       141     111     94\n\n\n\ngf_bar( ~ substance, data = HELPrct, fill = ~sex)\ngf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())\ngf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_fill())\n\n\n\nLoading required package: viridisLite\n\n\n\nAttaching package: 'viridis'\n\n\nThe following object is masked from 'package:scales':\n\n    viridis_pal\n\n\n\n\n\n\n\nQuantitative vs. categorical\n\n# Using dplyr\nHELPrct %>%\n  group_by(racegrp) %>%\n  summarize(min = min(age),\n            Q1 = quantile(age, prob = .25),\n            median = median(age),\n            Q3 = quantile(age, prob = .75),\n            max = max(age),\n            mean = mean(age),\n            sd = sd(age),\n            n = length(age))\n\n# A tibble: 4 × 9\n  racegrp    min    Q1 median    Q3   max  mean    sd     n\n  <chr>    <int> <dbl>  <dbl> <dbl> <int> <dbl> <dbl> <int>\n1 black       20  31       35  39      60  35.7  7.08   211\n2 hispanic    21  28.2     32  36.2    55  33.2  7.99    50\n3 other       22  30       34  40.5    48  35.0  7.66    26\n4 white       19  30       36  42      58  36.5  8.28   166\n\ngf_boxplot(age ~ racegrp, data = HELPrct)\n\n\n\n\n\n\nQuantitative vs. Quantitative\n\ncor(HELPrct$i1, HELPrct$age)\n\n[1] 0.2069538\n\ngf_point(i1 ~ age, data = HELPrct)"
   }
 ]

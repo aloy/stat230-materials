@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://github.com/aloy/stat230-materials/slides/03-2sample-regression.html</loc>
+    <lastmod>2022-09-02T15:21:26.833Z</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/aloy/stat230-materials/slides/01-2sample-model.html</loc>
-    <lastmod>2022-08-16T21:02:29.144Z</lastmod>
+    <lastmod>2022-09-02T15:21:28.681Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/aloy/stat230-materials/slides/02-2sample-inference.html</loc>
+    <lastmod>2022-09-02T15:21:29.577Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/aloy/stat230-materials/about.html</loc>
-    <lastmod>2022-08-16T21:02:29.980Z</lastmod>
+    <lastmod>2022-09-02T15:21:30.725Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/aloy/stat230-materials/index.html</loc>
-    <lastmod>2022-08-16T21:02:30.440Z</lastmod>
+    <lastmod>2022-09-02T15:21:31.317Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/aloy/stat230-materials/activity/01-eda-activity.html</loc>
+    <lastmod>2022-09-02T15:21:31.969Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/aloy/stat230-materials/activity/01-edaR-review.html</loc>
+    <lastmod>2022-09-02T15:21:32.849Z</lastmod>
   </url>
 </urlset>

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.1.179">
 
   <meta name="author" content="Stat 230">
-  <title>stat230-materials - Writing a statistical model</title>
+  <title>stat230-materials - Inference for a two-sample model</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -388,223 +388,372 @@
     <div class="slides">
 
 <section id="title-slide" class="center">
-  <h1 class="title">Writing a statistical model</h1>
+  <h1 class="title">Inference for a two-sample model</h1>
   <p class="subtitle">Making connections</p>
   <p class="author">Stat 230</p>
 </section>
 
-<section id="what-is-a-statistical-model" class="slide level2">
-<h2>What is a statistical model?</h2>
-<div>
-<ul>
-<li class="fragment"><p>A representation for a particular purpose (Daniel Kaplan)</p></li>
-<li class="fragment"><p>A simplification of reality (Cannon et al., 2010)</p></li>
-<li class="fragment"><p>Embodies a set of assumptions concerning the generation of the observed data, and similar data from a larger population (Wikipedia)</p></li>
-<li class="fragment"><p>Remember that all models are wrong; the practical question is how wrong do they have to be to not be useful (George Box)</p></li>
-</ul>
-</div>
-</section>
-<section id="how-to-write-a-statistical-model" class="slide level2">
-<h2>How to write a statistical model</h2>
-<p><strong>observed response = signal + noise</strong></p>
-<div class="fragment">
-<p>signal:</p>
-<ul>
-<li><p>a mathematical function</p></li>
-<li><p>e.g., mean (expectation)</p></li>
-</ul>
-</div>
-<div class="fragment">
-<p>noise:</p>
-<ul>
-<li><p>a random error term</p></li>
-<li><p>e.g., “white noise”</p></li>
-</ul>
-
-</div>
-<aside><div>
-<p>This is called an <em>additive model</em></p>
-</div></aside></section>
-<section id="examples" class="slide level2">
-<h2>Examples</h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="01-2sample-model_files/figure-revealjs/unnamed-chunk-1-1.png" width="288"></p>
-</div>
-</div>
-</div><div class="column" style="width:45%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="01-2sample-model_files/figure-revealjs/unnamed-chunk-2-1.png" width="480"></p>
-</div>
-</div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:45%;">
-
-</div><div class="column" style="width:45%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="01-2sample-model_files/figure-revealjs/unnamed-chunk-3-1.png" width="480"></p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="comparing-groups" class="slide level2">
-<h2>Comparing groups</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<p><img data-src="01-2sample-model_files/figure-revealjs/unnamed-chunk-4-1.png" width="480"></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<ul>
-<li><p>Two Carls collected a random sample of hardcover textbook prices</p></li>
-<li><p>Two disciplinary areas:</p>
-<ul>
-<li>Math &amp; Natural Sciences</li>
-<li>Social sciences</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<p>Is the average textbook price different between the two areas?</p>
-</div>
-</section>
-<section id="writing-a-two-sample-model" class="slide level2">
-<h2>Writing a two-sample model</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 44 × 2
-   Area            Price
-   &lt;fct&gt;           &lt;dbl&gt;
- 1 Math &amp; Science  107. 
- 2 Social Sciences 209  
- 3 Social Sciences  15  
- 4 Social Sciences  27.0
- 5 Math &amp; Science  198. 
- 6 Math &amp; Science  223. 
- 7 Social Sciences  17  
- 8 Social Sciences 139. 
- 9 Math &amp; Science  115. 
-10 Math &amp; Science   85.4
-# … with 34 more rows
-# ℹ Use `print(n = ...)` to see more rows</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:60%;">
-<p><strong>observed response = signal + noise</strong></p>
-<div class="fragment">
-<p><span class="math display">\[y_{ij} = \underbrace{\mu_i}_{\rm \ \ mean \\ response} + \underbrace{\varepsilon_{ij}}_{\rm random \\ \ \  error}\]</span></p>
-<div class="fragment">
-<p><span class="math inline">\(i =\)</span> group index</p>
-<p><span class="math inline">\(j =\)</span> observation index</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="two-sample-model" class="slide level2">
-<h2>Two-sample model</h2>
-<p>Let group 1 = STEM and group 2 = social sciences</p>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:43%;">
-<p>STEM model:</p>
-</div><div class="column" style="width:35%;">
-<p><span class="math inline">\(y_{1j} = \mu_1 + \varepsilon_{1j}\)</span></p>
-</div><div class="column" style="width:15%;">
-<p><span class="math inline">\(j=1,\ldots,n_1\)</span></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:43%;">
-<p>Social science model:</p>
-</div><div class="column" style="width:35%;">
-<p><span class="math inline">\(y_{2j} = \mu_2 + \varepsilon_{2j}\)</span></p>
-</div><div class="column" style="width:15%;">
-<p><span class="math inline">\(j=1,\ldots,n_2\)</span></p>
-</div>
-</div>
-</div>
-</section>
-<section id="fitting-the-model" class="slide level2">
-<h2>Fitting the model</h2>
-<p>We don’t know the population means for each group, but can estimate them</p>
-<p><br></p>
-<p><span class="math inline">\(\widehat{\mu}_1 = \frac{1}{n_1} \sum_{j=1}^{n_1}y_{11} + y_{12} + \cdots + y_{1n_1} = \bar{y}_1\)</span></p>
-<p><br></p>
-<p><span class="math inline">\(\widehat{\mu}_2 = \frac{1}{n_2} \sum_{j=1}^{n_2}y_{21} + y_{22} + \cdots + y_{2n_2} = \bar{y}_2\)</span></p>
-</section>
-<section id="fitted-model" class="slide level2">
-<h2>Fitted model</h2>
-<p>In <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">mean</span>(Price <span class="sc">~</span> Area, <span class="at">data =</span> BookPrices)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Math &amp; Science Social Sciences 
-       156.7341         98.9900 </code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<p>We can write the fitted model as</p>
-<p><span class="math inline">\(\widehat{\mu}_1 = 156.73\)</span></p>
-<p><span class="math inline">\(\widehat{\mu}_2 = 98.99\)</span></p>
-</div>
-</section>
-<section id="visualizing-the-model" class="slide level2">
-<h2>Visualizing the model</h2>
+<section id="textbook-prices-revisited" class="slide level2">
+<h2>Textbook prices revisited</h2>
+<p>Is the average textbook price different between STEM and the social sciences?</p>
 <div class="columns">
 <div class="column" style="width:80%;">
 <div class="cell">
 <div class="cell-output-display">
-<p><img data-src="01-2sample-model_files/figure-revealjs/unnamed-chunk-7-1.png" style="width:100.0%"></p>
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-1-1.png" style="width:100.0%"></p>
 </div>
 </div>
 </div><div class="column" style="width:20%;">
 <p><br></p>
 <p><br></p>
 <p><span class="math inline">\(\widehat{\mu}_1 = 156.73\)</span></p>
-<p><font color="#E69F00"><span class="math inline">\(\widehat{\mu}_2 = 98.99\)</span></font></p>
+<p><span class="math inline">\(\widehat{\mu}_2 = 98.99\)</span></p>
 </div>
 </div>
 </section>
-<section id="errors-residuals" class="slide level2">
-<h2>Errors (residuals)</h2>
-<p>Not all points will fall at the group mean</p>
-<p><span class="math inline">\(\widehat{\varepsilon}_{1j} = Y_{1j} - \widehat{\mu}_1 = {\rm observed} - {\rm fitted}\)</span></p>
-<p><span class="math inline">\(\widehat{\varepsilon}_{2j} = Y_{2j} - \widehat{\mu}_2\)</span></p>
+<section id="model-review" class="slide level2">
+<h2>Model review</h2>
+<p>In the two-sample problem, we can write the model as</p>
+<p><span class="math display">\[y_{ij} = \underbrace{\mu_i}_{\rm \ \ mean \\ response} + \underbrace{\varepsilon_{ij}}_{\rm random \\ \ \  error}\]</span></p>
 <div class="fragment">
 <p><br></p>
-<div class="callout callout-note callout-captioned callout-style-default">
-<div class="callout-body">
-<div class="callout-caption">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>What assumptions/conditions do we place on the random errors?</p>
 </div>
-<p><strong>Note</strong></p>
+</section>
+<section id="assumptions-on-error-terms" class="slide level2">
+<h2>Assumptions on error terms</h2>
+<p><span class="math inline">\(\varepsilon_{ij} \overset{\rm iid}{\sim} \mathcal{N}(0, \sigma^2)\)</span></p>
+<ul>
+<li><p>Errors are independent and identically distributed (iid)</p></li>
+<li><p>Errors follow normal distribution</p></li>
+<li><p>Errors have mean 0</p></li>
+<li><p>Both groups have the same population standard deviation</p></li>
+</ul>
+
+<aside><div>
+<p>Note: The textbook uses variance rather than the standard deviation to specify the normal distribution.</p>
+</div></aside></section>
+<section id="assumptions-on-error-terms-1" class="slide level2">
+<h2>Assumptions on error terms</h2>
+
+<img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-2-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="hypothesis-testing-review" class="slide level2">
+<h2>Hypothesis testing review</h2>
+<ol type="1">
+<li><p>Formulate competing hypotheses: <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_a\)</span></p></li>
+<li><p>Choose a test statistic that characterizes the information in the sample relevant to <span class="math inline">\(H_0\)</span></p></li>
+<li><p>Determine the distribution of the chosen statistic <strong>when</strong> <span class="math inline">\(H_0\)</span> is true</p></li>
+<li><p>Compare the calculated test statistic to that distribution and determine whether is it “extreme” (i.e., too far in the tail)</p></li>
+</ol>
+</section>
+<section id="formulate-competing-hypotheses" class="slide level2">
+<h2>1. Formulate competing hypotheses</h2>
+<div>
+<ul>
+<li class="fragment"><p>Be sure to use parameters from the model in your hypotheses!</p>
+<p><span class="math display">\[y_{ij} = \mu_i + \varepsilon_{ij}\]</span></p></li>
+<li class="fragment"><p>Link the hypotheses to the research question!</p>
+<p>Is the average textbook price different between STEM and the social sciences?</p></li>
+</ul>
 </div>
-<div class="callout-content">
-<p>We use the residuals to <em>estimate</em> the random errors from the model</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><span class="math inline">\(H_0: \mu_1 = \mu_2\)</span></p>
+<p><span class="math inline">\(H_a: \mu_1 \ne \mu_2\)</span></p>
+</div><div class="column" style="width:30%;">
+<div class="fragment">
+<p><span class="math inline">\(\Longleftrightarrow \mu_1-\mu_2=0\)</span></p>
+<p><span class="math inline">\(\Longleftrightarrow \mu_1-\mu_2\ne0\)</span></p>
 </div>
 </div>
 </div>
+</div>
+</section>
+<section id="choose-a-test-statistic" class="slide level2">
+<h2>2. Choose a test statistic</h2>
+<p>Your test statistic should characterize the information in the sample relevant to your hypotheses</p>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="math inline">\(t = \dfrac{{\rm statistic} - {\rm H_0 \ value}}{SE}\)</span></p>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<p><span class="math inline">\(= \dfrac{(\bar{y}_1- \bar{y}_2) - (\mu_1-\mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}\)</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>where</p>
+<p><span class="math inline">\(s_p = \sqrt{\dfrac{(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\)</span></p>
+</div>
+</section>
+<section id="determine-the-null-distribution" class="slide level2">
+<h2>3. Determine the null distribution</h2>
+<p>Null distribution = distribution of the test statistic under <span class="math inline">\(H_0\)</span></p>
+<div class="fragment">
+<p><br></p>
+<p>Two-sample CLT assuming equal variances:</p>
+<p><span class="math display">\[
+\bar{y}_1- \bar{y}_2 \overset{\cdot}{\sim} \mathcal{N} \left( \mu_1 - \mu_2, \sigma^2 \left[\frac{1}{n_1} + \frac{1}{n_2} \right] \right)
+\]</span></p>
+</div>
+<div class="fragment">
+<p>If we knew <span class="math inline">\(\sigma^2\)</span>, then <span class="math inline">\(\dfrac{(\bar{y}_1- \bar{y}_2) - (\mu_1-\mu_2)}{\sigma \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \overset{\cdot}{\sim} \mathcal{N}(0, 1)\)</span></p>
+</div>
+</section>
+<section id="determine-the-null-distribution-1" class="slide level2">
+<h2>3. Determine the null distribution</h2>
+<p>When we don’t know <span class="math inline">\(\sigma^2\)</span>, we plug in <span class="math inline">\(s^2_p\)</span> as our best estimate (assuming equal variances)</p>
+<p><span class="math display">\[\dfrac{(\bar{y}_1- \bar{y}_2) - (\mu_1-\mu_2)}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \overset{\cdot}{\sim} t_{n_1 + n_2 - 2}\]</span></p>
+</section>
+<section id="compare-the-test-statistic-to-the-null-distribution" class="slide level2">
+<h2>4. Compare the test statistic to the null distribution</h2>
+<div class="cell">
+
+</div>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-5-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Look to the tail specified by <span class="math inline">\(H_a\)</span></p>
+</div></aside></section>
+<section id="compare-the-test-statistic-to-the-null-distribution-1" class="slide level2">
+<h2>4. Compare the test statistic to the null distribution</h2>
+<div class="cell">
+
+</div>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-10-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>p-value is the tail area specified by <span class="math inline">\(H_a\)</span></p>
+</div></aside></section>
+<section id="draw-a-conclusion-in-context" class="slide level2">
+<h2>5. Draw a conclusion in context</h2>
+<div>
+<ul>
+<li class="fragment"><em>p</em>-value: probability of observing a test statistic at least as contrary to <span class="math inline">\(H_0\)</span>, given that <span class="math inline">\(H_0\)</span> is true.</li>
+<li class="fragment">Smaller <em>p</em>-values provide stronger evidence against <span class="math inline">\(H_0\)</span></li>
+<li class="fragment">A “small enough” <em>p</em>-value tells us that there is a <em>statistical discernible</em> difference</li>
+<li class="fragment">This does not mean the difference is <em>important</em></li>
+</ul>
+</div>
+</section>
+<section id="book-price-example" class="slide level2 smaller">
+<h2>Book price example</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Area </th>
+   <th style="text-align:right;"> mean </th>
+   <th style="text-align:right;"> sd </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Math &amp; Science </td>
+   <td style="text-align:right;"> 156.734 </td>
+   <td style="text-align:right;"> 39.145 </td>
+   <td style="text-align:right;"> 27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Social Sciences </td>
+   <td style="text-align:right;"> 98.990 </td>
+   <td style="text-align:right;"> 71.914 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p><span class="math inline">\(H_0: \mu_1-\mu_2=0\)</span></p>
+<div class="fragment">
+<p><span class="math inline">\(t=\dfrac{(\overline{y}_1-\overline{y}_2)-0}{s_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\)</span></p>
+</div>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><span class="math inline">\(s_p=\sqrt{\dfrac {(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\)</span></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><span class="math inline">\(= \sqrt{\dfrac{(27-1)39.145^2 + (17-1)71.914^2}{27 + 17 - 2}}\)</span></p>
+</div>
+</div><div class="column" style="width:5%;">
+<div class="fragment">
+<p><span class="math inline">\(\phantom{\dfrac{1}{1}}\approx 54.03\)</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p><span class="math inline">\(t=\dfrac{(156.734-98.990)-0}{54.03\sqrt{\dfrac{1}{27} + \dfrac{1}{17}}} \approx 3.04\)</span></p>
+</div>
+</section>
+<section id="book-price-example-1" class="slide level2 smaller">
+<h2>Book price example</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><span class="math inline">\(df = n_1 + n_2 - 2 = 27 + 17 - 2\)</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+</div>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">3.04</span>, <span class="at">df =</span> <span class="dv">27</span> <span class="sc">+</span> <span class="dv">17</span> <span class="sc">-</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.004062084</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>There is a statistically discernible difference between the average textbook prices between STEM and social science sources (<span class="math inline">\(t=3.04\)</span>, <span class="math inline">\(df=42\)</span>, <span class="math inline">\(p=0.004\)</span>).</p>
+</div>
+</section>
+<section id="confidence-interval-review" class="slide level2">
+<h2>Confidence interval review</h2>
+<div>
+<ul>
+<li class="fragment"><p>General equation for confidence interval from intro</p>
+<p><span class="math display">\[
+  \rm statistic \pm q^* \times SE
+  \]</span></p></li>
+<li class="fragment"><p>Set of plausible values for our population parameter</p></li>
+<li class="fragment"><p>Our confidence is in the entire process used to construct the interval</p></li>
+</ul>
+</div>
+</section>
+<section id="two-sample-interval" class="slide level2">
+<h2>Two-sample interval</h2>
+<p>Construct an 89% confidence interval for the difference in average textbook price between the areas.</p>
+<p><span class="math display">\[\rm statistic \pm q^* \times SE \Longrightarrow \bar{y}_1- \bar{y}_2 \pm t^*  \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}\]</span> where</p>
+<ul>
+<li><p><span class="math inline">\(s_p = \sqrt{\dfrac{(n_1 - 1) s_1^2 + (n_2-1) s_2^2}{n_1 + n_2 - 2}}\)</span></p></li>
+<li><p><span class="math inline">\({\rm df} = n_1 + n_2 - 2\)</span></p></li>
+</ul>
+</section>
+<section id="book-price-example-2" class="slide level2 smaller">
+<h2>Book price example</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Area </th>
+   <th style="text-align:right;"> mean </th>
+   <th style="text-align:right;"> sd </th>
+   <th style="text-align:right;"> n </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Math &amp; Science </td>
+   <td style="text-align:right;"> 156.734 </td>
+   <td style="text-align:right;"> 39.145 </td>
+   <td style="text-align:right;"> 27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Social Sciences </td>
+   <td style="text-align:right;"> 98.990 </td>
+   <td style="text-align:right;"> 71.914 </td>
+   <td style="text-align:right;"> 17 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Recall:</p>
+<ul>
+<li><p><span class="math inline">\(SE = 54.03\sqrt{\dfrac{1}{27} + \dfrac{1}{17}} \approx 16.73\)</span></p></li>
+<li><p><span class="math inline">\(\rm{df}=27+17-2 = 42\)</span></p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p>Find the quantile</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="02-2sample-inference_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">qt</span>(<span class="fl">0.945</span>, <span class="at">df=</span> <span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.632738</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="book-price-example-3" class="slide level2">
+<h2>Book price example</h2>
+<span class="math display">\[\begin{align*}
+\bar{y}_1- \bar{y}_2 \pm t^*  \cdot s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} &amp;= (156.734-98.990) \pm 1.633 (16.73)\\
+&amp;= (30.42, 85.06)
+\end{align*}\]</span>
+<p>We are 89% confident that, on average, STEM textbooks are between $30.42 and $85.06 more expensive than social science textbook prices.</p>
 
 <div class="footer footer-default">
 
-</div>
 </div>
 </section>
     </div>
