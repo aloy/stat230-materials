@@ -1,0 +1,14 @@
+{
+  "hash": "903b8b0ad16035be1528793531aca950",
+  "result": {
+    "markdown": "---\ntitle: \"EDA Using R/RStudio\"\nauthor: \"Math 245, Adam Loy\"\noutput: pdf_document\n---\n\n\n\n\n#### Instructions\n\nExplore the `HELPrct` data set to try to\nfind some interesting insights. You may want to check out the codebook on Moodle to get\na glimpse at what this data set contains. Next, start exploring the data set using plots,\ntables, and other numeric summaries. Select three of your favorite plots and tell a story \n(in writing) about each of them. \n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# load the data set from the url\nHELPrct <- read.csv(\"https://aloy.rbind.io/data/HELPrct.csv\")\n\n# loading the necessary packages\nlibrary(ggformula)\nlibrary(dplyr)\n```\n:::\n\n\n\n## PLOT 1\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# put the code for your plot here\n```\n:::\n\n\n(Include the description for your plot here.)\n\n\n## PLOT 2\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# put the code for your plot here\n```\n:::\n\n(Include the description for your plot here.)\n\n\n## PLOT 3\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# put the code for your plot here\n```\n:::\n\n(Include the description for your plot here.)",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": null
+  }
+}

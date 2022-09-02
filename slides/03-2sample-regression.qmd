@@ -1,0 +1,355 @@
+---
+title: "Using a regression model to compare means"
+subtitle: "Making connections"
+author: "Stat 230"
+format: revealjs
+editor: visual
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(resampledata)
+library(ggthemes)
+library(kableExtra)
+library(fontawesome)
+library(patchwork)
+data("BookPrices")
+
+book_means <- round(mean(Price ~ Area, data = BookPrices), 2)
+```
+
+## Simple linear regression model
+
+**observed response = signal + noise** <br>
+
+$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} \mathcal{N} (0, \sigma^2)$
+
+. . .
+
+This model requires
+
+-   Linear relationship between $x$ and $y$
+
+-   Errors are independent and identically distributed (iid)
+
+-   Errors follow normal distribution
+
+-   Errors have mean 0
+
+-   Variance of the errors don't depend on $x$
+
+## Indicator/dummy variables
+
+How can we use a categorical explanatory variable in a regression model?
+
+. . .
+
+-   Create an indicator variable that takes on either 0 or 1
+
+. . .
+
+-   Disciplinary area of textbook -- STEM vs. Social sciences
+
+    -   $x_{\rm social} = 0$ if a book is STEM
+
+    -   $x_{\rm social} = 1$ if a book is social science
+
+
+## Regression model with indicator
+
+We can rewrite the two-sample t-test as a regression model using an indicator
+
+$$y_i = \beta_0 + \beta_1 x_{\rm social\ i} + \varepsilon_i$$
+
+. . .
+
+but... we need to be careful with our interpretations of the regression coefficients!
+
+## Review: Interpretations
+
+:::columns
+:::{.column width="10%"}
+$\beta_0$
+:::
+
+:::{.column width="90%"}
+-   y-intercept
+-   expected value of $y$ when $x=0$
+:::
+:::
+
+<br>
+
+. . .
+
+:::columns
+:::{.column width="10%"}
+$\beta_1$
+:::
+
+:::{.column width="90%"}
+-   slope
+-   expected change in $y$ when $x$ increases by one unit
+:::
+:::
+
+## Interpretations
+
+$y_i = \beta_0 + \beta_1 x_{\rm social\ i} + \varepsilon_i$
+
+<br>
+
+:::columns
+:::{.column width="10%"}
+$\beta_0$
+:::
+
+:::{.column width="90%"}
+-   y-intercept
+-   expected value of $y$ when $x=0$
+-   If $x_{\rm social}=0$, the book is for a STEM course (i.e., baseline group)
+-   $\beta_0 =$ mean textbook price for STEM courses
+:::
+:::
+
+## Interpretations
+
+$y_i = \beta_0 + \beta_1 x_{\rm social\ i} + \varepsilon_i$
+
+<br>
+
+$\mu_{\rm social} = \beta_0 + \beta_1 \Longleftrightarrow \beta_0 + \beta_1(1)$
+
+-   If $x_{\rm social}=1$, the book is for a social science course
+-   Linear equation gives the mean (expected) response
+
+## Interpretations
+
+$y_i = \beta_0 + \beta_1 x_{\rm social\ i} + \varepsilon_i$
+
+<br>
+
+$\beta_1 = \mu_{\rm social} - \mu_{\rm STEM}$
+
+-   $\mu_{\rm STEM} = \beta_0$
+-   $\mu_{\rm social} = \beta_0 + \beta_1$
+-   expected difference in mean response for social science books compared to STEM books
+
+## Fitting the model
+
+::: columns
+::: {.column width="30%"}
+**Model**
+:::
+
+::: {.column width="70%"}
+$y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i$, $\qquad \varepsilon_i \overset{\rm iid}{\sim} \mathcal{N} (0, \sigma^2)$
+:::
+:::
+
+<br>
+
+::: columns
+::: {.column width="30%"}
+**Problem**
+:::
+
+::: {.column width="70%"}
+We need estimates for $\beta_0$, $\beta_1$, and $\sigma^2$
+:::
+:::
+
+<br>
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+**Procedure**
+:::
+
+::: {.column width="70%"}
+-   Find $\widehat{\beta}_0$ and $\widehat{\beta}_1$ that minimize
+
+    $\sum_{i=1}^n \left(y_i - (\widehat{\beta}_0 + \widehat{\beta}_1 x_i )\right)^2 = \text{SSR}$
+
+-   Use SSR as basis for $\widehat{\sigma}^2$
+:::
+:::
+
+## Least squares estimates
+
+$$\begin{align}
+\widehat{\beta}_0 &= \overline{y} - \widehat{\beta}_1 \overline{x}\\
+& \\
+\widehat{\beta}_1 &= \dfrac{\displaystyle \sum_{i=1}^n \left(y_i - \overline{y} \right) \left(x_i - \overline{x} \right)}{\displaystyle \sum_{i=1}^n \left(x_i - \overline{x} \right)^2} = r \dfrac{s_y}{s_x}
+\end{align}$$
+
+::: aside
+It's common to use $b_0 = \widehat{\beta}_0$ and $b_1 = \widehat{\beta}_1$. Recall that $r$ is the correlation between $x$ and $y$.
+:::
+
+## Estimated residual variance
+
+To obtain an estimate of $\sigma^2$, we use the sum of the squared errors
+
+$$\widehat{\sigma}^2 = \displaystyle \dfrac{\sum_{i=1}^n (y_i - \widehat{y}_i)^2}{n - 2} = \displaystyle \dfrac{\text{SSR}}{n-2}$$ <br>
+
+where $\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+
+## Regression output
+
+```{r eval=FALSE}
+#| echo: true
+#| code-line-numbers: "|10-11,15"
+Call:
+lm(formula = Price ~ Area, data = BookPrices)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.990 -39.972   4.138  40.359 110.010 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)           156.73      10.40  15.075  < 2e-16 ***
+AreaSocial Sciences   -57.74      16.73  -3.452  0.00128 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 54.03 on 42 degrees of freedom
+Multiple R-squared:  0.221,	Adjusted R-squared:  0.2025 
+F-statistic: 11.92 on 1 and 42 DF,  p-value: 0.001281
+```
+
+::: aside
+The residual standard error is $\widehat{\sigma}$
+:::
+
+# Connecting two-sample t-procedures to regression
+
+## Hypothesis tests {.smaller}
+
+::: columns
+::: {.column width="20%"}
+<br>
+
+Null hypothesis
+:::
+
+::: {.column width="40%"}
+**t-test**
+
+$H_0: \mu_1 - \mu_2 = 0$
+:::
+
+::: {.column width="40%"}
+**Regression**
+
+$H_0: \beta_1 = 0$
+:::
+:::
+
+<br>
+
+. . .
+
+
+::: columns
+::: {.column width="20%"}
+
+Test statistic
+
+:::
+
+::: {.column width="40%"}
+
+$t=\dfrac{(\bar{y}_1- \bar{y}_2) - 0}{s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}$
+
+:::
+
+
+::: {.column width="40%"}
+$t = \dfrac{\widehat{\beta}_1 - 0}{SE(\widehat{\beta}_1)}$, where $SE(\widehat{\beta}_1) = \widehat{\sigma} \sqrt{\dfrac{1}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x} \right)^2}}}$
+:::
+:::
+
+<br>
+
+. . .
+
+::: columns
+::: {.column width="20%"}
+
+Null distribution
+
+:::
+
+
+::: {.column width="40%"}
+$t_{n_1 + n_2 - 2}$
+:::
+
+::: {.column width="40%"}
+$t_{n - 2}$
+:::
+:::
+
+## Confidence intervals
+
+General formula: $\rm statistic \pm q^* \times SE$
+
+
+::: columns
+::: {.column width="20%"}
+
+:::
+
+::: {.column width="40%"}
+**SE**
+:::
+
+::: {.column width="40%"}
+**Sampling distribution**
+:::
+:::
+
+<br>
+
+. . .
+
+
+::: columns
+::: {.column width="20%"}
+
+t-test
+:::
+
+::: {.column width="40%"}
+$s_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}$
+:::
+
+:::{ .column width="40%"}
+$t_{n_1 + n_2 - 2}$
+:::
+:::
+
+<br>
+
+. . .
+
+::: columns
+::: {.column width="20%"}
+Regression slope
+:::
+
+::: {.column width="40%"}
+
+$\widehat{\sigma} \sqrt{\frac{1}{\sqrt{\sum_{i=1}^n \left(x_i - \overline{x} \right)^2}}}$
+:::
+
+::: {.column width="40%"}
+$t_{n - 2}$
+:::
+:::
+
+# We'll use R to implement inference, and we'll explore this in class {.r-fit-text}
