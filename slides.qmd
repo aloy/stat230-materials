@@ -1,0 +1,13 @@
+---
+title: "Stat 230 Slide Decks"
+listing:
+  filter-ui: [title, date]
+  contents:
+    - "slides-metadata.yml"
+  type: grid
+  fields: [image, date, title, categories]
+  sort: "date desc"
+  categories: true
+---
+
+All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.

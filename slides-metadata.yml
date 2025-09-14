@@ -1,0 +1,10 @@
+# Internal slide decks
+- title: "Course overview, SLR review"
+  subtitle: "Day 01 of Stat 230"
+  date: 2025-09-15
+  image: slides/featured/01-slides-slr-review.png
+  path: slides/01-slides-slr-review.qmd
+  categories:
+    - "data wrangling"
+
+

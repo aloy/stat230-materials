@@ -3,14 +3,8 @@ project:
   output-dir: docs
 
 website:
-  title: "stat230-materials"
-  navbar:
-    background: primary
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+  title: "Stat 230 - Fall 2025"
+  
 format:
   html:
     theme: cosmo

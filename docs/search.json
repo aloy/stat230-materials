@@ -1,17 +1,80 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "objectID": "slides/01-slides-slr-review.html#welcome",
+    "href": "slides/01-slides-slr-review.html#welcome",
+    "title": "Welcome and Review",
+    "section": "Welcome 👋",
+    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "stat230-materials",
+    "objectID": "slides/01-slides-slr-review.html#your-turn",
+    "href": "slides/01-slides-slr-review.html#your-turn",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
+    "href": "slides/01-slides-slr-review.html#regression-in-intro",
+    "title": "Welcome and Review",
+    "section": "Regression in intro",
+    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
+    "href": "slides/01-slides-slr-review.html#your-turn-1",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "title": "Welcome and Review",
+    "section": "Regression in Stat 230",
+    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "title": "Welcome and Review",
+    "section": "Simple Linear Regression Model",
+    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#notation",
+    "href": "slides/01-slides-slr-review.html#notation",
+    "title": "Welcome and Review",
+    "section": "Notation",
+    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "title": "Welcome and Review",
+    "section": "Overview of the term",
+    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#typical-week",
+    "href": "slides/01-slides-slr-review.html#typical-week",
+    "title": "Welcome and Review",
+    "section": "Typical week",
+    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#tools",
+    "href": "slides/01-slides-slr-review.html#tools",
+    "title": "Welcome and Review",
+    "section": "Tools",
+    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "This is a Quarto website!\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1 + 1\n\n[1] 3"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\ndata wrangling\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activity/01-eda-activity.html",
@@ -98,73 +161,10 @@
     "text": "Bivariate summaries\n\nCategorical vs. categorical\n\ntable(HELPrct$sex, HELPrct$substance)\n\n        \n         alcohol cocaine heroin\n  female      36      41     30\n  male       141     111     94\n\n\n\ngf_bar( ~ substance, data = HELPrct, fill = ~sex)\ngf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_dodge())\ngf_bar( ~ substance, data = HELPrct, fill = ~sex, position = position_fill())\n\n\n\nLoading required package: viridisLite\n\n\n\nAttaching package: 'viridis'\n\n\nThe following object is masked from 'package:scales':\n\n    viridis_pal\n\n\n\n\n\n\n\n\n\n\n\nQuantitative vs. categorical\n\n# Using dplyr\nHELPrct %&gt;%\n  group_by(racegrp) %&gt;%\n  summarize(min = min(age),\n            Q1 = quantile(age, prob = .25),\n            median = median(age),\n            Q3 = quantile(age, prob = .75),\n            max = max(age),\n            mean = mean(age),\n            sd = sd(age),\n            n = length(age))\n\n# A tibble: 4 × 9\n  racegrp    min    Q1 median    Q3   max  mean    sd     n\n  &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n1 black       20  31       35  39      60  35.7  7.08   211\n2 hispanic    21  28.2     32  36.2    55  33.2  7.99    50\n3 other       22  30       34  40.5    48  35.0  7.66    26\n4 white       19  30       36  42      58  36.5  8.28   166\n\ngf_boxplot(age ~ racegrp, data = HELPrct)\n\n\n\n\n\n\n\n\n\n\nQuantitative vs. Quantitative\n\ncor(HELPrct$i1, HELPrct$age)\n\n[1] 0.2069538\n\ngf_point(i1 ~ age, data = HELPrct)"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#welcome",
-    "href": "slides/01-slides-slr-review.html#welcome",
-    "title": "Welcome and Review",
-    "section": "Welcome 👋",
-    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#your-turn",
-    "href": "slides/01-slides-slr-review.html#your-turn",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
-    "href": "slides/01-slides-slr-review.html#regression-in-intro",
-    "title": "Welcome and Review",
-    "section": "Regression in intro",
-    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
-    "href": "slides/01-slides-slr-review.html#your-turn-1",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "title": "Welcome and Review",
-    "section": "Regression in Stat 230",
-    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "title": "Welcome and Review",
-    "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#notation",
-    "href": "slides/01-slides-slr-review.html#notation",
-    "title": "Welcome and Review",
-    "section": "Notation",
-    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "title": "Welcome and Review",
-    "section": "Overview of the term",
-    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#typical-week",
-    "href": "slides/01-slides-slr-review.html#typical-week",
-    "title": "Welcome and Review",
-    "section": "Typical week",
-    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#tools",
-    "href": "slides/01-slides-slr-review.html#tools",
-    "title": "Welcome and Review",
-    "section": "Tools",
-    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   }
 ]
