@@ -1,1 +1,1 @@
-Sitemap: https://github.com/aloy/stat230-materials/sitemap.xml
+Sitemap: https://aloy.github.io/stat230-materials/sitemap.xml

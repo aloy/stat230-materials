@@ -1,31 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/aloy/stat230-materials/slides/03-2sample-regression.html</loc>
-    <lastmod>2022-09-02T17:39:43.235Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
+    <lastmod>2025-09-14T19:07:10.095Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/aloy/stat230-materials/slides/01-2sample-model.html</loc>
-    <lastmod>2022-09-02T17:39:43.843Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/about.html</loc>
+    <lastmod>2025-09-14T19:07:10.053Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/aloy/stat230-materials/slides/02-2sample-inference.html</loc>
-    <lastmod>2022-09-02T17:39:44.503Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/activity/01-eda-activity.html</loc>
+    <lastmod>2025-09-14T19:07:10.053Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/aloy/stat230-materials/about.html</loc>
-    <lastmod>2022-09-02T17:39:45.347Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/activity/01-edaR-review.html</loc>
+    <lastmod>2025-09-14T19:07:10.053Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/aloy/stat230-materials/index.html</loc>
-    <lastmod>2022-09-02T17:39:45.831Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/aloy/stat230-materials/activity/01-eda-activity.html</loc>
-    <lastmod>2022-09-02T17:39:46.355Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/aloy/stat230-materials/activity/01-edaR-review.html</loc>
-    <lastmod>2022-09-02T17:39:47.019Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/index.html</loc>
+    <lastmod>2025-09-14T19:07:10.095Z</lastmod>
   </url>
 </urlset>
