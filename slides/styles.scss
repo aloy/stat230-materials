@@ -1,0 +1,36 @@
+$colors: (
+  "blue": #003069,
+  "maize": #ffd24f,
+  "teal": #009785,
+  "cyan": #00aeef,
+  "orange":  #f15a31,
+  "sky":  #d4effc,
+  "night": #000036,
+  "white": #FFFFFF,
+  "cream": #fffef5,
+);
+
+/*-- scss:functions --*/
+
+@function theme-color($color) {
+  @return map-get($colors, $color);
+}
+
+/*-- scss:defaults --*/
+
+$presentation-heading-color: theme-color("blue");
+$body-bg: theme-color("cream");
+$body-color: theme-color("blue");
+$link-color: theme-color("orange");
+
+/*-- scss:rules --*/
+
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}

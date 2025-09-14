@@ -1,0 +1,333 @@
+---
+title: "Welcome and Review"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+editor: source
+---
+
+```{r}
+#| include: false
+data("bikes", package = "bayesrules")
+library(ggformula)
+
+# Define ggplot2 theme with background color
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+```
+
+# [PDF version of slides](pdf_slides/01-slides-slr-review.pdf)
+
+## Welcome 👋
+
+-   I'm Adam (he/him)
+-   I teach statistics & data science
+-   I'm interested in statistics education, data visualization, and R programming
+
+```{r}
+#| include: false
+#| cache: false
+#| eval: false
+
+library(tidyverse)     # ggplot, dplyr, and friends
+library(sf)            # Handle spatial data in R in a tidy way
+library(tigris)        # Access geographic data from the US Census
+library(tidygeocoder)  # Automated geocoding
+library(osrm)          # Access OSRM through R
+library(ggrepel)       # Nicer non-overlapping labels
+library(glue)          # Easier string interpolation
+library(scales)        # Nicer labeling functions
+library(patchwork)     # Combine plots nicely
+library(ggspatial)     # Nicer map features like scale bars
+
+# Custom ggplot theme to make pretty plots
+# Get the font at https://fonts.google.com/specimen/Overpass
+theme_roadtrip <- function() {
+  theme_void(base_family = "Overpass Light") +
+    theme(
+      plot.title = element_text(family = "Overpass", face = "bold", hjust = 0.5),
+      strip.text = element_text(
+        family = "Overpass ExtraBold", face = "plain",
+        size = rel(1.1), hjust = 0.5),
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA)
+    )
+}
+
+
+us_states <- states(resolution = "20m", year = 2022, cb = TRUE)
+
+lower_48 <- us_states %>% 
+  filter(!(NAME %in% c("Alaska", "Hawaii", "Puerto Rico")))
+
+summer_trips <- tribble(
+  ~city, ~state,
+  "Northfield", "MN",
+  "Fish Creek", "WI",
+  "Ames", "IA",
+  "Nashville", "TN", 
+  "Ocean City", "MD"
+)
+
+trips_geocoded <- summer_trips %>% 
+  geocode(city = city, state = state, method = "osm") %>%
+  st_as_sf(coords = c("long", "lat"), crs = st_crs("EPSG:4326"))
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| fig.height: 3
+#| fig.width: 5
+#| eval: false
+ggplot() +
+  geom_sf(data = lower_48) +
+  geom_sf(data = trips_geocoded) +
+  geom_label_repel(
+    data = trips_geocoded,
+    aes(label = city, geometry = geometry),
+    stat = "sf_coordinates", seed = 1234,
+    size = 3, min.segment.length = 0
+  ) +
+  coord_sf(crs = st_crs("ESRI:102003")) +  # Albers
+  theme_roadtrip()
+
+```
+
+
+## Your turn
+
+-   Form groups based on value (2, 3, 4...) of the card dealt
+
+-   Introduce yourself to your group
+
+-   Share at least one thing other than just your name and major
+
+
+# Hi, I'm Emerson 👋
+
+
+
+
+
+# Simple Linear Regression Review
+
+## Regression in intro {.nostretch}
+
+::::: columns
+::: {.column width="60%"}
+<br>
+
+```{r}
+#| fig.height: 3.5
+#| fig.width: 6
+#| fig.align: center
+#| out.width: 100%
+gf_point(rides ~ temp_actual, data = bikes, xlab = "Temperature (F)", ylab = "No. rides", color = "#003069") |>
+  gf_lm(rides ~ temp_actual, linewidth = 3, color = "#f15a31") 
+```
+:::
+
+::: {.column width="40%"}
+-   Describe the scatterplot
+-   Write the equation of the regression line
+-   Interpret the slope and intercept
+-   Make a prediction
+:::
+:::::
+
+## Your turn
+
+-   Work with your group
+
+-   If your card's suit is clubs, you're the designated speaker for your group (be ready!)
+
+-   Work through the review questions
+
+-   Write your group's answer to each question on the whiteboard
+
+## Regression in Stat 230
+
+$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
+
+```{r}
+#| fig.height: 3.5
+#| fig.width: 6
+#| fig.align: center
+library(ggdist)
+
+bike_lm <- lm(rides ~ temp_actual, data = bikes)
+bike_dsn <- data.frame(
+  temp_actual = c(50, 60, 70, 80),
+  yhat = predict(bike_lm, data.frame(temp_actual = c(50, 60, 70, 80))),
+  resid_sd = rep(sigma(bike_lm), 4)
+)
+
+
+ggplot(data = bikes, aes(x = temp_actual, y = rides)) +
+  geom_point(alpha = 0.4, color = "#003069") +
+  geom_lm(color = "#f15a31") +
+  stat_slab(aes(x = temp_actual, ydist = "norm", arg1 = yhat, arg2 = resid_sd), data = bike_dsn, alpha = 0.4, inherit.aes = FALSE, scale = 0.6, fill = "#f15a31") +
+  theme_classic() +
+  xlab("Temperature") +
+  ylab("No. rides")
+```
+
+## Simple Linear Regression Model
+
+$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
+
+<br>
+
+-   Linear relationship between $x$ and $y$
+-   Errors are independent and identically distributed (iid)
+-   Errors are normally distributed
+-   Errors have mean 0
+-   Variance of the errors doesn't depend on $x$
+
+## Notation
+
+Mean function:
+
+$\quad E(Y|X)=\mu\{Y|X\} = \beta_0 + \beta_1 x_i$
+
+<br>
+
+Fitted model equation:
+
+$\quad \widehat{y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+
+# Overview of Stat 230
+
+## Overview of the term
+
+Goal: Develop models to answer research questions
+
+```{mermaid}
+timeline
+%%{init: {'theme':'neutral'}}%%
+    
+    Weeks 1-2 : Simple linear regression
+           : Review
+           : Inference
+           : Model diagnostics
+           
+    Weeks 3-5 : Multiple linear regression
+           : Interpretation
+           : Inference
+           : Model diagnostics
+           : Model selection
+           
+    Weeks 6-8 : Logistic regression
+           : Interpretation
+           : Inference
+           : Model diagnostics
+           : Model selection
+           
+    Weeks 9-10 : Poisson regression
+           : Interpretation
+           : Inference
+```
+
+## Typical week
+
+:::::{.r-fit-text}
+:::: {.r-hstack}
+::: { style="background: #ffd24f; width: 33%; height: 90%; margin: 20px; padding: 0.5em; border-radius: 5px;"}
+
+**Monday**
+
+- Pre-class reading/video
+- Reflection questions
+
+<br>
+
+- Class meeting
+- Work on problems
+:::
+
+::: { style="background: #ffd24f; width: 33%; height: 90%; margin: 20px; padding: 0.5em; border-radius: 5px;"}
+**Wednesday**
+
+- Pre-class reading/video
+- Reflection questions
+
+<br>
+
+- Class meeting
+- Work on problems
+:::
+
+::: { style="background: #ffd24f; width: 33%; height: 90%; margin: 20px; padding: 0.5em; border-radius: 5px;"}
+
+**Friday**
+
+- Pre-class reading/video
+- Reflection questions
+- Homework due by the start of class
+- Class meeting
+- Work on problems
+:::
+::::
+:::::
+
+## Tools
+
+::::{.columns}
+::: {.column width="30%"}
+
+**Moodle**
+
+<br>
+<br>
+
+**Gradescope**
+
+<br>
+
+
+**R and RStudio**
+
+<br>
+
+**R Markdown**
+
+:::
+::: {.column width="70%"}
+Class website; look here for all materials, links, etc.
+
+<br>
+
+Submit assignments, get feedback
+
+<br>
+
+
+Our computational engine
+
+<br>
+
+Dynamic documents for assignments, case studies, projects
+:::
+::::
+
+# Before next class...
+
+1.  Explore the Moodle page
+2.  Read the syllabus -- if you have questions, ask them on the syllabus!
+3.  Review hypothesis tests and confidence intervals as necessary (the basic ideas)
+3.  Read section 7.4 of Sleuth
+4.  Complete the pre-class questions (bring your answers to class)
