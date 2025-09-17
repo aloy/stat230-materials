@@ -70,11 +70,11 @@
     "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Stat 230 Slide Decks",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\ndata wrangling\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   },
   {
     "objectID": "activity/01-slr-review.html",
@@ -84,10 +84,150 @@
     "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#warm-up",
+    "href": "slides/02-slr-inference.html#warm-up",
+    "title": "Inference for SLR",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#example",
+    "href": "slides/02-slr-inference.html#example",
+    "title": "Inference for SLR",
+    "section": "Example",
+    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
+    "href": "slides/02-slr-inference.html#a-deterministic-model",
+    "title": "Inference for SLR",
+    "section": "A deterministic model",
+    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Simple Linear Regression Model",
+    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model",
+    "href": "slides/02-slr-inference.html#linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
+    "href": "slides/02-slr-inference.html#linear-regression-model-1",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
+    "href": "slides/02-slr-inference.html#linear-regression-model-2",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#notation",
+    "href": "slides/02-slr-inference.html#notation",
+    "title": "Inference for SLR",
+    "section": "Notation",
+    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution",
+    "href": "slides/02-slr-inference.html#sampling-distribution",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
+    "href": "slides/02-slr-inference.html#sampling-distribution-2",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#confidence-interval",
+    "href": "slides/02-slr-inference.html#confidence-interval",
+    "title": "Inference for SLR",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#hypothesis-test",
+    "href": "slides/02-slr-inference.html#hypothesis-test",
+    "title": "Inference for SLR",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#coefficient-table",
+    "href": "slides/02-slr-inference.html#coefficient-table",
+    "title": "Inference for SLR",
+    "section": "Coefficient table",
+    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#your-turn",
+    "href": "slides/02-slr-inference.html#your-turn",
+    "title": "Inference for SLR",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "title": "Inference for SLR",
+    "section": "A note on reporting test results",
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "title": "Inference for SLR",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
   }
 ]
