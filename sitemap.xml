@@ -2,26 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
-    <lastmod>2025-09-18T15:34:18.867Z</lastmod>
+    <lastmod>2025-09-18T15:57:36.487Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/index.html</loc>
-    <lastmod>2025-09-18T15:34:18.867Z</lastmod>
+    <lastmod>2025-09-18T15:57:36.487Z</lastmod>
   </url>
   <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
-    <lastmod>2025-09-18T15:34:18.818Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/activity/03-intro-r.html</loc>
+    <lastmod>2025-09-18T15:57:36.429Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/activity/01-slr-review.html</loc>
-    <lastmod>2025-09-18T15:34:18.818Z</lastmod>
+    <lastmod>2025-09-18T15:57:36.429Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
+    <lastmod>2025-09-18T15:57:36.429Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/slides.html</loc>
-    <lastmod>2025-09-18T15:34:18.867Z</lastmod>
+    <lastmod>2025-09-18T15:57:36.487Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/slides/02-slr-inference.html</loc>
-    <lastmod>2025-09-18T15:34:18.867Z</lastmod>
+    <lastmod>2025-09-18T15:57:36.487Z</lastmod>
   </url>
 </urlset>

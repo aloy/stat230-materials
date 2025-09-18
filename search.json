@@ -77,6 +77,83 @@
     "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   },
   {
+    "objectID": "activity/03-intro-r.html",
+    "href": "activity/03-intro-r.html",
+    "title": "Introduction to R for Stat 230",
+    "section": "",
+    "text": "In Stat 230 we will use the R statistical programming language to visualize our data and fit our regression models. Many of you have seen R before, but if you are coming straight from AP statistics this might be your first time using R. Today our goal it to learn the basics of writing and running code in R. To do this, we’ll run our code in a tutorial webpage. Next class I’ll introduce you to the RStudio server and how to create R Markdown files."
+  },
+  {
+    "objectID": "activity/03-intro-r.html#overview",
+    "href": "activity/03-intro-r.html#overview",
+    "title": "Introduction to R for Stat 230",
+    "section": "",
+    "text": "In Stat 230 we will use the R statistical programming language to visualize our data and fit our regression models. Many of you have seen R before, but if you are coming straight from AP statistics this might be your first time using R. Today our goal it to learn the basics of writing and running code in R. To do this, we’ll run our code in a tutorial webpage. Next class I’ll introduce you to the RStudio server and how to create R Markdown files."
+  },
+  {
+    "objectID": "activity/03-intro-r.html#loading-data",
+    "href": "activity/03-intro-r.html#loading-data",
+    "title": "Introduction to R for Stat 230",
+    "section": "Loading data",
+    "text": "Loading data\nToday we will work with the movies data set. The data set contains the critic’s score and the audience score for movie released in 2014-2015. The critic’s score is the percentage of critics who had a favorable view of the movie. Similarly, the audience score is the percentage of users who had a favorable view of the movie. Today, you’ll explore the relationship between the audience and critic scores.\nTo load data into R, we use the read.csv() command and pass in either a file path or URL in quotes. Below, the data are being loaded from the web. Click “Run code” to load the data.\n\n\n\n\n\n\n\n\nNotice that we use parentheses with functions and place the arguments for that function inside those parentheses.\n\n\n\n\n\n\nNote\n\n\n\nYou should notice that R did not appear to do anything when you ran the above code. That’s because everything was done in the background and R will only show you what is requested. So don’t panic if you don’t see any output!"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#getting-a-glimpse-of-the-data-set",
+    "href": "activity/03-intro-r.html#getting-a-glimpse-of-the-data-set",
+    "title": "Introduction to R for Stat 230",
+    "section": "Getting a glimpse of the data set",
+    "text": "Getting a glimpse of the data set\nThroughout the term I’ll refer to small pieces of code as “code chunks.” This is both descriptive and will be what RStudio (our interface) calls them later on. For today, we’ll focus on how to write small code chunks to accomplish specific tasks for simple linear regression.\nFor example, we might wish to get an overview of the data set by printing the first few rows via head()\n\n\n\n\n\n\n\n\nI prefer to use a different function, glimpse(), which is in the {dplyr} package. To load a package we first must run the library() command. The below code chunk loads this package and gives a “glimpse” of the movies data set:\n\n\n\n\n\n\n\n\n\nCheckpoint questions:\nUsing the output from the above code chunk, answer the following questions in the code box below:\n\nHow many rows are in the movies data set?\nHow many variables are in the movies data set? Are any categorical? Are any quantitative?"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#univariate-exploration",
+    "href": "activity/03-intro-r.html#univariate-exploration",
+    "title": "Introduction to R for Stat 230",
+    "section": "Univariate exploration",
+    "text": "Univariate exploration\nBefore jumping into a regression model, it can be useful to understand more about each variable. This can be accomplished using intro stat tools such as histograms and summary statistics.\nThe fastest way to get started is using the summary() function, which returns a brief set of summary statistics for each variable in the data set.\n\n\n\n\n\n\n\n\nR also has built-in functions to compute summary statistics one by one for a specific column. To “extract” a variable from the data set, we use a $. For example, we can extract the critics column from the movies data frame and calculate the standard deviation:\n\n\n\n\n\n\n\n\nOther useful summary statistics for quantitative variables include (here x denotes an extracted column):\n\n\n\nFunction\nSummary statistic\n\n\n\n\nmedian(x)\nmedian\n\n\nmean(x)\nmean\n\n\nvar(x)\nvariance\n\n\nIQR(x)\ninterquartile range\n\n\n\n\nTo create graphics in this course we’ll use tools from the {ggformula} R package. All of the functions will begin with gf_ and have similar syntax. If you’re familiar with the {ggplot2} package, feel free to use it for this class, but most students like the “one-liners” that {ggformula} allows.\nTo begin, load the {ggformula} package using the library command:\n\n\n\n\n\n\n\n\nFor example, to create a histogram of the critic’s score we can run\n\n\n\n\n\n\n\n\nHere we use the ~ to tell R that critics is a variable in the data set. We must also specify data and adjust the number of bins as needed.\nSimilar syntax is used to create a boxplot\n\n\n\n\n\n\n\n\n\nCheckpoint questions\nUse the below code box for the checkpoint questions:\n\n\n\n\n\n\n\n\n\nCalculate the mean audience score using the mean() function.\nCreate a histogram of the audience score and describe what you see.\nChange the number of bins for a histogram of audience. What number of bins seems “about right” in your opinion?"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#bivariate-exploration",
+    "href": "activity/03-intro-r.html#bivariate-exploration",
+    "title": "Introduction to R for Stat 230",
+    "section": "Bivariate exploration",
+    "text": "Bivariate exploration\n\nScatterplots\nIn this course we are interested in exploring relationships between variables. If we have two quantitative variables, then a scatterplot is a natural way to visually explore this relationship. To create a scatterplot we can use the gf_point() function (since scatterplots are just points):\n\n\n\n\n\n\n\n\nNotice that we put the response variable on the left of the ~ and the explanatory variable on the right.\n\nCheckpoint questions\nUse the below code box for the checkpoint questions:\n\n\n\n\n\n\n\n\n\nCreate a scatterplot where critics score is the response variable and audience score is the explanatory variable.\nYou can adjust the axis labels by adding an xlab or ylab argument. Add xlab = \"Your axis label\" and ylab = \"Your other axis label\" to your scatterplot and give more verbose axis labels.\n\n\n\n\nScatterplots with regression lines\nYou can also add a simple linear regression line to your scatterplot by adding a layer. To add a layer, we append the |&gt; pipe operator to the end of our gf_point() code and use the gf_lm() command to add a line:\n\n\n\n\n\n\n\n\n\n\nCorrelation\nIf you want a numeric summary of the strength of the linear association between two quantitative variables, then you can calculate the correlation. In R, you do this using the cor() function. Similar to calculating the mean, you need to extract the columns using $ as shown below:\n\n\n\n\n\n\n\n\n\nCheckpoint questions\nUse the below code box for the checkpoint question:\n\n\n\n\n\n\n\n\n\nSwap the order of the variables in the cor() command. Does the correlation change? Is this what you expected?"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#fitting-a-regression-model",
+    "href": "activity/03-intro-r.html#fitting-a-regression-model",
+    "title": "Introduction to R for Stat 230",
+    "section": "Fitting a regression model",
+    "text": "Fitting a regression model\nFinally, lets fit a simple linear regression model. To do this we use the lm() command (which stands for linear model). Here, we use the same syntax as when creating a scatterplot:\n\n\n\n\n\n\n\n\nWhen you run this command, R prints some very basic information about the SLR model.\nCheckpoint: What information do you get when you run the above command?\nOften, you will want to obtain more information than you get from simply printing the fitted model. The summary() function provides much more information. I recommend storing your fitted model as a named object (such as movie_lm) and then running the summary():\n\n\n\n\n\n\n\n\nCheckpoint: What information do you get when you run the above summary() command? If you’re not sure what something means, discuss it with your group and then ask about it in our debrief."
+  },
+  {
+    "objectID": "activity/03-intro-r.html#making-predictions",
+    "href": "activity/03-intro-r.html#making-predictions",
+    "title": "Introduction to R for Stat 230",
+    "section": "Making predictions",
+    "text": "Making predictions\nTo make predictions, we use our fitted regression equation. While you can (and should be able to) do this by hand, you can also use R as your calculator.\nSuppose we can use our model to predict the audience score for more recent movies. Then we could predict the audience score for the Barbie Movie by running:\n\n\n\n\n\n\n\n\nHere, we first need to create a new data set with a column named identically to the original data set. Here we have a single column named critics with the value of the explanatory variable we want to use. Next, we use the predict() function, passing in the name of our model and the new data set we want to make predictions for.\n\nCheckpoint questions\nUse the below code box for the checkpoint questions:\n\n\n\n\n\n\n\n\n\nThe critics score for Asteroid City was 75. What is the expected audience score for this movie?\nThe actual (observed) value for Asteroid City was 62. Did the mode over- or under-predict the audience score?\nDo you think it’s reasonable to use our model to predict the audience score for movies released in 2023? Why or why not?\n\n\n\nMaking multiple predictions\nIf you want to make multiple predictions, then you can create a new data frame with multiple values for the explanatory variable. For example, we can use c(88, 75) to make a data frame with two values in the critics column:"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#function-quick-reference",
+    "href": "activity/03-intro-r.html#function-quick-reference",
+    "title": "Introduction to R for Stat 230",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nread.csv(\"file_path_or_URL\")\nLoad a CSV data set from a file or the web\n\n\nhead(data)\nPrint the first few rows of a data set\n\n\nglimpse(data)\nGet a quick overview of a data set (from {dplyr} package)\n\n\nsummary(data)\nGet summary statistics for each variable in a data set\n\n\nmean(x)\nCalculate the mean of a quantitative variable\n\n\nmedian(x)\nCalculate the median of a quantitative variable\n\n\nsd(x)\nCalculate the standard deviation of a quantitative variable\n\n\nvar(x)\nCalculate the variance of a quantitative variable\n\n\ngf_histogram(~x, data = data, bins = n)\nCreate a histogram of a quantitative variable (from {ggformula} package)\n\n\ngf_boxplot(~x, data = data)\nCreate a boxplot of a quantitative variable (from {ggformula} package)\n\n\ngf_point(y ~ x, data = data)\nCreate a scatterplot of two quantitative variables (from {ggformula} package)\n\n\ngf_lm()\nAdd a simple linear regression line to a scatterplot (from {ggformula} package)\n\n\ncor(x, y)\nCalculate the correlation between two quantitative variables\n\n\nlm(y ~ x, data = data)\nFit a simple linear regression model\n\n\nsummary(model)\nGet detailed information about a fitted regression model\n\n\npredict(model, newdata = new_data)\nMake predictions using a fitted regression model for new data"
+  },
+  {
+    "objectID": "activity/03-intro-r.html#acknowledgements",
+    "href": "activity/03-intro-r.html#acknowledgements",
+    "title": "Introduction to R for Stat 230",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThe movie example was adapted from Maria Tackett’s draft of Introduction to Regression Analysis: A Data Science Approach."
+  },
+  {
+    "objectID": "activity/01-slr-review.html",
+    "href": "activity/01-slr-review.html",
+    "title": "Simple linear regression review – Stat 230",
+    "section": "",
+    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
+  },
+  {
     "objectID": "activity/02H-sol-slr-inference.html",
     "href": "activity/02H-sol-slr-inference.html",
     "title": "Inference for SLR – Stat 230",
@@ -103,13 +180,6 @@
     "title": "Inference for SLR – Stat 230",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nAdapted from Stat 2: Modeling with Regression and ANOVA↩︎"
-  },
-  {
-    "objectID": "activity/01-slr-review.html",
-    "href": "activity/01-slr-review.html",
-    "title": "Simple linear regression review – Stat 230",
-    "section": "",
-    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
   },
   {
     "objectID": "slides.html",
