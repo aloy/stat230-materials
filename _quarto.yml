@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+        - data/
 
 website:
   title: "Stat 230 - Fall 2025"
