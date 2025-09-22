@@ -50,13 +50,11 @@ ggplot2::theme_set(theme_classic())
 
 ## Warm up
 
+-   Work with a neighbor
 
-- Work with a neighbor
+-   Answer the questions associated with the warm up on the worksheet
 
-- Answer the questions associated with the warm up on the worksheet
-
-- Note that the explanatory variable is standardized <br> (mean 0, SD 1)
-
+-   Note that the explanatory variable is standardized <br> (mean 0, SD 1)
 
 ## Prediction
 
@@ -64,28 +62,27 @@ There are two types of predictions in regression
 
 . . .
 
-1. Predicting the **mean response** at a specific value of $x$
+1.  Predicting the **mean response** at a specific value of $x$
 
-    e.g., the average sales price of a car with 40,000 miles
-    
-<br>
-
-. . .
-    
-2. Predicting the response for a **specific future observation** 
-
-    e.g., predicting the sales price of your car, which has 40,000 miles
-
-. . .
+    e.g., the average starting salary for some with a B.A. in statistics
 
 <br>
 
-`r fa("people-arrows")` Think of two additional examples of each type of prediction. 
+. . .
 
+2.  Predicting the response for a **specific future observation**
+
+    e.g., predicting **your** starting salary (if you have a B.A. in statistics)
+
+. . .
+
+<br>
+
+`r fa("people-arrows")` Think of two additional examples of each type of prediction.
 
 ## Inference for prediction
 
-Best estimate $\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+Best estimate $\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_0$
 
 <br>
 
@@ -93,8 +90,8 @@ Best estimate $\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
 
 Interval formula: $\text{estimate} \pm q \times \text{SE}$
 
-- $\widehat{y}$ is our estimate
-- Use a $t$-distribution with $df=n-2$ to find $q$
+-   $\widehat{y}$ is our estimate
+-   Use a $t$-distribution with $df=n-2$ to find $q$
 
 <br>
 
@@ -102,29 +99,27 @@ Interval formula: $\text{estimate} \pm q \times \text{SE}$
 
 We'll need different SEs depending on if we are building a
 
-- confidence interval for $\widehat{E}(Y|X)$
+-   confidence interval for $\widehat{\mu}(Y|X_0)$
 
-- prediction interval for $\widehat{y}$
-
+-   prediction interval for $\widehat{y}$ or $\text{Pred}(Y|X_0)$
 
 ## Standard errors
 
-$\text{SE}(\widehat{E}(Y|X)) = \widehat{\sigma} \sqrt{\dfrac{1}{n} + \dfrac{(x_0-\overline{x})^2}{\sum_{i=1}^n (x_i - \overline{x})^2}}$
+$\text{SE}(\widehat{\mu}(Y|X)) = \widehat{\sigma} \sqrt{\dfrac{1}{n} + \dfrac{(x_0-\overline{x})^2}{\sum_{i=1}^n (x_i - \overline{x})^2}}$
 
 . . .
 
 $\text{SE}(\widehat{y})= \widehat{\sigma} \sqrt{1+\dfrac{1}{n} + \dfrac{(x_0-\overline{x})^2}{\sum_{i=1}^n (x_i - \overline{x})^2}}$
 
-
 ::: {.fragment .fade-in-then-out}
-`r fa("people-arrows")` Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense? 
+`r fa("people-arrows")` Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?
 :::
 
 ::: {.fragment .fade-in}
 `r fa("people-arrows")` As $x_0$ gets farther from $\overline{x}$ what happens to the standard errors?
 :::
 
-## R
+## R: Point estimate
 
 We'll let R do the computational work
 
@@ -133,11 +128,6 @@ We'll let R do the computational work
 car_lm <- lm(Price ~ Mileage, data = cars)
 ```
 
-
-::: {.panel-tabset}
-
-## Point estimate
-
 `predict` allows you to quickly calculate the value of $\widehat{y}$ for a given $x$ (or vector of $x$s)
 
 ```{r}
@@ -145,23 +135,25 @@ car_lm <- lm(Price ~ Mileage, data = cars)
 predict(car_lm, newdata = data.frame(Mileage = 8221))
 ```
 
-## Intervals
+## R: Intervals
 
 The `interval` argument allows you to specify the type of interval you want
 
 ```{r}
 #| echo: true
-predict(car_lm, newdata = data.frame(Mileage = 8221), interval = "confidence")
+predict(car_lm, newdata = data.frame(Mileage = 8221), 
+        interval = "confidence")
 ```
 
 <br>
 
 ```{r}
 #| echo: true
-predict(car_lm, newdata = data.frame(Mileage = 8221), interval = "prediction")
+predict(car_lm, newdata = data.frame(Mileage = 8221), 
+        interval = "prediction")
 ```
 
-## SEs
+## R: SEs
 
 Adding `se.fit = TRUE`returns the necessary standard errors for "by hand" calculations
 
@@ -169,24 +161,20 @@ Adding `se.fit = TRUE`returns the necessary standard errors for "by hand" calcul
 predict(car_lm, newdata = data.frame(Mileage = 8221), se.fit = TRUE)
 ```
 
-:::
-
 
 ## Activity
 
-- Work with a neighbor
+-   Work with a neighbor
 
-- Work through the inference for prediction example on the worksheet
+-   Work through the inference for prediction example on the worksheet
 
-- The R tutorial is linked on Moodle, but can also be found at: ADD URL
+-   The R tutorial is linked on Moodle, also can follow the QR code
 
-
-
+![](images/clipboard-1954158138.png){width="750"}
 
 ## Conditions required for inference
 
 Our model must be valid for inference to be valid
-
 
 $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
 
@@ -194,22 +182,21 @@ $y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm 
 
 Conditions to check:
 
-- Linear relationship is appropriate
-- Errors are independent and identically distributed (iid)
-- Errors are normally distributed
-- Variance of the errors doesn't depend on $x$
+-   Linear relationship is appropriate
+-   Errors are independent and identically distributed (iid)
+-   Errors are normally distributed
+-   Variance of the errors doesn't depend on $x$
 
-## Regression conditions
+## Regression conditions {.smaller}
 
 What happens if our assumptions aren't valid?
 
-- **Linearity:** if nonlinear, everything breaks!
+-   **Linearity:** if nonlinear, everything breaks!
 
-- **Independence:** estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small
+-   **Independence:** estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small
 
-- **Normality:** estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can't use t-distribution)
+-   **Normality:** estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can't use t-distribution)
 
-- **Constant error variance:** estimates are still unbiased but standard errors are wrong (and we don't know how wrong)
-
+-   **Constant error variance:** estimates are still unbiased but standard errors are wrong (and we don't know how wrong)
 
 # RMarkdown demo

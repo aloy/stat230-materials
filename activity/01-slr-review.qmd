@@ -6,51 +6,58 @@ editor: visual
 
 Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.
 
-1.	Report the equation of the fitted regression equation.
+1.  Report the equation of the fitted regression equation.
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 $\hat{y} = -18.7x + 520.1$
 :::
 
-2.	Interpret the value of the slope in context. Be sure to talk about association or expectation.
+2.  Interpret the value of the slope in context. Be sure to talk about association or expectation.
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 A one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.
 :::
 
-3.	Interpret the value of the y-intercept in context.
+3.  Interpret the value of the y-intercept in context.
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 The y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.
 :::
 
-4.	Use the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.
+4.  Use the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 $\hat{y} = -18.7(5) + 520.1 = 426.6$ milliseconds
 :::
 
-5.	Can you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.
+5.  Can you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 No, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.
 :::
 
-6.	Why did researchers randomly assign participants to a sleep condition?
+6.  Why did researchers randomly assign participants to a sleep condition?
 
 ::: {.callout-tip collapse="true"}
 ## Solution
-Random assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time. 
+
+Random assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.
 :::
 
-7.	Can you generalize these results to all young adults in the U.S.? Why or why not?
+7.  Can you generalize these results to all young adults in the U.S.? Why or why not?
 
 ::: {.callout-tip collapse="true"}
 ## Solution
+
 No, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest.
 :::

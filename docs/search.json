@@ -186,7 +186,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/02-slr-inference.html#warm-up",
@@ -340,35 +340,35 @@
     "href": "slides/03-slr-prediction.html#prediction",
     "title": "Inference for Prediction",
     "section": "Prediction",
-    "text": "Prediction\nThere are two types of predictions in regression\n. . .\n\nPredicting the mean response at a specific value of \\(x\\)\ne.g., the average sales price of a car with 40,000 miles\n\n\n. . .\n\nPredicting the response for a specific future observation\ne.g., predicting the sales price of your car, which has 40,000 miles\n\n. . .\n\n Think of two additional examples of each type of prediction."
+    "text": "Prediction\nThere are two types of predictions in regression\n\n\nPredicting the mean response at a specific value of \\(x\\)\ne.g., the average starting salary for some with a B.A. in statistics\n\n\n\n\n\nPredicting the response for a specific future observation\ne.g., predicting your starting salary (if you have a B.A. in statistics)\n\n\n\n\n Think of two additional examples of each type of prediction."
   },
   {
     "objectID": "slides/03-slr-prediction.html#inference-for-prediction",
     "href": "slides/03-slr-prediction.html#inference-for-prediction",
     "title": "Inference for Prediction",
     "section": "Inference for prediction",
-    "text": "Inference for prediction\nBest estimate \\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)\n\n. . .\nInterval formula: \\(\\text{estimate} \\pm q \\times \\text{SE}\\)\n\n\\(\\widehat{y}\\) is our estimate\nUse a \\(t\\)-distribution with \\(df=n-2\\) to find \\(q\\)\n\n\n. . .\nWe’ll need different SEs depending on if we are building a\n\nconfidence interval for \\(\\widehat{E}(Y|X)\\)\nprediction interval for \\(\\widehat{y}\\)"
+    "text": "Inference for prediction\nBest estimate \\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_0\\)\n\n\nInterval formula: \\(\\text{estimate} \\pm q \\times \\text{SE}\\)\n\n\\(\\widehat{y}\\) is our estimate\nUse a \\(t\\)-distribution with \\(df=n-2\\) to find \\(q\\)\n\n\n\n\nWe’ll need different SEs depending on if we are building a\n\nconfidence interval for \\(\\widehat{\\mu}(Y|X_0)\\)\nprediction interval for \\(\\widehat{y}\\) or \\(\\text{Pred}(Y|X_0)\\)"
   },
   {
     "objectID": "slides/03-slr-prediction.html#standard-errors",
     "href": "slides/03-slr-prediction.html#standard-errors",
     "title": "Inference for Prediction",
     "section": "Standard errors",
-    "text": "Standard errors\n\\(\\text{SE}(\\widehat{E}(Y|X)) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n. . .\n\\(\\text{SE}(\\widehat{y})= \\widehat{\\sigma} \\sqrt{1+\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?\n\n\n As \\(x_0\\) gets farther from \\(\\overline{x}\\) what happens to the standard errors?"
+    "text": "Standard errors\n\\(\\text{SE}(\\widehat{\\mu}(Y|X)) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n\\(\\text{SE}(\\widehat{y})= \\widehat{\\sigma} \\sqrt{1+\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?\n\n\n As \\(x_0\\) gets farther from \\(\\overline{x}\\) what happens to the standard errors?"
   },
   {
     "objectID": "slides/03-slr-prediction.html#r",
     "href": "slides/03-slr-prediction.html#r",
     "title": "Inference for Prediction",
     "section": "R",
-    "text": "R\nWe’ll let R do the computational work\n\nPoint estimateIntervalsSEs\n\n\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\n\n\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85\n\n\n\n\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), se.fit = TRUE)\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
+    "text": "R\nWe’ll let R do the computational work\n\nPoint estimateIntervalsSEs\n\n\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\n\n\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85\n\n\n\n\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
   },
   {
     "objectID": "slides/03-slr-prediction.html#activity",
     "href": "slides/03-slr-prediction.html#activity",
     "title": "Inference for Prediction",
     "section": "Activity",
-    "text": "Activity\n\nWork with a neighbor\nWork through the inference for prediction example on the worksheet\nThe R tutorial is linked on Moodle, but can also be found at: ADD URL"
+    "text": "Activity\n\nWork with a neighbor\nWork through the inference for prediction example on the worksheet\nThe R tutorial is linked on Moodle, also can follow the QR code"
   },
   {
     "objectID": "slides/03-slr-prediction.html#conditions-required-for-inference",
@@ -388,43 +388,43 @@
     "objectID": "slides/03-slr-prediction.html#warm-up",
     "href": "slides/03-slr-prediction.html#warm-up",
     "title": "Inference for Prediction",
-    "section": "",
-    "text": "Work with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
+    "section": "Warm up",
+    "text": "Warm up\n\nWork with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
   },
   {
     "objectID": "activity/04-slr-prediction.html",
     "href": "activity/04-slr-prediction.html",
     "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\ncars &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Cars.csv\")\n\nThe columns of interest are Price and Mileage."
   },
   {
     "objectID": "activity/04-slr-prediction.html#loading-data",
     "href": "activity/04-slr-prediction.html#loading-data",
     "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\ncars &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Cars.csv\")\n\nThe columns of interest are Price and Mileage."
   },
   {
     "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
     "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
     "title": "Inference for Prediction in SLR",
     "section": "Fitting a simple linear regression model",
-    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
+    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n#| min-lines: 3\n# Write your lm() command here\n\nQ1. Report the fitted regression equation."
   },
   {
     "objectID": "activity/04-slr-prediction.html#making-predictions",
     "href": "activity/04-slr-prediction.html#making-predictions",
     "title": "Inference for Prediction in SLR",
     "section": "Making predictions",
-    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
+    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n#| min-lines: 3\n# Write your code here\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n#| min-lines: 3\n# Write your code here\n\nQ5. Interpret the interval in context."
   },
   {
     "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
     "href": "activity/04-slr-prediction.html#plotting-our-intervals",
     "title": "Inference for Prediction in SLR",
     "section": "Plotting our intervals",
-    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
+    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\ngf_point(Price ~ Mileage, data = cars) |&gt; \n  gf_lm(interval = \"prediction\") |&gt;\n  gf_lm(interval = \"confidence\", alpha = 0.6)\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
   },
   {
     "objectID": "activity/04-slr-prediction.html#function-quick-reference",
@@ -446,5 +446,33 @@
     "title": "Inference for Prediction",
     "section": "",
     "text": "Work with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-point-estimate",
+    "href": "slides/03-slr-prediction.html#r-point-estimate",
+    "title": "Inference for Prediction",
+    "section": "R: Point estimate",
+    "text": "R: Point estimate\nWe’ll let R do the computational work\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-intervals",
+    "href": "slides/03-slr-prediction.html#r-intervals",
+    "title": "Inference for Prediction",
+    "section": "R: Intervals",
+    "text": "R: Intervals\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#ses",
+    "href": "slides/03-slr-prediction.html#ses",
+    "title": "Inference for Prediction",
+    "section": "SEs",
+    "text": "SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288\n\n\n:::"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-ses",
+    "href": "slides/03-slr-prediction.html#r-ses",
+    "title": "Inference for Prediction",
+    "section": "R: SEs",
+    "text": "R: SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
   }
 ]

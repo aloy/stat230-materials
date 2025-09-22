@@ -14,3 +14,11 @@
   categories:
     - "SLR"
     - "Inference"
+- title: "Inference for SLR Prediction"
+  subtitle: "Day 02"
+  date: 2025-09-22
+  image: slides/featured/03-slr-prediction.png
+  path: slides/03-slr-prediction.qmd
+  categories:
+    - "SLR"
+    - "Inference"
