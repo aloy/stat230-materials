@@ -11,35 +11,49 @@
     "href": "slides/03-slr-prediction.html#prediction",
     "title": "Inference for Prediction",
     "section": "Prediction",
-    "text": "Prediction\nThere are two types of predictions in regression\n\n\nPredicting the mean response at a specific value of \\(x\\)\ne.g., the average sales price of a car with 40,000 miles\n\n\n\n\n\nPredicting the response for a specific future observation\ne.g., predicting the sales price of your car, which has 40,000 miles\n\n\n\n\n Think of two additional examples of each type of prediction."
+    "text": "Prediction\nThere are two types of predictions in regression\n\n\nPredicting the mean response at a specific value of \\(x\\)\ne.g., the average starting salary for some with a B.A. in statistics\n\n\n\n\n\nPredicting the response for a specific future observation\ne.g., predicting your starting salary (if you have a B.A. in statistics)\n\n\n\n\n Think of two additional examples of each type of prediction."
   },
   {
     "objectID": "slides/03-slr-prediction.html#inference-for-prediction",
     "href": "slides/03-slr-prediction.html#inference-for-prediction",
     "title": "Inference for Prediction",
     "section": "Inference for prediction",
-    "text": "Inference for prediction\nBest estimate \\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)\n\n\nInterval formula: \\(\\text{estimate} \\pm q \\times \\text{SE}\\)\n\n\\(\\widehat{y}\\) is our estimate\nUse a \\(t\\)-distribution with \\(df=n-2\\) to find \\(q\\)\n\n\n\n\nWe’ll need different SEs depending on if we are building a\n\nconfidence interval for \\(\\widehat{E}(Y|X)\\)\nprediction interval for \\(\\widehat{y}\\)"
+    "text": "Inference for prediction\nBest estimate \\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_0\\)\n\n\nInterval formula: \\(\\text{estimate} \\pm q \\times \\text{SE}\\)\n\n\\(\\widehat{y}\\) is our estimate\nUse a \\(t\\)-distribution with \\(df=n-2\\) to find \\(q\\)\n\n\n\n\nWe’ll need different SEs depending on if we are building a\n\nconfidence interval for \\(\\widehat{\\mu}(Y|X_0)\\)\nprediction interval for \\(\\widehat{y}\\) or \\(\\text{Pred}(Y|X_0)\\)"
   },
   {
     "objectID": "slides/03-slr-prediction.html#standard-errors",
     "href": "slides/03-slr-prediction.html#standard-errors",
     "title": "Inference for Prediction",
     "section": "Standard errors",
-    "text": "Standard errors\n\\(\\text{SE}(\\widehat{E}(Y|X)) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n\\(\\text{SE}(\\widehat{y})= \\widehat{\\sigma} \\sqrt{1+\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?\n\n\n As \\(x_0\\) gets farther from \\(\\overline{x}\\) what happens to the standard errors?"
+    "text": "Standard errors\n\\(\\text{SE}(\\widehat{\\mu}(Y|X)) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n\\(\\text{SE}(\\widehat{y})= \\widehat{\\sigma} \\sqrt{1+\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?\n\n\n As \\(x_0\\) gets farther from \\(\\overline{x}\\) what happens to the standard errors?"
   },
   {
-    "objectID": "slides/03-slr-prediction.html#r",
-    "href": "slides/03-slr-prediction.html#r",
+    "objectID": "slides/03-slr-prediction.html#r-point-estimate",
+    "href": "slides/03-slr-prediction.html#r-point-estimate",
     "title": "Inference for Prediction",
-    "section": "R",
-    "text": "R\nWe’ll let R do the computational work\n\nPoint estimateIntervalsSEs\n\n\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\n\n\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85\n\n\n\n\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), se.fit = TRUE)\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
+    "section": "R: Point estimate",
+    "text": "R: Point estimate\nWe’ll let R do the computational work\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-intervals",
+    "href": "slides/03-slr-prediction.html#r-intervals",
+    "title": "Inference for Prediction",
+    "section": "R: Intervals",
+    "text": "R: Intervals\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-ses",
+    "href": "slides/03-slr-prediction.html#r-ses",
+    "title": "Inference for Prediction",
+    "section": "R: SEs",
+    "text": "R: SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
   },
   {
     "objectID": "slides/03-slr-prediction.html#activity",
     "href": "slides/03-slr-prediction.html#activity",
     "title": "Inference for Prediction",
     "section": "Activity",
-    "text": "Activity\n\nWork with a neighbor\nWork through the inference for prediction example on the worksheet\nThe R tutorial is linked on Moodle, but can also be found at: ADD URL"
+    "text": "Activity\n\nWork with a neighbor\nWork through the inference for prediction example on the worksheet\nThe R tutorial is linked on Moodle, also can follow the QR code"
   },
   {
     "objectID": "slides/03-slr-prediction.html#conditions-required-for-inference",
@@ -200,84 +214,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html",
-    "href": "activity/04-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#loading-data",
-    "href": "activity/04-slr-prediction.html#loading-data",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
-    "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
-    "title": "Inference for Prediction in SLR",
-    "section": "Fitting a simple linear regression model",
-    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#making-predictions",
-    "href": "activity/04-slr-prediction.html#making-predictions",
-    "title": "Inference for Prediction in SLR",
-    "section": "Making predictions",
-    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
-    "href": "activity/04-slr-prediction.html#plotting-our-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Plotting our intervals",
-    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#function-quick-reference",
-    "href": "activity/04-slr-prediction.html#function-quick-reference",
-    "title": "Inference for Prediction in SLR",
-    "section": "Function quick reference",
-    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
-  },
-  {
-    "objectID": "activity/01-slr-review.html",
-    "href": "activity/01-slr-review.html",
-    "title": "Simple linear regression review – Stat 230",
-    "section": "",
-    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
-  },
-  {
-    "objectID": "activity/02H-sol-slr-inference.html",
-    "href": "activity/02H-sol-slr-inference.html",
-    "title": "Inference for SLR – Stat 230",
-    "section": "",
-    "text": "Suppose that you wish to determine whether there is a difference in means between two groups. To do this you run a two-sample t-test and find the test statistic to be \\(t = 2.5\\).\n\nWhat is the null hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2\\) (or \\(H_0: \\mu_1 - \\mu_2 = 0\\))\n\n\n\n\nWhat is the alternative hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_A: \\mu_1 \\neq \\mu_2\\) (two-sided)\n\n\n\n\nBelow is a plot of the appropriate t-distribution for this test. Sketch how you would calculate the p-value for this situation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe p-value is equal to the area in the two tails beyond \\(2.5\\) and \\(-2.5\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow did you calculate this p-value in your last statistics course?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will vary based on where you took intro stats. You may have used StatKey or a similar online app/calculator, you may have used R’s pt() command, or you may have used a t-distribution table (we won’t use tables in this class).\n\n\n\n\nIf the p-value you calculated was 0.02, what would you conclude about the null hypothesis?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA p-value of 0.02 provides evidence against the null hypothesis. In other words, there is statistically discernible evidence of a difference in means between the two groups (\\(t=2.5\\), p-value = 0.02).\n\n\n\n\n\n\n\nWhat is the difference between standard deviation and standard error?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nStandard deviation is a summary statistic that we can calculate for any distribution that measures the spread of the distribution. Standard error is the standard deviation of the sampling distribution (i.e., the distribution of a sample statistic). It is a measure of how much variability we expect in a sample statistic (e.g., sample mean or slope) from sample to sample.\n\n\n\nA 95% confidence interval for the mean waiting time at an emergency room (ER) of (128 minutes, 147 minutes).\n\nConsider the following interpretation of this interval. For each, determine whether it is correct. If it is incorrect, explain why and provide a correct interpretation.\n\n“There is a 95% probability that the mean waiting time at this ER is between 128 and 147 minutes.”\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The population mean is a fixed but unknown value, so the probability that it falls between two specific values is either 0 or 1.\nThe correct interpretation is that we are 95% confident that true mean waiting time at this ER is between 128 and 147 minutes.\n\n\n\nb.  \"95% of patients wait between 128 and 147 minutes at this ER.\"\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The confidence interval is about the population mean, not individual observations.\n\n\n\n\nA local newspaper claims that the average waiting time at this ER exceeds 3 hours. Is this claim supported by the confidence interval? Explain your reasoning.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nConfidence intervals give ranges of plausible values for a parameter based on the data we have in hand; thus, the claim is not supported by the confidence interval. The entire interval (128, 147) is below 180 minutes (3 hours), so we do not have evidence that the mean waiting time exceeds 3 hours.\n\n\n\n\nWould a 90% confidence interval be wider or narrower than the 95% confidence interval? Why?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA 90% confidence interval would be narrower than a 95% confidence interval. To see this you can find the new critical value, \\(t^*\\). Alternatively, you can think intuitively about what reducing the confidence level means: for a large number of confidence intervals constructed using the same process, only 90% would contain the true parameter value rather than 95%. This happens if the intervals are narrower."
-  },
-  {
-    "objectID": "activity/02H-sol-slr-inference.html#warm-up-questions",
-    "href": "activity/02H-sol-slr-inference.html#warm-up-questions",
-    "title": "Inference for SLR – Stat 230",
-    "section": "",
-    "text": "Suppose that you wish to determine whether there is a difference in means between two groups. To do this you run a two-sample t-test and find the test statistic to be \\(t = 2.5\\).\n\nWhat is the null hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2\\) (or \\(H_0: \\mu_1 - \\mu_2 = 0\\))\n\n\n\n\nWhat is the alternative hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_A: \\mu_1 \\neq \\mu_2\\) (two-sided)\n\n\n\n\nBelow is a plot of the appropriate t-distribution for this test. Sketch how you would calculate the p-value for this situation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe p-value is equal to the area in the two tails beyond \\(2.5\\) and \\(-2.5\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow did you calculate this p-value in your last statistics course?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will vary based on where you took intro stats. You may have used StatKey or a similar online app/calculator, you may have used R’s pt() command, or you may have used a t-distribution table (we won’t use tables in this class).\n\n\n\n\nIf the p-value you calculated was 0.02, what would you conclude about the null hypothesis?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA p-value of 0.02 provides evidence against the null hypothesis. In other words, there is statistically discernible evidence of a difference in means between the two groups (\\(t=2.5\\), p-value = 0.02).\n\n\n\n\n\n\n\nWhat is the difference between standard deviation and standard error?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nStandard deviation is a summary statistic that we can calculate for any distribution that measures the spread of the distribution. Standard error is the standard deviation of the sampling distribution (i.e., the distribution of a sample statistic). It is a measure of how much variability we expect in a sample statistic (e.g., sample mean or slope) from sample to sample.\n\n\n\nA 95% confidence interval for the mean waiting time at an emergency room (ER) of (128 minutes, 147 minutes).\n\nConsider the following interpretation of this interval. For each, determine whether it is correct. If it is incorrect, explain why and provide a correct interpretation.\n\n“There is a 95% probability that the mean waiting time at this ER is between 128 and 147 minutes.”\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The population mean is a fixed but unknown value, so the probability that it falls between two specific values is either 0 or 1.\nThe correct interpretation is that we are 95% confident that true mean waiting time at this ER is between 128 and 147 minutes.\n\n\n\nb.  \"95% of patients wait between 128 and 147 minutes at this ER.\"\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The confidence interval is about the population mean, not individual observations.\n\n\n\n\nA local newspaper claims that the average waiting time at this ER exceeds 3 hours. Is this claim supported by the confidence interval? Explain your reasoning.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nConfidence intervals give ranges of plausible values for a parameter based on the data we have in hand; thus, the claim is not supported by the confidence interval. The entire interval (128, 147) is below 180 minutes (3 hours), so we do not have evidence that the mean waiting time exceeds 3 hours.\n\n\n\n\nWould a 90% confidence interval be wider or narrower than the 95% confidence interval? Why?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA 90% confidence interval would be narrower than a 95% confidence interval. To see this you can find the new critical value, \\(t^*\\). Alternatively, you can think intuitively about what reducing the confidence level means: for a large number of confidence intervals constructed using the same process, only 90% would contain the true parameter value rather than 95%. This happens if the intervals are narrower."
-  },
-  {
-    "objectID": "activity/02H-sol-slr-inference.html#your-turn1",
-    "href": "activity/02H-sol-slr-inference.html#your-turn1",
-    "title": "Inference for SLR – Stat 230",
-    "section": "Your turn1",
-    "text": "Your turn1\nBiologists know that the leaves on plants tend to get smaller as temperatures rise. A sample of 252 leaves from the species Dodonaea viscosa subspecies angustissima (broadleaf hopbush) have been collected in a certain region of South Australia. Is there an association between leaf width and year? Below is the coefficient table from a simple linear regression model.\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n37.723\n8.575\n4.399\n&lt;0.001\n\n\nYear\n−0.018\n0.004\n−4.029\n&lt;0.001\n\n\n\n\n\n\n\nNote: The width is the average width, in mm, of leaves, taken at their widest points, that were collected in a given year.\n\nReport the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = 37.723 - 0.018x\\)\n\n\n\n\nInterpret the slope of the regression line in context of the data.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAs year increases by 1 (i.e., from one year to the next), we expect the average leaf width of this species to decrease by 0.018 mm.\n\n\n\n\nCalculate a 95% confidence interval for the slope of the regression line. Interpret this interval in context of the data. To find the critical value, you may use StatKey with df = 250. Alternatively, you may use the rounded critical value of 2.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFirst, we need to find the critical value for the confidence interval. Using StatKey with df = 250, we find that \\(t^* \\approx 1.97\\).\nThe 95% confidence interval for the slope is given by:\n\\[\n-0.018 \\pm 1.97(0.004) = (-0.02588, -0.01012)\n\\]\n\n\n\n\nWhat hypotheses are being tested with the statistic and associated p-value in the (Intercept) row of the table? What conclusion can you draw?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe summary output provided by R always conducts a two-tailed hypothesis test of whether a regression coefficient is equal to 0. In other words it tests\n\\(H_0: \\beta_0=0\\) vs. \\(H_a: \\beta_0 \\ne 0\\)\nBased on a test statistic of \\(t=4.399\\), df = 250, and a p-value &lt; 0.001, we find very strong evidence that the intercept is not zero. (This is outside the range of the observed data, so I won’t interpret it in context.)"
-  },
-  {
-    "objectID": "activity/02H-sol-slr-inference.html#footnotes",
-    "href": "activity/02H-sol-slr-inference.html#footnotes",
-    "title": "Inference for SLR – Stat 230",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAdapted from Stat 2: Modeling with Regression and ANOVA↩︎"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activity/03-intro-r.html",
@@ -355,6 +292,83 @@
     "title": "Introduction to R for Stat 230",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nThe movie example was adapted from Maria Tackett’s draft of Introduction to Regression Analysis: A Data Science Approach."
+  },
+  {
+    "objectID": "activity/02H-sol-slr-inference.html",
+    "href": "activity/02H-sol-slr-inference.html",
+    "title": "Inference for SLR – Stat 230",
+    "section": "",
+    "text": "Suppose that you wish to determine whether there is a difference in means between two groups. To do this you run a two-sample t-test and find the test statistic to be \\(t = 2.5\\).\n\nWhat is the null hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2\\) (or \\(H_0: \\mu_1 - \\mu_2 = 0\\))\n\n\n\n\nWhat is the alternative hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_A: \\mu_1 \\neq \\mu_2\\) (two-sided)\n\n\n\n\nBelow is a plot of the appropriate t-distribution for this test. Sketch how you would calculate the p-value for this situation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe p-value is equal to the area in the two tails beyond \\(2.5\\) and \\(-2.5\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow did you calculate this p-value in your last statistics course?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will vary based on where you took intro stats. You may have used StatKey or a similar online app/calculator, you may have used R’s pt() command, or you may have used a t-distribution table (we won’t use tables in this class).\n\n\n\n\nIf the p-value you calculated was 0.02, what would you conclude about the null hypothesis?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA p-value of 0.02 provides evidence against the null hypothesis. In other words, there is statistically discernible evidence of a difference in means between the two groups (\\(t=2.5\\), p-value = 0.02).\n\n\n\n\n\n\n\nWhat is the difference between standard deviation and standard error?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nStandard deviation is a summary statistic that we can calculate for any distribution that measures the spread of the distribution. Standard error is the standard deviation of the sampling distribution (i.e., the distribution of a sample statistic). It is a measure of how much variability we expect in a sample statistic (e.g., sample mean or slope) from sample to sample.\n\n\n\nA 95% confidence interval for the mean waiting time at an emergency room (ER) of (128 minutes, 147 minutes).\n\nConsider the following interpretation of this interval. For each, determine whether it is correct. If it is incorrect, explain why and provide a correct interpretation.\n\n“There is a 95% probability that the mean waiting time at this ER is between 128 and 147 minutes.”\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The population mean is a fixed but unknown value, so the probability that it falls between two specific values is either 0 or 1.\nThe correct interpretation is that we are 95% confident that true mean waiting time at this ER is between 128 and 147 minutes.\n\n\n\nb.  \"95% of patients wait between 128 and 147 minutes at this ER.\"\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The confidence interval is about the population mean, not individual observations.\n\n\n\n\nA local newspaper claims that the average waiting time at this ER exceeds 3 hours. Is this claim supported by the confidence interval? Explain your reasoning.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nConfidence intervals give ranges of plausible values for a parameter based on the data we have in hand; thus, the claim is not supported by the confidence interval. The entire interval (128, 147) is below 180 minutes (3 hours), so we do not have evidence that the mean waiting time exceeds 3 hours.\n\n\n\n\nWould a 90% confidence interval be wider or narrower than the 95% confidence interval? Why?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA 90% confidence interval would be narrower than a 95% confidence interval. To see this you can find the new critical value, \\(t^*\\). Alternatively, you can think intuitively about what reducing the confidence level means: for a large number of confidence intervals constructed using the same process, only 90% would contain the true parameter value rather than 95%. This happens if the intervals are narrower."
+  },
+  {
+    "objectID": "activity/02H-sol-slr-inference.html#warm-up-questions",
+    "href": "activity/02H-sol-slr-inference.html#warm-up-questions",
+    "title": "Inference for SLR – Stat 230",
+    "section": "",
+    "text": "Suppose that you wish to determine whether there is a difference in means between two groups. To do this you run a two-sample t-test and find the test statistic to be \\(t = 2.5\\).\n\nWhat is the null hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_0: \\mu_1 = \\mu_2\\) (or \\(H_0: \\mu_1 - \\mu_2 = 0\\))\n\n\n\n\nWhat is the alternative hypothesis for this test?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_A: \\mu_1 \\neq \\mu_2\\) (two-sided)\n\n\n\n\nBelow is a plot of the appropriate t-distribution for this test. Sketch how you would calculate the p-value for this situation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe p-value is equal to the area in the two tails beyond \\(2.5\\) and \\(-2.5\\).\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow did you calculate this p-value in your last statistics course?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will vary based on where you took intro stats. You may have used StatKey or a similar online app/calculator, you may have used R’s pt() command, or you may have used a t-distribution table (we won’t use tables in this class).\n\n\n\n\nIf the p-value you calculated was 0.02, what would you conclude about the null hypothesis?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA p-value of 0.02 provides evidence against the null hypothesis. In other words, there is statistically discernible evidence of a difference in means between the two groups (\\(t=2.5\\), p-value = 0.02).\n\n\n\n\n\n\n\nWhat is the difference between standard deviation and standard error?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nStandard deviation is a summary statistic that we can calculate for any distribution that measures the spread of the distribution. Standard error is the standard deviation of the sampling distribution (i.e., the distribution of a sample statistic). It is a measure of how much variability we expect in a sample statistic (e.g., sample mean or slope) from sample to sample.\n\n\n\nA 95% confidence interval for the mean waiting time at an emergency room (ER) of (128 minutes, 147 minutes).\n\nConsider the following interpretation of this interval. For each, determine whether it is correct. If it is incorrect, explain why and provide a correct interpretation.\n\n“There is a 95% probability that the mean waiting time at this ER is between 128 and 147 minutes.”\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The population mean is a fixed but unknown value, so the probability that it falls between two specific values is either 0 or 1.\nThe correct interpretation is that we are 95% confident that true mean waiting time at this ER is between 128 and 147 minutes.\n\n\n\nb.  \"95% of patients wait between 128 and 147 minutes at this ER.\"\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThis interpretation is incorrect. The confidence interval is about the population mean, not individual observations.\n\n\n\n\nA local newspaper claims that the average waiting time at this ER exceeds 3 hours. Is this claim supported by the confidence interval? Explain your reasoning.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nConfidence intervals give ranges of plausible values for a parameter based on the data we have in hand; thus, the claim is not supported by the confidence interval. The entire interval (128, 147) is below 180 minutes (3 hours), so we do not have evidence that the mean waiting time exceeds 3 hours.\n\n\n\n\nWould a 90% confidence interval be wider or narrower than the 95% confidence interval? Why?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA 90% confidence interval would be narrower than a 95% confidence interval. To see this you can find the new critical value, \\(t^*\\). Alternatively, you can think intuitively about what reducing the confidence level means: for a large number of confidence intervals constructed using the same process, only 90% would contain the true parameter value rather than 95%. This happens if the intervals are narrower."
+  },
+  {
+    "objectID": "activity/02H-sol-slr-inference.html#your-turn1",
+    "href": "activity/02H-sol-slr-inference.html#your-turn1",
+    "title": "Inference for SLR – Stat 230",
+    "section": "Your turn1",
+    "text": "Your turn1\nBiologists know that the leaves on plants tend to get smaller as temperatures rise. A sample of 252 leaves from the species Dodonaea viscosa subspecies angustissima (broadleaf hopbush) have been collected in a certain region of South Australia. Is there an association between leaf width and year? Below is the coefficient table from a simple linear regression model.\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n37.723\n8.575\n4.399\n&lt;0.001\n\n\nYear\n−0.018\n0.004\n−4.029\n&lt;0.001\n\n\n\n\n\n\n\nNote: The width is the average width, in mm, of leaves, taken at their widest points, that were collected in a given year.\n\nReport the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = 37.723 - 0.018x\\)\n\n\n\n\nInterpret the slope of the regression line in context of the data.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAs year increases by 1 (i.e., from one year to the next), we expect the average leaf width of this species to decrease by 0.018 mm.\n\n\n\n\nCalculate a 95% confidence interval for the slope of the regression line. Interpret this interval in context of the data. To find the critical value, you may use StatKey with df = 250. Alternatively, you may use the rounded critical value of 2.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFirst, we need to find the critical value for the confidence interval. Using StatKey with df = 250, we find that \\(t^* \\approx 1.97\\).\nThe 95% confidence interval for the slope is given by:\n\\[\n-0.018 \\pm 1.97(0.004) = (-0.02588, -0.01012)\n\\]\n\n\n\n\nWhat hypotheses are being tested with the statistic and associated p-value in the (Intercept) row of the table? What conclusion can you draw?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe summary output provided by R always conducts a two-tailed hypothesis test of whether a regression coefficient is equal to 0. In other words it tests\n\\(H_0: \\beta_0=0\\) vs. \\(H_a: \\beta_0 \\ne 0\\)\nBased on a test statistic of \\(t=4.399\\), df = 250, and a p-value &lt; 0.001, we find very strong evidence that the intercept is not zero. (This is outside the range of the observed data, so I won’t interpret it in context.)"
+  },
+  {
+    "objectID": "activity/02H-sol-slr-inference.html#footnotes",
+    "href": "activity/02H-sol-slr-inference.html#footnotes",
+    "title": "Inference for SLR – Stat 230",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAdapted from Stat 2: Modeling with Regression and ANOVA↩︎"
+  },
+  {
+    "objectID": "activity/01-slr-review.html",
+    "href": "activity/01-slr-review.html",
+    "title": "Simple linear regression review – Stat 230",
+    "section": "",
+    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html",
+    "href": "activity/04-slr-prediction.html",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#loading-data",
+    "href": "activity/04-slr-prediction.html#loading-data",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
+    "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
+    "title": "Inference for Prediction in SLR",
+    "section": "Fitting a simple linear regression model",
+    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#making-predictions",
+    "href": "activity/04-slr-prediction.html#making-predictions",
+    "title": "Inference for Prediction in SLR",
+    "section": "Making predictions",
+    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
+    "href": "activity/04-slr-prediction.html#plotting-our-intervals",
+    "title": "Inference for Prediction in SLR",
+    "section": "Plotting our intervals",
+    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#function-quick-reference",
+    "href": "activity/04-slr-prediction.html#function-quick-reference",
+    "title": "Inference for Prediction in SLR",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
   },
   {
     "objectID": "index.html",

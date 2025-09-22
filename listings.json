@@ -2,6 +2,7 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/03-slr-prediction.html",
       "/slides/02-slr-inference.html",
       "/slides/01-slides-slr-review.html"
     ]
