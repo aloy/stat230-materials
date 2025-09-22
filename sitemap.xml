@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
-    <lastmod>2025-09-19T14:50:28.845Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/index.html</loc>
-    <lastmod>2025-09-19T14:50:28.844Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/03-intro-r.html</loc>
-    <lastmod>2025-09-19T14:50:28.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/01-slr-review.html</loc>
-    <lastmod>2025-09-19T14:50:28.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
-    <lastmod>2025-09-19T14:50:28.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides.html</loc>
-    <lastmod>2025-09-19T14:50:28.844Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/slides/03-slr-prediction.html</loc>
+    <lastmod>2025-09-22T13:28:07.533Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/slides/02-slr-inference.html</loc>
-    <lastmod>2025-09-19T14:50:28.845Z</lastmod>
+    <lastmod>2025-09-22T13:28:07.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides.html</loc>
+    <lastmod>2025-09-22T13:28:07.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/04-slr-prediction.html</loc>
+    <lastmod>2025-09-22T13:28:07.475Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/01-slr-review.html</loc>
+    <lastmod>2025-09-22T13:28:07.475Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
+    <lastmod>2025-09-22T13:28:07.475Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/03-intro-r.html</loc>
+    <lastmod>2025-09-22T13:28:07.475Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/index.html</loc>
+    <lastmod>2025-09-22T13:28:07.533Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
+    <lastmod>2025-09-22T13:28:07.533Z</lastmod>
   </url>
 </urlset>
