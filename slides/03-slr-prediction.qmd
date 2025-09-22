@@ -48,6 +48,9 @@ theme_classic <- function() {
 ggplot2::theme_set(theme_classic())
 ```
 
+# [PDF version of slides](pdf_slides/03-slr-prediction.pdf)
+
+
 ## Warm up
 
 -   Work with a neighbor

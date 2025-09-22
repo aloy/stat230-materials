@@ -18,7 +18,7 @@ editor: source
 For this activity you will consider predicting the price of a used car (it's Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:
 
 ```{webr}
-cars <- read.csv("https://aloy.rbind.io/kuiper_data/Cars.csv")
+cars <- read.csv("https://aloy.github.io/stat230-materials/data/Cars.csv")
 ```
 
 The columns of interest are `Price` and `Mileage`.

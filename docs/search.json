@@ -396,35 +396,35 @@
     "href": "activity/04-slr-prediction.html",
     "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\ncars &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Cars.csv\")\n\nThe columns of interest are Price and Mileage."
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
   },
   {
     "objectID": "activity/04-slr-prediction.html#loading-data",
     "href": "activity/04-slr-prediction.html#loading-data",
     "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\ncars &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Cars.csv\")\n\nThe columns of interest are Price and Mileage."
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
   },
   {
     "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
     "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
     "title": "Inference for Prediction in SLR",
     "section": "Fitting a simple linear regression model",
-    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n#| min-lines: 3\n# Write your lm() command here\n\nQ1. Report the fitted regression equation."
+    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
   },
   {
     "objectID": "activity/04-slr-prediction.html#making-predictions",
     "href": "activity/04-slr-prediction.html#making-predictions",
     "title": "Inference for Prediction in SLR",
     "section": "Making predictions",
-    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n#| min-lines: 3\n# Write your code here\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n#| min-lines: 3\n# Write your code here\n\nQ5. Interpret the interval in context."
+    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
   },
   {
     "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
     "href": "activity/04-slr-prediction.html#plotting-our-intervals",
     "title": "Inference for Prediction in SLR",
     "section": "Plotting our intervals",
-    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\ngf_point(Price ~ Mileage, data = cars) |&gt; \n  gf_lm(interval = \"prediction\") |&gt;\n  gf_lm(interval = \"confidence\", alpha = 0.6)\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
+    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
   },
   {
     "objectID": "activity/04-slr-prediction.html#function-quick-reference",
