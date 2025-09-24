@@ -70,6 +70,97 @@
     "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
   {
+    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "title": "Model Diagnostics",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#residuals",
+    "href": "slides/04-slr-diagnostics.html#residuals",
+    "title": "Model Diagnostics",
+    "section": "Residuals",
+    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "title": "Model Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "title": "Model Diagnostics",
+    "section": "A “good” residual plot",
+    "text": "A “good” residual plot"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn",
+    "href": "slides/04-slr-diagnostics.html#your-turn",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
+    "href": "slides/04-slr-diagnostics.html#assessing-normality",
+    "title": "Model Diagnostics",
+    "section": "Assessing normality",
+    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
+    "href": "slides/04-slr-diagnostics.html#assessing-independence",
+    "title": "Model Diagnostics",
+    "section": "Assessing independence",
+    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "title": "Model Diagnostics",
+    "section": "What happens the conditions aren’t valid?",
+    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "title": "Model Diagnostics",
+    "section": "What do we do if our assumptions are violated?",
+    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "title": "Model Diagnostics",
+    "section": "Transforming variables can",
+    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
+    "href": "slides/04-slr-diagnostics.html#applying-transformations",
+    "title": "Model Diagnostics",
+    "section": "Applying transformations",
+    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Overview",
@@ -77,11 +168,67 @@
     "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   },
   {
-    "objectID": "activity/01-slr-review.html",
-    "href": "activity/01-slr-review.html",
-    "title": "Simple linear regression review – Stat 230",
+    "objectID": "activity/04H-sol-slr-prediction.html",
+    "href": "activity/04H-sol-slr-prediction.html",
+    "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
+  },
+  {
+    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
+  },
+  {
+    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "title": "Inference for Prediction in SLR",
+    "section": "Prediction and confidence intervals",
+    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html",
+    "href": "activity/04-slr-prediction.html",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#loading-data",
+    "href": "activity/04-slr-prediction.html#loading-data",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
+    "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
+    "title": "Inference for Prediction in SLR",
+    "section": "Fitting a simple linear regression model",
+    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#making-predictions",
+    "href": "activity/04-slr-prediction.html#making-predictions",
+    "title": "Inference for Prediction in SLR",
+    "section": "Making predictions",
+    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
+    "href": "activity/04-slr-prediction.html#plotting-our-intervals",
+    "title": "Inference for Prediction in SLR",
+    "section": "Plotting our intervals",
+    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
+  },
+  {
+    "objectID": "activity/04-slr-prediction.html#function-quick-reference",
+    "href": "activity/04-slr-prediction.html#function-quick-reference",
+    "title": "Inference for Prediction in SLR",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
   },
   {
     "objectID": "activity/03-intro-r.html",
@@ -133,6 +280,13 @@
     "text": "Fitting a regression model\nFinally, lets fit a simple linear regression model. To do this we use the lm() command (which stands for linear model). Here, we use the same syntax as when creating a scatterplot:\n\n\n\n\n\n\n\n\nWhen you run this command, R prints some very basic information about the SLR model.\nCheckpoint: What information do you get when you run the above command?\nOften, you will want to obtain more information than you get from simply printing the fitted model. The summary() function provides much more information. I recommend storing your fitted model as a named object (such as movie_lm) and then running the summary():\n\n\n\n\n\n\n\n\n\nCheckpoint question\nWhat information do you get when you run the above summary() command? If you’re not sure what something means, discuss it with your group and then ask about it in our debrief."
   },
   {
+    "objectID": "activity/03-intro-r.html#constructing-confidence-intervals",
+    "href": "activity/03-intro-r.html#constructing-confidence-intervals",
+    "title": "Introduction to R for Stat 230",
+    "section": "Constructing confidence intervals",
+    "text": "Constructing confidence intervals\nThe table obtained by summary() contains all of the necessary information to conduct hypothesis tests for regression coefficients; however, it does not provide confidence intervals. To instruct R to construct a confidence interval for a regression coefficient, we can use the confint() function:\n\n\n\n\n\n\n\n\n\nCheckpoint questions\n\nWhat information do you get when you run the above confint() command?\nChange the level argument to construct a 90% confidence interval. How does the interval change?"
+  },
+  {
     "objectID": "activity/03-intro-r.html#making-predictions",
     "href": "activity/03-intro-r.html#making-predictions",
     "title": "Introduction to R for Stat 230",
@@ -180,6 +334,13 @@
     "title": "Inference for SLR – Stat 230",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nAdapted from Stat 2: Modeling with Regression and ANOVA↩︎"
+  },
+  {
+    "objectID": "activity/01-slr-review.html",
+    "href": "activity/01-slr-review.html",
+    "title": "Simple linear regression review – Stat 230",
+    "section": "",
+    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
   },
   {
     "objectID": "slides.html",
@@ -329,11 +490,11 @@
     "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "activity/03-intro-r.html#constructing-confidence-intervals",
-    "href": "activity/03-intro-r.html#constructing-confidence-intervals",
-    "title": "Introduction to R for Stat 230",
-    "section": "Constructing confidence intervals",
-    "text": "Constructing confidence intervals\nThe table obtained by summary() contains all of the necessary information to conduct hypothesis tests for regression coefficients; however, it does not provide confidence intervals. To instruct R to construct a confidence interval for a regression coefficient, we can use the confint() function:\n\n\n\n\n\n\n\n\n\nCheckpoint questions\n\nWhat information do you get when you run the above confint() command?\nChange the level argument to construct a 90% confidence interval. How does the interval change?"
+    "objectID": "slides/03-slr-prediction.html#warm-up",
+    "href": "slides/03-slr-prediction.html#warm-up",
+    "title": "Inference for Prediction",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
   },
   {
     "objectID": "slides/03-slr-prediction.html#prediction",
@@ -357,11 +518,25 @@
     "text": "Standard errors\n\\(\\text{SE}(\\widehat{\\mu}(Y|X)) = \\widehat{\\sigma} \\sqrt{\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n\\(\\text{SE}(\\widehat{y})= \\widehat{\\sigma} \\sqrt{1+\\dfrac{1}{n} + \\dfrac{(x_0-\\overline{x})^2}{\\sum_{i=1}^n (x_i - \\overline{x})^2}}\\)\n\n Looking at the standard errors for the two intervals, which interval will be wider? Why does this make sense?\n\n\n As \\(x_0\\) gets farther from \\(\\overline{x}\\) what happens to the standard errors?"
   },
   {
-    "objectID": "slides/03-slr-prediction.html#r",
-    "href": "slides/03-slr-prediction.html#r",
+    "objectID": "slides/03-slr-prediction.html#r-point-estimate",
+    "href": "slides/03-slr-prediction.html#r-point-estimate",
     "title": "Inference for Prediction",
-    "section": "R",
-    "text": "R\nWe’ll let R do the computational work\n\nPoint estimateIntervalsSEs\n\n\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\n\n\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85\n\n\n\n\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
+    "section": "R: Point estimate",
+    "text": "R: Point estimate\nWe’ll let R do the computational work\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-intervals",
+    "href": "slides/03-slr-prediction.html#r-intervals",
+    "title": "Inference for Prediction",
+    "section": "R: Intervals",
+    "text": "R: Intervals\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85"
+  },
+  {
+    "objectID": "slides/03-slr-prediction.html#r-ses",
+    "href": "slides/03-slr-prediction.html#r-ses",
+    "title": "Inference for Prediction",
+    "section": "R: SEs",
+    "text": "R: SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
   },
   {
     "objectID": "slides/03-slr-prediction.html#activity",
@@ -383,236 +558,5 @@
     "title": "Inference for Prediction",
     "section": "Regression conditions",
     "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html#warm-up",
-    "href": "slides/03-slr-prediction.html#warm-up",
-    "title": "Inference for Prediction",
-    "section": "Warm up",
-    "text": "Warm up\n\nWork with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html",
-    "href": "activity/04-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#loading-data",
-    "href": "activity/04-slr-prediction.html#loading-data",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "For this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The data set is loaded by running the following code chunk:\n\n\n\n\n\n\n\n\nThe columns of interest are Price and Mileage."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
-    "href": "activity/04-slr-prediction.html#fitting-a-simple-linear-regression-model",
-    "title": "Inference for Prediction in SLR",
-    "section": "Fitting a simple linear regression model",
-    "text": "Fitting a simple linear regression model\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price.\n\n\n\n\n\n\n\n\nQ1. Report the fitted regression equation."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#making-predictions",
-    "href": "activity/04-slr-prediction.html#making-predictions",
-    "title": "Inference for Prediction in SLR",
-    "section": "Making predictions",
-    "text": "Making predictions\nThe first car in the data set is a Buick Century with 8221 miles.\nQ2. Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There’s a code chunk below for your convenience)\n\n\n\n\n\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car.\n\n\n\n\n\n\n\n\nQ5. Interpret the interval in context."
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#plotting-our-intervals",
-    "href": "activity/04-slr-prediction.html#plotting-our-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Plotting our intervals",
-    "text": "Plotting our intervals\nIt can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.\n\n\n\n\n\n\n\n\nQ6. Which is the prediction invterval and which is the confidence interval? How can you tell?"
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#function-quick-reference",
-    "href": "activity/04-slr-prediction.html#function-quick-reference",
-    "title": "Inference for Prediction in SLR",
-    "section": "Function quick reference",
-    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
-  },
-  {
-    "objectID": "activity/04-slr-prediction.html#acknowledgements",
-    "href": "activity/04-slr-prediction.html#acknowledgements",
-    "title": "Inference for Prediction in SLR",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThe movie example was adapted from Maria Tackett’s draft of Introduction to Regression Analysis: A Data Science Approach."
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html",
-    "href": "slides/03-slr-prediction.html",
-    "title": "Inference for Prediction",
-    "section": "",
-    "text": "Work with a neighbor\nAnswer the questions associated with the warm up on the worksheet\nNote that the explanatory variable is standardized  (mean 0, SD 1)"
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html#r-point-estimate",
-    "href": "slides/03-slr-prediction.html#r-point-estimate",
-    "title": "Inference for Prediction",
-    "section": "R: Point estimate",
-    "text": "R: Point estimate\nWe’ll let R do the computational work\npredict allows you to quickly calculate the value of \\(\\widehat{y}\\) for a given \\(x\\) (or vector of \\(x\\)s)\n\npredict(car_lm, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27"
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html#r-intervals",
-    "href": "slides/03-slr-prediction.html#r-intervals",
-    "title": "Inference for Prediction",
-    "section": "R: Intervals",
-    "text": "R: Intervals\nThe interval argument allows you to specify the type of interval you want\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"confidence\")\n\n       fit      lwr      upr\n1 23346.27 22170.67 24521.86\n\n\n\n\npredict(car_lm, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\")\n\n       fit      lwr      upr\n1 23346.27 4094.689 42597.85"
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html#ses",
-    "href": "slides/03-slr-prediction.html#ses",
-    "title": "Inference for Prediction",
-    "section": "SEs",
-    "text": "SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288\n\n\n:::"
-  },
-  {
-    "objectID": "slides/03-slr-prediction.html#r-ses",
-    "href": "slides/03-slr-prediction.html#r-ses",
-    "title": "Inference for Prediction",
-    "section": "R: SEs",
-    "text": "R: SEs\nAdding se.fit = TRUEreturns the necessary standard errors for “by hand” calculations\n\n\n$fit\n       1 \n23346.27 \n\n$se.fit\n[1] 598.8985\n\n$df\n[1] 802\n\n$residual.scale\n[1] 9789.288"
-  },
-  {
-    "objectID": "activity/04H-sol-slr-prediction.html",
-    "href": "activity/04H-sol-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
-  },
-  {
-    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
-  },
-  {
-    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Prediction and confidence intervals",
-    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "title": "Model Diagnostics",
-    "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#regression-conditions",
-    "href": "slides/04-slr-diagnostics.html#regression-conditions",
-    "title": "Model Diagnostics",
-    "section": "Regression conditions",
-    "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#residuals",
-    "href": "slides/04-slr-diagnostics.html#residuals",
-    "title": "Model Diagnostics",
-    "section": "Residuals",
-    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "title": "Model Diagnostics",
-    "section": "Standardized residuals",
-    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "title": "Model Diagnostics",
-    "section": "A “good” residual plot",
-    "text": "A “good” residual plot"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn",
-    "href": "slides/04-slr-diagnostics.html#your-turn",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "title": "Model Diagnostics",
-    "section": "What do we do if our assumptions are violated?",
-    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
-    "href": "slides/04-slr-diagnostics.html#assessing-normality",
-    "title": "Model Diagnostics",
-    "section": "Assessing normality",
-    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
-    "href": "slides/04-slr-diagnostics.html#assessing-independence",
-    "title": "Model Diagnostics",
-    "section": "Assessing independence",
-    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn-1",
-    "href": "slides/04-slr-diagnostics.html#your-turn-1",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\nFILL IN TEXT HERE"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#what-happens-if-our-assumptions-arent-valid",
-    "href": "slides/04-slr-diagnostics.html#what-happens-if-our-assumptions-arent-valid",
-    "title": "Model Diagnostics",
-    "section": "What happens if our assumptions aren’t valid?",
-    "text": "What happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "title": "Model Diagnostics",
-    "section": "What happens the conditions aren’t valid?",
-    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "title": "Model Diagnostics",
-    "section": "Transforming variables can",
-    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
-    "href": "slides/04-slr-diagnostics.html#applying-transformations",
-    "title": "Model Diagnostics",
-    "section": "Applying transformations",
-    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn-2",
-    "href": "slides/04-slr-diagnostics.html#your-turn-2",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\nFILL IN TEXT HERE"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
   }
 ]

@@ -44,6 +44,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -192,7 +193,7 @@
 </div>
 </div>
 </section>
-<section id="your-turn" class="slide level2">
+<section id="your-turn" class="slide level2 scrollable">
 <h2>Your turn</h2>
 <ul>
 <li><p>Work in groups</p></li>
@@ -210,6 +211,22 @@
 <li>normal Q-Q plot of residuals</li>
 </ul>
 <p><strong>Examples of “good” plots:</strong></p>
+<div class="cell quarto-layout-panel" data-layout-ncol="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-2-1.png" width="480"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-2-2.png" width="480"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-2-3.png" width="480"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-2-4.png" width="480"></p>
+</div>
+</div>
+</div>
 </section>
 <section id="assessing-independence" class="slide level2">
 <h2>Assessing independence</h2>
@@ -217,10 +234,21 @@
 <li>plot residuals vs.&nbsp;variable inducing dependence (e.g.&nbsp;time, location, subject ID)</li>
 </ul>
 <p><strong>Examples of “good” plots:</strong></p>
-</section>
-<section id="your-turn-1" class="slide level2">
-<h2>Your turn</h2>
-<p>FILL IN TEXT HERE</p>
+<div class="cell quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-3-1.png" width="480"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="04-slr-diagnostics_files/figure-revealjs/unnamed-chunk-3-2.png" width="480"></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="your-turn-1" class="title-slide slide level1 center">
+<h1>Your turn</h1>
+<p>Work through Example 1 on the worksheet</p>
 </section>
 <section id="what-happens-the-conditions-arent-valid" class="slide level2 smaller">
 <h2>What happens the conditions aren’t valid?</h2>
@@ -231,7 +259,7 @@
 <li><p><strong>Constant error variance:</strong> estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)</p></li>
 </ul>
 </section>
-<section id="what-do-we-do-if-our-assumptions-are-violated" class="slide level2">
+<section id="what-do-we-do-if-our-assumptions-are-violated" class="slide level2 scrollable">
 <h2>What do we do if our assumptions are violated?</h2>
 <ol type="1">
 <li class="fragment"><p>Change our assumptions (hard, need more stats)</p></li>
@@ -260,10 +288,11 @@ y &amp;= \beta_0 + \beta_1 \sqrt{x} + \varepsilon\\
 \log(y) &amp;= \beta_0 + \beta_1 \sqrt{x} + \varepsilon
 \end{split}
 \]</span></p>
-</section>
-<section id="your-turn-2" class="slide level2">
-<h2>Your turn</h2>
-<p>FILL IN TEXT HERE</p>
+</section></section>
+<section>
+<section id="your-turn-2" class="title-slide slide level1 center">
+<h1>Your turn</h1>
+<p>Work through Example 2 on the worksheet</p>
 </section>
 <section id="review-of-logarithms" class="slide level2">
 <h2>Review of logarithms</h2>
@@ -275,7 +304,7 @@ y &amp;= \beta_0 + \beta_1 \sqrt{x} + \varepsilon\\
 <li class="fragment"><span class="math inline">\(\log_2(0.5)=-1\)</span> since <span class="math inline">\(2^{-1}=\frac{1}{2}\)</span></li>
 </ul>
 </section>
-<section id="review-of-logarithms-1" class="slide level2">
+<section id="review-of-logarithms-1" class="slide level2 smaller">
 <h2>Review of logarithms</h2>
 <ul>
 <li><p>Takes in only positive numbers, i.e.&nbsp;<span class="math inline">\(x&gt;0\)</span></p></li>

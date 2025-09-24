@@ -4,6 +4,7 @@ subtitle: "Stat 230: Applied Regression Analysis"
 format: 
   revealjs:
     theme: [serif, styles.scss]
+    scrollable: true
 editor: source
 editor_options: 
   chunk_output_type: console
@@ -149,6 +150,32 @@ gf_point(rstandard(good_mod) ~ x,
 
 **Examples of "good" plots:**
 
+```{r}
+#| echo: false
+#| layout-ncol: 4
+#| fig.height: 3.5
+#| fig.width: 5
+x2 <- rnorm(30, mean = 10, sd = 3.5)
+y2a <- 1 + 1*x2 + rnorm(30, mean = 0, sd = 10)
+y2b <- 1 + 1*x2 + rnorm(30, mean = 0, sd = 10)
+good_mod2a <- lm(y2a ~ x2)
+good_mod2b <- lm(y2b ~ x2)
+
+gf_histogram(~rstandard(good_mod2a), color = "black", bins = 12, xlab = "Standardized Residual", ylab = "Count") +
+  theme_classic()
+
+gf_histogram(~rstandard(good_mod2b), color = "black", bins = 12, xlab = "Standardized Residual", ylab = "Count") +
+  theme_classic()
+
+gf_qq(~rstandard( good_mod2a), ylab = "Standardized Residual", xlab = "N(0, 1) quantiles") |>
+  gf_qqline() +
+  theme_classic()
+
+gf_qq(~rstandard( good_mod2b), ylab = "Standardized Residual", xlab = "N(0, 1) quantiles") |>
+  gf_qqline() +
+  theme_classic()
+```
+
 
 
 ## Assessing independence
@@ -157,10 +184,28 @@ gf_point(rstandard(good_mod) ~ x,
 
 **Examples of "good" plots:**
 
+```{r}
+#| echo: false
+#| layout-ncol: 2
+#| fig.height: 3.5
+#| fig.width: 5
 
-## Your turn
 
-FILL IN TEXT HERE
+gf_point(rstandard(good_mod2a) ~ 1:30, ylab = "Standardized Residual", xlab = "Order") |>
+  gf_line() |>
+  gf_hline(yintercept = 0) +
+  theme_classic()
+
+gf_point(rstandard(good_mod2b) ~ 1:30, ylab = "Standardized Residual", xlab = "Order") |>
+  gf_line() |>
+  gf_hline(yintercept = 0) +
+  theme_classic()
+```
+
+
+# Your turn
+
+Work through Example 1 on the worksheet
 
 
 
@@ -228,9 +273,10 @@ y &= \beta_0 + \beta_1 \sqrt{x} + \varepsilon\\
 \end{split}
 $$
 
-## Your turn
+# Your turn
 
-FILL IN TEXT HERE
+Work through Example 2 on the worksheet
+
 
 
 ## Review of logarithms
@@ -244,7 +290,7 @@ The logarithm $\log_b(x)$ is a function that is the exponent (power) that the ba
 - $\log_2(0.5)=-1$ since $2^{-1}=\frac{1}{2}$
 :::
 
-## Review of logarithms
+## Review of logarithms {.smaller}
  
 - Takes in only positive numbers, i.e. $x>0$
 
