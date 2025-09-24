@@ -186,7 +186,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/02-slr-inference.html#warm-up",
@@ -495,5 +495,124 @@
     "title": "Inference for Prediction in SLR",
     "section": "Prediction and confidence intervals",
     "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "title": "Model Diagnostics",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#regression-conditions",
+    "href": "slides/04-slr-diagnostics.html#regression-conditions",
+    "title": "Model Diagnostics",
+    "section": "Regression conditions",
+    "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#residuals",
+    "href": "slides/04-slr-diagnostics.html#residuals",
+    "title": "Model Diagnostics",
+    "section": "Residuals",
+    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "title": "Model Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "title": "Model Diagnostics",
+    "section": "A “good” residual plot",
+    "text": "A “good” residual plot"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn",
+    "href": "slides/04-slr-diagnostics.html#your-turn",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "title": "Model Diagnostics",
+    "section": "What do we do if our assumptions are violated?",
+    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
+    "href": "slides/04-slr-diagnostics.html#assessing-normality",
+    "title": "Model Diagnostics",
+    "section": "Assessing normality",
+    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
+    "href": "slides/04-slr-diagnostics.html#assessing-independence",
+    "title": "Model Diagnostics",
+    "section": "Assessing independence",
+    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn-1",
+    "href": "slides/04-slr-diagnostics.html#your-turn-1",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\nFILL IN TEXT HERE"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-happens-if-our-assumptions-arent-valid",
+    "href": "slides/04-slr-diagnostics.html#what-happens-if-our-assumptions-arent-valid",
+    "title": "Model Diagnostics",
+    "section": "What happens if our assumptions aren’t valid?",
+    "text": "What happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "title": "Model Diagnostics",
+    "section": "What happens the conditions aren’t valid?",
+    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "title": "Model Diagnostics",
+    "section": "Transforming variables can",
+    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
+    "href": "slides/04-slr-diagnostics.html#applying-transformations",
+    "title": "Model Diagnostics",
+    "section": "Applying transformations",
+    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn-2",
+    "href": "slides/04-slr-diagnostics.html#your-turn-2",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\nFILL IN TEXT HERE"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
   }
 ]

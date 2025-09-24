@@ -15,10 +15,19 @@
     - "SLR"
     - "Inference"
 - title: "Inference for SLR Prediction"
-  subtitle: "Day 02"
+  subtitle: "Day 04"
   date: 2025-09-22
   image: slides/featured/03-slr-prediction.png
   path: slides/03-slr-prediction.qmd
   categories:
     - "SLR"
     - "Inference"
+- title: "SLR Diagnostics and Transformations"
+  subtitle: "Day 05"
+  date: 2025-09-24
+  image: slides/featured/04-slr-diagnostics.png
+  path: slides/04-slr-diagnostics.qmd
+  categories:
+    - "SLR"
+    - "Diagnostics"
+    - "Transformations"

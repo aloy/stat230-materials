@@ -1,0 +1,260 @@
+---
+title: "Model Diagnostics"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggplot2)
+library(rsample)
+library(broom)
+library(Stat2Data)
+data("BlueJays")
+library(purrr)
+library(tidyverse)
+library(ggformula)
+library(patchwork)
+library(ggdist)
+library(distributional)
+library(gganimate)
+library(gifski)
+library(fontawesome)
+
+cars <- read.csv("https://aloy.rbind.io/kuiper_data/Cars.csv")
+
+blue_jays_male <- BlueJays |> filter(Sex == 1)
+
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+```
+
+# [PDF version of slides](pdf_slides/04-slr-diagnostics.pdf)
+
+# RMarkdown demo
+
+
+## Conditions required for inference
+
+Our model must be valid for inference to be valid
+
+$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
+
+<br>
+
+Conditions to check:
+
+-   Linear relationship is appropriate
+-   Errors are independent and identically distributed (iid)
+-   Errors are normally distributed
+-   Variance of the errors doesn't depend on $x$
+
+
+## Residuals
+
+
+**Definition**: $e_i =\widehat{\varepsilon}_i = y_i - \widehat{y}_i$
+
+<br>
+
+
+**Properties:**
+
+-  sum to zero $\Longrightarrow$ mean is 0
+
+-  **uncorrelated** with $x$ and $\widehat{y}$
+
+- normally distributed 
+ 
+- $SD(e_i) = \widehat{\sigma} \sqrt{1 - \dfrac{1}{n} - \dfrac{(x_i - \overline{x})^2}{\sum (x_i - \overline{x})^2}}$
+
+
+
+## Standardized residuals
+
+
+$$r_i = \frac{e_i}{\widehat{\sigma} \sqrt{1 - \dfrac{1}{n} - \dfrac{(x_i - \overline{x})^2}{\sum (x_i - \overline{x})^2}}}$$
+
+**Properties:**
+
+-  sum to zero $\Longrightarrow$ mean is 0
+
+-  **uncorrelated** with $x$ and $\widehat{y}$
+
+- normally distributed 
+
+- $SD(r_i) = 1$
+
+
+
+
+## A "good" residual plot
+
+```{r}
+#| fig.height: 3.5
+#| fig.width: 5
+#| layout-ncol: 2
+set.seed(72384)
+x <- rnorm(100, mean = 10, sd = 3.5)
+y <- 1 + 1*x + rnorm(100, mean = 0, sd = 10)
+good_mod <- lm(y ~ x)
+
+gf_point(rstandard(good_mod) ~ fitted(good_mod), 
+         ylab = "Standardized Residual", xlab = "Fitted values") |>
+  gf_hline(yintercept = 0, color = "blue", linetype = 2) +
+  theme_classic()
+
+gf_point(rstandard(good_mod) ~ x, 
+         ylab = "Standardized Residual", xlab = "x") |>
+  gf_hline(yintercept = 0, color = "blue", linetype = 2) +
+  theme_classic()
+```
+
+## Your turn
+
+- Work in groups
+
+- On the whiteboards, sketch a plot of $y$ vs. $x$ and a corresponding residual plot that would indicate a violation of the
+
+    1. linearity condition
+
+    2. constant variance condition
+    
+    
+
+
+## Assessing normality
+
+- histogram of residuals
+- normal Q-Q plot of residuals
+
+**Examples of "good" plots:**
+
+
+
+## Assessing independence
+
+- plot residuals vs. variable inducing dependence (e.g. time, location, subject ID)
+
+**Examples of "good" plots:**
+
+
+## Your turn
+
+FILL IN TEXT HERE
+
+
+
+## What happens the conditions aren't valid? {.smaller}
+
+
+
+-   **Linearity:** if nonlinear, everything breaks!
+
+-   **Independence:** estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small
+
+-   **Normality:** estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can't use t-distribution)
+
+-   **Constant error variance:** estimates are still unbiased but standard errors are wrong (and we don't know how wrong)
+
+
+## What do we do if our assumptions are violated?
+
+:::{.incremental}
+1. Change our assumptions (hard, need more stats)
+
+2. Transform $y$, $x$, or both
+
+3. Change the type of inference (remember the bootstrap?)
+:::
+
+
+
+## Transforming variables can
+
+```{r}
+#| include: false
+UBSprices <- read.csv("http://aloy.rbind.io/data/UBSprices.csv")
+bigmac.lm <- lm(bigmac2009 ~ bigmac2003, data = UBSprices)
+resid_df <- augment(bigmac.lm)
+
+salarygov <- read.csv("https://github.com/math430-lu/data/raw/master/salarygov_inflated.csv")
+redcedar <- read.csv("https://github.com/math430-lu/data/raw/master/ufcwc.csv")
+# glakes <- read.table("http://gattonweb.uky.edu/sheather/book/docs/datasets/glakes.txt", header = TRUE)
+
+```
+
+- Address non-linear patterns (i.e., linear on transformed scale)
+
+- Stabilize variance
+
+- Correct skew
+
+- Minimize the effects of outliers
+
+
+## Applying transformations
+
+To apply a transformation, we calculate a new variable and use it in place of the original variable in our model
+
+<br>
+
+Examples
+
+$$ 
+\begin{split}
+\log(y) &= \beta_0 + \beta_1 x + \varepsilon\\
+y &= \beta_0 + \beta_1 \sqrt{x} + \varepsilon\\
+\log(y) &= \beta_0 + \beta_1 \sqrt{x} + \varepsilon
+\end{split}
+$$
+
+## Your turn
+
+FILL IN TEXT HERE
+
+
+## Review of logarithms
+
+The logarithm $\log_b(x)$ is a function that is the exponent (power) that the base, $b$, must be raised to produce the value $x$:
+
+::: incremental
+- $\log_{10}(100)=2$ since $10^2 = 100$
+- $\log_{10}(10)=1$ since $10^1 = 10$
+- $\log_2(1) = 0$ since $2^0=1$
+- $\log_2(0.5)=-1$ since $2^{-1}=\frac{1}{2}$
+:::
+
+## Review of logarithms
+ 
+- Takes in only positive numbers, i.e. $x>0$
+
+- The log of products is the sum of the logs
+
+    $$\log_b(mx) = \log_b(m) + \log_b(x)$$
+- The log of quotients is the difference of the logs
+    
+    $$\log_b\left(\frac{m}{x}\right) = \log_b(m) - \log_b(x)$$
+
+- The log of powers is the exponent times the log
+    
+    $$\log_b(x^p) = p \log_b(x)$$
