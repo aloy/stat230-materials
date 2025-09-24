@@ -119,13 +119,6 @@
     "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn-1",
-    "href": "slides/04-slr-diagnostics.html#your-turn-1",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\nFILL IN TEXT HERE"
-  },
-  {
     "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
     "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
     "title": "Model Diagnostics",
@@ -152,13 +145,6 @@
     "title": "Model Diagnostics",
     "section": "Applying transformations",
     "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn-2",
-    "href": "slides/04-slr-diagnostics.html#your-turn-2",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\nFILL IN TEXT HERE"
   },
   {
     "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
