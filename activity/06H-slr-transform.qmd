@@ -19,28 +19,30 @@ editor: source
 
 Researchers wish to understand the relationship between the brain weights (y, in grams) and body weights (x, in kilograms) of mammals. They have data on a sample of 30 species of mammals, which can be loaded using the code shown below:
 
-```{r}
-weight <- read.csv("https://aloy.rbind.io/kuiper_data/Weights.csv")
+```{webr}
+library(ggformula)
+library(ggResidpanel)
+weight <-  read.csv("https://aloy.github.io/stat230-materials/data/weights.csv")
 ```
 
 (a) Fit a simple linear regression model using body weight to predict brain weight.
 
 ```{webr}
-
+#| min-lines: 3
 ```
 
 
 (b) Create a scatterplot of $y$ versus $x$ with a regression line, a plot of the residuals vs. predicted (or "fitted") values ($\widehat{y}$), and either a normal Q-Q plot or a histogram of the residuals. (Remember that you can use the `resid_panel()` command in the `ggResidpanel` R package for residual plots.) Summarize what issues you see with the regression conditions.
 
 ```{webr}
-
+#| min-lines: 8
 ```
 
 
 (b) Try various transformations of the explanatory and response variables to create a better linear regression model. (Hint: Notice that both the $x$ and $y$ variables are right skewed and have outliers, both may need a transformation.) What transformation(s) seem to remedy the issues you saw in part (b)?
 
 ```{webr}
-
+#| min-lines: 8
 ```
 
 
@@ -64,7 +66,7 @@ gf_point(yvar ~ xvar, data = df) |>
 Use this idea to plot the fitted model relating brain weights and body weights on the original scale.
 
 ```{webr}
-
+#| min-lines: 3
 ```
 
 
