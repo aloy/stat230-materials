@@ -70,123 +70,298 @@
     "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "title": "Model Diagnostics",
+    "objectID": "slides/05-slr-transformations.html#easing-skew",
+    "href": "slides/05-slr-transformations.html#easing-skew",
+    "title": "Remedial Measures: Transformations",
+    "section": "Easing skew",
+    "text": "Easing skew\nIf a set of data values is skewed to the right, taking the (natural) log of each data value can result in a data set that is roughly symmetric and often roughly normal."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#section",
+    "href": "slides/05-slr-transformations.html#section",
+    "title": "Remedial Measures: Transformations",
+    "section": "",
+    "text": "How are tree height and tree diameter related for the western red cedar?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "href": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "title": "Remedial Measures: Transformations",
+    "section": "Are the conditions violated?",
+    "text": "Are the conditions violated?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming X help?",
+    "text": "Does transforming X help?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming Y help?",
+    "text": "Does transforming Y help?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "href": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "title": "Remedial Measures: Transformations",
+    "section": "Transforming both X and Y?",
+    "text": "Transforming both X and Y?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#your-turn",
+    "href": "slides/05-slr-transformations.html#your-turn",
+    "title": "Remedial Measures: Transformations",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the first example on the handout with your neighbor(s)\nOnline version with R chunks:"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-1",
+    "href": "slides/05-slr-transformations.html#back-transforming-1",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "href": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "title": "Remedial Measures: Transformations",
+    "section": "Displaying a transformed model",
+    "text": "Displaying a transformed model\n\n\n\n\n\n\n\n\n\n\n\n95% confidence intervals for the mean response are displayed"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#rules-of-thumb",
+    "href": "slides/05-slr-transformations.html#rules-of-thumb",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rules of thumb",
+    "text": "Rules of thumb\n\ntransform x: if mean function is nonlinear, but is monotonic and the residual variance is constant\ntransform y: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)\nlog rule: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful\nrange rule: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help\nsquare roots are useful for count data"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "href": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Ladder of transformations",
+    "text": "Ladder of transformations\n\n\nImage credit: Andrew Zieffler"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "href": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rule of the Bulge",
+    "text": "Rule of the Bulge\nIntroduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity\n\n\nImage credit: Andrew Zieffler"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-2",
+    "href": "slides/05-slr-transformations.html#back-transforming-2",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "href": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-transforming log transformations",
+    "text": "Back-transforming log transformations\n\nOften log-transforming a variable makes in approximately symmetric\nIf symmetric, then the median \\(\\approx\\) mean on the log scale\n\\(\\widehat{\\mu}(Y|X) \\approx \\widehat{\\text{median}}(Y|X)\\)\nInference made mean on the log scale can thought of as inference for the median on the log scale"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of Y only",
+    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of X only",
+    "text": "Log-transform of X only\n\n\nA doubling of \\(x\\) is associated with the mean response increasing (decreasing) by \\(\\beta_1 \\log(2)\\) units."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "href": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform both Y and X",
+    "text": "Log-transform both Y and X\n\n\nThe median of \\(Y\\) at \\(2x\\) is \\(2^{\\beta_1}\\) times greater (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… A doubling of x is associated with the median of Y increasing (decreasing) by a factor of \\(2^{\\beta_1}\\)."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#your-turn-1",
+    "href": "slides/05-slr-transformations.html#your-turn-1",
+    "title": "Remedial Measures: Transformations",
+    "section": "Your turn",
+    "text": "Your turn\nYou estimated the model \\(\\mu(\\mathtt{brain\\ weight}|\\mathtt{body \\ weight}) = \\beta_0 + \\beta_1 x\\)\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n2.190\n0.176\n12.439\n&lt;0.001\n\n\nlog(bodyweight)\n0.759\n0.042\n18.163\n&lt;0.001\n\n\n\n\n\n\n\n\nInterpret the slope in context\nInterpret the intercept in context"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "href": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "title": "Remedial Measures: Transformations",
+    "section": "Modeling is an iterative process",
+    "text": "Modeling is an iterative process"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#issues-with-transformations",
+    "href": "slides/05-slr-transformations.html#issues-with-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Issues with transformations",
+    "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#warm-up",
+    "href": "slides/02-slr-inference.html#warm-up",
+    "title": "Inference for SLR",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#example",
+    "href": "slides/02-slr-inference.html#example",
+    "title": "Inference for SLR",
+    "section": "Example",
+    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
+    "href": "slides/02-slr-inference.html#a-deterministic-model",
+    "title": "Inference for SLR",
+    "section": "A deterministic model",
+    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Simple Linear Regression Model",
+    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model",
+    "href": "slides/02-slr-inference.html#linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
+    "href": "slides/02-slr-inference.html#linear-regression-model-1",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
+    "href": "slides/02-slr-inference.html#linear-regression-model-2",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#notation",
+    "href": "slides/02-slr-inference.html#notation",
+    "title": "Inference for SLR",
+    "section": "Notation",
+    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution",
+    "href": "slides/02-slr-inference.html#sampling-distribution",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
+    "href": "slides/02-slr-inference.html#sampling-distribution-2",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#confidence-interval",
+    "href": "slides/02-slr-inference.html#confidence-interval",
+    "title": "Inference for SLR",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#hypothesis-test",
+    "href": "slides/02-slr-inference.html#hypothesis-test",
+    "title": "Inference for SLR",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#coefficient-table",
+    "href": "slides/02-slr-inference.html#coefficient-table",
+    "title": "Inference for SLR",
+    "section": "Coefficient table",
+    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#your-turn",
+    "href": "slides/02-slr-inference.html#your-turn",
+    "title": "Inference for SLR",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "title": "Inference for SLR",
+    "section": "A note on reporting test results",
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "title": "Inference for SLR",
     "section": "Conditions required for inference",
     "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#residuals",
-    "href": "slides/04-slr-diagnostics.html#residuals",
-    "title": "Model Diagnostics",
-    "section": "Residuals",
-    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "title": "Model Diagnostics",
-    "section": "Standardized residuals",
-    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "title": "Model Diagnostics",
-    "section": "A “good” residual plot",
-    "text": "A “good” residual plot"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn",
-    "href": "slides/04-slr-diagnostics.html#your-turn",
-    "title": "Model Diagnostics",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
-    "href": "slides/04-slr-diagnostics.html#assessing-normality",
-    "title": "Model Diagnostics",
-    "section": "Assessing normality",
-    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
-    "href": "slides/04-slr-diagnostics.html#assessing-independence",
-    "title": "Model Diagnostics",
-    "section": "Assessing independence",
-    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "title": "Model Diagnostics",
-    "section": "What happens the conditions aren’t valid?",
-    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "title": "Model Diagnostics",
-    "section": "What do we do if our assumptions are violated?",
-    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "title": "Model Diagnostics",
-    "section": "Transforming variables can",
-    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
-    "href": "slides/04-slr-diagnostics.html#applying-transformations",
-    "title": "Model Diagnostics",
-    "section": "Applying transformations",
-    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "activity/04H-sol-slr-prediction.html",
-    "href": "activity/04H-sol-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
+    "objectID": "activity/01-slr-review.html",
+    "href": "activity/01-slr-review.html",
+    "title": "Simple linear regression review – Stat 230",
     "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
-  },
-  {
-    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
-  },
-  {
-    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Prediction and confidence intervals",
-    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
+    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
   },
   {
     "objectID": "activity/04-slr-prediction.html",
@@ -336,158 +511,144 @@
     "text": "Footnotes\n\n\nAdapted from Stat 2: Modeling with Regression and ANOVA↩︎"
   },
   {
-    "objectID": "activity/01-slr-review.html",
-    "href": "activity/01-slr-review.html",
-    "title": "Simple linear regression review – Stat 230",
+    "objectID": "activity/06H-slr-transform.html",
+    "href": "activity/06H-slr-transform.html",
+    "title": "Transformations",
     "section": "",
-    "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
+    "text": "Researchers wish to understand the relationship between the brain weights (y, in grams) and body weights (x, in kilograms) of mammals. They have data on a sample of 30 species of mammals, which can be loaded using the code shown below:\n\nweight &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Weights.csv\")\n\n\nFit a simple linear regression model using body weight to predict brain weight.\n\n\n\n\n\n\n\n\n\n\nCreate a scatterplot of \\(y\\) versus \\(x\\) with a regression line, a plot of the residuals vs. predicted (or “fitted”) values (\\(\\widehat{y}\\)), and either a normal Q-Q plot or a histogram of the residuals. (Remember that you can use the resid_panel() command in the ggResidpanel R package for residual plots.) Summarize what issues you see with the regression conditions.\n\n\n\n\n\n\n\n\n\n\nTry various transformations of the explanatory and response variables to create a better linear regression model. (Hint: Notice that both the \\(x\\) and \\(y\\) variables are right skewed and have outliers, both may need a transformation.) What transformation(s) seem to remedy the issues you saw in part (b)?"
   },
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Stat 230 Slide Decks",
+    "objectID": "activity/06H-slr-transform.html#example-mammal-brain-weights",
+    "href": "activity/06H-slr-transform.html#example-mammal-brain-weights",
+    "title": "Transformations",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Researchers wish to understand the relationship between the brain weights (y, in grams) and body weights (x, in kilograms) of mammals. They have data on a sample of 30 species of mammals, which can be loaded using the code shown below:\n\nweight &lt;- read.csv(\"https://aloy.rbind.io/kuiper_data/Weights.csv\")\n\n\nFit a simple linear regression model using body weight to predict brain weight.\n\n\n\n\n\n\n\n\n\n\nCreate a scatterplot of \\(y\\) versus \\(x\\) with a regression line, a plot of the residuals vs. predicted (or “fitted”) values (\\(\\widehat{y}\\)), and either a normal Q-Q plot or a histogram of the residuals. (Remember that you can use the resid_panel() command in the ggResidpanel R package for residual plots.) Summarize what issues you see with the regression conditions.\n\n\n\n\n\n\n\n\n\n\nTry various transformations of the explanatory and response variables to create a better linear regression model. (Hint: Notice that both the \\(x\\) and \\(y\\) variables are right skewed and have outliers, both may need a transformation.) What transformation(s) seem to remedy the issues you saw in part (b)?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#warm-up",
-    "href": "slides/02-slr-inference.html#warm-up",
-    "title": "Inference for SLR",
-    "section": "Warm up",
-    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+    "objectID": "activity/06H-slr-transform.html#back-transforming-your-model",
+    "href": "activity/06H-slr-transform.html#back-transforming-your-model",
+    "title": "Transformations",
+    "section": "Back-transforming your model",
+    "text": "Back-transforming your model\nIn Example 1 you selected transformation(s) to help “linearize” the relationship between brain weights and body weights. While this is helpful from a statistical perspective, it’s often preferred to plot the fitted model on the original scale of the data. To do this, we need to back-transform the model using the following steps:\n\nStart by creating a scatterplot on the original scale.\nAdd a gf_lm() layer, specifying the transformations in the formula and if \\(y\\) is transformed how to back-transform \\(y\\) via the backtrans argument.\n\nFor example, if we log-transformed both x and y, then we pass log(y) ~ log(x) in as the formula to gf_lm() and backtrans = exp to backtransform y. Below is the full call where df is the data set with columns xvar and yvar.\n\n# change variable names and data set name here\ngf_point(yvar ~ xvar, data = df) |&gt; \n  gf_lm(formula = log(y) ~ log(x), backtrans = exp, interval = \"confidence\")\n\nUse this idea to plot the fitted model relating brain weights and body weights on the original scale."
   },
   {
-    "objectID": "slides/02-slr-inference.html#example",
-    "href": "slides/02-slr-inference.html#example",
-    "title": "Inference for SLR",
-    "section": "Example",
-    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+    "objectID": "activity/04H-sol-slr-prediction.html",
+    "href": "activity/04H-sol-slr-prediction.html",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
-    "href": "slides/02-slr-inference.html#a-deterministic-model",
-    "title": "Inference for SLR",
-    "section": "A deterministic model",
-    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
   },
   {
-    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "title": "Inference for Prediction in SLR",
+    "section": "Prediction and confidence intervals",
+    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model",
-    "href": "slides/02-slr-inference.html#linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
-    "href": "slides/02-slr-inference.html#linear-regression-model-1",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
-    "href": "slides/02-slr-inference.html#linear-regression-model-2",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#notation",
-    "href": "slides/02-slr-inference.html#notation",
-    "title": "Inference for SLR",
-    "section": "Notation",
-    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution",
-    "href": "slides/02-slr-inference.html#sampling-distribution",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
-    "href": "slides/02-slr-inference.html#sampling-distribution-1",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
-    "href": "slides/02-slr-inference.html#sampling-distribution-2",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#confidence-interval",
-    "href": "slides/02-slr-inference.html#confidence-interval",
-    "title": "Inference for SLR",
-    "section": "Confidence interval",
-    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#hypothesis-test",
-    "href": "slides/02-slr-inference.html#hypothesis-test",
-    "title": "Inference for SLR",
-    "section": "Hypothesis test",
-    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#coefficient-table",
-    "href": "slides/02-slr-inference.html#coefficient-table",
-    "title": "Inference for SLR",
-    "section": "Coefficient table",
-    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#your-turn",
-    "href": "slides/02-slr-inference.html#your-turn",
-    "title": "Inference for SLR",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "title": "Inference for SLR",
-    "section": "A note on reporting test results",
-    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "title": "Inference for SLR",
+    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "title": "Model Diagnostics",
     "section": "Conditions required for inference",
     "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#residuals",
+    "href": "slides/04-slr-diagnostics.html#residuals",
+    "title": "Model Diagnostics",
+    "section": "Residuals",
+    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "title": "Model Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "title": "Model Diagnostics",
+    "section": "A “good” residual plot",
+    "text": "A “good” residual plot"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn",
+    "href": "slides/04-slr-diagnostics.html#your-turn",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
+    "href": "slides/04-slr-diagnostics.html#assessing-normality",
+    "title": "Model Diagnostics",
+    "section": "Assessing normality",
+    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
+    "href": "slides/04-slr-diagnostics.html#assessing-independence",
+    "title": "Model Diagnostics",
+    "section": "Assessing independence",
+    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "title": "Model Diagnostics",
+    "section": "What happens the conditions aren’t valid?",
+    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "title": "Model Diagnostics",
+    "section": "What do we do if our assumptions are violated?",
+    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "title": "Model Diagnostics",
+    "section": "Transforming variables can",
+    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
+    "href": "slides/04-slr-diagnostics.html#applying-transformations",
+    "title": "Model Diagnostics",
+    "section": "Applying transformations",
+    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
   },
   {
     "objectID": "slides/03-slr-prediction.html#warm-up",
@@ -558,180 +719,5 @@
     "title": "Inference for Prediction",
     "section": "Regression conditions",
     "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#easing-skew",
-    "href": "slides/05-slr-transformations.html#easing-skew",
-    "title": "Remedial Measures: Transformations",
-    "section": "Easing skew",
-    "text": "Easing skew\nIf a set of data values is skewed to the right, taking the (natural) log of each data value can result in a data set that is roughly symmetric and often roughly normal."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming",
-    "href": "slides/05-slr-transformations.html#back-transforming",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-1",
-    "href": "slides/05-slr-transformations.html#back-transforming-1",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-2",
-    "href": "slides/05-slr-transformations.html#back-transforming-2",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#how-are-tree-height-and-tree-diameter-related-for-the-western-red-cedar",
-    "href": "slides/05-slr-transformations.html#how-are-tree-height-and-tree-diameter-related-for-the-western-red-cedar",
-    "title": "Remedial Measures: Transformations",
-    "section": "How are tree height and tree diameter related for the western red cedar?",
-    "text": "How are tree height and tree diameter related for the western red cedar?"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#are-any-of-the-slr-assumptionsconditions-violated",
-    "href": "slides/05-slr-transformations.html#are-any-of-the-slr-assumptionsconditions-violated",
-    "title": "Remedial Measures: Transformations",
-    "section": "Are any of the SLR assumptions/conditions violated?",
-    "text": "Are any of the SLR assumptions/conditions violated?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#does-transforming-x-help",
-    "href": "slides/05-slr-transformations.html#does-transforming-x-help",
-    "title": "Remedial Measures: Transformations",
-    "section": "Does transforming X help?",
-    "text": "Does transforming X help?"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#does-transforming-y-help",
-    "href": "slides/05-slr-transformations.html#does-transforming-y-help",
-    "title": "Remedial Measures: Transformations",
-    "section": "Does transforming Y help?",
-    "text": "Does transforming Y help?"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#does-transforming-both-x-and-y-help",
-    "href": "slides/05-slr-transformations.html#does-transforming-both-x-and-y-help",
-    "title": "Remedial Measures: Transformations",
-    "section": "Does transforming both X and Y help?",
-    "text": "Does transforming both X and Y help?"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
-    "href": "slides/05-slr-transformations.html#displaying-a-transformed-model",
-    "title": "Remedial Measures: Transformations",
-    "section": "Displaying a transformed model",
-    "text": "Displaying a transformed model\n\n\n\n\n\n\n\n\n\n\n\n95% confidence intervals for the mean response are displayed"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-of-y-only",
-    "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform of Y only",
-    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
-    "href": "slides/05-slr-transformations.html#log-transform-of-x-only",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform of X only",
-    "text": "Log-transform of X only\n\n\nA doubling of \\(x\\) is associated with the mean response increasing (decreasing) by \\(\\beta_1 \\log(2)\\) units."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
-    "href": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform both Y and X",
-    "text": "Log-transform both Y and X\n\n\nThe median of \\(Y\\) at \\(2x\\) is \\(2^{\\beta_1}\\) times greater (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… A doubling of x is associated with the median of Y increasing (decreasing) by a factor of \\(2^{\\beta_1}\\)."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#rules-of-thumb",
-    "href": "slides/05-slr-transformations.html#rules-of-thumb",
-    "title": "Remedial Measures: Transformations",
-    "section": "Rules of thumb",
-    "text": "Rules of thumb\n\ntransform x: if mean function is nonlinear, but is monotonic and the residual variance is constant\ntransform y: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)\nlog rule: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful\nrange rule: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help\nsquare roots are useful for count data"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#your-turn",
-    "href": "slides/05-slr-transformations.html#your-turn",
-    "title": "Remedial Measures: Transformations",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork through the first example on the handout with your neighbor(s)\nOnline version with R chunks:"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#modeling-cycle",
-    "href": "slides/05-slr-transformations.html#modeling-cycle",
-    "title": "Remedial Measures: Transformations",
-    "section": "Modeling cycle!",
-    "text": "Modeling cycle!"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#issues-with-transformations",
-    "href": "slides/05-slr-transformations.html#issues-with-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Issues with transformations",
-    "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#your-turn-1",
-    "href": "slides/05-slr-transformations.html#your-turn-1",
-    "title": "Remedial Measures: Transformations",
-    "section": "Your turn",
-    "text": "Your turn\nYou estimated the model \\(\\mu(\\mathtt{brain\\ weight}|\\mathtt{body \\ weight}) = \\beta_0 + \\beta_1 x\\)\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n2.190\n0.176\n12.439\n&lt;0.001\n\n\nlog(bodyweight)\n0.759\n0.042\n18.163\n&lt;0.001\n\n\n\n\n\n\n\n\nInterpret the slope in context\nInterpret the intercept in context"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#are-the-conditions-violated",
-    "href": "slides/05-slr-transformations.html#are-the-conditions-violated",
-    "title": "Remedial Measures: Transformations",
-    "section": "Are the conditions violated?",
-    "text": "Are the conditions violated?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#transforming-both-x-and-y",
-    "href": "slides/05-slr-transformations.html#transforming-both-x-and-y",
-    "title": "Remedial Measures: Transformations",
-    "section": "Transforming both X and Y?",
-    "text": "Transforming both X and Y?"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-log-transformations",
-    "href": "slides/05-slr-transformations.html#back-transforming-log-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-transforming log transformations",
-    "text": "Back-transforming log transformations\n\nOften log-transforming a variable makes in approximately symmetric\nIf symmetric, then the median \\(\\approx\\) mean on the log scale\n\\(\\widehat{\\mu}(Y|X) \\approx \\widehat{\\text{median}}(Y|X)\\)\nInference made mean on the log scale can thought of as inference for the median on the log scale"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
-    "href": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
-    "title": "Remedial Measures: Transformations",
-    "section": "Modeling is an iterative process",
-    "text": "Modeling is an iterative process"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#ladder-of-transformations",
-    "href": "slides/05-slr-transformations.html#ladder-of-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Ladder of transformations",
-    "text": "Ladder of transformations\n\n\nImage credit: Andrew Zieffler"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#rule-of-the-bulge",
-    "href": "slides/05-slr-transformations.html#rule-of-the-bulge",
-    "title": "Remedial Measures: Transformations",
-    "section": "Rule of the Bulge",
-    "text": "Rule of the Bulge\nIntroduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity\n\n\nImage credit: Andrew Zieffler"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#section",
-    "href": "slides/05-slr-transformations.html#section",
-    "title": "Remedial Measures: Transformations",
-    "section": "",
-    "text": "How are tree height and tree diameter related for the western red cedar?"
   }
 ]
