@@ -55,7 +55,7 @@ In Example 1 you selected transformation(s) to help "linearize" the relationship
 - Start by creating a scatterplot on the original scale. 
 - Add a `gf_lm()` layer, specifying the transformations in the `formula` and **if $y$ is transformed** how to back-transform $y$ via the `backtrans` argument. 
 
-For example, if we log-transformed both `x` and `y`, then we pass `log(y) ~ log(x)` in as the formula to `gf_lm()` and `backtrans = exp` to backtransform `y`. Below is the full call where `df` is the data set with columns `xvar` and `yvar`. 
+For example, if we log-transformed both `x` and `y`, then we pass `log(y) ~ log(x)` in as the formula to `gf_lm()` and `backtrans = exp` to back-transform `y`. Below is the full call where `df` is the data set with columns `xvar` and `yvar`. 
 ```{r}
 #| eval: false
 # change variable names and data set name here
