@@ -347,7 +347,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/02-slr-inference.html#warm-up",
@@ -558,5 +558,180 @@
     "title": "Inference for Prediction",
     "section": "Regression conditions",
     "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#easing-skew",
+    "href": "slides/05-slr-transformations.html#easing-skew",
+    "title": "Remedial Measures: Transformations",
+    "section": "Easing skew",
+    "text": "Easing skew\nIf a set of data values is skewed to the right, taking the (natural) log of each data value can result in a data set that is roughly symmetric and often roughly normal."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming",
+    "href": "slides/05-slr-transformations.html#back-transforming",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-1",
+    "href": "slides/05-slr-transformations.html#back-transforming-1",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-2",
+    "href": "slides/05-slr-transformations.html#back-transforming-2",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#how-are-tree-height-and-tree-diameter-related-for-the-western-red-cedar",
+    "href": "slides/05-slr-transformations.html#how-are-tree-height-and-tree-diameter-related-for-the-western-red-cedar",
+    "title": "Remedial Measures: Transformations",
+    "section": "How are tree height and tree diameter related for the western red cedar?",
+    "text": "How are tree height and tree diameter related for the western red cedar?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#are-any-of-the-slr-assumptionsconditions-violated",
+    "href": "slides/05-slr-transformations.html#are-any-of-the-slr-assumptionsconditions-violated",
+    "title": "Remedial Measures: Transformations",
+    "section": "Are any of the SLR assumptions/conditions violated?",
+    "text": "Are any of the SLR assumptions/conditions violated?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming X help?",
+    "text": "Does transforming X help?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming Y help?",
+    "text": "Does transforming Y help?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#does-transforming-both-x-and-y-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-both-x-and-y-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming both X and Y help?",
+    "text": "Does transforming both X and Y help?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "href": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "title": "Remedial Measures: Transformations",
+    "section": "Displaying a transformed model",
+    "text": "Displaying a transformed model\n\n\n\n\n\n\n\n\n\n\n\n95% confidence intervals for the mean response are displayed"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of Y only",
+    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of X only",
+    "text": "Log-transform of X only\n\n\nA doubling of \\(x\\) is associated with the mean response increasing (decreasing) by \\(\\beta_1 \\log(2)\\) units."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "href": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform both Y and X",
+    "text": "Log-transform both Y and X\n\n\nThe median of \\(Y\\) at \\(2x\\) is \\(2^{\\beta_1}\\) times greater (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… A doubling of x is associated with the median of Y increasing (decreasing) by a factor of \\(2^{\\beta_1}\\)."
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#rules-of-thumb",
+    "href": "slides/05-slr-transformations.html#rules-of-thumb",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rules of thumb",
+    "text": "Rules of thumb\n\ntransform x: if mean function is nonlinear, but is monotonic and the residual variance is constant\ntransform y: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)\nlog rule: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful\nrange rule: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help\nsquare roots are useful for count data"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#your-turn",
+    "href": "slides/05-slr-transformations.html#your-turn",
+    "title": "Remedial Measures: Transformations",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the first example on the handout with your neighbor(s)\nOnline version with R chunks:"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#modeling-cycle",
+    "href": "slides/05-slr-transformations.html#modeling-cycle",
+    "title": "Remedial Measures: Transformations",
+    "section": "Modeling cycle!",
+    "text": "Modeling cycle!"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#issues-with-transformations",
+    "href": "slides/05-slr-transformations.html#issues-with-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Issues with transformations",
+    "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#your-turn-1",
+    "href": "slides/05-slr-transformations.html#your-turn-1",
+    "title": "Remedial Measures: Transformations",
+    "section": "Your turn",
+    "text": "Your turn\nYou estimated the model \\(\\mu(\\mathtt{brain\\ weight}|\\mathtt{body \\ weight}) = \\beta_0 + \\beta_1 x\\)\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n2.190\n0.176\n12.439\n&lt;0.001\n\n\nlog(bodyweight)\n0.759\n0.042\n18.163\n&lt;0.001\n\n\n\n\n\n\n\n\nInterpret the slope in context\nInterpret the intercept in context"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "href": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "title": "Remedial Measures: Transformations",
+    "section": "Are the conditions violated?",
+    "text": "Are the conditions violated?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "href": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "title": "Remedial Measures: Transformations",
+    "section": "Transforming both X and Y?",
+    "text": "Transforming both X and Y?"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "href": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-transforming log transformations",
+    "text": "Back-transforming log transformations\n\nOften log-transforming a variable makes in approximately symmetric\nIf symmetric, then the median \\(\\approx\\) mean on the log scale\n\\(\\widehat{\\mu}(Y|X) \\approx \\widehat{\\text{median}}(Y|X)\\)\nInference made mean on the log scale can thought of as inference for the median on the log scale"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "href": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "title": "Remedial Measures: Transformations",
+    "section": "Modeling is an iterative process",
+    "text": "Modeling is an iterative process"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "href": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Ladder of transformations",
+    "text": "Ladder of transformations\n\n\nImage credit: Andrew Zieffler"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "href": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rule of the Bulge",
+    "text": "Rule of the Bulge\nIntroduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity\n\n\nImage credit: Andrew Zieffler"
+  },
+  {
+    "objectID": "slides/05-slr-transformations.html#section",
+    "href": "slides/05-slr-transformations.html#section",
+    "title": "Remedial Measures: Transformations",
+    "section": "",
+    "text": "How are tree height and tree diameter related for the western red cedar?"
   }
 ]

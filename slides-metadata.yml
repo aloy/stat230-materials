@@ -31,3 +31,11 @@
     - "SLR"
     - "Diagnostics"
     - "Transformations"
+- title: "SLR Transformations"
+  subtitle: "Day 06"
+  date: 2025-09-26
+  image: slides/featured/05-slr-transformations.png
+  path: slides/05-slr-transformation.qmd
+  categories:
+    - "SLR"
+    - "Transformations"

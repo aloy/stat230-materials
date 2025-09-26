@@ -1,0 +1,484 @@
+---
+title: "Remedial Measures: Transformations"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggplot2)
+library(rsample)
+library(broom)
+library(Stat2Data)
+data("BlueJays")
+library(purrr)
+library(tidyverse)
+library(ggformula)
+library(patchwork)
+library(ggdist)
+library(fontawesome)
+library(knitr)
+library(gt)
+library(gtsummary)
+
+salarygov <- read.csv("https://github.com/math430-lu/data/raw/master/salarygov_inflated.csv")
+redcedar <- read.csv("https://github.com/math430-lu/data/raw/master/ufcwc.csv")
+
+
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+```
+
+# [PDF version of slides](pdf_slides/05-slr-transformations.pdf)
+
+## Easing skew
+
+If a set of data values is skewed to the right, taking the (natural) log of each data value *can* result in a data set that is roughly symmetric and often roughly normal.
+
+```{r}
+#| echo: false
+#| layout-ncol: 2
+#| fig-asp: 0.6
+#| fig-width: 3.5
+set.seed(1234)
+data("case0802", package = "Sleuth3")
+
+h1 <- gf_histogram(~Time, data = case0802, fill = "#003069")
+qq1 <- gf_qq(~Time, data = case0802, color = "#003069") %>% gf_qqline()
+
+h2 <- gf_histogram(~log(Time), data = case0802, fill = "#003069")
+qq2 <- gf_qq(~log(Time), data = case0802, color = "#003069") %>% gf_qqline()
+
+
+h1
+qq1
+h2
+qq2
+```
+
+## 
+
+**How are tree height and tree diameter related for the western red cedar?**
+
+```{r}
+#| echo: false
+#| fig-asp: 0.6
+#| fig-width: 4
+gf_point(Height ~ Dbh, data = redcedar, alpha = 0.6, color = "#003069") %>%
+  gf_labs(x = "Diameter at 137 cm above ground (in mm)", 
+          y = "Height (in dm)")
+```
+
+## Are the conditions violated?
+
+```{r}
+#| echo: false
+#| fig-asp: 0.6
+#| fig-width: 2.75
+#| out-width: 100%
+#| layout-ncol: 3
+redcedar_mod <- lm(Height ~ Dbh, data = redcedar)
+aug_cedar <- augment(redcedar_mod)
+
+gf_point(Height ~ Dbh, data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(color = "#f15a31") %>%
+  gf_labs(x = "Diameter (in mm)", y = "Height (in dm)")
+
+gf_point(.std.resid ~ Dbh, data = aug_cedar, alpha = 0.5,color = "#003069") %>%
+  gf_hline(yintercept = 0, col = "blue", lty = 2) %>%
+  gf_labs(x = "Diameter", y = "Std. Residuals")
+
+gf_qq(~ .std.resid, data = aug_cedar,color = "#003069") %>%
+  gf_qqline() %>%
+  gf_labs(x = "N(0, 1) quantiles", y = "Std. residuals")
+```
+
+::::: columns
+::: {.column width="50%"}
+(a) linearity
+
+(b) constant errors
+
+(c) independent errors
+:::
+
+::: {.column width="50%"}
+(d) normal errors
+
+(e) outliers
+
+(f) none
+:::
+:::::
+
+## Does transforming X help?
+
+```{r}
+#| echo: false
+#| fig-asp: 0.6
+#| fig-width: 2.75
+#| out-width: 100%
+#| layout-ncol: 3
+logx_mod <- lm(Height ~ log(Dbh), data = redcedar)
+aug <- augment(logx_mod)
+xlab <- "Diameter (in mm) (log scale)"
+ylab <- "Height (in dm)"
+  
+gf_point(Height ~ log(Dbh), data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(color = "#f15a31") %>%
+  gf_labs(x = xlab, y = ylab)
+
+gf_point(.std.resid ~ .fitted, data = aug, alpha = 0.5, color = "#003069") %>%
+  gf_hline(yintercept = 0, col = "blue", lty = 2) %>%
+  gf_labs(x = "Fitted values", y = "Std. residuals")
+
+gf_qq(~ .std.resid, data = aug, color = "#003069") %>%
+  gf_qqline() %>%
+  gf_labs(x = "N(0, 1) quantiles", y = "Std. residuals")
+```
+
+## Does transforming Y help?
+
+```{r}
+#| echo: false
+#| fig-asp: 0.6
+#| fig-width: 2.75
+#| out-width: 100%
+#| layout-ncol: 3
+logy_mod <- lm(log(Height) ~ Dbh, data = redcedar)
+aug <- augment(logy_mod)
+xlab <- "Diameter (in mm)"
+ylab <- "Height (log scale)"
+  
+gf_point(log(Height) ~ Dbh, data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(color = "#f15a31") %>%
+  gf_labs(x = xlab, y = ylab)
+
+gf_point(.std.resid ~ .fitted, data = aug, alpha = 0.5, color = "#003069") %>%
+  gf_hline(yintercept = 0, col = "blue", lty = 2) %>%
+  gf_labs(x = "Fitted values", y = "Std. residuals")
+
+gf_qq(~ .std.resid, data = aug, color = "#003069") %>%
+  gf_qqline() %>%
+  gf_labs(x = "N(0, 1) quantiles", y = "Std. residuals")
+```
+
+## Transforming both X and Y?
+
+```{r}
+#| echo: false
+#| fig-asp: 0.6
+#| fig-width: 2.75
+#| out-width: 100%
+#| layout-ncol: 3
+logxy_mod <- lm(log(Height) ~ log(Dbh), data = redcedar)
+aug <- augment(logxy_mod)
+xlab <- "Diameter (log scale)"
+ylab <- "Height (log scale)"
+  
+gf_point(log(Height) ~ log(Dbh), data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(color = "#f15a31") %>%
+  gf_labs(x = xlab, y = ylab)
+
+gf_point(.std.resid ~ .fitted, data = aug, alpha = 0.5, color = "#003069") %>%
+  gf_hline(yintercept = 0, col = "blue", lty = 2) %>%
+  gf_labs(x = "Fitted values", y = "Std. residuals")
+
+gf_qq(~ .std.resid, data = aug, color = "#003069") %>%
+  gf_qqline() %>%
+  gf_labs(x = "N(0, 1) quantiles", y = "Std. residuals")
+
+```
+
+## Your turn
+
+-   Work through the first example on the handout with your neighbor(s)
+
+-   Online version with R chunks:
+
+# Back-Transforming
+
+Converting a transformed variable back to its original scale
+
+## Back-Transforming
+
+::::: columns
+::: {.column width="50%"}
+Log scale
+
+```{r}
+#| echo: false
+kable(mosaic::favstats(~log(Time), data = case0802)[c("mean")], format = "html", digits = 3, row.names = FALSE)
+
+```
+:::
+
+::: {.column width="50%"}
+Original scale
+
+```{r}
+#| echo: false
+kable(mosaic::favstats(~Time, data = case0802)[c("mean")], format = "html", digits = 3, row.names = FALSE)
+
+```
+:::
+:::::
+
+<br>
+
+-   Back-transformed mean: $e^{2.146} \approx 8.55$
+
+. . .
+
+::: callout-note
+## R Note
+
+-   `log` is the natural log
+-   `exp(x)` calculated $e^x$
+:::
+
+## Displaying a transformed model
+
+```{r }
+#| echo: false
+#| fig-asp: 0.7
+#| fig-width: 4
+#| out-width: 100%
+#| layout-ncol: 2
+left <- gf_point(log(Height) ~ log(Dbh), data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(interval = "confidence", color = "#f15a31") %>%
+  gf_labs(x = "Diameter (in mm)  (log scale)", y = "Height (in dm) (log scale)", title = "Transformed scale")
+
+right <- gf_point(Height ~ Dbh, data = redcedar, alpha = 0.5, color = "#003069") %>%
+  gf_lm(formula = log(y) ~ log(x), backtrans = exp, interval = "confidence", color = "#f15a31") %>%
+  gf_labs(x = "Diameter (in mm)", y = "Height (in dm)", title = "Original scale")
+
+left
+right
+```
+
+::: footer
+95% confidence intervals for the mean response are displayed
+:::
+
+## Rules of thumb {.smaller}
+
+-   **transform x**: if mean function is nonlinear, but is monotonic and the residual variance is constant
+
+-   **transform y**: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)
+
+-   **log rule**: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful
+
+-   **range rule**: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help
+
+-   **square roots** are useful for count data
+
+## Ladder of transformations
+
+![](images/clipboard-2725667272.png)
+
+::: footer
+Image credit: Andrew Zieffler
+:::
+
+## Rule of the Bulge {.smaller}
+
+Introduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity
+
+![](images/clipboard-2203698702.png)
+
+::: footer
+Image credit: Andrew Zieffler
+:::
+
+# Interpreting a log-transformed model
+
+## Back-Transforming
+
+::::: columns
+::: {.column width="50%"}
+Log scale
+
+```{r}
+#| echo: false
+kable(mosaic::favstats(~log(Time), data = case0802)[c("mean", "median")], format = "html", digits = 3, row.names = FALSE)
+
+```
+:::
+
+::: {.column width="50%"}
+Original scale
+
+```{r}
+#| echo: false
+kable(mosaic::favstats(~Time, data = case0802)[c("mean", "median")], format = "html", digits = 3, row.names = FALSE)
+
+```
+:::
+:::::
+
+<br>
+
+-   Back-transformed median: $e^{1.933} \approx 6.91$
+-   Back-transformed mean: $e^{2.146} \approx 8.55$
+
+## Back-transforming log transformations
+
+::: incremental
+-   Often log-transforming a variable makes in approximately symmetric
+
+-   If symmetric, then the median $\approx$ mean on the log scale
+
+-   $\widehat{\mu}(Y|X) \approx \widehat{\text{median}}(Y|X)$
+
+-   Inference made mean on the log scale can thought of as inference for the median on the log scale
+:::
+
+## Log-transform of Y only
+
+::::: columns
+::: {.column width="50%"}
+The median of $Y$ at $x + 1$ is $e^\beta_1$ times larger (smaller) than the median of $Y$ at $x$.
+
+<br>
+
+Or... increasing $x$ by 1 increases (decreases) the median of $Y$ by a factor of $e^\beta_1$.
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.height = 3, fig.width = 3, out.width = 450}
+logy_mod <- lm(log(Height) ~ Dbh, data = redcedar)
+y_hats <- predict(logy_mod, newdata = data.frame(Dbh = 100*c(3, 4, 8, 9)))
+segment_data <- data.frame(
+  x0 = rep(1, 4),
+  x1 = c(3, 4, 8, 9), 
+  x2 = c(3, 4, 8, 9),
+  y1 = rep(0, 4),
+  y2 = exp(y_hats))
+
+gf_lm(log(Height) ~ Dbh/100, data = redcedar, backtrans = exp, ylab = "y", xlab = "x", color = "#003069") %>%
+  gf_segment(y1 + y2 ~ x1 + x2, data = segment_data, arrow = arrow(length = unit(0.02, "npc")), color = "gray50") %>%
+  gf_segment(y2 + y2 ~ x0 + x1, data = segment_data, arrow = arrow(length = unit(0.02, "npc"), ends = "first"), color = "gray50") %>%
+  gf_refine(scale_x_continuous(breaks = seq(1, 11, by = 2))) 
+```
+:::
+:::::
+
+## Log-transform of X only
+
+::::: columns
+::: {.column width="50%"}
+A doubling of $x$ is associated with the mean response increasing (decreasing) by $\beta_1 \log(2)$ units.
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.height = 3, fig.width = 3, out.width = 450}
+redcedar$h <- redcedar$Height/100
+redcedar$d <- redcedar$Dbh/100
+
+logx_mod <- lm(h ~ log(d), data = redcedar)
+y_hats <- predict(logx_mod, newdata = data.frame(d = c(1.5, 3, 5, 10)))
+segment_data <- data.frame(
+  x0 = rep(0.75, 4),
+  x1 = c(1.5, 3, 5, 10), 
+  x2 = c(1.5, 3, 5, 10),
+  y1 = rep(0, 4),
+  y2 = y_hats)
+
+gf_point(Height/100 ~ Dbh/100, data = redcedar, ylab = "y", xlab = "x", alpha = 0) %>%
+  gf_lm(formula = y ~ log(x), color = "#003069") %>%
+  gf_segment(y1 + y2 ~ x1 + x2, data = segment_data, arrow = arrow(length = unit(0.02, "npc")), color = "gray50") %>%
+  gf_segment(y2 + y2 ~ x0 + x1, data = segment_data, arrow = arrow(length = unit(0.02, "npc"), ends = "first"), color = "gray50") %>%
+  gf_refine(scale_x_continuous(breaks = seq(2, 10, by = 2), limits = c(0.75, 12))) 
+```
+:::
+:::::
+
+## Log-transform both Y and X
+
+::::: columns
+::: {.column width="50%"}
+The median of $Y$ at $2x$ is $2^{\beta_1}$ times greater (smaller) than the median of $Y$ at $x$.
+
+<br>
+
+Or... A doubling of x is associated with the median of Y increasing (decreasing) by a factor of $2^{\beta_1}$.
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.height = 3, fig.width = 3, out.width = 450}
+redcedar$h <- redcedar$Height/100
+redcedar$d <- redcedar$Dbh/100
+
+logxy_mod <- lm(log(h) ~ log(d), data = redcedar)
+y_hats <- predict(logxy_mod, newdata = data.frame(d = c(1.5, 3, 5, 10)))
+segment_data <- data.frame(
+  x0 = rep(0.75, 4),
+  x1 = c(1.5, 3, 5, 10), 
+  x2 = c(1.5, 3, 5, 10),
+  y1 = rep(0, 4),
+  y2 = exp(y_hats))
+
+gf_point(h ~ d, data = redcedar, ylab = "y", xlab = "x", alpha = 0) %>%
+  gf_lm(formula = log(y) ~ log(x), backtrans = exp, color = "#003069") %>%
+  gf_segment(y1 + y2 ~ x1 + x2, data = segment_data, arrow = arrow(length = unit(0.02, "npc")), color = "gray50") %>%
+  gf_segment(y2 + y2 ~ x0 + x1, data = segment_data, arrow = arrow(length = unit(0.02, "npc"), ends = "first"), color = "gray50") %>%
+  gf_refine(scale_x_continuous(breaks = seq(2, 10, by = 2), limits = c(0.75, 12))) 
+```
+:::
+:::::
+
+## Your turn
+
+You estimated the model $\mu(\mathtt{brain\ weight}|\mathtt{body \ weight}) = \beta_0 + \beta_1 x$
+
+```{r}
+#| echo: false
+#| 
+weight <- read.csv("https://aloy.rbind.io/kuiper_data/Weights.csv")
+log_model <- lm(log(brainweight) ~ log(bodyweight), data = weight)
+broom::tidy(log_model) |>
+  mutate(p.value = style_pvalue(p.value)) |>
+  gt() |> 
+  fmt_number(columns = c(estimate, std.error, statistic), decimals = 3) |>
+  fmt_number(columns = p.value, decimals = 4) |>
+  tab_options(table.background.color = "#fffef5", table.font.color = "#003069", table.font.size  = px(36), container.padding.x = px(42), container.padding.y = px(42))
+```
+
+1.  Interpret the slope in context
+
+2.  Interpret the intercept in context
+
+## Modeling is an iterative process
+
+![](images/clipboard-627702870.png)
+
+## Issues with transformations
+
+-   You're often guessing — Statistics is an art AND a science! <br>
+
+-   Changes the interpretation of the parameters — need to back-transform to provide interpretable results <br>
+
+-   Changes SEs of the parameters <br>
+
+-   Not always easy to keep track of all your assumptions
