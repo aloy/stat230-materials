@@ -719,5 +719,110 @@
     "title": "Inference for Prediction",
     "section": "Regression conditions",
     "text": "Regression conditions\nWhat happens if our assumptions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#wildfires",
+    "href": "slides/06-mlr-polynomial.html#wildfires",
+    "title": "Polynomial Regression",
+    "section": "Wildfires",
+    "text": "Wildfires\n\nThe National Interagency Coordination Center at the National Interagency Coordination Center compiles annual wildland fire statistics for federal and state agencies.\nThis information is provided through Situation Reports, which have been in use for several decades.\nOur goal is to model the number of acres burned over the years\n\n\nData source: https://www.nifc.gov/fireInfo/fireInfo_stats_totalFires.html"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#option-1-slr-model",
+    "href": "slides/06-mlr-polynomial.html#option-1-slr-model",
+    "title": "Polynomial Regression",
+    "section": "Option 1: SLR model",
+    "text": "Option 1: SLR model\n\\(\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x\\)\nIs the fit reasonable?"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#option-2-transform-x",
+    "href": "slides/06-mlr-polynomial.html#option-2-transform-x",
+    "title": "Polynomial Regression",
+    "section": "Option 2: Transform X",
+    "text": "Option 2: Transform X\n\\(\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x^2\\)\nIs the fit reasonable?"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#option-3-polynomial-regression-model",
+    "href": "slides/06-mlr-polynomial.html#option-3-polynomial-regression-model",
+    "title": "Polynomial Regression",
+    "section": "Option 3: Polynomial regression model",
+    "text": "Option 3: Polynomial regression model\n\\(\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2x^2\\)\nIs the fit reasonable?"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#the-polynomial-regression-model",
+    "href": "slides/06-mlr-polynomial.html#the-polynomial-regression-model",
+    "title": "Polynomial Regression",
+    "section": "The polynomial regression model",
+    "text": "The polynomial regression model\n\\[Y_i = \\beta_0 + \\beta_1 x_{i} + \\beta_2 x_{i}^2 + \\cdots + \\beta_k x_{i}^k + \\varepsilon_i, \\quad \\varepsilon_i \\overset{iid}{\\sim} N(0, \\sigma)\\]\nAssumptions — same as in SLR\n\n\\(\\mu\\{Y|x_i\\}\\), is a linear function\nFor each \\(x_i\\), the sub-population of responses is normally distributed\nThe standard deviation for each sub-population is \\(\\sigma\\)\nIndependent observations"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#interpreting-the-model",
+    "href": "slides/06-mlr-polynomial.html#interpreting-the-model",
+    "title": "Polynomial Regression",
+    "section": "Interpreting the model",
+    "text": "Interpreting the model\n\n\n\n\n\n\n\n\n\n\n\n\nFocus on the expected change in \\(y\\) for a specific one-unit increase in \\(x\\)\n\ne.g. change in acres burned from 1985 to 1990\ne.g. change in acres burned from 2005 to 2010\n\n\n\\[\\begin{aligned}\n\\mu\\{ y | x + 1 \\} - \\mu\\{ y | x \\}\n  &=  \\left[ \\beta_0 + \\beta_1 (x+1) + \\beta_2 (x+1)^2 \\right] - \\left[ \\beta_0 + \\beta_1 x + \\beta_2 x^2 \\right]\\\\\n  &= \\beta_1 + \\beta_2 \\left( 2x + 1 \\right)\n\\end{aligned}\\]"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#drawing-inferences-about-coefficients",
+    "href": "slides/06-mlr-polynomial.html#drawing-inferences-about-coefficients",
+    "title": "Polynomial Regression",
+    "section": "Drawing inferences about coefficients",
+    "text": "Drawing inferences about coefficients\nInference uses the same t-based tools as SLR, but with\n\\[\\widehat{\\sigma} = \\sqrt{{\\rm MSE}} = \\sqrt{\\dfrac{{\\rm SSE}}{n - (k+1)}}\\]\ni.e. the degrees of freedom of the t-distribution change"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#testing-a-single-coefficient",
+    "href": "slides/06-mlr-polynomial.html#testing-a-single-coefficient",
+    "title": "Polynomial Regression",
+    "section": "Testing a single coefficient",
+    "text": "Testing a single coefficient\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(k+1)\\)\np-value: Area in the tail(s) specified by \\(H_a\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#cis-for-a-single-coefficient",
+    "href": "slides/06-mlr-polynomial.html#cis-for-a-single-coefficient",
+    "title": "Polynomial Regression",
+    "section": "CIs for a single coefficient",
+    "text": "CIs for a single coefficient\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(k+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\nWildfires example\n\n\n\n\n\n\n\n\n\n\n\n\nTerm\nEstimate\nSE\nStatistic\np-value\nLower\nUpper\n\n\n\n\n(Intercept)\n16109806404\n3793719340\n4\n0\n8510073345\n23709539462\n\n\nYear\n-16264428\n3814896\n-4\n0\n-23906583\n-8622273\n\n\nI(Year^2)\n4106\n959\n4\n0\n2185\n6027"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#a-warning-about-this-analysis",
+    "href": "slides/06-mlr-polynomial.html#a-warning-about-this-analysis",
+    "title": "Polynomial Regression",
+    "section": "A warning about this analysis",
+    "text": "A warning about this analysis\n\nPrior to 1983, sources of these figures are not known, or cannot be confirmed, and were not derived from the current situation reporting process. As a result the figures prior to 1983 should not be compared to later data.\n— NIFC\n\n\nhttps://www.nifc.gov/fireInfo/fireInfo_stats_totalFires.html]"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#a-warning-about-polynomials",
+    "href": "slides/06-mlr-polynomial.html#a-warning-about-polynomials",
+    "title": "Polynomial Regression",
+    "section": "A warning about polynomials",
+    "text": "A warning about polynomials\nHigh-order polynomial regression models will over-fit your data (i.e. pick up on peculiarities specific to your one sample from the population)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#multiple-linear-regression",
+    "href": "slides/06-mlr-polynomial.html#multiple-linear-regression",
+    "title": "Polynomial Regression",
+    "section": "Multiple linear regression",
+    "text": "Multiple linear regression\nPolynomial regression is one example of the multiple regression model, but there are numerous ways to incorporate multiple predictors into a model\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)\n\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2\\)\n\n\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\beta_2 x_1 x_2\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#option-3-polynomial-model",
+    "href": "slides/06-mlr-polynomial.html#option-3-polynomial-model",
+    "title": "Polynomial Regression",
+    "section": "Option 3: Polynomial model",
+    "text": "Option 3: Polynomial model\n\\(\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2x^2\\)\nIs the fit reasonable?"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#inferences-about-coefficients",
+    "href": "slides/06-mlr-polynomial.html#inferences-about-coefficients",
+    "title": "Polynomial Regression",
+    "section": "Inferences about coefficients",
+    "text": "Inferences about coefficients\nInference uses the same t-based tools as SLR, but with\n\\[\\widehat{\\sigma}  = \\sqrt{\\dfrac{{\\sum_{i=1}^n e_i^2}}{n - (k+1)}}\\]\ni.e. the degrees of freedom of the t-distribution change"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#your-turn",
+    "href": "slides/06-mlr-polynomial.html#your-turn",
+    "title": "Polynomial Regression",
+    "section": "Your turn",
+    "text": "Your turn\nWould a higher-order polynomial (e.g. cubic, quartic, quintic) provide a better fit to the wildfire data?\nWork through that example on the handout with your neighbors"
   }
 ]

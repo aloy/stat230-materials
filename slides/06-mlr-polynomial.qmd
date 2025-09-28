@@ -1,0 +1,333 @@
+---
+title: "Polynomial Regression"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(ggplot2)
+library(rsample)
+library(broom)
+library(Stat2Data)
+data("BlueJays")
+library(purrr)
+library(tidyverse)
+library(ggformula)
+library(patchwork)
+library(ggdist)
+library(fontawesome)
+library(knitr)
+library(gt)
+library(gtsummary)
+library(gridExtra)
+library(here)
+wildfires <- read.csv(here("data", "wildfires.csv"))
+wildfires <- filter(wildfires, Year >= 1960)
+
+regression_panel <- function(formula, scat.formula = NULL, data, xlab, ylab) {
+  mod <- lm(formula, data = data)
+  
+  aug <- augment(mod)
+  
+  plot_fit <- makeFun(mod)
+  
+  if(is.null(scat.formula)) {
+    orig_data <- gf_point(formula, data = data, xlab = xlab, ylab = ylab, color = "#003069")
+  } else {
+    orig_data <- gf_point(scat.formula, data = data, xlab = xlab, ylab = ylab, color = "#003069") 
+  }
+  
+  orig_data <- orig_data %>% gf_fun(plot_fit(x) ~ x, color = "#f15a31")
+  
+  resid_plot <- gf_point(.std.resid ~ .fitted, data = aug, xlab = "Fitted values", ylab = "Standardized residuals") %>%
+    gf_hline(yintercept = 0, linetype = 2, color = "#f15a31")
+  
+  qq_plot <- gf_qq(~.std.resid, data = aug, xlab = "N(0,1) quantiles", ylab = "Standardized residuals", color = "#003069") %>%
+    gf_qqline(color = "#f15a31")
+  
+  grid.arrange(orig_data, resid_plot, qq_plot, ncol = 3)
+}
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+```
+
+# [PDF version of slides](pdf_slides/06-mlr-polynomial.pdf)
+
+## Wildfires
+
+- The National Interagency Coordination Center at the National Interagency Coordination Center compiles annual wildland fire statistics for federal and state agencies. 
+
+- This information is provided through Situation Reports, which have been in use for several decades.
+
+- Our goal is to model the number of acres burned over the years
+
+
+::: footer
+Data source: https://www.nifc.gov/fireInfo/fireInfo_stats_totalFires.html
+:::
+
+##
+
+```{r fig.height=4, fig.width=5, message=FALSE, echo=FALSE, out.width=800}
+gf_point(Acres ~ Year, data = wildfires, color = "#003069") %>%
+  gf_labs(x = "Year", y = "Acres burned") %>%
+  gf_smooth(size = .5)
+```
+
+
+## Option 1: SLR model
+
+
+$\mu \lbrace y | x \rbrace = \beta_0 + \beta_1 x$
+
+Is the fit reasonable?
+
+
+```{r fig.height=2.75, fig.width=9, message=FALSE, echo=FALSE}
+linear_mod <- lm(Acres ~ Year, data = wildfires)
+regression_panel(Acres ~ Year, data = wildfires, xlab = "Year", ylab = "Acres burned")
+```
+
+
+## Option 2: Transform X
+
+
+$\mu \lbrace y | x \rbrace = \beta_0 + \beta_1 x^2$
+
+Is the fit reasonable?
+
+
+```{r fig.height=2.75, fig.width=9, message=FALSE, echo=FALSE}
+tform_mod <- lm(Acres ~ I(Year^2), data = wildfires)
+regression_panel(Acres ~ I(Year^2), scat.formula = Acres ~ Year, data = wildfires, xlab = "Year", ylab = "Acres burned")
+```
+
+## Option 3: Polynomial model
+
+
+$\mu \lbrace y | x \rbrace = \beta_0 + \beta_1 x + \beta_2x^2$
+
+Is the fit reasonable?
+
+
+```{r fig.height=2.75, fig.width=9, message=FALSE, echo=FALSE}
+quad_mod <- lm(Acres ~ Year + I(Year^2), data = wildfires)
+regression_panel(Acres ~ Year + I(Year^2), scat.formula = Acres ~ Year, data = wildfires, xlab = "Year", ylab = "Acres burned")
+```
+
+
+## The polynomial regression model
+
+
+$$Y_i = \beta_0 + \beta_1 x_{i} + \beta_2 x_{i}^2 + \cdots + \beta_k x_{i}^k + \varepsilon_i, \quad \varepsilon_i \overset{iid}{\sim} N(0, \sigma)$$
+
+Assumptions — same as in SLR
+
+1. $\mu\{Y|x_i\}$, is a linear function
+
+1. For each $x_i$, the sub-population of responses is normally distributed 
+
+1. The standard deviation for each sub-population is $\sigma$
+
+1.  Independent observations
+
+
+## Interpreting the model
+
+::: columns
+:::{.column width="50%"}
+
+```{r fig.height=3.25, fig.width=4, message=FALSE, echo=FALSE}
+gf_point(Acres ~ Year, data = wildfires, xlab = "Year", ylab = "Acres burned", color = "#003069") %>%
+  gf_lm(formula = y ~ x + I(x^2), color = "#f15a31")
+```
+:::
+:::{.column width="50%"}
+Focus on the expected change in $y$ for a specific one-unit increase in $x$
+
+- e.g. change in acres burned from 1985 to 1990
+    
+- e.g. change in acres burned from 2005 to 2010
+:::
+:::
+
+\begin{aligned}
+\mu\{ y | x + 1 \} - \mu\{ y | x \} 
+  &=  \left[ \beta_0 + \beta_1 (x+1) + \beta_2 (x+1)^2 \right] - \left[ \beta_0 + \beta_1 x + \beta_2 x^2 \right]\\
+  &= \beta_1 + \beta_2 \left( 2x + 1 \right)
+\end{aligned}
+
+
+## Inferences about coefficients
+
+Inference uses the same t-based tools as SLR, but with 
+
+$$\widehat{\sigma}  = \sqrt{\dfrac{{\sum_{i=1}^n e_i^2}}{n - (k+1)}}$$
+
+i.e. the degrees of freedom of the t-distribution change
+
+
+
+## Testing a single coefficient
+
+
+**Hypotheses:** $H_0: \ \beta_j = \#$ vs. $H_a: \ \beta_j \underset{>}{\overset{<}{\ne}} \#$
+
+. . .
+
+**Test statistic:** $t = \dfrac{\hat{\beta}_j - \#}{SE(\beta_j)}$
+
+. . .
+
+**Reference distribution:** $t$ distribution with d.f. = $n-(k+1)$
+
+
+**p-value:** Area in the tail(s) specified by $H_a$
+
+
+
+```{r echo=FALSE, fig.height = 2, fig.width = 7.5, out.width=850}
+p1 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(-3.5, -2), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] < 0)) +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+p2 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(-3.5, -2), geom = "area", alpha = .4) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(2, 3.5), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] != 0)) +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+p3 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(2, 3.5), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] > 0)) +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+## CIs for a single coefficient
+
+
+$\widehat{\beta}_j \pm t^*_{n-(k+1)} \cdot SE(\widehat{\beta}_j )$
+
+
+. . .
+
+<br>
+
+#### Wildfires example
+
+```{r echo=FALSE, results='asis'}
+kable(tidy(quad_mod, conf.int = TRUE), digits = 0, booktabs = TRUE, col.names = c("Term", "Estimate", "SE", "Statistic", "p-value", "Lower", "Upper"))
+```
+
+
+
+## Your turn
+
+Would a higher-order polynomial (e.g. cubic, quartic, quintic) provide a better fit to the wildfire data?
+
+Work through that example on the handout with your neighbors
+
+
+## A warning about this analysis
+
+
+> Prior to 1983, sources of these figures are not known, or cannot be confirmed, and were not derived from the current situation reporting process. As a result the figures prior to 1983 should not be compared to later data.
+>
+>— NIFC
+
+::: footer
+https://www.nifc.gov/fireInfo/fireInfo_stats_totalFires.html]
+:::
+
+
+## A warning about polynomials
+
+
+High-order polynomial regression models will over-fit your data (i.e. pick up on peculiarities specific to your one sample from the population)
+
+
+```{r echo=FALSE, fig.height = 2.5, fig.width = 7.5, out.width=850}
+poly2 <- makeFun(quad_mod)
+p1 <- gf_point(Acres ~ Year, data = wildfires, color = "#003069") %>%
+  gf_labs(x = "Year", y = "Acres burned") %>%
+  gf_fun(poly2(x) ~ x, color = "#f15a31") %>%
+  gf_labs(title = "2nd-order polynomial") +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+poly5_mod <- lm(Acres ~ poly(Year, 5), data = wildfires)
+poly5 <- makeFun(poly5_mod)
+p5 <- gf_point(Acres ~ Year, data = wildfires, color = "#003069") %>%
+  gf_labs(x = "Year", y = "Acres burned") %>%
+  gf_fun(poly5(x) ~ x, color = "#f15a31")  %>%
+  gf_labs(title = "5th-order polynomial") +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+poly25_mod <- lm(Acres ~ poly(Year, 25), data = wildfires)
+poly25 <- makeFun(poly25_mod)
+p25 <- gf_point(Acres ~ Year, data = wildfires, color = "#003069") %>%
+  gf_labs(x = "Year", y = "Acres burned") %>%
+  gf_fun(poly25(x) ~ x, color = "#f15a31") %>%
+  gf_labs(title = "25th-order polynomial") +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+grid.arrange(p1, p5, p25, ncol = 3)
+```
+
+
+## Multiple linear regression
+
+
+Polynomial regression is one example of the multiple regression model, but there are numerous ways to incorporate multiple predictors into a model
+
+$\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x + \beta_2 x^2$
+
+. . .
+
+$\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x_1 + \beta_2 x_2$
+
+. . .
+
+
+$\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_2 x_1 x_2$
+
+
+
