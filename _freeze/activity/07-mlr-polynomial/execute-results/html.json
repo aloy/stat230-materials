@@ -1,0 +1,15 @@
+{
+  "hash": "dc692e016169ad694f3c71c95169566c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Polynomial Regression\"\nwebr:\n  packages:\n    - ggformula\nformat: \n  live-html:\n    toc: true\nengine: knitr\neditor: source\n---\n\n\n::: {.cell}\n\n:::\n\n\n\n\n## Loading data\n\nTo load the wildfires data set, run the following code chunk:\n\n\n::: {.cell}\n```{webr}\n# wildfires <- read.csv(\"https://aloy.github.io/stat230-materials/data/wildfires.csv\")\n```\n:::\n\n\n\n\n## Fitting a polynomial regression model\n\nTo fit a polynomial regression model we still use the `lm()` command, but we expand our formula to include polynomial terms. To include polynomial terms in a regression model, we need to use the `I()` function to indicate that we want to calculate a polynonial term. For example, to fit the quadratic model we have already discussed in class, we use the following code:\n\n\n::: {.cell}\n```{webr}\n# quadratic_lm <- lm(Acres ~ I(Year^2), data = wildfires)\n```\n:::\n\n\n\nUse the `lm()` command to fit the simple linear regression\nmodel where Mileage is used to predict Price.\n\n\n::: {.cell min-lines='3'}\n```{webr}\n#| min-lines: 3\n# Write your lm() command here\n```\n:::\n\n\n***\n\n## Function quick reference\n\nThe following table summarizes the functions we learned today:\n\n| Function | Purpose |\n|----|-----------|\n| `lm(formula, data)` | Fit a linear model |\n| `predict(model, newdata, interval, level, se.fit)` | Make predictions and | calculate intervals |\n| `gf_point(formula, data) |> gf_lm(interval = \"confidence\")` | Plot data and add confidence intervals for the mean response|\n| `gf_point(formula, data) |> gf_lm(interval = \"prediction\")` | Plot data and add prediction intervals for the mean response|\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

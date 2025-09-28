@@ -18,13 +18,19 @@ editor: source
 To load the wildfires data set, run the following code chunk:
 
 ```{webr}
-wildfires <- read.csv("https://aloy.github.io/stat230-materials/data/wildfires.csv")
+# wildfires <- read.csv("https://aloy.github.io/stat230-materials/data/wildfires.csv")
 ```
 
-The columns of interest are `Price` and `Mileage`.
 
 
-## Fitting a simple linear regression model
+## Fitting a polynomial regression model
+
+To fit a polynomial regression model we still use the `lm()` command, but we expand our formula to include polynomial terms. To include polynomial terms in a regression model, we need to use the `I()` function to indicate that we want to calculate a polynonial term. For example, to fit the quadratic model we have already discussed in class, we use the following code:
+
+```{webr}
+# quadratic_lm <- lm(Acres ~ I(Year^2), data = wildfires)
+```
+
 
 Use the `lm()` command to fit the simple linear regression
 model where Mileage is used to predict Price.
@@ -33,47 +39,6 @@ model where Mileage is used to predict Price.
 #| min-lines: 3
 # Write your lm() command here
 ```
-
-
-**Q1.** Report the fitted regression equation.
-
-
-## Making predictions
-
-The first car in the data set is a Buick Century with 8221
-miles.
-
-**Q2.** Calculate the expected price of this car using the fitted regression equation. (You may use R or do this by hand. There's a code chunk below for your convenience)
-
-```{webr}
-#| min-lines: 3
-# Write your code here
-```
-
-**Q3.** If we want to predict the price of **this** car, should we use a confidence interval or a prediction interval?
-
-**Q4.** Use R to construct the appropriate 89% interval for the price of this car.
-
-```{webr}
-#| min-lines: 3
-# Write your code here
-```
-
-**Q5.** Interpret the interval in context.
-
-
-## Plotting our intervals
-
-It can be useful to plot your confidence/prediction intervals to communicate your findings to a broader audience. The code below creates a scatterplot of the data, adds the fitted regression line, and then adds 89% prediction intervals.
-
-```{webr}
-gf_point(Price ~ Mileage, data = cars) |> 
-  gf_lm(interval = "prediction") |>
-  gf_lm(interval = "confidence", alpha = 0.6)
-```
-
-**Q6.** Which is the prediction invterval and which is the confidence interval? How can you tell?
-
 
 ***
 
