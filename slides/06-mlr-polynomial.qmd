@@ -8,6 +8,7 @@ format:
 editor: source
 editor_options: 
   chunk_output_type: console
+code-annotations: hover
 ---
 
 ```{r setup}
@@ -172,11 +173,14 @@ Focus on the expected change in $y$ for a specific one-unit increase in $x$
 :::
 :::
 
+::: {style="font-size: 0.8em;"}
 \begin{aligned}
 \mu\{ y | x + 1 \} - \mu\{ y | x \} 
   &=  \left[ \beta_0 + \beta_1 (x+1) + \beta_2 (x+1)^2 \right] - \left[ \beta_0 + \beta_1 x + \beta_2 x^2 \right]\\
   &= \beta_1 + \beta_2 \left( 2x + 1 \right)
 \end{aligned}
+
+:::
 
 
 ## Inferences about coefficients
@@ -191,20 +195,23 @@ i.e. the degrees of freedom of the t-distribution change
 
 ## Testing a single coefficient
 
-
+::: {style="font-size: 0.9em;"}
 **Hypotheses:** $H_0: \ \beta_j = \#$ vs. $H_a: \ \beta_j \underset{>}{\overset{<}{\ne}} \#$
+:::
 
 . . .
 
+::: {style="font-size: 0.9em;"}
 **Test statistic:** $t = \dfrac{\hat{\beta}_j - \#}{SE(\beta_j)}$
-
+:::
 . . .
 
+::: {style="font-size: 0.9em;"}
 **Reference distribution:** $t$ distribution with d.f. = $n-(k+1)$
 
 
 **p-value:** Area in the tail(s) specified by $H_a$
-
+:::
 
 
 ```{r echo=FALSE, fig.height = 2, fig.width = 7.5, out.width=850}
@@ -248,15 +255,24 @@ $\widehat{\beta}_j \pm t^*_{n-(k+1)} \cdot SE(\widehat{\beta}_j )$
 
 #### Wildfires example
 
+::: {style="font-size: 0.8em;"}
+
 ```{r echo=FALSE, results='asis'}
-kable(tidy(quad_mod, conf.int = TRUE), digits = 0, booktabs = TRUE, col.names = c("Term", "Estimate", "SE", "Statistic", "p-value", "Lower", "Upper"))
+coef_table <- tidy(quad_mod, conf.int = TRUE) |>
+  select(-statistic, -p.value)
+
+
+kable(coef_table, format = "pipe", digits = 0, booktabs = TRUE, col.names = c("Term", "Estimate", "SE", "Lower", "Upper"))
 ```
 
+:::
 
 
 ## Your turn
 
 Would a higher-order polynomial (e.g. cubic, quartic, quintic) provide a better fit to the wildfire data?
+
+<br>
 
 Work through that example on the handout with your neighbors
 
@@ -330,4 +346,392 @@ $\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x_1 + \beta_2 x_2$
 $\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_2 x_1 x_2$
 
 
+# Explained variance
 
+
+
+## The "null" model
+
+- Use the mean of Y as the prediction for all observations
+
+- $\mu \lbrace Y | X \rbrace = \beta_0$
+
+- Leaves a lot of variability unexplained
+
+::: columns
+:::{.column width="50%"}
+```{r echo=FALSE, fig.height = 3, fig.width = 3.5, out.width="90%", fig.align='center'}
+gf_point(Acres ~ Year, data = wildfires, ylab = "Acres burned", color = "#003069") %>%
+  gf_hline(yintercept = mean(wildfires$Acres), color = "#f15a31")
+```
+:::
+:::{.column width="50%"}
+$SD(Y) = `r round(sd(wildfires[["Acres"]]), 2)`$ cm
+:::
+:::
+
+## Polynomial model
+
+- $\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1x + \beta_2 x^2$
+
+- Using a predictor explains more variability
+
+<br>
+
+
+::: columns
+:::{.column width="50%"}
+```{r echo=FALSE, fig.height = 3, fig.width = 3.5, out.width="90%", fig.align='center'}
+gf_point(Acres ~ Year, data = wildfires, ylab = "Acres burned", color = "#003069") %>%
+  gf_lm(formula = y ~ poly(x, 2), color = "#f15a31")
+```
+:::
+:::{.column width="50%"}
+$SD(Y) = `r round(sigma(quad_mod), 2)`$ cm
+:::
+:::
+
+
+
+## SSTotal
+
+::: columns
+:::{.column width="50%"}
+${\rm SSTotal} = \sum(Y_i - \bar{Y})^2$
+
+Measures the overall variability in $Y$
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.height = 3.25, fig.width = 3.75, fig.align='center'}
+quad_aug <- augment(quad_mod)
+quad_aug <- mutate(quad_aug, mean.y = mean(Acres))
+
+gf_point(Acres ~ Year, data = quad_aug, ylab = "Acres burned") %>%
+  gf_hline(yintercept = mean(quad_aug$Acres), color = "#f15a31") %>%
+  gf_segment(mean.y + Acres ~ Year + Year, color = "gray70") 
+```
+:::
+:::
+
+
+## SSResidual (aka SSError)
+
+::: columns
+::: {.column width="50%"}
+${\rm SSResidual} = \sum(Y_i - \widehat{Y}_i)^2$
+
+Measures the variability unexplained by the model
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.height = 3.25, fig.width = 3.75, fig.align='center'}
+
+gf_point(Acres ~ Year, data = quad_aug, ylab = "Acres burned") %>%
+  gf_lm(formula = y ~ poly(x, 2), color = "#f15a31") %>%
+  gf_segment(.fitted + Acres ~ Year + Year, color = "gray70") 
+```
+:::
+:::
+
+
+## SSRegression
+
+Measures the variability explained by the model
+
+<br>
+
+::: columns
+:::{.column width="30%"}
+```{r}
+#| fig-width: 1.75
+#| fig-height: 3
+#| echo: FALSE
+#| out-width: 100%
+quad_anova <- anova(quad_mod)
+
+ssdf <- tribble(
+  ~Source, ~SS,
+  "Error",      sigma(quad_mod)^2 * quad_anova$Df[3],
+  "Total",       sum(quad_anova$`Sum Sq`),
+  "Regression", sum(quad_anova$`Sum Sq`[1:2])
+)
+
+sst_plot <- ggplot(data = ssdf |> filter(Source == "Total"), aes(x = "", y = SS)) +
+  geom_bar(stat="identity", width=1) +
+  theme_void() +
+  labs(title = "SSTotal")
+
+
+decomp_plot <- ggplot(data = ssdf |> filter(Source != "Total"), aes(x = "", y = SS, fill = Source)) +
+  geom_bar(stat="identity", width=1) +
+  geom_text(aes(label = paste0(Source)), position = position_stack(vjust = 0.5), color = "white") +
+  theme_void() +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c("#f15a31", "#003069"))
+
+sst_plot + decomp_plot
+```
+:::
+:::{.column width="70%"}
+<br>
+
+<br>
+
+<br>
+
+${\rm SSRegression} = SSTotal - SSError$
+:::
+:::
+
+## Coefficient of Determination: R<sup>2</sup>
+
+Proportion of the total variation in $y$ explained by the linear regression model
+
+::: columns
+:::{.column width="30%"}
+```{r}
+#| fig-width: 1.75
+#| fig-height: 3
+#| echo: FALSE
+#| out-width: 100%
+sst_plot + decomp_plot
+```
+:::
+:::{.column width="70%"}
+<br>
+
+<br>
+
+
+
+$\begin{split}
+R^2 &= `r round(glance(quad_mod)[["r.squared"]], 3)`\\
+&= \dfrac{SSRegr}{SST} \\
+&= 1 - \dfrac{SSE}{SST} 
+\end{split}$
+:::
+:::
+
+
+## ⚠️ Caution {.center}
+
+$R^2$ only addresses how close the fitted values are to the data, on average. It says nothing about the validity of the model.
+
+
+# Comparing models
+
+
+## Wildfires example
+
+Suppose we wish to compare a quadratic and quartic model for the wildfires data set:
+
+- Quadratic: $\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x + \beta_2 x^2$
+- Quartic: $\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \beta_4 x^4$
+
+How do we decide which model is preferred?
+
+```{r}
+#| echo: FALSE
+full <- lm(Acres ~ poly(Year, 4), data = wildfires)
+reduced <- lm(Acres ~ poly(Year, 2), data = wildfires)
+```
+
+
+
+
+
+## Comparing models
+
+Can we compare $R^2$ values?
+
+- No! More complex models will always have a higher $R^2$ value, even if the additional predictors are not useful.
+
+
+Can we run individual t-tests?
+
+- No! The tests are not necessarily independent, and the Type I error rate will be inflated.
+
+## Comparing models with an F-test
+
+:::: {.columns align=center}
+::: {.column width="25%"}
+Full model
+:::
+
+::: {.column width="70%"}
+$\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \beta_4 x^4$
+:::
+
+::: {.column width="25%"}
+Reduced model
+:::
+
+::: {.column width="70%"}
+$\mu \lbrace Y | X \rbrace = \beta_0 + \beta_1 x + \beta_2 x^2$
+:::
+
+::::
+
+. . .
+
+<br>
+
+
+:::: {.columns align=center}
+::: {.column width="25%"}
+Hypotheses
+:::
+
+::: {.column width="70%"}
+$H_0:\ \beta_{3} = \beta_4 = 0$
+
+$H_a:$ at least one $\beta_j \ne 0$, $j=3,4$
+:::
+
+::::
+
+## Comparing models with an F-test
+
+
+
+Test statistic
+
+
+$$
+\begin{split}
+F &= \frac{(R^2_{\text{full}} - R^2_{\text{reduced}}) / d}{(1 - R^2_{\text{full}}) / df_{\text{full}}}\\
+&= \frac{(\text{SSR}_{\text{full}} - \text{SSR}_{\text{reduced}}) / d}{\text{MSE}_{\text{full}}}\\
+&= \frac{(\text{SSE}_{\text{reduced}} - \text{SSE}_{\text{full}}) / d}{\text{MSE}_{\text{full}}}
+\end{split}
+$$
+
+where 
+
+- $d = \text{df}_{full} - \text{df}_{reduced}$ = \# betas being tested
+- $\text{df}_{i} = n - (p + 1)=$ error d.f. for model $i$
+- $\text{MSE}_{\text{full}} = \dfrac{\text{SSE}_{\text{full}}}{\text{df}_{\text{full}}}$
+
+
+
+## F distribution
+
+
+The F-statistics follows an $F$ distribution with $\text{df}_{full} - \text{df}_{reduced}$ and $n-p-1$ d.f.
+
+```{r fig.height=3, fig.width=5, echo=FALSE, message=FALSE, fig.align='center'}
+par(mar = c(2, .1, .1, .1))
+plot(c(0, 5), c(0, df(.01, 1, 1)), type = "n", axes = FALSE)
+at <- seq(0, 5, 1)
+axis(1, at)
+# axis(1, at, rep("", length(at)), tcl = -0.1)
+X <- seq(0, 5, 0.01)
+DF1 <- c(1, 2, 5, 10, 100)
+DF2 <- c(1, 1, 2, 1, 100)
+COL. <- RColorBrewer::brewer.pal(n = 7, name = "Blues")[-1]
+for (i in 1:5) {
+  Y <- df(X, as.numeric(DF1[i]), as.numeric(DF2[i]))
+  lines(X, Y, col = COL.[i])
+}
+legend(2.5, 3.25,
+       legend = c(paste('df1 = ', DF1[1:5], ', df2 = ', DF2[1:5], sep = '')),
+       col = COL.,
+       text.col = COL.,
+       lty = rep(1, 5))
+```
+
+```{r include=FALSE}
+dev.off
+```
+
+## Upper-tail p-values
+
+```{r fig.height=3, fig.width=5, echo=FALSE, message=FALSE, fig.align='center'}
+ ggplot(data = data.frame(x = c(.00001, 5.5)), aes(x)) +
+  stat_function(fun = df, args = list(df1=4, df2=23), color = "navy", size = 1) +
+  stat_function(fun = df, args = list(df1=4, df2=23), xlim = c(3, 5.5),
+                  geom = "area", fill = "navy", alpha = .4) +
+  labs(x = "F", y = "Density") +
+  scale_y_continuous(limits = c(0, 0.8), expand = c(0,0)) +
+   geom_curve(aes(x = 5, y = .22, xend = 4.25, yend = .03), arrow = arrow(length = unit(0.03, "npc")), curvature = .2, color = "navy") +
+  annotate("text", x = 5.26, y = .25, label = "p-value", color = "navy", size = 6) +
+  theme_classic()
+```
+
+
+To obtain upper-tail areas: `1 - pf(stat, df1, df2)`
+
+
+## Putting it all together
+
+
+
+```{r}
+full_table <- glance(full) |> 
+  select(r.squared, df, df.residual, nobs) |>
+  mutate(model = "Full")
+
+reduced_table <- glance(reduced) |> 
+  select(r.squared, df, df.residual, nobs) |>
+  mutate(model = "Reduced")
+
+bind_rows(full_table, reduced_table) |>
+  select(model, everything()) |>
+  kable(digits = 3)
+```
+
+. . .
+
+$$
+F = \frac{(R^2_{\text{full}} - R^2_{\text{reduced}}) / d}{(1 - R^2_{\text{full}}) / df_{\text{full}}} = \frac{(0.453 - 0.421) / 2}{(1 - 0.453) / 54} \approx 1.58
+$$
+
+. . .
+
+```{r}
+#| echo: true
+1 - pf(1.58, 2, 54)
+```
+
+. . .
+
+There is no evidence that the quartic model is an improvement over the quadratic model ($F=4.467$, $df = 2, 54$, $p = 0.215$).
+
+
+## Reading R output
+
+```
+Call:
+lm(formula = Acres ~ poly(Year, 4), data = wildfires)
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)     4641410     245955  18.871  < 2e-16 ***
+poly(Year, 4)1  9025270    1889218   4.777 1.40e-05 ***
+poly(Year, 4)2  8177004    1889218   4.328 6.55e-05 ***
+poly(Year, 4)3 -1194695    1889218  -0.632   0.5298    
+poly(Year, 4)4 -3177711    1889218  -1.682   0.0983 .  
+
+Residual standard error: 1889000 on 54 degrees of freedom
+Multiple R-squared:  0.4534,	Adjusted R-squared:  0.4129 
+F-statistic:  11.2 on 4 and 54 DF,  p-value: 1.096e-06
+```
+
+
+::: footer
+Output was edited to fit on one slide
+:::
+
+
+## Extra sums of squares F-test in R
+
+```{r}
+#| echo: true
+full <- lm(Acres ~ poly(Year, 4), data = wildfires)    #<1>
+reduced <- lm(Acres ~ poly(Year, 2), data = wildfires) #<2>
+anova(reduced, full) #<3>
+```
+
+1. Fit the full model
+2. Fit the reduced model
+3. Use `anova()` to compare the two models. The first argument should be the reduced model.

@@ -39,7 +39,7 @@
     "href": "slides/06-mlr-polynomial.html#interpreting-the-model",
     "title": "Polynomial Regression",
     "section": "Interpreting the model",
-    "text": "Interpreting the model\n\n\n\n\n\n\n\n\n\n\n\n\nFocus on the expected change in \\(y\\) for a specific one-unit increase in \\(x\\)\n\ne.g. change in acres burned from 1985 to 1990\ne.g. change in acres burned from 2005 to 2010\n\n\n\\[\\begin{aligned}\n\\mu\\{ y | x + 1 \\} - \\mu\\{ y | x \\}\n  &=  \\left[ \\beta_0 + \\beta_1 (x+1) + \\beta_2 (x+1)^2 \\right] - \\left[ \\beta_0 + \\beta_1 x + \\beta_2 x^2 \\right]\\\\\n  &= \\beta_1 + \\beta_2 \\left( 2x + 1 \\right)\n\\end{aligned}\\]"
+    "text": "Interpreting the model\n\n\n\n\n\n\n\n\n\n\n\n\nFocus on the expected change in \\(y\\) for a specific one-unit increase in \\(x\\)\n\ne.g. change in acres burned from 1985 to 1990\ne.g. change in acres burned from 2005 to 2010\n\n\n\n\\[\\begin{aligned}\n\\mu\\{ y | x + 1 \\} - \\mu\\{ y | x \\}\n  &=  \\left[ \\beta_0 + \\beta_1 (x+1) + \\beta_2 (x+1)^2 \\right] - \\left[ \\beta_0 + \\beta_1 x + \\beta_2 x^2 \\right]\\\\\n  &= \\beta_1 + \\beta_2 \\left( 2x + 1 \\right)\n\\end{aligned}\\]"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#inferences-about-coefficients",
@@ -53,21 +53,21 @@
     "href": "slides/06-mlr-polynomial.html#testing-a-single-coefficient",
     "title": "Polynomial Regression",
     "section": "Testing a single coefficient",
-    "text": "Testing a single coefficient\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(k+1)\\)\np-value: Area in the tail(s) specified by \\(H_a\\)"
+    "text": "Testing a single coefficient\n\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\n\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(k+1)\\)\np-value: Area in the tail(s) specified by \\(H_a\\)"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#cis-for-a-single-coefficient",
     "href": "slides/06-mlr-polynomial.html#cis-for-a-single-coefficient",
     "title": "Polynomial Regression",
     "section": "CIs for a single coefficient",
-    "text": "CIs for a single coefficient\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(k+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\nWildfires example\n\n\n\n\n\n\n\n\n\n\n\n\nTerm\nEstimate\nSE\nStatistic\np-value\nLower\nUpper\n\n\n\n\n(Intercept)\n16109806404\n3793719340\n4\n0\n8510073345\n23709539462\n\n\nYear\n-16264428\n3814896\n-4\n0\n-23906583\n-8622273\n\n\nI(Year^2)\n4106\n959\n4\n0\n2185\n6027"
+    "text": "CIs for a single coefficient\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(k+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\nWildfires example\n\n\n\n\nTerm\nEstimate\nSE\nLower\nUpper\n\n\n\n\n(Intercept)\n16109806404\n3793719340\n8510073345\n23709539462\n\n\nYear\n-16264428\n3814896\n-23906583\n-8622273\n\n\nI(Year^2)\n4106\n959\n2185\n6027"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#your-turn",
     "href": "slides/06-mlr-polynomial.html#your-turn",
     "title": "Polynomial Regression",
     "section": "Your turn",
-    "text": "Your turn\nWould a higher-order polynomial (e.g. cubic, quartic, quintic) provide a better fit to the wildfire data?\nWork through that example on the handout with your neighbors"
+    "text": "Your turn\nWould a higher-order polynomial (e.g. cubic, quartic, quintic) provide a better fit to the wildfire data?\n\nWork through that example on the handout with your neighbors"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#a-warning-about-this-analysis",
@@ -319,14 +319,14 @@
     "href": "activity/07-mlr-polynomial.html#fitting-a-polynomial-regression-model",
     "title": "Polynomial Regression",
     "section": "Fitting a polynomial regression model",
-    "text": "Fitting a polynomial regression model\nTo fit a polynomial regression model we still use the lm() command, but we expand our formula to include polynomial terms. To include polynomial terms in a regression model, we need to use the I() function to indicate that we want to calculate a polynonial term. For example, to fit the quadratic model we have already discussed in class, we use the following code:\n\n\n\n\n\n\n\n\nUse the lm() command to fit the simple linear regression model where Mileage is used to predict Price."
+    "text": "Fitting a polynomial regression model\nTo fit a polynomial regression model we still use the lm() command, but we expand our formula to include polynomial terms. To include polynomial terms in a regression model, we need to use the I() function to indicate that we want to calculate a polynomial term. For example, to fit the quadratic model we have already discussed in class, we use the following code:\n\n\n\n\n\n\n\n\nOnce you have your fitted model, we can explore it like we have with simple linear regression models."
   },
   {
     "objectID": "activity/07-mlr-polynomial.html#function-quick-reference",
     "href": "activity/07-mlr-polynomial.html#function-quick-reference",
     "title": "Polynomial Regression",
     "section": "Function quick reference",
-    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model. For polynomial regression the formula should include polynomial terms or use poly().\n\n\nI()\nUsed to create polynomial terms in a regression model\n\n\npoly(x, degree)\nCreate orthogonal polynomial terms"
   },
   {
     "objectID": "activity/03-intro-r.html",
@@ -838,5 +838,187 @@
     "title": "Welcome and Review",
     "section": "Tools",
     "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
+  },
+  {
+    "objectID": "activity/07-mlr-polynomial.html#exploring-a-cubic-model",
+    "href": "activity/07-mlr-polynomial.html#exploring-a-cubic-model",
+    "title": "Polynomial Regression",
+    "section": "Exploring a cubic model",
+    "text": "Exploring a cubic model\nLet’s fit a cubic model to the wildfires data set. The cubic model has the form \\[\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2x^2 + \\beta_3x^3.\\] Use the lm() command to fit the cubic model where Year is used to predict Acres.\n\n\n\n\n\n\n\n\nTo plot the fitted cubic model, you can use the gf_point() and gf_lm() functions from the ggformula package. The following code will create a scatter plot of the data and add the fitted cubic regression line:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn the gf_lm() layer we use the poly(x, 3) function to specify that we want to fit a cubic polynomial. You can use poly() to fit polynomials of any degree by changing the second argument, and you can also use this function within the lm() function to fit polynomial regression models if you’d like.\n\n\nDoes the cubic model appear to be necessary? Use the summary() function to explore the fitted model adn run a hypothesis test for the cubic term. What do you conclude?\nWhat degrees of freedom did R for the t-distribution used to calculate the p-value for the test of the cubic term?\nDo you notice anything curious about the inferential results for the linear and quadratic terms?\nThe issue here is that the polynomial terms for year are highly correlated with each other (i.e., year, year\\(^2\\), and year\\(^3\\) are correlated). This can lead to numerical instability and make it difficult to interpret the coefficients. This is a situation called multicollinearity. We’ll talk more about this later. One way to remedy this issue in polynomial regression is to use orthogonal polynomials, which are uncorrelated with each other."
+  },
+  {
+    "objectID": "activity/07-mlr-polynomial.html#an-alternative-way-to-fit-polynomials",
+    "href": "activity/07-mlr-polynomial.html#an-alternative-way-to-fit-polynomials",
+    "title": "Polynomial Regression",
+    "section": "An alternative way to fit polynomials",
+    "text": "An alternative way to fit polynomials\nTo fit polynomial model with uncorrelated polynomial terms use the poly() function. For example, to fit a cubic model using orthogonal polynomials, we can run the following code:\n\n\n\n\n\n\n\n\nUse the summary() function to explore the fitted model. What do you notice about the inferential results for the linear, quadratic, and cubic terms? How does this compare to the previous cubic model we fit? How does it compare to the quadratic model?\n\n\n\n\n\n\n\n\n\nThe method of constructing the polynomial terms in our regression model does not change our predictions, but it can change the inferential results for the polynomial terms."
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html",
+    "href": "activity/07H-mlr-polynomial.html",
+    "title": "Polynomial Regression",
+    "section": "",
+    "text": "To load the wildfires data set, run the following code chunk:\n\nwildfires &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/wildfires.csv\")"
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html#loading-data",
+    "href": "activity/07H-mlr-polynomial.html#loading-data",
+    "title": "Polynomial Regression",
+    "section": "",
+    "text": "To load the wildfires data set, run the following code chunk:\n\nwildfires &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/wildfires.csv\")"
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html#fitting-a-polynomial-regression-model",
+    "href": "activity/07H-mlr-polynomial.html#fitting-a-polynomial-regression-model",
+    "title": "Polynomial Regression",
+    "section": "Fitting a polynomial regression model",
+    "text": "Fitting a polynomial regression model\nTo fit a polynomial regression model we still use the lm() command, but we expand our formula to include polynomial terms. To include polynomial terms in a regression model, we need to use the I() function to indicate that we want to calculate a polynomial term. For example, to fit the quadratic model we have already discussed in class, we use the following code:\n\nquadratic_lm &lt;- lm(Acres ~ Year + I(Year^2), data = wildfires)\n\nOnce you have your fitted model, we can explore it like we have with simple linear regression models."
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html#exploring-a-cubic-model",
+    "href": "activity/07H-mlr-polynomial.html#exploring-a-cubic-model",
+    "title": "Polynomial Regression",
+    "section": "Exploring a cubic model",
+    "text": "Exploring a cubic model\nLet’s fit a cubic model to the wildfires data set. The cubic model has the form \\[\\mu \\lbrace y | x \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2x^2 + \\beta_3x^3.\\] Use the lm() command to fit the cubic model where Year is used to predict Acres.\nTo plot the fitted cubic model, you can use the gf_point() and gf_lm() functions from the ggformula package. The following code will create a scatter plot of the data and add the fitted cubic regression line:\n\ngf_point(Acres ~ Year, data = wildfires, xlab = \"Year\", ylab = \"Acres burned\") |&gt;\n  gf_lm(formula = y ~ poly(x, 3), size = .5) \n\nWarning: Using the `size` aesthetic with geom_line was deprecated in ggplot2 3.4.0.\nℹ Please use the `linewidth` aesthetic instead.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn the gf_lm() layer we use the poly(x, 3) function to specify that we want to fit a cubic polynomial. You can use poly() to fit polynomials of any degree by changing the second argument, and you can also use this function within the lm() function to fit polynomial regression models if you’d like.\n\n\nDoes the cubic model appear to be necessary? Use the summary() function to explore the fitted model and run a hypothesis test for the cubic term. What do you conclude?\nWhat degrees of freedom did R for the t-distribution used to calculate the p-value for the test of the cubic term?\nDo you notice anything curious about the inferential results for the linear and quadratic terms?\nThe issue here is that the polynomial terms for year are highly correlated with each other (i.e., year, year\\(^2\\), and year\\(^3\\) are correlated). This can lead to numerical instability and make it difficult to interpret the coefficients. This is a situation called multicollinearity. We’ll talk more about this later. One way to remedy this issue in polynomial regression is to use orthogonal polynomials, which are uncorrelated with each other."
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html#an-alternative-way-to-fit-polynomials",
+    "href": "activity/07H-mlr-polynomial.html#an-alternative-way-to-fit-polynomials",
+    "title": "Polynomial Regression",
+    "section": "An alternative way to fit polynomials",
+    "text": "An alternative way to fit polynomials\nTo fit polynomial model with uncorrelated polynomial terms use the poly() function. For example, to fit a cubic model using orthogonal polynomials, we can run the following code:\n\ncubic_lm_ortho &lt;- lm(Acres ~ poly(Year, 3), data = wildfires)\n\nUse the summary() function to explore the fitted model. What do you notice about the inferential results for the linear, quadratic, and cubic terms? How does this compare to the previous cubic model we fit? How does it compare to the quadratic model?\n\nThe method of constructing the polynomial terms in our regression model does not change our predictions, but it can change the inferential results for the polynomial terms."
+  },
+  {
+    "objectID": "activity/07H-mlr-polynomial.html#function-quick-reference",
+    "href": "activity/07H-mlr-polynomial.html#function-quick-reference",
+    "title": "Polynomial Regression",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model. For polynomial regression the formula should include polynomial terms or use poly().\n\n\nI()\nUsed to create polynomial terms in a regression model\n\n\npoly(x, degree)\nCreate orthogonal polynomial terms"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#the-null-model",
+    "href": "slides/06-mlr-polynomial.html#the-null-model",
+    "title": "Polynomial Regression",
+    "section": "The “null” model",
+    "text": "The “null” model\n\nUse the mean of Y as the prediction for all observations\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0\\)\nLeaves a lot of variability unexplained\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(SD(Y) = 2.465548\\times 10^{6}\\) cm"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#polynomial-model",
+    "href": "slides/06-mlr-polynomial.html#polynomial-model",
+    "title": "Polynomial Regression",
+    "section": "Polynomial model",
+    "text": "Polynomial model\n\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1x + \\beta_2 x^2\\)\nUsing a predictor explains more variability\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(SD(Y) = 1.9098377\\times 10^{6}\\) cm"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#sstotal",
+    "href": "slides/06-mlr-polynomial.html#sstotal",
+    "title": "Polynomial Regression",
+    "section": "SSTotal",
+    "text": "SSTotal\n\n\n\\({\\rm SSTotal} = \\sum(Y_i - \\bar{Y})^2\\)\nMeasures the overall variability in \\(Y\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#ssresidual-aka-sserror",
+    "href": "slides/06-mlr-polynomial.html#ssresidual-aka-sserror",
+    "title": "Polynomial Regression",
+    "section": "SSResidual (aka SSError)",
+    "text": "SSResidual (aka SSError)\n\n\n\\({\\rm SSResidual} = \\sum(Y_i - \\widehat{Y}_i)^2\\)\nMeasures the variability unexplained by the model"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#ssregression",
+    "href": "slides/06-mlr-polynomial.html#ssregression",
+    "title": "Polynomial Regression",
+    "section": "SSRegression",
+    "text": "SSRegression\nMeasures the variability explained by the model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\({\\rm SSRegression} = SSTotal - SSError\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#coefficient-of-determination-r2",
+    "href": "slides/06-mlr-polynomial.html#coefficient-of-determination-r2",
+    "title": "Polynomial Regression",
+    "section": "Coefficient of Determination: R2",
+    "text": "Coefficient of Determination: R2\nProportion of the total variation in \\(y\\) explained by the linear regression model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\begin{split}\nR^2 &= 0.421\\\\\n&= \\dfrac{SSRegr}{SST} \\\\\n&= 1 - \\dfrac{SSE}{SST}\n\\end{split}\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#section-1",
+    "href": "slides/06-mlr-polynomial.html#section-1",
+    "title": "Polynomial Regression",
+    "section": "",
+    "text": "Caution\n\n\n\\(R^2\\) only addresses how close the fitted values are to the data, on average. It says nothing about the validity of the model."
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#caution",
+    "href": "slides/06-mlr-polynomial.html#caution",
+    "title": "Polynomial Regression",
+    "section": "⚠️ Caution",
+    "text": "⚠️ Caution\n\\(R^2\\) only addresses how close the fitted values are to the data, on average. It says nothing about the validity of the model."
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#wildfires-example-1",
+    "href": "slides/06-mlr-polynomial.html#wildfires-example-1",
+    "title": "Polynomial Regression",
+    "section": "Wildfires example",
+    "text": "Wildfires example\nSuppose we wish to compare a quadratic and quartic model for the wildfires data set:\n\nQuadratic: \\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)\nQuartic: \\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3 + \\beta_4 x^4\\)\n\nHow do we decide which model is preferred?"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#comparing-models-1",
+    "href": "slides/06-mlr-polynomial.html#comparing-models-1",
+    "title": "Polynomial Regression",
+    "section": "Comparing models",
+    "text": "Comparing models\nCan we compare \\(R^2\\) values?\n\nNo! More complex models will always have a higher \\(R^2\\) value, even if the additional predictors are not useful.\n\nCan we run individual t-tests?\n\nNo! The tests are not necessarily independent, and the Type I error rate will be inflated."
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#comparing-models-with-an-f-test",
+    "href": "slides/06-mlr-polynomial.html#comparing-models-with-an-f-test",
+    "title": "Polynomial Regression",
+    "section": "Comparing models with an F-test",
+    "text": "Comparing models with an F-test\n\n\nFull model\n\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2 x^2 + \\beta_3 x^3 + \\beta_4 x^4\\)\n\nReduced model\n\n\\(\\mu \\lbrace Y | X \\rbrace = \\beta_0 + \\beta_1 x + \\beta_2 x^2\\)\n\n\n\n\n\nHypotheses\n\n\\(H_0:\\ \\beta_{3} = \\beta_4 = 0\\)\n\\(H_a:\\) at least one \\(\\beta_j \\ne 0\\), \\(j=3,4\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#f-statistic",
+    "href": "slides/06-mlr-polynomial.html#f-statistic",
+    "title": "Polynomial Regression",
+    "section": "F-statistic",
+    "text": "F-statistic"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#comparing-models-with-an-f-test-1",
+    "href": "slides/06-mlr-polynomial.html#comparing-models-with-an-f-test-1",
+    "title": "Polynomial Regression",
+    "section": "Comparing models with an F-test",
+    "text": "Comparing models with an F-test\nTest statistic\n\\[\n\\begin{split}\nF &= \\frac{(R^2_{\\text{full}} - R^2_{\\text{reduced}}) / d}{(1 - R^2_{\\text{full}}) / df_{\\text{full}}}\\\\\n&= \\frac{(\\text{SSR}_{\\text{full}} - \\text{SSR}_{\\text{reduced}}) / d}{\\text{MSE}_{\\text{full}}}\\\\\n&= \\frac{(\\text{SSE}_{\\text{reduced}} - \\text{SSE}_{\\text{full}}) / d}{\\text{MSE}_{\\text{full}}}\n\\end{split}\n\\]\nwhere\n\n\\(d = \\text{df}_{full} - \\text{df}_{reduced}\\) = # betas being tested\n\\(\\text{df}_{i} = n - (p + 1)=\\) error d.f. for model \\(i\\)\n\\(\\text{MSE}_{\\text{full}} = \\dfrac{\\text{SSE}_{\\text{full}}}{\\text{df}_{\\text{full}}}\\)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#f-distribution",
+    "href": "slides/06-mlr-polynomial.html#f-distribution",
+    "title": "Polynomial Regression",
+    "section": "F distribution",
+    "text": "F distribution\nThe F-statistics follows an \\(F\\) distribution with \\(\\text{df}_{full} - \\text{df}_{reduced}\\) and \\(n-p-1\\) d.f."
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#upper-tail-p-values",
+    "href": "slides/06-mlr-polynomial.html#upper-tail-p-values",
+    "title": "Polynomial Regression",
+    "section": "Upper-tail p-values",
+    "text": "Upper-tail p-values\n\nTo obtain upper-tail areas: 1 - pf(stat, df1, df2)"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#putting-it-all-together",
+    "href": "slides/06-mlr-polynomial.html#putting-it-all-together",
+    "title": "Polynomial Regression",
+    "section": "Putting it all together",
+    "text": "Putting it all together\n\n\n\n\n\nmodel\nr.squared\ndf\ndf.residual\nnobs\n\n\n\n\nFull\n0.453\n4\n54\n59\n\n\nReduced\n0.421\n2\n56\n59\n\n\n\n\n\n\n\\[\nF = \\frac{(R^2_{\\text{full}} - R^2_{\\text{reduced}}) / d}{(1 - R^2_{\\text{full}}) / df_{\\text{full}}} = \\frac{(0.453 - 0.421) / 2}{(1 - 0.453) / 54} \\approx 1.58\n\\]\n\n\n\n1 - pf(1.58, 2, 54)\n\n[1] 0.2153484\n\n\n\n\nThere is no evidence that the quartic model is an improvement over the quadratic model (\\(F=4.467\\), \\(df = 2, 54\\), \\(p = 0.215\\))."
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#reading-r-output",
+    "href": "slides/06-mlr-polynomial.html#reading-r-output",
+    "title": "Polynomial Regression",
+    "section": "Reading R output",
+    "text": "Reading R output\nCall:\nlm(formula = Acres ~ poly(Year, 4), data = wildfires)\n\nCoefficients:\n               Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)     4641410     245955  18.871  &lt; 2e-16 ***\npoly(Year, 4)1  9025270    1889218   4.777 1.40e-05 ***\npoly(Year, 4)2  8177004    1889218   4.328 6.55e-05 ***\npoly(Year, 4)3 -1194695    1889218  -0.632   0.5298    \npoly(Year, 4)4 -3177711    1889218  -1.682   0.0983 .  \n\nResidual standard error: 1889000 on 54 degrees of freedom\nMultiple R-squared:  0.4534,    Adjusted R-squared:  0.4129 \nF-statistic:  11.2 on 4 and 54 DF,  p-value: 1.096e-06\n\nOutput was edited to fit on one slide"
+  },
+  {
+    "objectID": "slides/06-mlr-polynomial.html#extra-sums-of-squares-f-test-in-r",
+    "href": "slides/06-mlr-polynomial.html#extra-sums-of-squares-f-test-in-r",
+    "title": "Polynomial Regression",
+    "section": "Extra sums of squares F-test in R",
+    "text": "Extra sums of squares F-test in R\n\n1full &lt;- lm(Acres ~ poly(Year, 4), data = wildfires)\n2reduced &lt;- lm(Acres ~ poly(Year, 2), data = wildfires)\n3anova(reduced, full)\n\n\n1\n\nFit the full model\n\n2\n\nFit the reduced model\n\n3\n\nUse anova() to compare the two models. The first argument should be the reduced model.\n\n\n\n\nAnalysis of Variance Table\n\nModel 1: Acres ~ poly(Year, 2)\nModel 2: Acres ~ poly(Year, 4)\n  Res.Df        RSS Df  Sum of Sq      F Pr(&gt;F)\n1     56 2.0426e+14                            \n2     54 1.9273e+14  2 1.1525e+13 1.6146 0.2084"
   }
 ]

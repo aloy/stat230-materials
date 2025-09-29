@@ -23,6 +23,16 @@ $body-bg: theme-color("cream");
 $body-color: theme-color("blue");
 $link-color: theme-color("orange");
 
+.reveal .slide blockquote {
+  background-color: theme-color("cream");
+  border-left: 5px solid theme-color("orange"); /* Example: adds a blue border */
+  padding: 15px 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: theme-color("blue");
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 /*-- scss:rules --*/
 
 @each $name, $color in $colors {
