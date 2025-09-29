@@ -809,7 +809,7 @@
     "href": "slides/05-slr-transformations.html#back-transforming-1",
     "title": "Remedial Measures: Transformations",
     "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55 \\ne \\bar{x}\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
   },
   {
     "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
@@ -858,7 +858,7 @@
     "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
     "title": "Remedial Measures: Transformations",
     "section": "Log-transform of Y only",
-    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
+    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^{\\beta_1}\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^{\\beta_1}\\)."
   },
   {
     "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
