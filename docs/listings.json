@@ -2,6 +2,7 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/06-mlr-polynomial.html",
       "/slides/04-slr-diagnostics.html",
       "/slides/03-slr-prediction.html",
       "/slides/02-slr-inference.html",

@@ -39,3 +39,11 @@
   categories:
     - "SLR"
     - "Transformations"
+- title: "Polynomial Regression"
+  subtitle: "Day 07"
+  date: 2025-09-29
+  image: slides/featured/06-mlr-polynomial.png
+  path: slides/06-mlr-polynomial.qmd
+  categories:
+    - "MLR"
+    - "Polynomial"
