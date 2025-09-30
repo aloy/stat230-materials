@@ -1,0 +1,265 @@
+---
+title: "Multiple Linear Regression"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, comment = NULL)
+
+library(ggformula)
+library(dplyr)
+library(broom)
+library(gridExtra)
+library(effects)
+
+supervisor <- read.csv("http://aloy.rbind.io/data/supervisor.csv")
+
+supervisor_lm <- lm(overall ~ complaints + privileges + learn + 
+                     raises + critical + advance, data = supervisor)
+
+options(digits=4) # display four significant digits by default
+```
+
+## Multiple Linear Regression (MLR)
+
+
+
+$$Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \varepsilon_i, \quad \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)$$
+
+<br>
+
+. . .
+
+This model requires that...
+
+1. $\mu\{Y|x_1, x_2, \ldots, x_p\}$ is a linear function
+
+2. The error terms are independent and are from a single population distribution
+
+3. The error terms follow a normal distribution with mean 0 and variance $\sigma^2$
+
+
+
+---
+
+
+## Example
+
+
+- In an effort to understand the
+important aspects of a satisfactory supervisor, clerical employees at a large financial organization were asked to rate their immediate supervisor. 
+
+- The survey questions were designed to measure overall
+performance of the supervisor, as well as six additional characteristics. 
+
+- Employees were asked to rate the
+following statements on a scale from 0 to 100 
+
+    (0 = "completely disagree", 100 = "completely
+agree")
+
+---
+
+## The data {.smaller}
+
+
+Variable |	Description
+-----        | -------------------
+`rating`     |	Overall rating of supervisor performance
+`complaints` |	Score for “Your supervisor handles employee complaints appropriately.”
+`privileges` |	Score for “Your supervisor allows special privileges.”
+`learn`      |	Score for “Your supervisor provides opportunities to learn new things.”
+`raises`     |	Score for “Your supervisor bases raises on performance.”
+`critical`   |	Score for “Your supervisor is too critical of poor performance.”
+`advance`    |	Score for “I am not satisfied with the rate I am advancing in the company?”
+
+
+---
+
+## EDA: Scatterplot matrix
+
+```{r}
+#| echo: FALSE
+#| fig.height: 6
+#| fig.width: 10
+#| cache: TRUE
+# Reorganizing so that the response variable is plotted on the y-axis
+GGally::ggpairs(supervisor, columns = c(2:ncol(supervisor), 1))
+```
+
+---
+
+## EDA: Correlation matrix
+
+```{r}
+cor(supervisor)
+```
+
+
+
+---
+
+## Fitting the model
+
+
+**Target:** 
+
+- Fitted regression equation: $\widehat{Y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \widehat{\beta}_2 x_{i2} + \cdots + \widehat{\beta}_p x_{ip}$
+
+- Standard error for MLR model: $\widehat{\sigma}$
+
+
+
+. . .
+
+
+**Procedure:**
+
+Least squares estimation: choose the coefficients to minimize 
+$$\text{SSE} = \sum_{i=1}^n \left(Y_i - \widehat{Y}_i \right)^2$$
+Then use $\widehat{\sigma} = \sqrt{\frac{\text{SSE}}{n-(p+1)}}$
+
+
+---
+
+## Interpreting $\widehat{\beta}_0$ {.incremental}
+
+
+```{r echo=FALSE}
+# knitr::kable(tidy(supervisor_lm), format = "html", digits = 4)
+coef(supervisor_lm) |> round(3)
+```
+
+- The expected value of the response variable when all explanatory variables are 0
+
+- The expected overall supervisor score is about 10.8 when all individual scores are 0
+
+
+---
+
+## Interpreting $\widehat{\beta}_j$ {.incremental}
+
+
+```{r echo=FALSE}
+# knitr::kable(tidy(supervisor_lm), format = "html", digits = 4)
+coef(supervisor_lm) |> round(3)
+```
+
+
+
+- The expected change in the response for a 1-unit increase in $x_j$, when all other variables are held constant.
+
+- We expect a 0.613 point increase in a supervisor's overall score for a 1-point increase on the complaints scale, holding all other variables constant
+
+
+
+---
+
+## Testing a single coefficient
+
+
+**Hypotheses:** $H_0: \ \beta_j = \#$ vs. $H_a: \ \beta_j \underset{>}{\overset{<}{\ne}} \#$
+
+
+. . .
+
+
+**Test statistic:** $t = \dfrac{\hat{\beta}_j - \#}{SE(\beta_j)}$
+
+
+. . .
+
+
+**Reference distribution:** $t$ distribution with d.f. = $n-(p+1)$
+
+
+. . .
+
+
+**p-value:** Area in the tail(s) specified by $H_a$
+
+
+
+```{r echo=FALSE, fig.height = 2, fig.width = 7.5, out.width=850, fig.align='center'}
+p1 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(-3.5, -2), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] < 0)) +
+  theme_classic() +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+p2 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(-3.5, -2), geom = "area", alpha = .4) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(2, 3.5), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] != 0)) +
+  theme_classic() +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+p3 <- ggplot(data = data.frame(x = c(-3.5, 3.5)), aes(x = x)) +
+  stat_function(fun = dt, args = list(df = 5)) +
+  stat_function(fun = dt, args = list(df = 5), xlim = c(2, 3.5), geom = "area", alpha = .4) +
+  ggtitle(expression(H[a]: beta[j] > 0)) +
+  theme_classic() +
+  theme(axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_blank())
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+
+---
+
+## Confidence intervals for a single coefficient
+
+
+$\widehat{\beta}_j \pm t^*_{n-(p+1)} \cdot SE(\widehat{\beta}_j )$
+
+
+<br>
+
+. . .
+
+
+$t^*_{n-(p+1)}$ is the $1 - \alpha/2$ quantile from the t-distribution with $d.f. = n-(p+1)$
+
+
+```{r  fig.height=3.25, fig.width=5.5, echo=FALSE, warning=FALSE, fig.align='center'}
+ggplot(data = data.frame(x = c(-4, 4)), aes(x)) +
+  stat_function(fun = dt, args = list(df=3), size = 1) +
+  stat_function(fun = dt, args = list(df=3), xlim = c(-2.249, 2.249),
+                  geom = "area", alpha = .4) +
+  labs(x = "t", y = "Density") +
+  theme_light()  +
+  geom_vline(xintercept = qt(0.055, df = 3), linetype = 2) +
+  geom_vline(xintercept = qt(0.945, df = 3), linetype = 2) +
+  annotate("text", x = 0, y = .15, label = latex2exp::TeX("$1-\\alpha$", output = "character"), color = "white", size = 12, parse = TRUE) +
+  ggtitle("t-distribution with df = n - (p + 1)")
+```
+
+
+
+---
+
+## Example {.smaller}
+
+
+```{r echo=FALSE, results = "asis"}
+knitr::kable(tidy(supervisor_lm, conf.int = TRUE), format = "html", digits = 4)
+```
+
+
