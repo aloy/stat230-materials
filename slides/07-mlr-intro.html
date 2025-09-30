@@ -200,6 +200,11 @@
 </div>
 
 </section>
+<section>
+<section id="pdf-version-of-slides" class="title-slide slide level1 center">
+<h1><a href="pdf_slides/07-mlr-intro.pdf">PDF version of slides</a></h1>
+
+</section>
 <section id="multiple-linear-regression-mlr" class="slide level2 scrollable">
 <h2>Multiple Linear Regression (MLR)</h2>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \varepsilon_i, \quad \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)\]</span></p>
@@ -294,10 +299,11 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 <li><p>Fitted regression equation: <span class="math inline">\(\widehat{Y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \widehat{\beta}_2 x_{i2} + \cdots + \widehat{\beta}_p x_{ip}\)</span></p></li>
 <li><p>Standard error for MLR model: <span class="math inline">\(\widehat{\sigma}\)</span></p></li>
 </ul>
-<div class="fragment">
+</section>
+<section id="fitting-the-model-1" class="slide level2">
+<h2>Fitting the model</h2>
 <p><strong>Procedure:</strong></p>
 <p>Least squares estimation: choose the coefficients to minimize <span class="math display">\[\text{SSE} = \sum_{i=1}^n \left(Y_i - \widehat{Y}_i \right)^2\]</span> Then use <span class="math inline">\(\widehat{\sigma} = \sqrt{\frac{\text{SSE}}{n-(p+1)}}\)</span></p>
-</div>
 </section>
 <section id="interpreting-widehatbeta_0" class="slide level2 incremental">
 <h2>Interpreting <span class="math inline">\(\widehat{\beta}_0\)</span></h2>
@@ -331,15 +337,23 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </section>
 <section id="testing-a-single-coefficient" class="slide level2">
 <h2>Testing a single coefficient</h2>
+<div style="font-size: 0.9em;">
 <p><strong>Hypotheses:</strong> <span class="math inline">\(H_0: \ \beta_j = \#\)</span> vs.&nbsp;<span class="math inline">\(H_a: \ \beta_j \underset{&gt;}{\overset{&lt;}{\ne}} \#\)</span></p>
+</div>
 <div class="fragment">
+<div style="font-size: 0.8em;">
 <p><strong>Test statistic:</strong> <span class="math inline">\(t = \dfrac{\hat{\beta}_j - \#}{SE(\beta_j)}\)</span></p>
 </div>
-<div class="fragment">
-<p><strong>Reference distribution:</strong> <span class="math inline">\(t\)</span> distribution with d.f. = <span class="math inline">\(n-(p+1)\)</span></p>
 </div>
 <div class="fragment">
+<div style="font-size: 0.9em;">
+<p><strong>Reference distribution:</strong> <span class="math inline">\(t\)</span> distribution with d.f. = <span class="math inline">\(n-(p+1)\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div style="font-size: 0.9em;">
 <p><strong>p-value:</strong> Area in the tail(s) specified by <span class="math inline">\(H_a\)</span></p>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -351,8 +365,8 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </div>
 </div>
 </section>
-<section id="confidence-intervals-for-a-single-coefficient" class="slide level2">
-<h2>Confidence intervals for a single coefficient</h2>
+<section id="confidence-intervals" class="slide level2">
+<h2>Confidence intervals</h2>
 <p><span class="math inline">\(\widehat{\beta}_j \pm t^*_{n-(p+1)} \cdot SE(\widehat{\beta}_j )\)</span></p>
 <p><br></p>
 <div class="fragment">
@@ -450,7 +464,7 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </table>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

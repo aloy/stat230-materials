@@ -627,7 +627,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nSep 30, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -816,7 +816,14 @@
     "href": "slides/07-mlr-intro.html#fitting-the-model",
     "title": "Multiple Linear Regression",
     "section": "Fitting the model",
-    "text": "Fitting the model\nTarget:\n\nFitted regression equation: \\(\\widehat{Y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_{i1} + \\widehat{\\beta}_2 x_{i2} + \\cdots + \\widehat{\\beta}_p x_{ip}\\)\nStandard error for MLR model: \\(\\widehat{\\sigma}\\)\n\n\nProcedure:\nLeast squares estimation: choose the coefficients to minimize \\[\\text{SSE} = \\sum_{i=1}^n \\left(Y_i - \\widehat{Y}_i \\right)^2\\] Then use \\(\\widehat{\\sigma} = \\sqrt{\\frac{\\text{SSE}}{n-(p+1)}}\\)"
+    "text": "Fitting the model\nTarget:\n\nFitted regression equation: \\(\\widehat{Y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_{i1} + \\widehat{\\beta}_2 x_{i2} + \\cdots + \\widehat{\\beta}_p x_{ip}\\)\nStandard error for MLR model: \\(\\widehat{\\sigma}\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#fitting-the-model-1",
+    "href": "slides/07-mlr-intro.html#fitting-the-model-1",
+    "title": "Multiple Linear Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nProcedure:\nLeast squares estimation: choose the coefficients to minimize \\[\\text{SSE} = \\sum_{i=1}^n \\left(Y_i - \\widehat{Y}_i \\right)^2\\] Then use \\(\\widehat{\\sigma} = \\sqrt{\\frac{\\text{SSE}}{n-(p+1)}}\\)"
   },
   {
     "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
@@ -837,14 +844,14 @@
     "href": "slides/07-mlr-intro.html#testing-a-single-coefficient",
     "title": "Multiple Linear Regression",
     "section": "Testing a single coefficient",
-    "text": "Testing a single coefficient\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(p+1)\\)\n\n\np-value: Area in the tail(s) specified by \\(H_a\\)"
+    "text": "Testing a single coefficient\n\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\n\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(p+1)\\)\n\n\n\n\np-value: Area in the tail(s) specified by \\(H_a\\)"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#confidence-intervals-for-a-single-coefficient",
-    "href": "slides/07-mlr-intro.html#confidence-intervals-for-a-single-coefficient",
+    "objectID": "slides/07-mlr-intro.html#confidence-intervals",
+    "href": "slides/07-mlr-intro.html#confidence-intervals",
     "title": "Multiple Linear Regression",
-    "section": "Confidence intervals for a single coefficient",
-    "text": "Confidence intervals for a single coefficient\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(p+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\n\\(t^*_{n-(p+1)}\\) is the \\(1 - \\alpha/2\\) quantile from the t-distribution with \\(d.f. = n-(p+1)\\)"
+    "section": "Confidence intervals",
+    "text": "Confidence intervals\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(p+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\n\\(t^*_{n-(p+1)}\\) is the \\(1 - \\alpha/2\\) quantile from the t-distribution with \\(d.f. = n-(p+1)\\)"
   },
   {
     "objectID": "slides/07-mlr-intro.html#example-1",
