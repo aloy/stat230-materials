@@ -47,3 +47,10 @@
   categories:
     - "MLR"
     - "Polynomial"
+- title: "Multiple Regression"
+  subtitle: "Day 08"
+  date: 2025-09-30
+  image: slides/featured/07-mlr-intro.png
+  path: slides/07-mlr-intro.qmd
+  categories:
+    - "MLR"

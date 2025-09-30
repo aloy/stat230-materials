@@ -6,8 +6,8 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <title>Stat 230 - Fall 2025 – Multiple Linear Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-97cf9145da040bd859655cdd4880d8e7.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eabcba74c034c5bef08fec41117c9ab5.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -200,6 +200,11 @@
 </div>
 
 </section>
+<section>
+<section id="pdf-version-of-slides" class="title-slide slide level1 center">
+<h1><a href="pdf_slides/07-mlr-intro.pdf">PDF version of slides</a></h1>
+
+</section>
 <section id="multiple-linear-regression-mlr" class="slide level2 scrollable">
 <h2>Multiple Linear Regression (MLR)</h2>
 <p><span class="math display">\[Y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_p x_{ip} + \varepsilon_i, \quad \varepsilon_i \overset{iid}{\sim} N(0, \sigma^2)\]</span></p>
@@ -274,7 +279,7 @@
 <section id="eda-correlation-matrix" class="slide level2">
 <h2>EDA: Correlation matrix</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">cor</span>(supervisor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">cor</span>(supervisor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           overall complaints privileges  learn raises critical advance
 overall     1.0000     0.8254     0.4261 0.6237 0.5901   0.1564  0.1551
@@ -294,10 +299,11 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 <li><p>Fitted regression equation: <span class="math inline">\(\widehat{Y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_{i1} + \widehat{\beta}_2 x_{i2} + \cdots + \widehat{\beta}_p x_{ip}\)</span></p></li>
 <li><p>Standard error for MLR model: <span class="math inline">\(\widehat{\sigma}\)</span></p></li>
 </ul>
-<div class="fragment">
+</section>
+<section id="fitting-the-model-1" class="slide level2">
+<h2>Fitting the model</h2>
 <p><strong>Procedure:</strong></p>
 <p>Least squares estimation: choose the coefficients to minimize <span class="math display">\[\text{SSE} = \sum_{i=1}^n \left(Y_i - \widehat{Y}_i \right)^2\]</span> Then use <span class="math inline">\(\widehat{\sigma} = \sqrt{\frac{\text{SSE}}{n-(p+1)}}\)</span></p>
-</div>
 </section>
 <section id="interpreting-widehatbeta_0" class="slide level2 incremental">
 <h2>Interpreting <span class="math inline">\(\widehat{\beta}_0\)</span></h2>
@@ -331,15 +337,23 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </section>
 <section id="testing-a-single-coefficient" class="slide level2">
 <h2>Testing a single coefficient</h2>
+<div style="font-size: 0.9em;">
 <p><strong>Hypotheses:</strong> <span class="math inline">\(H_0: \ \beta_j = \#\)</span> vs.&nbsp;<span class="math inline">\(H_a: \ \beta_j \underset{&gt;}{\overset{&lt;}{\ne}} \#\)</span></p>
+</div>
 <div class="fragment">
+<div style="font-size: 0.8em;">
 <p><strong>Test statistic:</strong> <span class="math inline">\(t = \dfrac{\hat{\beta}_j - \#}{SE(\beta_j)}\)</span></p>
 </div>
-<div class="fragment">
-<p><strong>Reference distribution:</strong> <span class="math inline">\(t\)</span> distribution with d.f. = <span class="math inline">\(n-(p+1)\)</span></p>
 </div>
 <div class="fragment">
+<div style="font-size: 0.9em;">
+<p><strong>Reference distribution:</strong> <span class="math inline">\(t\)</span> distribution with d.f. = <span class="math inline">\(n-(p+1)\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<div style="font-size: 0.9em;">
 <p><strong>p-value:</strong> Area in the tail(s) specified by <span class="math inline">\(H_a\)</span></p>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -351,8 +365,8 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </div>
 </div>
 </section>
-<section id="confidence-intervals-for-a-single-coefficient" class="slide level2">
-<h2>Confidence intervals for a single coefficient</h2>
+<section id="confidence-intervals" class="slide level2">
+<h2>Confidence intervals</h2>
 <p><span class="math inline">\(\widehat{\beta}_j \pm t^*_{n-(p+1)} \cdot SE(\widehat{\beta}_j )\)</span></p>
 <p><br></p>
 <div class="fragment">
@@ -370,7 +384,7 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </section>
 <section id="example-1" class="slide level2 smaller">
 <h2>Example</h2>
-<table class="caption-top" data-quarto-postprocess="true">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
@@ -450,7 +464,7 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
 </table>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -640,7 +654,7 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -752,13 +766,14 @@ advance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000</code></
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
