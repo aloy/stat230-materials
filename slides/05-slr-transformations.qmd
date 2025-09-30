@@ -246,7 +246,7 @@ kable(mosaic::favstats(~Time, data = case0802)[c("mean")], format = "html", digi
 
 <br>
 
--   Back-transformed mean: $e^{2.146} \approx 8.55 \ne \bar{x}$
+-   Back-transformed mean: $e^{2.146} \approx 8.55$
 
 . . .
 
@@ -358,11 +358,11 @@ kable(mosaic::favstats(~Time, data = case0802)[c("mean", "median")], format = "h
 
 ::::: columns
 ::: {.column width="50%"}
-The median of $Y$ at $x + 1$ is $e^{\beta_1}$ times larger (smaller) than the median of $Y$ at $x$.
+The median of $Y$ at $x + 1$ is $e^\beta_1$ times larger (smaller) than the median of $Y$ at $x$.
 
 <br>
 
-Or... increasing $x$ by 1 increases (decreases) the median of $Y$ by a factor of $e^{\beta_1}$.
+Or... increasing $x$ by 1 increases (decreases) the median of $Y$ by a factor of $e^\beta_1$.
 :::
 
 ::: {.column width="50%"}
