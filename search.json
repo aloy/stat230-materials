@@ -350,158 +350,74 @@
     "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
   },
   {
-    "objectID": "slides/02-slr-inference.html#warm-up",
-    "href": "slides/02-slr-inference.html#warm-up",
-    "title": "Inference for SLR",
-    "section": "Warm up",
-    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+    "objectID": "slides/01-slides-slr-review.html#welcome",
+    "href": "slides/01-slides-slr-review.html#welcome",
+    "title": "Welcome and Review",
+    "section": "Welcome 👋",
+    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
   },
   {
-    "objectID": "slides/02-slr-inference.html#example",
-    "href": "slides/02-slr-inference.html#example",
-    "title": "Inference for SLR",
-    "section": "Example",
-    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+    "objectID": "slides/01-slides-slr-review.html#your-turn",
+    "href": "slides/01-slides-slr-review.html#your-turn",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
-    "href": "slides/02-slr-inference.html#a-deterministic-model",
-    "title": "Inference for SLR",
-    "section": "A deterministic model",
-    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
+    "href": "slides/01-slides-slr-review.html#regression-in-intro",
+    "title": "Welcome and Review",
+    "section": "Regression in intro",
+    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
   },
   {
-    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "title": "Inference for SLR",
+    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
+    "href": "slides/01-slides-slr-review.html#your-turn-1",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "title": "Welcome and Review",
+    "section": "Regression in Stat 230",
+    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "title": "Welcome and Review",
     "section": "Simple Linear Regression Model",
     "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model",
-    "href": "slides/02-slr-inference.html#linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
-    "href": "slides/02-slr-inference.html#linear-regression-model-1",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
-    "href": "slides/02-slr-inference.html#linear-regression-model-2",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#notation",
-    "href": "slides/02-slr-inference.html#notation",
-    "title": "Inference for SLR",
+    "objectID": "slides/01-slides-slr-review.html#notation",
+    "href": "slides/01-slides-slr-review.html#notation",
+    "title": "Welcome and Review",
     "section": "Notation",
     "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "title": "Welcome and Review",
+    "section": "Overview of the term",
+    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/01-slides-slr-review.html#typical-week",
+    "href": "slides/01-slides-slr-review.html#typical-week",
+    "title": "Welcome and Review",
+    "section": "Typical week",
+    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution",
-    "href": "slides/02-slr-inference.html#sampling-distribution",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
-    "href": "slides/02-slr-inference.html#sampling-distribution-1",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
-    "href": "slides/02-slr-inference.html#sampling-distribution-2",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#confidence-interval",
-    "href": "slides/02-slr-inference.html#confidence-interval",
-    "title": "Inference for SLR",
-    "section": "Confidence interval",
-    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#hypothesis-test",
-    "href": "slides/02-slr-inference.html#hypothesis-test",
-    "title": "Inference for SLR",
-    "section": "Hypothesis test",
-    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#coefficient-table",
-    "href": "slides/02-slr-inference.html#coefficient-table",
-    "title": "Inference for SLR",
-    "section": "Coefficient table",
-    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#your-turn",
-    "href": "slides/02-slr-inference.html#your-turn",
-    "title": "Inference for SLR",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "title": "Inference for SLR",
-    "section": "A note on reporting test results",
-    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "title": "Inference for SLR",
-    "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
-  },
-  {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Stat 230 Slide Decks",
-    "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "objectID": "slides/01-slides-slr-review.html#tools",
+    "href": "slides/01-slides-slr-review.html#tools",
+    "title": "Welcome and Review",
+    "section": "Tools",
+    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#wildfires",
@@ -707,74 +623,235 @@
     "text": "Extra sums of squares F-test in R\n\n1full &lt;- lm(Acres ~ poly(Year, 4), data = wildfires)\n2reduced &lt;- lm(Acres ~ poly(Year, 2), data = wildfires)\n3anova(reduced, full)\n\n\n1\n\nFit the full model\n\n2\n\nFit the reduced model\n\n3\n\nUse anova() to compare the two models. The first argument should be the reduced model.\n\n\n\n\nAnalysis of Variance Table\n\nModel 1: Acres ~ poly(Year, 2)\nModel 2: Acres ~ poly(Year, 4)\n  Res.Df        RSS Df  Sum of Sq      F Pr(&gt;F)\n1     56 2.0426e+14                            \n2     54 1.9273e+14  2 1.1525e+13 1.6146 0.2084"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#welcome",
-    "href": "slides/01-slides-slr-review.html#welcome",
-    "title": "Welcome and Review",
-    "section": "Welcome 👋",
-    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
+    "section": "",
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#your-turn",
-    "href": "slides/01-slides-slr-review.html#your-turn",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
-    "href": "slides/01-slides-slr-review.html#regression-in-intro",
-    "title": "Welcome and Review",
-    "section": "Regression in intro",
-    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
+    "objectID": "slides/02-slr-inference.html#warm-up",
+    "href": "slides/02-slr-inference.html#warm-up",
+    "title": "Inference for SLR",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
-    "href": "slides/01-slides-slr-review.html#your-turn-1",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
+    "objectID": "slides/02-slr-inference.html#example",
+    "href": "slides/02-slr-inference.html#example",
+    "title": "Inference for SLR",
+    "section": "Example",
+    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "title": "Welcome and Review",
-    "section": "Regression in Stat 230",
-    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
+    "href": "slides/02-slr-inference.html#a-deterministic-model",
+    "title": "Inference for SLR",
+    "section": "A deterministic model",
+    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "title": "Welcome and Review",
+    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "title": "Inference for SLR",
     "section": "Simple Linear Regression Model",
     "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#notation",
-    "href": "slides/01-slides-slr-review.html#notation",
-    "title": "Welcome and Review",
+    "objectID": "slides/02-slr-inference.html#linear-regression-model",
+    "href": "slides/02-slr-inference.html#linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
+    "href": "slides/02-slr-inference.html#linear-regression-model-1",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
+    "href": "slides/02-slr-inference.html#linear-regression-model-2",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#notation",
+    "href": "slides/02-slr-inference.html#notation",
+    "title": "Inference for SLR",
     "section": "Notation",
     "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "title": "Welcome and Review",
-    "section": "Overview of the term",
-    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#typical-week",
-    "href": "slides/01-slides-slr-review.html#typical-week",
-    "title": "Welcome and Review",
-    "section": "Typical week",
-    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#tools",
-    "href": "slides/01-slides-slr-review.html#tools",
-    "title": "Welcome and Review",
-    "section": "Tools",
-    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution",
+    "href": "slides/02-slr-inference.html#sampling-distribution",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
+    "href": "slides/02-slr-inference.html#sampling-distribution-2",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#confidence-interval",
+    "href": "slides/02-slr-inference.html#confidence-interval",
+    "title": "Inference for SLR",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#hypothesis-test",
+    "href": "slides/02-slr-inference.html#hypothesis-test",
+    "title": "Inference for SLR",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#coefficient-table",
+    "href": "slides/02-slr-inference.html#coefficient-table",
+    "title": "Inference for SLR",
+    "section": "Coefficient table",
+    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#your-turn",
+    "href": "slides/02-slr-inference.html#your-turn",
+    "title": "Inference for SLR",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "title": "Inference for SLR",
+    "section": "A note on reporting test results",
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "title": "Inference for SLR",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
+    "href": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
+    "title": "Multiple Linear Regression",
+    "section": "Multiple Linear Regression (MLR)",
+    "text": "Multiple Linear Regression (MLR)\n\\[Y_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_p x_{ip} + \\varepsilon_i, \\quad \\varepsilon_i \\overset{iid}{\\sim} N(0, \\sigma^2)\\]\n\n\nThis model requires that…\n\n\\(\\mu\\{Y|x_1, x_2, \\ldots, x_p\\}\\) is a linear function\nThe error terms are independent and are from a single population distribution\nThe error terms follow a normal distribution with mean 0 and variance \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#example",
+    "href": "slides/07-mlr-intro.html#example",
+    "title": "Multiple Linear Regression",
+    "section": "Example",
+    "text": "Example\n\nIn an effort to understand the important aspects of a satisfactory supervisor, clerical employees at a large financial organization were asked to rate their immediate supervisor.\nThe survey questions were designed to measure overall performance of the supervisor, as well as six additional characteristics.\nEmployees were asked to rate the following statements on a scale from 0 to 100\n(0 = “completely disagree”, 100 = “completely agree”)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#the-data",
+    "href": "slides/07-mlr-intro.html#the-data",
+    "title": "Multiple Linear Regression",
+    "section": "The data",
+    "text": "The data\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nrating\nOverall rating of supervisor performance\n\n\ncomplaints\nScore for “Your supervisor handles employee complaints appropriately.”\n\n\nprivileges\nScore for “Your supervisor allows special privileges.”\n\n\nlearn\nScore for “Your supervisor provides opportunities to learn new things.”\n\n\nraises\nScore for “Your supervisor bases raises on performance.”\n\n\ncritical\nScore for “Your supervisor is too critical of poor performance.”\n\n\nadvance\nScore for “I am not satisfied with the rate I am advancing in the company?”"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
+    "href": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
+    "title": "Multiple Linear Regression",
+    "section": "EDA: Scatterplot matrix",
+    "text": "EDA: Scatterplot matrix"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#eda-correlation-matrix",
+    "href": "slides/07-mlr-intro.html#eda-correlation-matrix",
+    "title": "Multiple Linear Regression",
+    "section": "EDA: Correlation matrix",
+    "text": "EDA: Correlation matrix\n\ncor(supervisor)\n\n           overall complaints privileges  learn raises critical advance\noverall     1.0000     0.8254     0.4261 0.6237 0.5901   0.1564  0.1551\ncomplaints  0.8254     1.0000     0.5583 0.5967 0.6692   0.1877  0.2246\nprivileges  0.4261     0.5583     1.0000 0.4933 0.4455   0.1472  0.3433\nlearn       0.6237     0.5967     0.4933 1.0000 0.6403   0.1160  0.5316\nraises      0.5901     0.6692     0.4455 0.6403 1.0000   0.3769  0.5742\ncritical    0.1564     0.1877     0.1472 0.1160 0.3769   1.0000  0.2833\nadvance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#fitting-the-model",
+    "href": "slides/07-mlr-intro.html#fitting-the-model",
+    "title": "Multiple Linear Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nTarget:\n\nFitted regression equation: \\(\\widehat{Y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_{i1} + \\widehat{\\beta}_2 x_{i2} + \\cdots + \\widehat{\\beta}_p x_{ip}\\)\nStandard error for MLR model: \\(\\widehat{\\sigma}\\)\n\n\nProcedure:\nLeast squares estimation: choose the coefficients to minimize \\[\\text{SSE} = \\sum_{i=1}^n \\left(Y_i - \\widehat{Y}_i \\right)^2\\] Then use \\(\\widehat{\\sigma} = \\sqrt{\\frac{\\text{SSE}}{n-(p+1)}}\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
+    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
+    "title": "Multiple Linear Regression",
+    "section": "Interpreting \\(\\widehat{\\beta}_0\\)",
+    "text": "Interpreting \\(\\widehat{\\beta}_0\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected value of the response variable when all explanatory variables are 0\nThe expected overall supervisor score is about 10.8 when all individual scores are 0"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
+    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
+    "title": "Multiple Linear Regression",
+    "section": "Interpreting \\(\\widehat{\\beta}_j\\)",
+    "text": "Interpreting \\(\\widehat{\\beta}_j\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected change in the response for a 1-unit increase in \\(x_j\\), when all other variables are held constant.\nWe expect a 0.613 point increase in a supervisor’s overall score for a 1-point increase on the complaints scale, holding all other variables constant"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#testing-a-single-coefficient",
+    "href": "slides/07-mlr-intro.html#testing-a-single-coefficient",
+    "title": "Multiple Linear Regression",
+    "section": "Testing a single coefficient",
+    "text": "Testing a single coefficient\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(p+1)\\)\n\n\np-value: Area in the tail(s) specified by \\(H_a\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#confidence-intervals-for-a-single-coefficient",
+    "href": "slides/07-mlr-intro.html#confidence-intervals-for-a-single-coefficient",
+    "title": "Multiple Linear Regression",
+    "section": "Confidence intervals for a single coefficient",
+    "text": "Confidence intervals for a single coefficient\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(p+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\n\\(t^*_{n-(p+1)}\\) is the \\(1 - \\alpha/2\\) quantile from the t-distribution with \\(d.f. = n-(p+1)\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#example-1",
+    "href": "slides/07-mlr-intro.html#example-1",
+    "title": "Multiple Linear Regression",
+    "section": "Example",
+    "text": "Example\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\nconf.low\nconf.high\n\n\n\n\n(Intercept)\n10.7871\n11.5893\n0.9308\n0.3616\n-13.1871\n34.7613\n\n\ncomplaints\n0.6132\n0.1610\n3.8090\n0.0009\n0.2802\n0.9462\n\n\nprivileges\n-0.0731\n0.1357\n-0.5382\n0.5956\n-0.3538\n0.2077\n\n\nlearn\n0.3203\n0.1685\n1.9009\n0.0699\n-0.0283\n0.6689\n\n\nraises\n0.0817\n0.2215\n0.3690\n0.7155\n-0.3764\n0.5399\n\n\ncritical\n0.0384\n0.1470\n0.2611\n0.7963\n-0.2657\n0.3425\n\n\nadvance\n-0.2171\n0.1782\n-1.2180\n0.2356\n-0.5857\n0.1516"
   },
   {
     "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
