@@ -2,70 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aloy.github.io/stat230-materials/activity/04H-sol-slr-prediction.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
   </url>
   <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/04-slr-prediction.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/03-intro-r.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/03-slr-prediction.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/05-slr-transformations.html</loc>
-    <lastmod>2025-09-30T21:30:32.025Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/06-mlr-polynomial.html</loc>
-    <lastmod>2025-09-30T21:30:32.032Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/index.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/02-slr-inference.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/07-mlr-intro.html</loc>
-    <lastmod>2025-09-30T21:30:32.032Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/04-slr-diagnostics.html</loc>
-    <lastmod>2025-09-30T21:30:32.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/slides/05-transformation-interpretation.html</loc>
-    <lastmod>2025-09-30T21:30:32.032Z</lastmod>
-  </url>
-  <url>
-    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
+    <loc>https://aloy.github.io/stat230-materials/activity/07-sol-mlr-polynomial.html</loc>
+    <lastmod>2025-10-01T15:19:08.826Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/activity/07-mlr-polynomial.html</loc>
-    <lastmod>2025-09-30T21:30:31.931Z</lastmod>
+    <lastmod>2025-10-01T15:19:08.826Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/02H-sol-slr-inference.html</loc>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/05-transformation-interpretation.html</loc>
+    <lastmod>2025-10-01T15:19:08.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/04-slr-diagnostics.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/07-mlr-intro.html</loc>
+    <lastmod>2025-10-01T15:19:08.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/02-slr-inference.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/index.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/06-mlr-polynomial.html</loc>
+    <lastmod>2025-10-01T15:19:08.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/01-slides-slr-review.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/05-slr-transformations.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/slides/03-slr-prediction.html</loc>
+    <lastmod>2025-10-01T15:19:08.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/03-intro-r.html</loc>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aloy.github.io/stat230-materials/activity/04-slr-prediction.html</loc>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/activity/06H-slr-transform.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
   </url>
   <url>
     <loc>https://aloy.github.io/stat230-materials/activity/01-slr-review.html</loc>
-    <lastmod>2025-09-30T21:30:31.930Z</lastmod>
+    <lastmod>2025-10-01T15:19:08.825Z</lastmod>
   </url>
 </urlset>
