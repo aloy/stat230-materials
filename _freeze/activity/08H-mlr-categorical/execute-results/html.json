@@ -1,0 +1,17 @@
+{
+  "hash": "4d59a5e9c44450809d9a959780768a76",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Polynomial Regression\"\nformat: html\nengine: knitr\neditor: source\neditor_options: \n  chunk_output_type: console\n---\n\n\n\n\n## Example 1\n\nFor each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\n\n\n**Model 1:** $\\mu(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}$\n\nFitted equation for non-smokers:\n\n<br>\n\nFitted equation for smokers:\n\n<br>\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-2-1.png){width=60%}\n:::\n:::\n\n\n\n\n**Model 2:** $\\mu(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}$\n\nFitted equation for non-smokers:\n\n<br>\n\nFitted equation for smokers:\n\n<br>\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-3-1.png){width=60%}\n:::\n:::\n\n\n\n**Model 3:** $\\mu(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}$\n\nFitted equation for non-smokers:\n\n<br>\n\nFitted equation for smokers:\n\n<br>\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-4-1.png){width=60%}\n:::\n:::\n\n\n\n\n## Example 2\n\n\nR.A. Miech and M.J. Shanahan[^1] investigated the association of depression with age and education, based on a 1990 nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age---a phenomenon they called the \"divergence hypothesis.\"\n\nThe researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only. \n\n\n1. Define indicator variables that represents the `education` category. (Start by determining wow many indicators do you need. Then define them.)\n\n\n2. Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-5-1.png){width=60%}\n:::\n:::\n\n\n\n3. Suppose that one researcher wants to fit a model that represents the below sketch  (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-6-1.png){width=60%}\n:::\n:::\n\n\n\n\n4. Suppose that one researcher wants to fit a model that represents the below sketch  (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](08H-mlr-categorical_files/figure-html/unnamed-chunk-7-1.png){width=60%}\n:::\n:::\n\n",
+    "supporting": [
+      "08H-mlr-categorical_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

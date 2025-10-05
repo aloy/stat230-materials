@@ -2,6 +2,7 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/08-mlr-categorical.html",
       "/slides/07-mlr-intro.html",
       "/slides/06-mlr-polynomial.html",
       "/slides/04-slr-diagnostics.html",

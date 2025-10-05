@@ -54,3 +54,10 @@
   path: slides/07-mlr-intro.qmd
   categories:
     - "MLR"
+- title: "Categorical Predictor Variables"
+  subtitle: "Day 10"
+  date: 2025-10-05
+  image: slides/featured/08-mlr-categorical.png
+  path: slides/08-mlr-categorical.qmd
+  categories:
+    - "MLR"

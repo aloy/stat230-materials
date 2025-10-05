@@ -1,0 +1,664 @@
+---
+title: "Adding Categorical Predictors"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, dev = 'svg', comment = NULL)
+
+library(ggformula)
+library(dplyr)
+library(broom)
+library(gridExtra)
+library(effects)
+library(ggthemes)
+library(forcats)
+library(here)
+fev <- read.table(here("data/FEVdataAge10to19.txt"), sep = "\t", header = TRUE)
+
+smoke.binary <- fev$Smoke
+fev$Smoke <- factor(fev$Smoke, labels = c("Nonsmoker", "Smoker"))
+
+options(digits=4) # display four significant digits by default
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+```
+
+## Example {.smaller}
+
+
+:::: {.columns align=center}
+::: {.column width="20%"}
+**Goal:**
+
+:::
+
+::: {.column width="80%"}
+investigate the association between smoking and lung capacity using data from 345 adolescents between the ages of 10 and 19
+:::
+
+::::
+
+
+:::: {.columns align=center}
+::: {.column width="20%"}
+**Wrinkle:**
+:::
+
+::: {.column width="80%"}
+Lung function is expected to increase during adolescence, but smoking may slow it's progression
+
+:::
+
+::::
+
+<br>
+
+:::: {.columns align=center}
+::: {.column width="20%"}
+**Data:**
+:::
+
+::: {.column width="80%"}
+Variable | Description
+:---------|:---------------
+`FEV`    | forced expiratory volume (in liters per second)
+`Age`    | age in years
+`Smoke`  | `Smoker` or `Nonsmoker`
+
+:::
+
+::::
+
+
+
+
+
+:::{.footer}
+Source: Rosner (2006) 
+:::
+
+## EDA
+
+```{r echo=FALSE, fig.width = 5, fig.height = 3, fig.align='center', out.width = 800}
+ggplot(data = fev) +
+  geom_boxplot(aes(x = Smoke, y = FEV, fill = Smoke), alpha = 0.6) +
+  scale_fill_manual(values = c("#f15a31", "#000036")) +
+  theme(legend.position = "none") +
+  coord_flip() +
+  labs(x = "", y = "FEV (in L/s)")
+```
+
+## EDA
+
+```{r echo=FALSE, fig.width = 5, fig.height = 4, fig.align='center', out.width = 800}
+ggplot(data = fev) +
+  geom_point(aes(x = Age, y = FEV, color = Smoke, shape = Smoke), alpha = 0.5) +
+  scale_color_manual(values = c("#f15a31", "#000036")) +
+  labs(y = "FEV (in L/s)")
+```
+
+## EDA
+
+```{r echo=FALSE, fig.width = 6, fig.height = 3, fig.align='center', out.width = 800}
+ggplot(data = fev) +
+  geom_point(aes(x = Age, y = FEV, color = Smoke, shape = Smoke), alpha = 0.5) +
+  facet_wrap(~Smoke) +
+  scale_color_manual(values = c("#f15a31", "#000036")) +
+  labs(y = "FEV (in L/s)")
+```
+
+## Indicator variable
+
+Regression requires a numeric representation of all variables
+
+<br>
+
+Create a `Smoker` indicator variable:
+
+- `Smoker` = 1
+
+- `Nonsmoker` = 0
+
+
+## Example 1
+
+- For each regression model on the handout, sketch the fitted model on the whiteboard
+
+- Each fitted model will have two lines: one for smokers, one for nonsmokers
+
+- Work with your neighbors
+
+
+## Model 1
+
+$\mu(y|x) = 10 +  1 \mathtt{age} -2 \mathtt{smoker}$
+
+
+## Model 2
+
+$\mu(y|x) = 5 +  1 \mathtt{age} -0.5 \mathtt{age \times smoker}$
+
+
+## Model 3
+
+$\begin{split}\mu(y|x) = 4  &+  0.5 \mathtt{age} + 3\mathtt{smoker} -0.5 \mathtt{age \times smoker} \end{split}$
+
+
+## Parallel lines model
+
+```{r echo=FALSE , fig.width = 4, fig.height = 3, fig.align='center'}
+nonsmoke.mean <- function(age) 1.0961772 + 0.1740019 * age
+smoke.mean <- function(age) (1.0961772 -0.1628258) + 0.1740010 * age
+ggplot(data = fev, mapping = aes(x = Age, y = FEV, color = Smoke, shape = Smoke)) +
+  geom_point( alpha = 0.5) +
+  stat_function(fun = smoke.mean, aes(color = "Smoker")) +
+  stat_function(fun = nonsmoke.mean, aes(color = "Nonsmoker")) +
+  scale_color_manual(values = c("#f15a31", "#000036")) +
+  labs(y = "FEV (in L/s)") +
+  theme(legend.position = "top")
+```
+
+Lung function develops at the same pace, but always lower for smokers
+
+## Different slopes model
+
+```{r echo=FALSE , fig.width = 4, fig.height = 3, fig.align='center', out.width = 600}
+nonsmoke.mean <- function(age) 1.01761138 + 0.18139953 * age
+smoke.mean <- function(age) 1.01761138 + (0.18139953 -0.01642451) * age
+ggplot(data = fev, mapping = aes(x = Age, y = FEV, color = Smoke, shape = Smoke)) +
+  geom_point( alpha = 0.5) +
+  stat_function(fun = smoke.mean, aes(color = "Smoker")) +
+  stat_function(fun = nonsmoke.mean, aes(color = "Nonsmoker")) +
+  scale_color_manual(values = c("#f15a31", "#000036")) +
+  labs(y = "FEV (in L/s)") +
+  theme(legend.position = "top")
+```
+
+Adolescents start with similar lung capacity, but smokers develop at a slower rate
+
+
+## Separate lines model
+
+```{r echo=FALSE , fig.width = 4, fig.height = 3, fig.align='center', out.width = 600}
+nonsmoke.mean <- function(age) 0.7574802 + 0.2028886 * age
+smoke.mean <- function(age) (0.7574802 + 1.3071504) + (0.2028886 -0.1128448) * age
+ggplot(data = fev, mapping = aes(x = Age, y = FEV, color = Smoke, shape = Smoke)) +
+  geom_point( alpha = 0.5) +
+  stat_function(fun = smoke.mean, aes(color = "Smoker")) +
+  stat_function(fun = nonsmoke.mean, aes(color = "Nonsmoker")) +
+  scale_color_manual(values = c("#f15a31", "#000036")) +
+  labs(y = "FEV (in L/s)") +
+  theme(legend.position = "top")
+```
+
+The smokers/non-smokers have different starting lung capacities and develop at different rates
+
+
+
+<!-- ## Parallel lines model -->
+
+<!-- <br> -->
+
+<!-- $\mu(y|x) = \beta_0 + \beta_1 \mathtt{smoker} + \beta_2 \mathtt{age}$ -->
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+<!-- $\mu(y|\mathtt{smoker}, \mathtt{age}) = \lbrace \beta_0 + \beta_1 (1) \rbrace + \beta_2 \mathtt{age}$ -->
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+<!-- $\mu(y|\mathtt{nonsmoker}, \mathtt{age}) =  \lbrace \beta_0 + \beta_1 (0) \rbrace + \beta_2 \mathtt{age}$ -->
+
+
+## Parallel lines model
+
+<br>
+
+$\mu(y|x) = \beta_0 + \beta_1 \mathtt{smoker} + \beta_2 \mathtt{age}$
+
+<br>
+
+::: {style="font-size: 1.2em;"}
+
+:::{.callout-note}
+# Interpretations
+$\beta_0=$ y-intercept for non-smokers
+
+$\beta_0 + \beta_1=$ y-intercept for smokers
+
+$\beta_2=$ expected rate of change for both groups
+
+:::
+
+:::
+
+
+
+<!-- ## Different slopes model -->
+
+<!-- <br> -->
+
+<!-- $\mu(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age} \times \mathtt{smoker}$ -->
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+<!-- :::: {.columns align=center} -->
+<!-- ::: {.column width="35%"} -->
+<!-- $\mu(y|\mathtt{smoker}, \mathtt{age})$ -->
+<!-- ::: -->
+
+<!-- ::: {.column width="65%"} -->
+<!-- $=\beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age} \times 1$ -->
+
+<!-- $=\beta_0 + \lbrace \beta_1 + \beta_2 \rbrace \mathtt{age}$ -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+
+<!-- :::: {.columns align=center} -->
+<!-- ::: {.column width="40%"} -->
+<!-- $\mu(y|\mathtt{nonsmoker}, \mathtt{age})$ -->
+<!-- ::: -->
+
+<!-- ::: {.column width="60%"} -->
+<!-- $=\beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age} \times 0$ -->
+
+<!-- $=\beta_0 + \beta_1 \mathtt{age}$ -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+## Different slopes model
+
+<br>
+
+$\mu(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age} \times \mathtt{smoker}$
+
+<br>
+
+::: {style="font-size: 1.2em;"}
+
+:::{.callout-note}
+# Interpretations
+$\beta_0=$ y-intercept for both groups
+
+$\beta_1=$ expected rate of change (slope) for non-smokers
+
+$\beta_1+\beta_2=$ expected rate of change (slope) for smokers
+
+:::
+:::
+
+
+<!-- ## Separate lines model -->
+
+<!-- <br> -->
+
+<!-- $\mu(y|x) = \beta_0 + \beta_1 \mathtt{smoker} + \beta_2 \mathtt{age} + \beta_3 \mathtt{age} \times \mathtt{smoker}$ -->
+
+
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+<!-- :::: {.columns align=center} -->
+<!-- ::: {.column width="35%"} -->
+<!-- $\mu(y|\mathtt{smoker}, \mathtt{age})$ -->
+<!-- ::: -->
+
+<!-- ::: {.column width="65%"} -->
+<!-- $=\beta_0 + \beta_1(1) + \beta_2 \mathtt{age} + \beta_3 \mathtt{age}(1)$ -->
+
+<!-- $= \lbrace\beta_0 + \beta_1 \rbrace + \lbrace \beta_2 + \beta_3 \rbrace \mathtt{age}$ -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+<!-- . . . -->
+
+<!-- <br> -->
+
+
+<!-- :::: {.columns align=center} -->
+<!-- ::: {.column width="40%"} -->
+<!-- $\mu(y|\mathtt{nonsmoker}, \mathtt{age})$ -->
+<!-- ::: -->
+
+<!-- ::: {.column width="60%"} -->
+<!-- $=\beta_0 + \beta_1(0) + \beta_2 \mathtt{age} + \beta_3 \mathtt{age}(0)$ -->
+
+<!-- $=\beta_0 + \beta_2 \mathtt{age}$ -->
+<!-- ::: -->
+
+<!-- :::: -->
+
+
+
+## Separate lines model
+
+<br>
+
+$\mu(y|x) = \beta_0 + \beta_1 \mathtt{smoker} + \beta_2 \mathtt{age} + \beta_3 \mathtt{age} \times \mathtt{smoker}$
+
+
+<br>
+
+::: {style="font-size: 1.2em;"}
+
+:::{.callout-note}
+# Interpretations
+$\beta_0=$ y-intercept for non-smokers
+
+$\beta_0 + \beta_1=$ y-intercept for smokers
+
+$\beta_2=$ expected rate of change (slope) for non-smokers
+
+$\beta_2+\beta_3=$ expected rate of change  (slope) for smokers
+
+:::
+:::
+
+
+## More than 3 categories
+
+
+Suppose we have student survey data and one of the columns records the year in school: 
+
+* First year, Sophomore, Junior, and Senior.
+
+
+How can we include this variable in a multiple regression model?
+
+---
+
+## A potentially bad idea
+
+
+We could convert the column to numeric
+
+* First year $\to$ 1
+* Sophomore $\to$ 2
+* Junior $\to$ 3
+* Senior $\to$ 4
+
+. . .
+
+$$
+\mu(Y|{\tt classyear}) = \beta_0 + \beta_1 {\tt classyear}
+$$
+
+---
+
+## A good idea
+
+We can create a series of indicator (dummy) variables to represent the four categories
+
+:::: {.columns}
+
+::: {.column width="25%"}
+|Original|
+|--------|
+| First year|
+| Sophomore|
+|Senior |
+| Senior|
+| Junior|
+| Sophomore|
+:::
+
+
+
+::::
+
+
+---
+
+## A good idea
+
+We can create a series of indicator (dummy) variables to represent the four categories
+
+:::: {.columns}
+
+::: {.column width="25%"}
+|Original|
+|--------|
+| First year|
+| Sophomore|
+|Senior |
+| Senior|
+| Junior|
+| Sophomore|
+:::
+
+::: {.column width="20%"}
+|FY |
+|--------|
+| 1|
+| 0|
+|0 |
+| 0|
+| 0|
+| 0|
+:::
+
+
+::::
+
+---
+
+## A good idea
+
+We can create a series of indicator (dummy) variables to represent the four categories
+
+:::: {.columns}
+
+::: {.column width="25%"}
+|Original|
+|--------|
+| First year|
+| Sophomore|
+|Senior |
+| Senior|
+| Junior|
+| Sophomore|
+:::
+
+::: {.column width="20%"}
+|FY |
+|--------|
+| 1|
+| 0|
+|0 |
+| 0|
+| 0|
+| 0|
+:::
+
+::: {.column width="20%"}
+|Soph |
+|--------|
+| 0|
+| 1|
+|0 |
+| 0|
+| 0|
+| 1|
+:::
+
+::::
+
+---
+
+## A good idea
+
+We can create a series of indicator (dummy) variables to represent the four categories
+
+:::: {.columns}
+
+::: {.column width="25%"}
+|Original|
+|--------|
+| First year|
+| Sophomore|
+|Senior |
+| Senior|
+| Junior|
+| Sophomore|
+:::
+
+::: {.column width="20%"}
+|FY |
+|--------|
+| 1|
+| 0|
+|0 |
+| 0|
+| 0|
+| 0|
+:::
+
+::: {.column width="20%"}
+|So|
+|--------|
+| 0|
+| 1|
+|0 |
+| 0|
+| 0|
+| 1|
+:::
+
+::: {.column width="20%"}
+|Ju|
+|--------|
+| 0|
+| 0|
+|0 |
+| 0|
+| 1|
+| 0|
+:::
+
+::::
+
+
+
+
+# Key idea
+::: {.r-fit-text}
+For a categorical variable with $k$ levels, 
+
+$k-1$ indicator variables are needed.
+:::
+
+
+
+## Example 2
+
+
+- For each sketched regression model, write the mean function for a regression model that matches on the whiteboard
+
+- Note that line type = education level
+
+- Work with your neighbors
+
+```{r}
+#| include: false
+base <- ggplot(data = NULL) +
+  scale_x_continuous(limits = c(0, 10), expand = c(0, 0), breaks = seq(0, 10, by = 2)) +
+  scale_y_continuous(limits = c(0, 10), expand = c(0, 0), breaks = seq(0, 10, by = 2)) +
+  scale_color_manual("Education", breaks = c("College", "Some college", "HS")) +
+  theme_classic() +
+  labs(x = "Age", y = "Depression score")
+
+model1 <- base + 
+    geom_abline(slope = 0.6, intercept = 1,  linetype = 3, linewidth = 1) +
+  geom_abline(slope = 0.6, intercept = 2,  linetype = 2, linewidth = 1) +
+  geom_abline(slope = 0.6, intercept = 3, linetype = 1, linewidth = 1, linewidth = 1) 
+
+model2 <- base + 
+    geom_abline(slope = 0.4, intercept = 1, linetype = 3, linewidth = 1) +
+  geom_abline(slope = 0.6, intercept = 1, linetype = 2, linewidth = 1) +
+  geom_abline(slope = 0.8, intercept = 1, linetype = 1, linewidth = 1, linewidth = 1) 
+
+
+model3 <- base + 
+    geom_abline(slope = 0.1, intercept = 1.5, linetype = 3, linewidth = 1) +
+  geom_abline(slope = 0.6, intercept = 2,  linetype = 2, linewidth = 1) +
+  geom_abline(slope = 0.4, intercept = 3, linetype = 1, linewidth = 1, linewidth = 1) 
+```
+
+
+## Model 1
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-align: center
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+model1
+```
+
+## Model 2
+
+```{r}
+#| echo: false
+#| warning: false
+#| fig-align: center
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+model2
+```
+
+
+## Model 3
+```{r}
+#| echo: false
+#| warning: false
+#| fig-align: center
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+model3
+```
