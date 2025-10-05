@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Polynomial Regression – Stat 230 - Fall 2025</title>
+<title>Categorical Predictor Variables – Stat 230 - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -123,7 +123,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Polynomial Regression</h1>
+<h1 class="title">Categorical Predictor Variables</h1>
 </div>
 
 
@@ -144,44 +144,88 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="example-1">Example 1</h2>
 <p>For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.</p>
 <p><strong>Model 1:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 10 +  1 \mathtt{age} -2 \mathtt{smoker}\)</span></p>
-<p>Fitted equation for non-smokers:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 10 +  1 \mathtt{age}\)</span></p>
 <p><br></p>
-<p>Fitted equation for smokers:</p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 8 +  1 \mathtt{age}\)</span></p>
 <p><br></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <p><strong>Model 2:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 5 +  1 \mathtt{age} -0.5 \mathtt{age \times smoker}\)</span></p>
-<p>Fitted equation for non-smokers:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 5 +  1 \mathtt{age}\)</span></p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 5 + 0.5 \mathtt{age}\)</span></p>
 <p><br></p>
-<p>Fitted equation for smokers:</p>
-<p><br></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <p><strong>Model 3:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age} + 3\mathtt{smoker} -0.5 \mathtt{age \times smoker}\)</span></p>
-<p>Fitted equation for non-smokers:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age}\)</span></p>
 <p><br></p>
-<p>Fitted equation for smokers:</p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 7  +  0 \mathtt{age}\)</span></p>
 <p><br></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -191,15 +235,50 @@ window.Quarto = {
 <p>Researchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”</p>
 <p>The researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.</p>
 <ol type="1">
-<li><p>Define indicator variables that represents the <code>education</code> category. (Start by determining wow many indicators do you need. Then define them.)</p></li>
-<li><p>Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.</p></li>
+<li>Define indicator variables that represents the <code>education</code> category. (Start by determining wow many indicators do you need. Then define them.)</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We need two indicator variables to represent the three categories of education. We can define them as follows: - Let <span class="math inline">\(\mathtt{edu1} = 1\)</span> if the individual has a college degree, and 0 otherwise. - Let <span class="math inline">\(\mathtt{edu2} = 1\)</span> if the individual has a high school degree plus some college, and 0 otherwise. - The reference category (when both <span class="math inline">\(\mathtt{edu1}\)</span> and <span class="math inline">\(\mathtt{edu2}\)</span> are 0) is having a high school degree only.</p>
+<p>You could have chosen other baseline categories, but you need two indicators to represent three categories.</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2}\)</span></p>
 </div>
 </div>
 </div>
@@ -210,8 +289,24 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age \times edu1} + \beta_3 \mathtt{age \times edu2}\)</span></p>
 </div>
 </div>
 </div>
@@ -222,8 +317,24 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="08H-mlr-categorical_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2} + \beta_4 \mathtt{age \times edu1} + \beta_5 \mathtt{age \times edu2}\)</span></p>
 </div>
 </div>
 </div>

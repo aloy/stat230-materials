@@ -1,0 +1,17 @@
+{
+  "hash": "b5565f5221f1571f5ab6bddbeb19084c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Multiple Regression\"\nsubtitle: \"Stat 230\"\nformat:\n  html: default\n  docx:\n    geometry:\n      - top=1in\n      - left=1in\n      - right=1in\n      - bottom=1in\neditor_options: \n  chunk_output_type: console\n---\n\n\\vspace{-0.8in}\n\n\n\n\n## Example: Abalone age\n\nAbalone are a type of mollusk that are harvested for their meat. Knowing the age of abalone can help set sustainable fishing quotas; however, the process is time consuming and labor intensive. Researchers collected various physical measurements, such as length, diameter, height, and weight, that are easy to collect to develop a method to predict abalone age. Below is R output for a multiple linear regression model predicting rings (a proxy for age) that uses `length` (mm), `diameter` (mm), `height` (mm), and `whole_weight` (in grams) as predictor variables.\n\n```\nCall:\nlm(formula = rings ~ length + diameter + height + whole_weight, \n    data = abalone)\n\nCoefficients:\n              Estimate Std. Error t value Pr(>|t|)    \n(Intercept)    2.90861    0.30922   9.406  < 2e-16\nlength       -12.04857    2.10217  -5.731 1.07e-08\ndiameter      25.64381    2.57384   9.963  < 2e-16\nheight        20.24276    1.78180  11.361  < 2e-16\nwhole_weight   0.06589    0.22557   0.292     0.77    \n---\n\nResidual standard error: 2.59 on 4172 degrees of freedom\nMultiple R-squared:  0.3556,\tAdjusted R-squared:  0.3549 \nF-statistic: 575.4 on 4 and 4172 DF,  p-value: < 2.2e-16\n```\n\n(a) Report the estimated regression equation.\n\n(b) Using the model, predict the number of rings for an abalone with length 0.5 mm, diameter 0.4 mm, height 0.1 mm, and whole weight of 1 gram.\n\n(c) Interpret the slope coefficient for length in context.\n\n(d) State the hypotheses for the test of the slope coefficient for `whole_weight`. What do you conclude based on the results of this test?\n\n(e) Calculate a 95% confidence interval for the slope coefficient for `length`. Interpret this interval in context.\n\n(f) What proportion of the variability in `rings` is explained by the model?\n",
+    "supporting": [
+      "08H-sol-mlr-intro_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

@@ -1,5 +1,5 @@
 ---
-title: "Polynomial Regression"
+title: "Categorical Predictor Variables"
 format: html
 engine: knitr
 editor: source
@@ -57,61 +57,100 @@ For each regression model, sketch the fitted model. To do this, first write the 
 
 **Model 1:** $\widehat{\mu}(y|x) = 10 +  1 \mathtt{age} -2 \mathtt{smoker}$
 
-Fitted equation for non-smokers:
+::: {.callout-note  collapse="true"}
+### Solution
+
+Fitted equation for non-smokers: $\widehat{\mu}(y|x) = 10 +  1 \mathtt{age}$
 
 <br>
 
-Fitted equation for smokers:
+Fitted equation for smokers: $\widehat{\mu}(y|x) = 8 +  1 \mathtt{age}$
 
 <br>
+
 
 ```{r}
-#| echo: false
+#| warning: false
+#| fig-align: center
 #| fig-asp: 1
 #| fig-width: 4
 #| out-width: 60%
-graph_paper
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 10, slope = 1, linetype = 1) +
+  geom_abline(intercept = 8, slope = 1, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
 ```
+
+:::
 
 
 
 **Model 2:** $\widehat{\mu}(y|x) = 5 +  1 \mathtt{age} -0.5 \mathtt{age \times smoker}$
 
-Fitted equation for non-smokers:
+
+:::{.callout-note collapse="true"}
+### Solution
+
+Fitted equation for non-smokers: $\widehat{\mu}(y|x) = 5 +  1 \mathtt{age}$
+
+Fitted equation for smokers: $\widehat{\mu}(y|x) = 5 + 0.5 \mathtt{age}$
 
 <br>
-
-Fitted equation for smokers:
-
-<br>
-
 
 ```{r}
-#| echo: false
+#| fig-align: center
+#| warning: false
 #| fig-asp: 1
 #| fig-width: 4
 #| out-width: 60%
-graph_paper
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 5, slope = 1, linetype = 1) +
+  geom_abline(intercept = 5, slope = 0.5, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
 ```
+
+:::
 
 
 **Model 3:** $\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age} + 3\mathtt{smoker} -0.5 \mathtt{age \times smoker}$
 
-Fitted equation for non-smokers:
+
+
+:::{.callout-note collapse="true"}
+### Solution
+
+Fitted equation for non-smokers: $\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age}$
 
 <br>
 
-Fitted equation for smokers:
+Fitted equation for smokers: $\widehat{\mu}(y|x) = 7  +  0 \mathtt{age}$
 
 <br>
 
 ```{r}
-#| echo: false
+#| fig-align: center
+#| warning: false
 #| fig-asp: 1
 #| fig-width: 4
 #| out-width: 60%
-graph_paper
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 4, slope = 0.5, linetype = 1) +
+  geom_abline(intercept = 7, slope = 0, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
 ```
+:::
 
 
 
@@ -125,6 +164,15 @@ The researchers constructed a depression score from responses to several related
 
 1. Define indicator variables that represents the `education` category. (Start by determining wow many indicators do you need. Then define them.)
 
+::: {.callout-note collapse="true"}
+### Solution
+We need two indicator variables to represent the three categories of education. We can define them as follows:
+- Let $\mathtt{edu1} = 1$ if the individual has a college degree, and 0 otherwise.
+- Let $\mathtt{edu2} = 1$ if the individual has a high school degree plus some college, and 0 otherwise.
+- The reference category (when both $\mathtt{edu1}$ and $\mathtt{edu2}$ are 0) is having a high school degree only.
+
+You could have chosen other baseline categories, but you need two indicators to represent three categories.
+:::
 
 2. Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.
 
@@ -136,6 +184,11 @@ The researchers constructed a depression score from responses to several related
 #| out-width: 60%
 model1
 ```
+
+:::{.callout-note collapse="true"}
+### Solution
+$\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2}$
+:::
 
 
 3. Suppose that one researcher wants to fit a model that represents the below sketch  (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.
@@ -149,6 +202,10 @@ model1
 model2
 ```
 
+:::{.callout-note collapse="true"}
+### Solution
+$\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age \times edu1} + \beta_3 \mathtt{age \times edu2}$
+:::
 
 
 4. Suppose that one researcher wants to fit a model that represents the below sketch  (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.
@@ -161,3 +218,9 @@ model2
 #| out-width: 60%
 model3
 ```
+
+
+:::{.callout-note collapse="true"}
+### Solution
+$\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2} + \beta_4 \mathtt{age \times edu1} + \beta_5 \mathtt{age \times edu2}$
+::: 

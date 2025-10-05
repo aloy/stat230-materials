@@ -42,6 +42,15 @@ theme_classic <- function() {
     )
 }
 
+graph_paper <- ggplot(data = data.frame(x = 0:20, y = 0:20), aes(x, y)) +
+  theme_classic() +
+  scale_x_continuous(name = "Age", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  scale_y_continuous(name = "FEV", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  theme(  
+    panel.grid.major = element_line(color = "gray60", size = 0.5), # Major grid lines
+    panel.grid.minor = element_line(color = "gray60", size = 0.25), # Minor grid lines
+  )
+
 # set ggplot2 theme
 ggplot2::theme_set(theme_classic())
 ```
@@ -156,16 +165,64 @@ Create a `Smoker` indicator variable:
 
 $\mu(y|x) = 10 +  1 \mathtt{age} -2 \mathtt{smoker}$
 
+::: {.callout-warning  collapse="true"}
+```{r}
+#| warning: false
+#| fig-align: center
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 10, slope = 1, linetype = 1) +
+  geom_abline(intercept = 8, slope = 1, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
+```
+:::
+
 
 ## Model 2
 
 $\mu(y|x) = 5 +  1 \mathtt{age} -0.5 \mathtt{age \times smoker}$
 
+```{r}
+#| fig-align: center
+#| warning: false
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 5, slope = 1, linetype = 1) +
+  geom_abline(intercept = 5, slope = 0.5, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
+```
 
 ## Model 3
 
 $\begin{split}\mu(y|x) = 4  &+  0.5 \mathtt{age} + 3\mathtt{smoker} -0.5 \mathtt{age \times smoker} \end{split}$
 
+```{r}
+#| fig-align: center
+#| warning: false
+#| fig-asp: 1
+#| fig-width: 4
+#| out-width: 60%
+#| echo: false
+graph_paper + 
+  geom_abline(intercept = 4, slope = 0.5, linetype = 1) +
+  geom_abline(intercept = 7, slope = 0, linetype = 2) +
+  theme_classic() +
+  scale_x_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  scale_y_continuous(breaks = seq(2, 20, by = 2), expand = c(0, 0), limits = c(0, 20)) +
+  labs(x = "Age", y = "FEV")
+```
 
 ## Parallel lines model
 
