@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Stat 230 Slide Decks – Stat 230 - Fall 2025</title>
+<title>Categorical Predictor Variables – Stat 230 - Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0b37c64f34216b628666a8dac638b53b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,35 +67,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-date"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -129,7 +98,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="quarto-light">
@@ -140,14 +109,21 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="RGlhZ25vc3RpY3M=">Diagnostics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SW5mZXJlbmNl">Inference <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TUxS">MLR <span class="quarto-category-count">(3)</span></div><div class="category" data-category="UG9seW5vbWlhbA==">Polynomial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U0xS">SLR <span class="quarto-category-count">(5)</span></div><div class="category" data-category="VHJhbnNmb3JtYXRpb25z">Transformations <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link active" data-scroll-target="#example-1">Example 1</a></li>
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example 2</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Stat 230 Slide Decks</h1>
+<h1 class="title">Categorical Predictor Variables</h1>
 </div>
 
 
@@ -164,218 +140,209 @@ window.Quarto = {
 </header>
 
 
-<p>All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.</p>
+<section id="example-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-1">Example 1</h2>
+<p>For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.</p>
+<p><strong>Model 1:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 10 +  1 \mathtt{age} -2 \mathtt{smoker}\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 10 +  1 \mathtt{age}\)</span></p>
+<p><br></p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 8 +  1 \mathtt{age}\)</span></p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Model 2:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 5 +  1 \mathtt{age} -0.5 \mathtt{age \times smoker}\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 5 +  1 \mathtt{age}\)</span></p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 5 + 0.5 \mathtt{age}\)</span></p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Model 3:</strong> <span class="math inline">\(\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age} + 3\mathtt{smoker} -0.5 \mathtt{age \times smoker}\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fitted equation for non-smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 4  +  0.5 \mathtt{age}\)</span></p>
+<p><br></p>
+<p>Fitted equation for smokers: <span class="math inline">\(\widehat{\mu}(y|x) = 7  +  0 \mathtt{age}\)</span></p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2" class="level2">
+<h2 class="anchored" data-anchor-id="example-2">Example 2</h2>
+<p>Researchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”</p>
+<p>The researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.</p>
+<ol type="1">
+<li>Define indicator variables that represents the <code>education</code> category. (Start by determining wow many indicators do you need. Then define them.)</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We need two indicator variables to represent the three categories of education. We can define them as follows: - Let <span class="math inline">\(\mathtt{edu1} = 1\)</span> if the individual has a college degree, and 0 otherwise. - Let <span class="math inline">\(\mathtt{edu2} = 1\)</span> if the individual has a high school degree plus some college, and 0 otherwise. - The reference category (when both <span class="math inline">\(\mathtt{edu1}\)</span> and <span class="math inline">\(\mathtt{edu2}\)</span> are 0) is having a high school degree only.</p>
+<p>You could have chosen other baseline categories, but you need two indicators to represent three categories.</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2}\)</span></p>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{age \times edu1} + \beta_3 \mathtt{age \times edu2}\)</span></p>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Suppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="08H-sol-mlr-categorical_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\widehat{\mu}(y|x) = \beta_0 + \beta_1 \mathtt{age} + \beta_2 \mathtt{edu1} + \beta_3 \mathtt{edu2} + \beta_4 \mathtt{age \times edu1} + \beta_5 \mathtt{age \times edu2}\)</span></p>
+</div>
+</div>
+</div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="TUxS" data-listing-date-sort="1759622400000" data-listing-file-modified-sort="1759776486733" data-listing-reading-time-sort="10" data-listing-word-count-sort="1956">
-<a href="./slides/08-mlr-categorical.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/08-mlr-categorical.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Categorical Predictor Variables
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUxS'); return false;">MLR</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Oct 5, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="TUxS" data-listing-date-sort="1759276800000" data-listing-file-modified-sort="1759776486730" data-listing-reading-time-sort="5" data-listing-word-count-sort="926">
-<a href="./slides/07-mlr-intro.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/07-mlr-intro.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Multiple Regression
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUxS'); return false;">MLR</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Oct 1, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="TUxSJTJDUG9seW5vbWlhbA==" data-listing-date-sort="1759104000000" data-listing-file-modified-sort="1759776486730" data-listing-reading-time-sort="14" data-listing-word-count-sort="2637">
-<a href="./slides/06-mlr-polynomial.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/06-mlr-polynomial.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Polynomial Regression
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TUxS'); return false;">MLR</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UG9seW5vbWlhbA=='); return false;">Polynomial</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 29, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="3" data-categories="U0xSJTJDVHJhbnNmb3JtYXRpb25z" data-listing-date-sort="1758844800000" data-listing-file-modified-sort="1759776486722" data-listing-reading-time-sort="9" data-listing-word-count-sort="1800">
-<a href="./slides/05-slr-transformations.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/05-slr-transformations.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-SLR Transformations
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0xS'); return false;">SLR</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VHJhbnNmb3JtYXRpb25z'); return false;">Transformations</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 26, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="4" data-categories="U0xSJTJDRGlhZ25vc3RpY3MlMkNUcmFuc2Zvcm1hdGlvbnM=" data-listing-date-sort="1758672000000" data-listing-file-modified-sort="1759776486722" data-listing-reading-time-sort="5" data-listing-word-count-sort="901">
-<a href="./slides/04-slr-diagnostics.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/04-slr-diagnostics.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-SLR Diagnostics and Transformations
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0xS'); return false;">SLR</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGlhZ25vc3RpY3M='); return false;">Diagnostics</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VHJhbnNmb3JtYXRpb25z'); return false;">Transformations</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 24, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="5" data-categories="U0xSJTJDSW5mZXJlbmNl" data-listing-date-sort="1758499200000" data-listing-file-modified-sort="1759776486722" data-listing-reading-time-sort="4" data-listing-word-count-sort="619">
-<a href="./slides/03-slr-prediction.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/03-slr-prediction.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Inference for SLR Prediction
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0xS'); return false;">SLR</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW5mZXJlbmNl'); return false;">Inference</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 22, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="6" data-categories="U0xSJTJDSW5mZXJlbmNl" data-listing-date-sort="1758067200000" data-listing-file-modified-sort="1759776486722" data-listing-reading-time-sort="9" data-listing-word-count-sort="1710">
-<a href="./slides/02-slr-inference.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/02-slr-inference.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Inference for SLR Coefficients
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0xS'); return false;">SLR</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SW5mZXJlbmNl'); return false;">Inference</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 17, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-<div class="g-col-1" data-index="7" data-categories="U0xS" data-listing-date-sort="1757894400000" data-listing-file-modified-sort="1759776486722" data-listing-reading-time-sort="7" data-listing-word-count-sort="1234">
-<a href="./slides/01-slides-slr-review.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="slides/featured/01-slides-slr-review.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Course overview, SLR review
-</h5>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('U0xS'); return false;">SLR</div>
-
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Sep 15, 2025
-</div>
-</div>
-</div>
-</div></a>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
