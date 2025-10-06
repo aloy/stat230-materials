@@ -61,7 +61,7 @@ $$\widehat{rings} = 2.90861 - 12.04857(\mathtt{length}) + 25.64381(\mathtt{diame
 ### Solution
 To make the prediction, we substitute the values into the regression equation:
 $$
-\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 6.27 \text{ rings}
+\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 9.23 \text{ rings}
 $$
 :::
 
