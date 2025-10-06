@@ -504,32 +504,193 @@
     "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+    "objectID": "slides/02-slr-inference.html#warm-up",
+    "href": "slides/02-slr-inference.html#warm-up",
+    "title": "Inference for SLR",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
   },
   {
-    "objectID": "activity/04H-sol-slr-prediction.html",
-    "href": "activity/04H-sol-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
+    "objectID": "slides/02-slr-inference.html#example",
+    "href": "slides/02-slr-inference.html#example",
+    "title": "Inference for SLR",
+    "section": "Example",
+    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
   },
   {
-    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
+    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
+    "href": "slides/02-slr-inference.html#a-deterministic-model",
+    "title": "Inference for SLR",
+    "section": "A deterministic model",
+    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
   },
   {
-    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Prediction and confidence intervals",
-    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
+    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Simple Linear Regression Model",
+    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model",
+    "href": "slides/02-slr-inference.html#linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
+    "href": "slides/02-slr-inference.html#linear-regression-model-1",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
+    "href": "slides/02-slr-inference.html#linear-regression-model-2",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#notation",
+    "href": "slides/02-slr-inference.html#notation",
+    "title": "Inference for SLR",
+    "section": "Notation",
+    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution",
+    "href": "slides/02-slr-inference.html#sampling-distribution",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
+    "href": "slides/02-slr-inference.html#sampling-distribution-2",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#confidence-interval",
+    "href": "slides/02-slr-inference.html#confidence-interval",
+    "title": "Inference for SLR",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#hypothesis-test",
+    "href": "slides/02-slr-inference.html#hypothesis-test",
+    "title": "Inference for SLR",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#coefficient-table",
+    "href": "slides/02-slr-inference.html#coefficient-table",
+    "title": "Inference for SLR",
+    "section": "Coefficient table",
+    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#your-turn",
+    "href": "slides/02-slr-inference.html#your-turn",
+    "title": "Inference for SLR",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "title": "Inference for SLR",
+    "section": "A note on reporting test results",
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "title": "Inference for SLR",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
+    "section": "",
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "activity/08H-mlr-categorical.html",
+    "href": "activity/08H-mlr-categorical.html",
+    "title": "Polynomial Regression",
+    "section": "",
+    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:"
+  },
+  {
+    "objectID": "activity/08H-mlr-categorical.html#example-1",
+    "href": "activity/08H-mlr-categorical.html#example-1",
+    "title": "Polynomial Regression",
+    "section": "",
+    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:"
+  },
+  {
+    "objectID": "activity/08H-mlr-categorical.html#example-2",
+    "href": "activity/08H-mlr-categorical.html#example-2",
+    "title": "Polynomial Regression",
+    "section": "Example 2",
+    "text": "Example 2\nResearchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”\nThe researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.\n\nDefine indicator variables that represents the education category. (Start by determining wow many indicators do you need. Then define them.)\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit."
+  },
+  {
+    "objectID": "activity/08H-sol-mlr-categorical.html",
+    "href": "activity/08H-sol-mlr-categorical.html",
+    "title": "Categorical Predictor Variables",
+    "section": "",
+    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 8 +  1 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age}\\)\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 5 + 0.5 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 7  +  0 \\mathtt{age}\\)"
+  },
+  {
+    "objectID": "activity/08H-sol-mlr-categorical.html#example-1",
+    "href": "activity/08H-sol-mlr-categorical.html#example-1",
+    "title": "Categorical Predictor Variables",
+    "section": "",
+    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 8 +  1 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age}\\)\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 5 + 0.5 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 7  +  0 \\mathtt{age}\\)"
+  },
+  {
+    "objectID": "activity/08H-sol-mlr-categorical.html#example-2",
+    "href": "activity/08H-sol-mlr-categorical.html#example-2",
+    "title": "Categorical Predictor Variables",
+    "section": "Example 2",
+    "text": "Example 2\nResearchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”\nThe researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.\n\nDefine indicator variables that represents the education category. (Start by determining wow many indicators do you need. Then define them.)\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWe need two indicator variables to represent the three categories of education. We can define them as follows: - Let \\(\\mathtt{edu1} = 1\\) if the individual has a college degree, and 0 otherwise. - Let \\(\\mathtt{edu2} = 1\\) if the individual has a high school degree plus some college, and 0 otherwise. - The reference category (when both \\(\\mathtt{edu1}\\) and \\(\\mathtt{edu2}\\) are 0) is having a high school degree only.\nYou could have chosen other baseline categories, but you need two indicators to represent three categories.\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{edu1} + \\beta_3 \\mathtt{edu2}\\)\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age \\times edu1} + \\beta_3 \\mathtt{age \\times edu2}\\)\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{edu1} + \\beta_3 \\mathtt{edu2} + \\beta_4 \\mathtt{age \\times edu1} + \\beta_5 \\mathtt{age \\times edu2}\\)"
   },
   {
     "objectID": "activity/06H-slr-transform.html",
@@ -784,6 +945,20 @@
     "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm(formula, data)\nFit a linear model\n\n\npredict(model, newdata, interval, level, se.fit)\nMake predictions and\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"confidence\")\nPlot data and add confidence intervals for the mean response\n\n\ngf_point(formula, data) |&gt; gf_lm(interval = \"prediction\")\nPlot data and add prediction intervals for the mean response"
   },
   {
+    "objectID": "activity/08H-sol-mlr-intro.html",
+    "href": "activity/08H-sol-mlr-intro.html",
+    "title": "Multiple Regression",
+    "section": "",
+    "text": "Abalone are a type of mollusk that are harvested for their meat. Knowing the age of abalone can help set sustainable fishing quotas; however, the process is time consuming and labor intensive. Researchers collected various physical measurements, such as length, diameter, height, and weight, that are easy to collect to develop a method to predict abalone age. Below is R output for a multiple linear regression model predicting rings (a proxy for age) that uses length (mm), diameter (mm), height (mm), and whole_weight (in grams) as predictor variables.\nCall:\nlm(formula = rings ~ length + diameter + height + whole_weight, \n    data = abalone)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    2.90861    0.30922   9.406  &lt; 2e-16\nlength       -12.04857    2.10217  -5.731 1.07e-08\ndiameter      25.64381    2.57384   9.963  &lt; 2e-16\nheight        20.24276    1.78180  11.361  &lt; 2e-16\nwhole_weight   0.06589    0.22557   0.292     0.77    \n---\n\nResidual standard error: 2.59 on 4172 degrees of freedom\nMultiple R-squared:  0.3556,    Adjusted R-squared:  0.3549 \nF-statistic: 575.4 on 4 and 4172 DF,  p-value: &lt; 2.2e-16\n\nReport the estimated regression equation.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe estimated regression equation is: \\[\\widehat{rings} = 2.90861 - 12.04857(\\mathtt{length}) + 25.64381(\\mathtt{diameter}) + 20.24276(\\mathtt{height}) + 0.06589(\\mathtt{whole\\_weight})\\]\n\n\n\n\nUsing the model, predict the number of rings for an abalone with length 0.5 mm, diameter 0.4 mm, height 0.1 mm, and whole weight of 1 gram.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo make the prediction, we substitute the values into the regression equation: \\[\n\\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 6.27 \\text{ rings}\n\\]\n\n\n\n\nInterpret the slope coefficient for length in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe slope coefficient for length is -12.04857. This means that, holding all other predictor variables constant, for each additional millimeter increase in length, we expect the number of rings to decrease by approximately 12.05.\n\n\n\n\nState the hypotheses for the test of the slope coefficient for whole_weight. What do you conclude based on the results of this test?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe hypotheses for the test of the slope coefficient for whole_weight are:\n\nNull hypothesis (\\(H_0\\)): \\(\\beta_{\\text{whole\\_weight}} = 0\\) (there is no association between whole weight and rings, controlling for other variables)\n\nAlternative hypothesis (\\(H_A\\)): \\(\\beta_{\\text{whole\\_weight}} \\neq 0\\) (there is an association between whole weight and rings, controlling for other variables)\n\nThe p-value for the test is 0.77, which is very large. Therefore, we fail to reject the null hypothesis. There is no evidence to suggest that whole weight is associated with the number of rings, after accounting for length, diameter, and height.\n\n\n\n\nCalculate a 95% confidence interval for the slope coefficient for length. Interpret this interval in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo calculate the 95% confidence interval for the slope coefficient for length, we use the formula:\n\\[\\text{CI} = \\hat{\\beta} \\pm t^* \\cdot SE(\\hat{\\beta})\\]\nwhere \\(\\hat{\\beta}\\) is the estimated coefficient, \\(SE(\\hat{\\beta})\\) is the standard error, and \\(t^*\\) is the critical value from the t-distribution with 4172 degrees of freedom.\nUsing the output, we have:\n\n\\(\\hat{\\beta}_{\\text{length}} = -12.04857\\)\n\\(SE(\\hat{\\beta}_{\\text{length}}) = 2.10217\\)\nFor a 95% confidence level and 4172 degrees of freedom, \\(t^* \\approx 1.96\\) (using normal approximation for large df)\n\nThus, the confidence interval is: \\[\\text{CI} = -12.04857 \\pm 1.96 \\cdot 2.10217 =  (-16.169,  -7.928)\\]\nWe are 95% confident that the true slope coefficient for length is between -16.169 and -7.928. We are 95% confident that for each additional millimeter increase in length, the number of rings is expected to decrease by between 7.93 and 16.17, holding all other variables constant.\n\n\n\n\nWhat proportion of the variability in rings is explained by the model?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe proportion of variability in rings explained by the model is given by the R-squared value, which is 0.3556. This means that approximately 35.56% of the variability in the number of rings can be explained by the multiple regression model with the predictor variables length, diameter, height, and whole weight."
+  },
+  {
+    "objectID": "activity/08H-sol-mlr-intro.html#example-abalone-age",
+    "href": "activity/08H-sol-mlr-intro.html#example-abalone-age",
+    "title": "Multiple Regression",
+    "section": "",
+    "text": "Abalone are a type of mollusk that are harvested for their meat. Knowing the age of abalone can help set sustainable fishing quotas; however, the process is time consuming and labor intensive. Researchers collected various physical measurements, such as length, diameter, height, and weight, that are easy to collect to develop a method to predict abalone age. Below is R output for a multiple linear regression model predicting rings (a proxy for age) that uses length (mm), diameter (mm), height (mm), and whole_weight (in grams) as predictor variables.\nCall:\nlm(formula = rings ~ length + diameter + height + whole_weight, \n    data = abalone)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    2.90861    0.30922   9.406  &lt; 2e-16\nlength       -12.04857    2.10217  -5.731 1.07e-08\ndiameter      25.64381    2.57384   9.963  &lt; 2e-16\nheight        20.24276    1.78180  11.361  &lt; 2e-16\nwhole_weight   0.06589    0.22557   0.292     0.77    \n---\n\nResidual standard error: 2.59 on 4172 degrees of freedom\nMultiple R-squared:  0.3556,    Adjusted R-squared:  0.3549 \nF-statistic: 575.4 on 4 and 4172 DF,  p-value: &lt; 2.2e-16\n\nReport the estimated regression equation.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe estimated regression equation is: \\[\\widehat{rings} = 2.90861 - 12.04857(\\mathtt{length}) + 25.64381(\\mathtt{diameter}) + 20.24276(\\mathtt{height}) + 0.06589(\\mathtt{whole\\_weight})\\]\n\n\n\n\nUsing the model, predict the number of rings for an abalone with length 0.5 mm, diameter 0.4 mm, height 0.1 mm, and whole weight of 1 gram.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo make the prediction, we substitute the values into the regression equation: \\[\n\\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 6.27 \\text{ rings}\n\\]\n\n\n\n\nInterpret the slope coefficient for length in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe slope coefficient for length is -12.04857. This means that, holding all other predictor variables constant, for each additional millimeter increase in length, we expect the number of rings to decrease by approximately 12.05.\n\n\n\n\nState the hypotheses for the test of the slope coefficient for whole_weight. What do you conclude based on the results of this test?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe hypotheses for the test of the slope coefficient for whole_weight are:\n\nNull hypothesis (\\(H_0\\)): \\(\\beta_{\\text{whole\\_weight}} = 0\\) (there is no association between whole weight and rings, controlling for other variables)\n\nAlternative hypothesis (\\(H_A\\)): \\(\\beta_{\\text{whole\\_weight}} \\neq 0\\) (there is an association between whole weight and rings, controlling for other variables)\n\nThe p-value for the test is 0.77, which is very large. Therefore, we fail to reject the null hypothesis. There is no evidence to suggest that whole weight is associated with the number of rings, after accounting for length, diameter, and height.\n\n\n\n\nCalculate a 95% confidence interval for the slope coefficient for length. Interpret this interval in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo calculate the 95% confidence interval for the slope coefficient for length, we use the formula:\n\\[\\text{CI} = \\hat{\\beta} \\pm t^* \\cdot SE(\\hat{\\beta})\\]\nwhere \\(\\hat{\\beta}\\) is the estimated coefficient, \\(SE(\\hat{\\beta})\\) is the standard error, and \\(t^*\\) is the critical value from the t-distribution with 4172 degrees of freedom.\nUsing the output, we have:\n\n\\(\\hat{\\beta}_{\\text{length}} = -12.04857\\)\n\\(SE(\\hat{\\beta}_{\\text{length}}) = 2.10217\\)\nFor a 95% confidence level and 4172 degrees of freedom, \\(t^* \\approx 1.96\\) (using normal approximation for large df)\n\nThus, the confidence interval is: \\[\\text{CI} = -12.04857 \\pm 1.96 \\cdot 2.10217 =  (-16.169,  -7.928)\\]\nWe are 95% confident that the true slope coefficient for length is between -16.169 and -7.928. We are 95% confident that for each additional millimeter increase in length, the number of rings is expected to decrease by between 7.93 and 16.17, holding all other variables constant.\n\n\n\n\nWhat proportion of the variability in rings is explained by the model?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe proportion of variability in rings explained by the model is given by the R-squared value, which is 0.3556. This means that approximately 35.56% of the variability in the number of rings can be explained by the multiple regression model with the predictor variables length, diameter, height, and whole weight."
+  },
+  {
     "objectID": "activity/01-slr-review.html",
     "href": "activity/01-slr-review.html",
     "title": "Simple linear regression review – Stat 230",
@@ -791,151 +966,207 @@
     "text": "Researchers examined the relationship between sleep duration and simple reaction time performance in healthy young adults in a controlled laboratory setting. Sixty-five college-aged participants (ages 18-25) were recruited and randomly assigned to different sleep conditions ranging from 3 to 9 hours of sleep per night over a one-week period. Each morning, participants completed a computerized simple reaction time task where they responded to visual stimuli as quickly as possible, with reaction times measured in milliseconds. The researchers fit a simple linear regression model to their data and found a slope of -18.7 and a y-intercept of 520.1.\n\nReport the equation of the fitted regression equation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7x + 520.1\\)\n\n\n\n\nInterpret the value of the slope in context. Be sure to talk about association or expectation.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA one hour increase in sleep duration is associated with a decrease in reaction time of 18.7 milliseconds.\n\n\n\n\nInterpret the value of the y-intercept in context.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe y-intercept of 520.1 milliseconds represents the expected reaction time for a young adult who has slept 0 hours per night over the past week. We should be cautious about interpreting this value since it is outside the range of the data.\n\n\n\n\nUse the fitted model to predict the reaction time of a young adult who has slept 5 hours per night over the past week.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\hat{y} = -18.7(5) + 520.1 = 426.6\\) milliseconds\n\n\n\n\nCan you use the model to predict the reaction time of a young adult who has slept 10 hours per night over the past week? Briefly justify your answer.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we should not use the model to predict the reaction time for a young adult who has slept 10 hours per night because this value is outside the range of the data used to fit the model (3 to 9 hours). Predictions made outside the range of the data are considered extrapolations.\n\n\n\n\nWhy did researchers randomly assign participants to a sleep condition?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nRandom assignment helps to ensure that any confounding variables are evenly distributed across the different sleep conditions. This allows the researchers to make a causal conclusion about the effect of sleep duration on reaction time.\n\n\n\n\nCan you generalize these results to all young adults in the U.S.? Why or why not?\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, we cannot generalize these results to all young adults in the U.S. because it may not be representative of all young adults in the U.S. It we truly wanted to generalize to the entire population, then we should draw a random sample from the population of interest."
   },
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Stat 230 Slide Decks",
+    "objectID": "activity/04H-sol-slr-prediction.html",
+    "href": "activity/04H-sol-slr-prediction.html",
+    "title": "Inference for Prediction in SLR",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
   },
   {
-    "objectID": "slides/02-slr-inference.html#warm-up",
-    "href": "slides/02-slr-inference.html#warm-up",
-    "title": "Inference for SLR",
-    "section": "Warm up",
-    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+    "objectID": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "href": "activity/04H-sol-slr-prediction.html#warm-up-questions",
+    "title": "Inference for Prediction in SLR",
+    "section": "",
+    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 11.3 + 2.65x\\)\n\n\n\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one-year increase in education level we expect average income to increase by $2,650.\n\n\n\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor an employee with 0 years of education, we expect their average income to be $11,300. (Note: This interpretation may not make sense in context since it’s unlikely that an employee would have 0 years of education.)\n\n\n\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(\\widehat{y} = 53.7 + 11.6x\\)\n\n\n\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nFor a one standard deviation increase in education level we expect average income to increase by $11,600.\n\n\n\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAn employee with average education level (since the standardized value is 0) is expected to have an income of $53,700.\n\n\n\nQ7. Compare the two models. What’s the same? What’s different?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe two models have different regression coefficients and standard errors, but they have the same overall association between the explanatory and predictor variable."
   },
   {
-    "objectID": "slides/02-slr-inference.html#example",
-    "href": "slides/02-slr-inference.html#example",
-    "title": "Inference for SLR",
+    "objectID": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "href": "activity/04H-sol-slr-prediction.html#prediction-and-confidence-intervals",
+    "title": "Inference for Prediction in SLR",
+    "section": "Prediction and confidence intervals",
+    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\")\ncar_mod &lt;- lm(Price ~ Mileage, data = cars)\ncar_mod\n\n\nCall:\nlm(formula = Price ~ Mileage, data = cars)\n\nCoefficients:\n(Intercept)      Mileage  \n 24764.5590      -0.1725  \n\n\n\\(\\widehat{y} = 24764.56 - 0.17x\\)\n\n\n\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nUsing the regression equation, we have: \\[\\widehat{y} = 24764.56 - 0.17(8221) = 23366.99\\] So, the expected price of this car is $23,366.99.\nIn R, we use predict() to find the expected price:\n\npredict(car_mod, newdata = data.frame(Mileage = 8221))\n\n       1 \n23346.27 \n\n\nThe slight difference here is due to rounding in the coefficients for the “by hand” calculation.\n\n\n\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe should use a prediction interval because we are predicting the price of an individual car, not the average price of cars with that mileage.\n\n\n\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\npredict(car_mod, newdata = data.frame(Mileage = 8221), \n        interval = \"prediction\", level = 0.89)\n\n       fit      lwr      upr\n1 23346.27 7654.458 39038.08\n\n\n\n\n\nQ5. Interpret the interval in context.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe are 89% confident that the price of a Buick Century with 8221 miles is between $7,654.46 and $39,038.08.\n\n\n\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe wider interval is the prediction interval, and the narrower interval is the confidence interval. This is because prediction intervals account for both the uncertainty in estimating the mean response and the variability of individual responses around that mean, while confidence intervals only account for the uncertainty in estimating the mean response."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#example",
+    "href": "slides/08-mlr-categorical.html#example",
+    "title": "Adding Categorical Predictors",
     "section": "Example",
-    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+    "text": "Example\n\n\nGoal:\n\ninvestigate the association between smoking and lung capacity using data from 345 adolescents between the ages of 10 and 19\n\n\n\nWrinkle:\n\nLung function is expected to increase during adolescence, but smoking may slow it’s progression\n\n\n\n\nData:\n\n\n\n\nVariable\nDescription\n\n\n\n\nFEV\nforced expiratory volume (in liters per second)\n\n\nAge\nage in years\n\n\nSmoke\nSmoker or Nonsmoker\n\n\n\n\n\nSource: Rosner (2006)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
-    "href": "slides/02-slr-inference.html#a-deterministic-model",
-    "title": "Inference for SLR",
-    "section": "A deterministic model",
-    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+    "objectID": "slides/08-mlr-categorical.html#eda",
+    "href": "slides/08-mlr-categorical.html#eda",
+    "title": "Adding Categorical Predictors",
+    "section": "EDA",
+    "text": "EDA"
   },
   {
-    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+    "objectID": "slides/08-mlr-categorical.html#eda-1",
+    "href": "slides/08-mlr-categorical.html#eda-1",
+    "title": "Adding Categorical Predictors",
+    "section": "EDA",
+    "text": "EDA"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model",
-    "href": "slides/02-slr-inference.html#linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "objectID": "slides/08-mlr-categorical.html#eda-2",
+    "href": "slides/08-mlr-categorical.html#eda-2",
+    "title": "Adding Categorical Predictors",
+    "section": "EDA",
+    "text": "EDA"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
-    "href": "slides/02-slr-inference.html#linear-regression-model-1",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "objectID": "slides/08-mlr-categorical.html#indicator-variable",
+    "href": "slides/08-mlr-categorical.html#indicator-variable",
+    "title": "Adding Categorical Predictors",
+    "section": "Indicator variable",
+    "text": "Indicator variable\nRegression requires a numeric representation of all variables\n\nCreate a Smoker indicator variable:\n\nSmoker = 1\nNonsmoker = 0"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
-    "href": "slides/02-slr-inference.html#linear-regression-model-2",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "objectID": "slides/08-mlr-categorical.html#example-1",
+    "href": "slides/08-mlr-categorical.html#example-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Example 1",
+    "text": "Example 1\n\nFor each regression model on the handout, sketch the fitted model on the whiteboard\nEach fitted model will have two lines: one for smokers, one for nonsmokers\nWork with your neighbors"
   },
   {
-    "objectID": "slides/02-slr-inference.html#notation",
-    "href": "slides/02-slr-inference.html#notation",
-    "title": "Inference for SLR",
-    "section": "Notation",
-    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+    "objectID": "slides/08-mlr-categorical.html#model-1",
+    "href": "slides/08-mlr-categorical.html#model-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 1",
+    "text": "Model 1\n\\(\\mu(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nWarning"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/08-mlr-categorical.html#model-2",
+    "href": "slides/08-mlr-categorical.html#model-2",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 2",
+    "text": "Model 2\n\\(\\mu(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/08-mlr-categorical.html#model-3",
+    "href": "slides/08-mlr-categorical.html#model-3",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 3",
+    "text": "Model 3\n\\(\\begin{split}\\mu(y|x) = 4  &+  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker} \\end{split}\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/08-mlr-categorical.html#parallel-lines-model",
+    "href": "slides/08-mlr-categorical.html#parallel-lines-model",
+    "title": "Adding Categorical Predictors",
+    "section": "Parallel lines model",
+    "text": "Parallel lines model\n\nLung function develops at the same pace, but always lower for smokers"
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution",
-    "href": "slides/02-slr-inference.html#sampling-distribution",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution"
+    "objectID": "slides/08-mlr-categorical.html#different-slopes-model",
+    "href": "slides/08-mlr-categorical.html#different-slopes-model",
+    "title": "Adding Categorical Predictors",
+    "section": "Different slopes model",
+    "text": "Different slopes model\n\nAdolescents start with similar lung capacity, but smokers develop at a slower rate"
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
-    "href": "slides/02-slr-inference.html#sampling-distribution-1",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+    "objectID": "slides/08-mlr-categorical.html#separate-lines-model",
+    "href": "slides/08-mlr-categorical.html#separate-lines-model",
+    "title": "Adding Categorical Predictors",
+    "section": "Separate lines model",
+    "text": "Separate lines model\n\nThe smokers/non-smokers have different starting lung capacities and develop at different rates"
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
-    "href": "slides/02-slr-inference.html#sampling-distribution-2",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+    "objectID": "slides/08-mlr-categorical.html#parallel-lines-model-1",
+    "href": "slides/08-mlr-categorical.html#parallel-lines-model-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Parallel lines model",
+    "text": "Parallel lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change for both groups"
   },
   {
-    "objectID": "slides/02-slr-inference.html#confidence-interval",
-    "href": "slides/02-slr-inference.html#confidence-interval",
-    "title": "Inference for SLR",
-    "section": "Confidence interval",
-    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+    "objectID": "slides/08-mlr-categorical.html#different-slopes-model-1",
+    "href": "slides/08-mlr-categorical.html#different-slopes-model-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Different slopes model",
+    "text": "Different slopes model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for both groups\n\\(\\beta_1=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_1+\\beta_2=\\) expected rate of change (slope) for smokers"
   },
   {
-    "objectID": "slides/02-slr-inference.html#hypothesis-test",
-    "href": "slides/02-slr-inference.html#hypothesis-test",
-    "title": "Inference for SLR",
-    "section": "Hypothesis test",
-    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+    "objectID": "slides/08-mlr-categorical.html#separate-lines-model-1",
+    "href": "slides/08-mlr-categorical.html#separate-lines-model-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Separate lines model",
+    "text": "Separate lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age} + \\beta_3 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_2+\\beta_3=\\) expected rate of change (slope) for smokers"
   },
   {
-    "objectID": "slides/02-slr-inference.html#coefficient-table",
-    "href": "slides/02-slr-inference.html#coefficient-table",
-    "title": "Inference for SLR",
-    "section": "Coefficient table",
-    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+    "objectID": "slides/08-mlr-categorical.html#more-than-3-categories",
+    "href": "slides/08-mlr-categorical.html#more-than-3-categories",
+    "title": "Adding Categorical Predictors",
+    "section": "More than 3 categories",
+    "text": "More than 3 categories\nSuppose we have student survey data and one of the columns records the year in school:\n\nFirst year, Sophomore, Junior, and Senior.\n\nHow can we include this variable in a multiple regression model?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#your-turn",
-    "href": "slides/02-slr-inference.html#your-turn",
-    "title": "Inference for SLR",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+    "objectID": "slides/08-mlr-categorical.html#a-potentially-bad-idea",
+    "href": "slides/08-mlr-categorical.html#a-potentially-bad-idea",
+    "title": "Adding Categorical Predictors",
+    "section": "A potentially bad idea",
+    "text": "A potentially bad idea\nWe could convert the column to numeric\n\nFirst year \\(\\to\\) 1\nSophomore \\(\\to\\) 2\nJunior \\(\\to\\) 3\nSenior \\(\\to\\) 4\n\n\n\\[\n\\mu(Y|{\\tt classyear}) = \\beta_0 + \\beta_1 {\\tt classyear}\n\\]"
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "title": "Inference for SLR",
-    "section": "A note on reporting test results",
-    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+    "objectID": "slides/08-mlr-categorical.html#a-good-idea",
+    "href": "slides/08-mlr-categorical.html#a-good-idea",
+    "title": "Adding Categorical Predictors",
+    "section": "A good idea",
+    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore"
   },
   {
-    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "title": "Inference for SLR",
-    "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+    "objectID": "slides/08-mlr-categorical.html#a-good-idea-1",
+    "href": "slides/08-mlr-categorical.html#a-good-idea-1",
+    "title": "Adding Categorical Predictors",
+    "section": "A good idea",
+    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#a-good-idea-2",
+    "href": "slides/08-mlr-categorical.html#a-good-idea-2",
+    "title": "Adding Categorical Predictors",
+    "section": "A good idea",
+    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSoph\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#a-good-idea-3",
+    "href": "slides/08-mlr-categorical.html#a-good-idea-3",
+    "title": "Adding Categorical Predictors",
+    "section": "A good idea",
+    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSo\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n\n\n\n\n\nJu\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n0"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#example-2",
+    "href": "slides/08-mlr-categorical.html#example-2",
+    "title": "Adding Categorical Predictors",
+    "section": "Example 2",
+    "text": "Example 2\n\nFor each sketched regression model, write the mean function for a regression model that matches on the whiteboard\nNote that line type = education level\nWork with your neighbors"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#model-1-1",
+    "href": "slides/08-mlr-categorical.html#model-1-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 1",
+    "text": "Model 1"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#model-2-1",
+    "href": "slides/08-mlr-categorical.html#model-2-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 2",
+    "text": "Model 2"
+  },
+  {
+    "objectID": "slides/08-mlr-categorical.html#model-3-1",
+    "href": "slides/08-mlr-categorical.html#model-3-1",
+    "title": "Adding Categorical Predictors",
+    "section": "Model 3",
+    "text": "Model 3"
   },
   {
     "objectID": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
@@ -1132,439 +1363,5 @@
     "title": "Summary: Interpretation of slope under log transformations",
     "section": "",
     "text": "After fitting the transformed model, our regression line gives predictions for the mean of \\(\\log(Y)\\) for a given value of \\(x\\), which we denote \\(\\mu\\lbrace\\log(Y) | x\\rbrace\\). A sketch of what this model looks like is shown below. Notice that on the log scale, the regression line describes the center (the mean) of a symmetric distribution around the regression line.\n\n\n\n\n\n\n\n\n\nWhen we exponentiate to move back to the original scale we “distort” the model. The plot below shows the back-transformed version of the previous plot. Notice that the distributions are no longer symmetric. What was the mean on the log scale corresponds to the median on the original scale.\n\n\n\n\n\n\n\n\n\nOn the univariate scale, consider the following example:\n\n\n\n\n\n\n\n\n\nNow let’s back transform and move back to the original scale from the log scale. Back-transforming the mean of log(y) gives us \\(e^{0.004}=1.004\\), which is much closer to the median of y than to the mean."
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#example",
-    "href": "slides/08-mlr-interactions.html#example",
-    "title": "Adding Categorical Predictors",
-    "section": "Example",
-    "text": "Example\n\n\nGoal:\n\ninvestigate the association between smoking and lung capacity using data from 345 adolescents between the ages of 10 and 19\n\n\n\nWrinkle:\n\nLung function is expected to increase during adolescence, but smoking may slow it’s progression\n\n\n\n\nData:\n\n\n\n\nVariable\nDescription\n\n\n\n\nFEV\nforced expiratory volume (in liters per second)\n\n\nAge\nage in years\n\n\nSmoke\nSmoker or Nonsmoker\n\n\n\n\n\nSource: Rosner (2006)"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#eda",
-    "href": "slides/08-mlr-interactions.html#eda",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#eda-1",
-    "href": "slides/08-mlr-interactions.html#eda-1",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#eda-2",
-    "href": "slides/08-mlr-interactions.html#eda-2",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#parallel-lines-model",
-    "href": "slides/08-mlr-interactions.html#parallel-lines-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Parallel lines model",
-    "text": "Parallel lines model\n\nLung function develops at the same pace, but always lower for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#different-slopes-model",
-    "href": "slides/08-mlr-interactions.html#different-slopes-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Different slopes model",
-    "text": "Different slopes model\n\nAdolescents start with similar lung capacity, but smokers develop at a slower rate"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#separate-lines-model",
-    "href": "slides/08-mlr-interactions.html#separate-lines-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Separate lines model",
-    "text": "Separate lines model\n\nThe smokers/non-smokers have different starting lung capacities and develop at different rates"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#parallel-lines-model-1",
-    "href": "slides/08-mlr-interactions.html#parallel-lines-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Parallel lines model",
-    "text": "Parallel lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change for both groups"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#parallel-lines-model-2",
-    "href": "slides/08-mlr-interactions.html#parallel-lines-model-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Parallel lines model",
-    "text": "Parallel lines model\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change for both groups"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#different-slopes-model-1",
-    "href": "slides/08-mlr-interactions.html#different-slopes-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Different slopes model",
-    "text": "Different slopes model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for both groups\n\\(\\beta_1=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_1+\\beta_2=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#different-slopes-model-2",
-    "href": "slides/08-mlr-interactions.html#different-slopes-model-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Different slopes model",
-    "text": "Different slopes model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for both groups\n\\(\\beta_1=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_1+\\beta_2=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#separate-lines-model-1",
-    "href": "slides/08-mlr-interactions.html#separate-lines-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Separate lines model",
-    "text": "Separate lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age} + \\beta_3 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_2+\\beta_3=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#separate-lines-model-2",
-    "href": "slides/08-mlr-interactions.html#separate-lines-model-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Separate lines model",
-    "text": "Separate lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age} + \\beta_3 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_2+\\beta_3=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#indicator-variable",
-    "href": "slides/08-mlr-interactions.html#indicator-variable",
-    "title": "Adding Categorical Predictors",
-    "section": "Indicator variable",
-    "text": "Indicator variable\nRegression requires a numeric representation of all variables\n\nCreate a Smoker indicator variable:\n\nSmoker = 1\nNonsmoker = 0"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#your-turn",
-    "href": "slides/08-mlr-interactions.html#your-turn",
-    "title": "Adding Categorical Predictors",
-    "section": "Your turn",
-    "text": "Your turn\n\nFor each regression model on the handout, sketch the fitted model on the whiteboard\nEach fitted model will have two lines: one for smokers, one for nonsmokers\nWork with your neighbors"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#model-1",
-    "href": "slides/08-mlr-interactions.html#model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 1",
-    "text": "Model 1\n\\(\\mu(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#model-2",
-    "href": "slides/08-mlr-interactions.html#model-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 2",
-    "text": "Model 2\n\\(\\mu(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#model-3",
-    "href": "slides/08-mlr-interactions.html#model-3",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 3",
-    "text": "Model 3\n\\(\\begin{split}\\mu(y|x) = 4  &+  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker} \\end{split}\\)"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#example-1",
-    "href": "slides/08-mlr-interactions.html#example-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Example 1",
-    "text": "Example 1\n\nFor each regression model on the handout, sketch the fitted model on the whiteboard\nEach fitted model will have two lines: one for smokers, one for nonsmokers\nWork with your neighbors"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#more-than-3-categories",
-    "href": "slides/08-mlr-interactions.html#more-than-3-categories",
-    "title": "Adding Categorical Predictors",
-    "section": "More than 3 categories",
-    "text": "More than 3 categories\nSuppose we have student survey data and one of the columns records the year in school:\n\nFirst year, Sophomore, Junior, and Senior.\n\nHow can we include this variable in a multiple regression model?"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#a-potentially-bad-idea",
-    "href": "slides/08-mlr-interactions.html#a-potentially-bad-idea",
-    "title": "Adding Categorical Predictors",
-    "section": "A potentially bad idea",
-    "text": "A potentially bad idea\nWe could convert the column to numeric\n\nFirst year \\(\\to\\) 1\nSophomore \\(\\to\\) 2\nJunior \\(\\to\\) 3\nSenior \\(\\to\\) 4\n\n\n\\[\n\\mu(Y|{\\tt classyear}) = \\beta_0 + \\beta_1 {\\tt classyear}\n\\]"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#a-good-idea",
-    "href": "slides/08-mlr-interactions.html#a-good-idea",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#a-good-idea-1",
-    "href": "slides/08-mlr-interactions.html#a-good-idea-1",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#a-good-idea-2",
-    "href": "slides/08-mlr-interactions.html#a-good-idea-2",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSoph\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#a-good-idea-3",
-    "href": "slides/08-mlr-interactions.html#a-good-idea-3",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSo\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n\n\n\n\n\nJu\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n0"
-  },
-  {
-    "objectID": "slides/08-mlr-interactions.html#example-2",
-    "href": "slides/08-mlr-interactions.html#example-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Example 2",
-    "text": "Example 2\nEcholocation example…."
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#example",
-    "href": "slides/08-mlr-categorical.html#example",
-    "title": "Adding Categorical Predictors",
-    "section": "Example",
-    "text": "Example\n\n\nGoal:\n\ninvestigate the association between smoking and lung capacity using data from 345 adolescents between the ages of 10 and 19\n\n\n\nWrinkle:\n\nLung function is expected to increase during adolescence, but smoking may slow it’s progression\n\n\n\n\nData:\n\n\n\n\nVariable\nDescription\n\n\n\n\nFEV\nforced expiratory volume (in liters per second)\n\n\nAge\nage in years\n\n\nSmoke\nSmoker or Nonsmoker\n\n\n\n\n\nSource: Rosner (2006)"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#eda",
-    "href": "slides/08-mlr-categorical.html#eda",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#eda-1",
-    "href": "slides/08-mlr-categorical.html#eda-1",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#eda-2",
-    "href": "slides/08-mlr-categorical.html#eda-2",
-    "title": "Adding Categorical Predictors",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#indicator-variable",
-    "href": "slides/08-mlr-categorical.html#indicator-variable",
-    "title": "Adding Categorical Predictors",
-    "section": "Indicator variable",
-    "text": "Indicator variable\nRegression requires a numeric representation of all variables\n\nCreate a Smoker indicator variable:\n\nSmoker = 1\nNonsmoker = 0"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#example-1",
-    "href": "slides/08-mlr-categorical.html#example-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Example 1",
-    "text": "Example 1\n\nFor each regression model on the handout, sketch the fitted model on the whiteboard\nEach fitted model will have two lines: one for smokers, one for nonsmokers\nWork with your neighbors"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-1",
-    "href": "slides/08-mlr-categorical.html#model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 1",
-    "text": "Model 1\n\\(\\mu(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nWarning"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-2",
-    "href": "slides/08-mlr-categorical.html#model-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 2",
-    "text": "Model 2\n\\(\\mu(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-3",
-    "href": "slides/08-mlr-categorical.html#model-3",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 3",
-    "text": "Model 3\n\\(\\begin{split}\\mu(y|x) = 4  &+  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker} \\end{split}\\)"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#parallel-lines-model",
-    "href": "slides/08-mlr-categorical.html#parallel-lines-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Parallel lines model",
-    "text": "Parallel lines model\n\nLung function develops at the same pace, but always lower for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#different-slopes-model",
-    "href": "slides/08-mlr-categorical.html#different-slopes-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Different slopes model",
-    "text": "Different slopes model\n\nAdolescents start with similar lung capacity, but smokers develop at a slower rate"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#separate-lines-model",
-    "href": "slides/08-mlr-categorical.html#separate-lines-model",
-    "title": "Adding Categorical Predictors",
-    "section": "Separate lines model",
-    "text": "Separate lines model\n\nThe smokers/non-smokers have different starting lung capacities and develop at different rates"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#parallel-lines-model-1",
-    "href": "slides/08-mlr-categorical.html#parallel-lines-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Parallel lines model",
-    "text": "Parallel lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change for both groups"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#different-slopes-model-1",
-    "href": "slides/08-mlr-categorical.html#different-slopes-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Different slopes model",
-    "text": "Different slopes model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for both groups\n\\(\\beta_1=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_1+\\beta_2=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#separate-lines-model-1",
-    "href": "slides/08-mlr-categorical.html#separate-lines-model-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Separate lines model",
-    "text": "Separate lines model\n\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age} + \\beta_3 \\mathtt{age} \\times \\mathtt{smoker}\\)\n\n\n\n\n\n\n\n\nInterpretations\n\n\n\\(\\beta_0=\\) y-intercept for non-smokers\n\\(\\beta_0 + \\beta_1=\\) y-intercept for smokers\n\\(\\beta_2=\\) expected rate of change (slope) for non-smokers\n\\(\\beta_2+\\beta_3=\\) expected rate of change (slope) for smokers"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#more-than-3-categories",
-    "href": "slides/08-mlr-categorical.html#more-than-3-categories",
-    "title": "Adding Categorical Predictors",
-    "section": "More than 3 categories",
-    "text": "More than 3 categories\nSuppose we have student survey data and one of the columns records the year in school:\n\nFirst year, Sophomore, Junior, and Senior.\n\nHow can we include this variable in a multiple regression model?"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#a-potentially-bad-idea",
-    "href": "slides/08-mlr-categorical.html#a-potentially-bad-idea",
-    "title": "Adding Categorical Predictors",
-    "section": "A potentially bad idea",
-    "text": "A potentially bad idea\nWe could convert the column to numeric\n\nFirst year \\(\\to\\) 1\nSophomore \\(\\to\\) 2\nJunior \\(\\to\\) 3\nSenior \\(\\to\\) 4\n\n\n\\[\n\\mu(Y|{\\tt classyear}) = \\beta_0 + \\beta_1 {\\tt classyear}\n\\]"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#a-good-idea",
-    "href": "slides/08-mlr-categorical.html#a-good-idea",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#a-good-idea-1",
-    "href": "slides/08-mlr-categorical.html#a-good-idea-1",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#a-good-idea-2",
-    "href": "slides/08-mlr-categorical.html#a-good-idea-2",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSoph\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#a-good-idea-3",
-    "href": "slides/08-mlr-categorical.html#a-good-idea-3",
-    "title": "Adding Categorical Predictors",
-    "section": "A good idea",
-    "text": "A good idea\nWe can create a series of indicator (dummy) variables to represent the four categories\n\n\n\n\n\nOriginal\n\n\n\n\nFirst year\n\n\nSophomore\n\n\nSenior\n\n\nSenior\n\n\nJunior\n\n\nSophomore\n\n\n\n\n\n\n\nFY\n\n\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\n\n\n\nSo\n\n\n\n\n0\n\n\n1\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n\n\n\n\n\nJu\n\n\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n1\n\n\n0"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#example-2",
-    "href": "slides/08-mlr-categorical.html#example-2",
-    "title": "Adding Categorical Predictors",
-    "section": "Example 2",
-    "text": "Example 2\n\nFor each sketched regression model, write the mean function for a regression model that matches on the whiteboard\nNote that line type = education level\nWork with your neighbors"
-  },
-  {
-    "objectID": "activity/08H-mlr-categorical.html",
-    "href": "activity/08H-mlr-categorical.html",
-    "title": "Polynomial Regression",
-    "section": "",
-    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:"
-  },
-  {
-    "objectID": "activity/08H-mlr-categorical.html#example-1",
-    "href": "activity/08H-mlr-categorical.html#example-1",
-    "title": "Polynomial Regression",
-    "section": "",
-    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\nFitted equation for non-smokers:\n\nFitted equation for smokers:"
-  },
-  {
-    "objectID": "activity/08H-mlr-categorical.html#example-2",
-    "href": "activity/08H-mlr-categorical.html#example-2",
-    "title": "Polynomial Regression",
-    "section": "Example 2",
-    "text": "Example 2\nResearchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”\nThe researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.\n\nDefine indicator variables that represents the education category. (Start by determining wow many indicators do you need. Then define them.)\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit."
-  },
-  {
-    "objectID": "activity/04H-slr-prediction.html",
-    "href": "activity/04H-slr-prediction.html",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\nQ7. Compare the two models. What’s the same? What’s different?"
-  },
-  {
-    "objectID": "activity/04H-slr-prediction.html#warm-up-questions",
-    "href": "activity/04H-slr-prediction.html#warm-up-questions",
-    "title": "Inference for Prediction in SLR",
-    "section": "",
-    "text": "Is education level associated with income? Researchers collected education level (in years) and income (in thousands of dollars) for a random sample of 32 employees working for the city of Riverview.\nThe researchers fit a simple linear regression of income on education and obtained the following output:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n11.321\n6.123\n1.849\n0.074\n\n\neducation\n2.651\n0.370\n7.173\n&lt;0.001\n\n\n\n\n\nQ1. Write the fitted regression equation.\nQ2. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\nQ3. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\nA new researcher joined the team and decided that education should be standardized (to have mean 0 and SD 1) before fitting the regression model. The output from this regression is shown below:\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n53.742\n1.587\n33.861\n&lt;0.001\n\n\nscale(education)\n11.567\n1.613\n7.173\n&lt;0.001\n\n\n\n\n\nQ4. Write the fitted regression equation for this new model.\nQ5. Interpret the slope coefficient in the context of the problem. (Don’t forget to specify units.)\nQ6. Interpret the intercept in the context of the problem. (Don’t forget to specify units.)\nQ7. Compare the two models. What’s the same? What’s different?"
-  },
-  {
-    "objectID": "activity/04H-slr-prediction.html#prediction-and-confidence-intervals",
-    "href": "activity/04H-slr-prediction.html#prediction-and-confidence-intervals",
-    "title": "Inference for Prediction in SLR",
-    "section": "Prediction and confidence intervals",
-    "text": "Prediction and confidence intervals\n\n\n\n\n\n\nTip\n\n\n\nThe R code for the following questions is found at \nhttps://aloy.github.io/stat230-materials/activity/04-slr-prediction.\nThe URL is also posted on Moodle.\n\n\nFor this activity you will consider predicting the price of a used car (it’s Kelly Blue Book value) based on its mileage. The columns of interest in the Cars data set are Price and Mileage.\nQ1. Use the lm() command to fit the simple linear regression model where Mileage is used to predict Price. Report the fitted regression equation.\nQ2. The first car in the data set is a Buick Century with 8221 miles. Calculate the expected price of this car using the fitted regression equation.\nQ3. If we want to predict the price of this car, should we use a confidence interval or a prediction interval?\nQ4. Use R to construct the appropriate 89% interval for the price of this car. Record this interval below.\nQ5. Interpret the interval in context.\nQ6. Run the code to produce a scatterplot, regression line, and both types of intervals. Which is the prediction interval and which is the confidence interval? How can you tell?"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-1-1",
-    "href": "slides/08-mlr-categorical.html#model-1-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 1",
-    "text": "Model 1"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-2-1",
-    "href": "slides/08-mlr-categorical.html#model-2-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 2",
-    "text": "Model 2"
-  },
-  {
-    "objectID": "slides/08-mlr-categorical.html#model-3-1",
-    "href": "slides/08-mlr-categorical.html#model-3-1",
-    "title": "Adding Categorical Predictors",
-    "section": "Model 3",
-    "text": "Model 3"
-  },
-  {
-    "objectID": "activity/08H-sol-mlr-categorical.html",
-    "href": "activity/08H-sol-mlr-categorical.html",
-    "title": "Categorical Predictor Variables",
-    "section": "",
-    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 8 +  1 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age}\\)\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 5 + 0.5 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 7  +  0 \\mathtt{age}\\)"
-  },
-  {
-    "objectID": "activity/08H-sol-mlr-categorical.html#example-1",
-    "href": "activity/08H-sol-mlr-categorical.html#example-1",
-    "title": "Categorical Predictor Variables",
-    "section": "",
-    "text": "For each regression model, sketch the fitted model. To do this, first write the expression for the fitted model for smokers and the fitted model for non-smokers (e.g., plug in 0 and 1 for the indicator variable). Once you have these two equations, use them to sketch the lines on the provided graph.\nModel 1: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age} -2 \\mathtt{smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 10 +  1 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 8 +  1 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 2: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 5 +  1 \\mathtt{age}\\)\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 5 + 0.5 \\mathtt{age}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel 3: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age} + 3\\mathtt{smoker} -0.5 \\mathtt{age \\times smoker}\\)\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nFitted equation for non-smokers: \\(\\widehat{\\mu}(y|x) = 4  +  0.5 \\mathtt{age}\\)\n\nFitted equation for smokers: \\(\\widehat{\\mu}(y|x) = 7  +  0 \\mathtt{age}\\)"
-  },
-  {
-    "objectID": "activity/08H-sol-mlr-categorical.html#example-2",
-    "href": "activity/08H-sol-mlr-categorical.html#example-2",
-    "title": "Categorical Predictor Variables",
-    "section": "Example 2",
-    "text": "Example 2\nResearchers investigated the association of depression with age and education, based on a nationwide (U.S.) telephone survey of 2,031 adults aged 18 to 90. Of particular interest was their finding that the association of depression with education strengthens with increasing age—a phenomenon they called the “divergence hypothesis.”\nThe researchers constructed a depression score from responses to several related questions. Education was categorized as (i) college degree, (ii) high school degree plus some college, or (iii) high school degree only.\n\nDefine indicator variables that represents the education category. (Start by determining wow many indicators do you need. Then define them.)\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWe need two indicator variables to represent the three categories of education. We can define them as follows: - Let \\(\\mathtt{edu1} = 1\\) if the individual has a college degree, and 0 otherwise. - Let \\(\\mathtt{edu2} = 1\\) if the individual has a high school degree plus some college, and 0 otherwise. - The reference category (when both \\(\\mathtt{edu1}\\) and \\(\\mathtt{edu2}\\) are 0) is having a high school degree only.\nYou could have chosen other baseline categories, but you need two indicators to represent three categories.\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{edu1} + \\beta_3 \\mathtt{edu2}\\)\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{age \\times edu1} + \\beta_3 \\mathtt{age \\times edu2}\\)\n\n\n\n\nSuppose that one researcher wants to fit a model that represents the below sketch (note that the line type represent education). Carefully write the mean function for the regression model that you should fit.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\\(\\widehat{\\mu}(y|x) = \\beta_0 + \\beta_1 \\mathtt{age} + \\beta_2 \\mathtt{edu1} + \\beta_3 \\mathtt{edu2} + \\beta_4 \\mathtt{age \\times edu1} + \\beta_5 \\mathtt{age \\times edu2}\\)"
-  },
-  {
-    "objectID": "activity/08H-sol-mlr-intro.html",
-    "href": "activity/08H-sol-mlr-intro.html",
-    "title": "Multiple Regression",
-    "section": "",
-    "text": "Abalone are a type of mollusk that are harvested for their meat. Knowing the age of abalone can help set sustainable fishing quotas; however, the process is time consuming and labor intensive. Researchers collected various physical measurements, such as length, diameter, height, and weight, that are easy to collect to develop a method to predict abalone age. Below is R output for a multiple linear regression model predicting rings (a proxy for age) that uses length (mm), diameter (mm), height (mm), and whole_weight (in grams) as predictor variables.\nCall:\nlm(formula = rings ~ length + diameter + height + whole_weight, \n    data = abalone)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    2.90861    0.30922   9.406  &lt; 2e-16\nlength       -12.04857    2.10217  -5.731 1.07e-08\ndiameter      25.64381    2.57384   9.963  &lt; 2e-16\nheight        20.24276    1.78180  11.361  &lt; 2e-16\nwhole_weight   0.06589    0.22557   0.292     0.77    \n---\n\nResidual standard error: 2.59 on 4172 degrees of freedom\nMultiple R-squared:  0.3556,    Adjusted R-squared:  0.3549 \nF-statistic: 575.4 on 4 and 4172 DF,  p-value: &lt; 2.2e-16\n\nReport the estimated regression equation.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe estimated regression equation is: \\[\\widehat{rings} = 2.90861 - 12.04857(\\mathtt{length}) + 25.64381(\\mathtt{diameter}) + 20.24276(\\mathtt{height}) + 0.06589(\\mathtt{whole\\_weight})\\]\n\n\n\n\nUsing the model, predict the number of rings for an abalone with length 0.5 mm, diameter 0.4 mm, height 0.1 mm, and whole weight of 1 gram.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo make the prediction, we substitute the values into the regression equation: \\[\n\\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 6.27 \\text{ rings}\n\\]\n\n\n\n\nInterpret the slope coefficient for length in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe slope coefficient for length is -12.04857. This means that, holding all other predictor variables constant, for each additional millimeter increase in length, we expect the number of rings to decrease by approximately 12.05.\n\n\n\n\nState the hypotheses for the test of the slope coefficient for whole_weight. What do you conclude based on the results of this test?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe hypotheses for the test of the slope coefficient for whole_weight are:\n\nNull hypothesis (\\(H_0\\)): \\(\\beta_{\\text{whole\\_weight}} = 0\\) (there is no association between whole weight and rings, controlling for other variables)\n\nAlternative hypothesis (\\(H_A\\)): \\(\\beta_{\\text{whole\\_weight}} \\neq 0\\) (there is an association between whole weight and rings, controlling for other variables)\n\nThe p-value for the test is 0.77, which is very large. Therefore, we fail to reject the null hypothesis. There is no evidence to suggest that whole weight is associated with the number of rings, after accounting for length, diameter, and height.\n\n\n\n\nCalculate a 95% confidence interval for the slope coefficient for length. Interpret this interval in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo calculate the 95% confidence interval for the slope coefficient for length, we use the formula:\n\\[\\text{CI} = \\hat{\\beta} \\pm t^* \\cdot SE(\\hat{\\beta})\\]\nwhere \\(\\hat{\\beta}\\) is the estimated coefficient, \\(SE(\\hat{\\beta})\\) is the standard error, and \\(t^*\\) is the critical value from the t-distribution with 4172 degrees of freedom.\nUsing the output, we have:\n\n\\(\\hat{\\beta}_{\\text{length}} = -12.04857\\)\n\\(SE(\\hat{\\beta}_{\\text{length}}) = 2.10217\\)\nFor a 95% confidence level and 4172 degrees of freedom, \\(t^* \\approx 1.96\\) (using normal approximation for large df)\n\nThus, the confidence interval is: \\[\\text{CI} = -12.04857 \\pm 1.96 \\cdot 2.10217 =  (-16.169,  -7.928)\\]\nWe are 95% confident that the true slope coefficient for length is between -16.169 and -7.928. We are 95% confident that for each additional millimeter increase in length, the number of rings is expected to decrease by between 7.93 and 16.17, holding all other variables constant.\n\n\n\n\nWhat proportion of the variability in rings is explained by the model?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe proportion of variability in rings explained by the model is given by the R-squared value, which is 0.3556. This means that approximately 35.56% of the variability in the number of rings can be explained by the multiple regression model with the predictor variables length, diameter, height, and whole weight."
-  },
-  {
-    "objectID": "activity/08H-sol-mlr-intro.html#example-abalone-age",
-    "href": "activity/08H-sol-mlr-intro.html#example-abalone-age",
-    "title": "Multiple Regression",
-    "section": "",
-    "text": "Abalone are a type of mollusk that are harvested for their meat. Knowing the age of abalone can help set sustainable fishing quotas; however, the process is time consuming and labor intensive. Researchers collected various physical measurements, such as length, diameter, height, and weight, that are easy to collect to develop a method to predict abalone age. Below is R output for a multiple linear regression model predicting rings (a proxy for age) that uses length (mm), diameter (mm), height (mm), and whole_weight (in grams) as predictor variables.\nCall:\nlm(formula = rings ~ length + diameter + height + whole_weight, \n    data = abalone)\n\nCoefficients:\n              Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)    2.90861    0.30922   9.406  &lt; 2e-16\nlength       -12.04857    2.10217  -5.731 1.07e-08\ndiameter      25.64381    2.57384   9.963  &lt; 2e-16\nheight        20.24276    1.78180  11.361  &lt; 2e-16\nwhole_weight   0.06589    0.22557   0.292     0.77    \n---\n\nResidual standard error: 2.59 on 4172 degrees of freedom\nMultiple R-squared:  0.3556,    Adjusted R-squared:  0.3549 \nF-statistic: 575.4 on 4 and 4172 DF,  p-value: &lt; 2.2e-16\n\nReport the estimated regression equation.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe estimated regression equation is: \\[\\widehat{rings} = 2.90861 - 12.04857(\\mathtt{length}) + 25.64381(\\mathtt{diameter}) + 20.24276(\\mathtt{height}) + 0.06589(\\mathtt{whole\\_weight})\\]\n\n\n\n\nUsing the model, predict the number of rings for an abalone with length 0.5 mm, diameter 0.4 mm, height 0.1 mm, and whole weight of 1 gram.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo make the prediction, we substitute the values into the regression equation: \\[\n\\widehat{rings} = 2.90861 - 12.04857(0.5) + 25.64381(0.4) + 20.24276(0.1) + 0.06589(1) = 6.27 \\text{ rings}\n\\]\n\n\n\n\nInterpret the slope coefficient for length in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe slope coefficient for length is -12.04857. This means that, holding all other predictor variables constant, for each additional millimeter increase in length, we expect the number of rings to decrease by approximately 12.05.\n\n\n\n\nState the hypotheses for the test of the slope coefficient for whole_weight. What do you conclude based on the results of this test?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe hypotheses for the test of the slope coefficient for whole_weight are:\n\nNull hypothesis (\\(H_0\\)): \\(\\beta_{\\text{whole\\_weight}} = 0\\) (there is no association between whole weight and rings, controlling for other variables)\n\nAlternative hypothesis (\\(H_A\\)): \\(\\beta_{\\text{whole\\_weight}} \\neq 0\\) (there is an association between whole weight and rings, controlling for other variables)\n\nThe p-value for the test is 0.77, which is very large. Therefore, we fail to reject the null hypothesis. There is no evidence to suggest that whole weight is associated with the number of rings, after accounting for length, diameter, and height.\n\n\n\n\nCalculate a 95% confidence interval for the slope coefficient for length. Interpret this interval in context.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nTo calculate the 95% confidence interval for the slope coefficient for length, we use the formula:\n\\[\\text{CI} = \\hat{\\beta} \\pm t^* \\cdot SE(\\hat{\\beta})\\]\nwhere \\(\\hat{\\beta}\\) is the estimated coefficient, \\(SE(\\hat{\\beta})\\) is the standard error, and \\(t^*\\) is the critical value from the t-distribution with 4172 degrees of freedom.\nUsing the output, we have:\n\n\\(\\hat{\\beta}_{\\text{length}} = -12.04857\\)\n\\(SE(\\hat{\\beta}_{\\text{length}}) = 2.10217\\)\nFor a 95% confidence level and 4172 degrees of freedom, \\(t^* \\approx 1.96\\) (using normal approximation for large df)\n\nThus, the confidence interval is: \\[\\text{CI} = -12.04857 \\pm 1.96 \\cdot 2.10217 =  (-16.169,  -7.928)\\]\nWe are 95% confident that the true slope coefficient for length is between -16.169 and -7.928. We are 95% confident that for each additional millimeter increase in length, the number of rings is expected to decrease by between 7.93 and 16.17, holding all other variables constant.\n\n\n\n\nWhat proportion of the variability in rings is explained by the model?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nThe proportion of variability in rings explained by the model is given by the R-squared value, which is 0.3556. This means that approximately 35.56% of the variability in the number of rings can be explained by the multiple regression model with the predictor variables length, diameter, height, and whole weight."
   }
 ]

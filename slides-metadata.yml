@@ -35,7 +35,7 @@
   subtitle: "Day 06"
   date: 2025-09-26
   image: slides/featured/05-slr-transformations.png
-  path: slides/05-slr-transformation.qmd
+  path: slides/05-slr-transformations.qmd
   categories:
     - "SLR"
     - "Transformations"
