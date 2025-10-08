@@ -648,7 +648,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activity/08H-mlr-categorical.html",
@@ -1363,5 +1363,299 @@
     "title": "Summary: Interpretation of slope under log transformations",
     "section": "",
     "text": "After fitting the transformed model, our regression line gives predictions for the mean of \\(\\log(Y)\\) for a given value of \\(x\\), which we denote \\(\\mu\\lbrace\\log(Y) | x\\rbrace\\). A sketch of what this model looks like is shown below. Notice that on the log scale, the regression line describes the center (the mean) of a symmetric distribution around the regression line.\n\n\n\n\n\n\n\n\n\nWhen we exponentiate to move back to the original scale we “distort” the model. The plot below shows the back-transformed version of the previous plot. Notice that the distributions are no longer symmetric. What was the mean on the log scale corresponds to the median on the original scale.\n\n\n\n\n\n\n\n\n\nOn the univariate scale, consider the following example:\n\n\n\n\n\n\n\n\n\nNow let’s back transform and move back to the original scale from the log scale. Back-transforming the mean of log(y) gives us \\(e^{0.004}=1.004\\), which is much closer to the median of y than to the mean."
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#fev-example",
+    "href": "slides/09-mlr-inference2.html#fev-example",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#fev-example-1",
+    "href": "slides/09-mlr-inference2.html#fev-example-1",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example\n\\[{\\rm E}(Y|X) = \\beta_0 + \\beta_1 {\\tt age} + \\beta_2 {\\tt smoke} + \\beta_3 {\\tt age \\times smoke}\\] \n\nMean functions for each group\n\n\n\n\nSmokers:\n\n\\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\n\n\n\n\n\nNon-smokers:\n\n\\({\\rm E}(Y|X) = \\beta_0 + \\beta_1  {\\tt age}\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#fev-example-2",
+    "href": "slides/09-mlr-inference2.html#fev-example-2",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example\n\n\n\n\n\n\nWarning\n\n\nOur standard table of coefficients doesn’t contain the SEs we need to construct CIs or perform tests for these linear combinations.\n\n\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n0.675\n0.251\n2.684\n0.008\n\n\nAge\n0.210\n0.021\n9.972\n&lt;0.001\n\n\nSmokeSmoker\n1.720\n0.563\n3.053\n0.002\n\n\nAge:SmokeSmoker\n−0.143\n0.042\n−3.397\n&lt;0.001"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
+    "href": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "SEs for linear combinations",
+    "text": "SEs for linear combinations\nEstimate:\n\\[\\widehat{\\gamma} = c_1 \\widehat{\\beta}_i + c_2 \\widehat{\\beta}_j\\]\n\n\nStandard error:\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_i)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)}\n\\]"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#covariance-matrix",
+    "href": "slides/09-mlr-inference2.html#covariance-matrix",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Covariance matrix",
+    "text": "Covariance matrix\n\nThe diagonal (top left to lower right) displays variances, \\(\\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2\\)\nThe off-diagonals display covariances, \\(Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)\\)\nCovariance is like correlation, but not scaled to be between \\(-1\\) and \\(1\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html",
+    "href": "slides/09-mlr-inference2.html",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "",
+    "text": "\\[{\\rm E}(Y|X) = \\beta_0 + \\beta_1 {\\tt age} + \\beta_2 {\\tt smoke} + \\beta_3 {\\tt age \\times smoke}\\] \n. . .\nMean functions for each group\n. . .\n\n\nSmokers:\n\n\\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\n\n\n. . .\n\n\nNon-smokers:\n\n\\({\\rm E}(Y|X) = \\beta_0 + \\beta_1  {\\tt age}\\)\n\n\n\n\n\nEstimate:\n\\[\\widehat{\\gamma} = c_1 \\widehat{\\beta}_i + c_2 \\widehat{\\beta}_j\\]\n\n. . .\nStandard error:\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_i)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)}\n\\]\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nOur standard table of coefficients doesn’t contain the SEs we need to construct CIs or perform tests for these linear combinations.\n\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n0.675\n0.251\n2.684\n0.008\n\n\nAge\n0.210\n0.021\n9.972\n&lt;0.001\n\n\nSmokeSmoker\n1.720\n0.563\n3.053\n0.002\n\n\nAge:SmokeSmoker\n−0.143\n0.042\n−3.397\n&lt;0.001\n\n\n\n\n\n\n\n\n\n\n\nThe diagonal (top left to lower right) displays variances, \\(\\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2\\)\nThe off-diagonals display covariances, \\(Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)\\)\nCovariance is like correlation, but not scaled to be between \\(-1\\) and \\(1\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "SE for a linear combination",
+    "text": "SE for a linear combination\n\nSmokers: \\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\nTarget: \\(\\widehat{\\gamma} = \\widehat{\\beta}_1 + \\widehat{\\beta}_3\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798\n\n\n\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_1)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_2) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_1, \\widehat{\\beta}_2)}\n\\]\n\n\n\n\n\\(c_1 = 1\\), \\(c_2 = 1\\)\n\n\n\n\n\n\n\\(SE(\\widehat{\\beta_1})^2 = 0.0004423\\)\n\n\\(SE(\\widehat{\\beta_2})^2 = 0.0017798\\)\n\n\n\n\n\n\\(Cov(\\widehat{\\beta_1}, \\widehat{\\beta_2}) = -0.0004423\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "CI for a linear combination",
+    "text": "CI for a linear combination\nOnce we have \\(SE(\\widehat{\\gamma})\\), we can construct a CI as usual:\n\\[\n\\widehat{\\gamma} \\pm t^*_{n - (p+1)} \\cdot SE(\\widehat{\\gamma})\n\\]\n\n\\(\\widehat{\\gamma} = 0.0664\\)\n\n\n\\(SE(\\widehat{\\gamma}) = 0.0366\\)\n\n\n\\(df = n - (p+1) = 345 - 4 = 341\\)\n\n\n\\(t^*_{341} \\approx 1.649\\) for a 90% CI"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Test for a linear combination",
+    "text": "Test for a linear combination\nWe can also test hypotheses about linear combinations of coefficients using a t-test:\n\\(H_0: \\gamma = \\gamma_0\\) vs. \\(H_a: \\gamma \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\gamma_0\\)\n\\(t = \\dfrac{\\widehat{\\gamma} - \\gamma_0}{SE(\\widehat{\\gamma})}\\)\nReference distribution: \\(t_{n-(p+1)}\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#example",
+    "href": "slides/09-mlr-inference2.html#example",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Example",
+    "text": "Example\n\nWork through the example on the handout with your neighbors\nBe prepared to share your strategy with the class"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#example-used-car-prices",
+    "href": "slides/09-mlr-inference2.html#example-used-car-prices",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Example: Used car prices",
+    "text": "Example: Used car prices\nWe have data on used car prices, including:\n\nPrice: Price (in dollars)\nMileage: Mileage (in thousands of miles)\nMake: Manufacturer (Buick, Cadillac, Chevrolet, Pontiac, SAAB, Saturn)\n\nAfter some initial EDA, researchers want to fit an MLR model to predict \\(\\log\\)(price) using mileage and make."
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#review-nested-models",
+    "href": "slides/09-mlr-inference2.html#review-nested-models",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Review: Nested models",
+    "text": "Review: Nested models\n\nModel 1:  \\({\\rm E}(\\log(Y)|X) = \\beta_0 + \\beta_1 {\\tt Mileage}\\)\n\nModel 2: \n\\(\\begin{split}\n{\\rm E}(\\log(Y)|X) = \\beta_0 &+ \\beta_1 {\\tt Mileage} + \\beta_2 {\\tt Cadillac} + \\beta_3 {\\tt Chevy}\\\\\n&+ \\beta_4 {\\tt Pontiac} + \\beta_5 {\\tt SAAB} + \\beta_6 {\\tt Saturn}\n\\end{split}\\)\n\n\n\n\nExtra SS F-test:\nNull hypothesis tells us how we can simplify Model 2 (full) to get Model 1 (reduced):\n\\(H_0\\): \\(\\beta_2 = \\beta_3 = \\beta_4 = \\beta_5 = \\beta_6 = 0\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#review-extra-ss-f-test",
+    "href": "slides/09-mlr-inference2.html#review-extra-ss-f-test",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Review: Extra SS F-test",
+    "text": "Review: Extra SS F-test"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#anova-table-from-r",
+    "href": "slides/09-mlr-inference2.html#anova-table-from-r",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "ANOVA table from R",
+    "text": "ANOVA table from R\n\nanova(car_lm) produces an ANOVA table for the MLR model, it gives sequential sums of squares, not the extra sums of squares we need for our F-test.\n\n\n\n\n\n\n\n\n\nterm\ndf\nsumsq\nmeansq\nstatistic\np.value\n\n\n\n\nMileage\n1\n2.959\n2.959\n50.941\n&lt;0.001\n\n\nMake\n5\n85.802\n17.160\n295.414\n&lt;0.001\n\n\nResiduals\n797\n46.297\n0.058\nNA\nNA\n\n\n\n\n\n\n\n\n\nMileage row: extra SS for Mileage (compared to intercept-only model)\nMake row: extra SS for Make after accounting for Mileage\nResiduals row: SSE for the full model"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#used-car-prices",
+    "href": "slides/09-mlr-inference2.html#used-car-prices",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Used car prices",
+    "text": "Used car prices\nIs Make a useful predictor of price, after accounting for Mileage?\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n10.090\n0.034\n293.975\n&lt;0.001\n\n\nMileage\n0.000\n0.000\n−7.359\n&lt;0.001\n\n\nMakeCadillac\n0.649\n0.038\n17.016\n&lt;0.001\n\n\nMakeChevrolet\n−0.296\n0.030\n−9.809\n&lt;0.001\n\n\nMakePontiac\n−0.144\n0.033\n−4.299\n&lt;0.001\n\n\nMakeSAAB\n0.355\n0.035\n10.108\n&lt;0.001\n\n\nMakeSaturn\n−0.397\n0.041\n−9.650\n&lt;0.001"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#extra-sums-of-squares",
+    "href": "slides/09-mlr-inference2.html#extra-sums-of-squares",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Extra Sums of Squares",
+    "text": "Extra Sums of Squares\nDefinition: the marginal reduction in the error sum of squares when one (or more) explanatory variable(s) is added to the model\n\n\nF-test for comparing nested models:\n\\(F = \\dfrac{(SSE_{full} - SSE_{reduced}) / (df_{full} - df_{reduced})}{MSE_{full}}\\)"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html",
+    "href": "activity/09-mlr-linear-combos.html",
+    "title": "Including Categorical Predictors",
+    "section": "",
+    "text": "In this activity you will learn how to include build multiple regression models in R, including models with categorical predictors. The cars data set loaded below contains information on used cars for sale, including their Price, Mileage, and Make (a categorical variable with six levels)."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#overview",
+    "href": "activity/09-mlr-linear-combos.html#overview",
+    "title": "Including Categorical Predictors",
+    "section": "",
+    "text": "In this activity you will learn how to include build multiple regression models in R, including models with categorical predictors. The cars data set loaded below contains information on used cars for sale, including their Price, Mileage, and Make (a categorical variable with six levels)."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#eda",
+    "href": "activity/09-mlr-linear-combos.html#eda",
+    "title": "Including Categorical Predictors",
+    "section": "EDA",
+    "text": "EDA\nTo begin, create a scatterplot of Price versus Mileage. What do you notice about the relationship between these two variables? Is a transformation necessary?"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#thinking-about-indicator-variables",
+    "href": "activity/09-mlr-linear-combos.html#thinking-about-indicator-variables",
+    "title": "Including Categorical Predictors",
+    "section": "Thinking about indicator variables",
+    "text": "Thinking about indicator variables\nThe Make variable is categorical with six levels: Buick, Cadillac, Chevrolet, Pontiac, SAAB, and Saturn. To include this variable in a regression model, we need use indicator (i.e., dummy) variables. How many do we need to make?"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#fitting-an-mlr-model",
+    "href": "activity/09-mlr-linear-combos.html#fitting-an-mlr-model",
+    "title": "Including Categorical Predictors",
+    "section": "Fitting an MLR model",
+    "text": "Fitting an MLR model\nBuild (fit) a multiple regression model using log(Price) as the response with Mileage and Make as the predictor variables. To do this, you use + to separate the predictor variable on the right side of the ~ in the model formula. R will automatically convert a categorical explanatory variable into a set of indicator variables.\n\n\n\n\n\n\n\n\nQ3. Report the fitted regression equation and the \\(R^2\\) value.\nQ4.Which level of Make is the baseline? The baseline level is represented by 0’s across all of the indicator variables and won’t have a coefficient in the output.\nQ5.What strategy did R use to create the indicator variables for Make? In other words, how did R decide which level of Make to use as the baseline?\nQ6. Which of the following models best describes the one just fit: parallel lines, different slopes, or separate lines?"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#plotting-the-fitted-model",
+    "href": "activity/09-mlr-linear-combos.html#plotting-the-fitted-model",
+    "title": "Including Categorical Predictors",
+    "section": "Plotting the fitted model",
+    "text": "Plotting the fitted model\nTo plot a fitted regression model, we can use the ggpredict() and plot() functions in the {ggeffects} package. The ggpredict() function creates a data frame of predicted values from the model for each Make across a range of Mileage values. The plot() function then creates a plot of these predicted values.\n\n\n\n\n\n\n\n\nQ7. Does this plot confirm your answer to the previous question?\n\n\n\n\n\n\nNoteTips on plotting the model\n\n\n\n\nHolding other variables at “typical” values\nIf you have more predictor variables in your model, then variables not specified in the terms argument the ggpredict() function are set to a specific value. Quantitative variables are set to their mean. Categorical variables are set to the mode (the level with the most observations).\n\n\nLabels\nIf you need to adjust your axis labels or title, then you will need to add a labs() layer to your plot. For example,\n\nplot(cars_pred) +\n  labs(x = \"My new x label\", y = \"My new y label\",\n       title = \"My new title\")"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#holding-other-variables-at-typical-values",
+    "href": "activity/09-mlr-linear-combos.html#holding-other-variables-at-typical-values",
+    "title": "Including Categorical Predictors",
+    "section": "Holding other variables at “typical” values",
+    "text": "Holding other variables at “typical” values\nIf you have more predictor variables in your model, then variables not specified in the terms argument the ggpredict() function are set to a specific value. Quantitative variables are set to their mean. Categorical variables are set to the mode (the level with the most observations)."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#labels",
+    "href": "activity/09-mlr-linear-combos.html#labels",
+    "title": "Including Categorical Predictors",
+    "section": "Labels",
+    "text": "Labels\nIf you need to adjust your axis labels or title, then you will need to add a labs() layer to your plot. For example,\n\nplot(cars_pred) +\n  labs(x = \"My new x label\", y = \"My new y label\",\n       title = \"My new title\")"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#fitting-a-model-with-interactions",
+    "href": "activity/09-mlr-linear-combos.html#fitting-a-model-with-interactions",
+    "title": "Including Categorical Predictors",
+    "section": "Fitting a model with interactions",
+    "text": "Fitting a model with interactions\nIf we believe that the association between Price and Mileage differs by Make, then we can include an interaction term in our model. To do this, we use * instead of + to separate the predictor variables on the right side of the ~ in the model formula. This will include both main effects and the interaction term.\n\n\n\n\n\n\n\n\nQ8. Report the fitted regression equation for Buicks and Cadillacs.\nQ9. What is the \\(R^2\\) value for this model? Does this model appear to fit the data better than the previous model?"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#plotting-the-fitted-model-with-interactions",
+    "href": "activity/09-mlr-linear-combos.html#plotting-the-fitted-model-with-interactions",
+    "title": "Including Categorical Predictors",
+    "section": "Plotting the fitted model with interactions",
+    "text": "Plotting the fitted model with interactions\nTo plot the interaction model, we again use the ggpredict() and plot() functions in the {ggeffects} package."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#function-quick-reference",
+    "href": "activity/09-mlr-linear-combos.html#function-quick-reference",
+    "title": "Including Categorical Predictors",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm()\nFit a linear model\n\n\nsummary()\nDisplay detailed results from a fitted model\n\n\ncoef()\nExtract model coefficients\n\n\nvcov()\nExtract the variance-covariance matrix of model coefficients\n\n\nggpredict()\nCreate a data frame of predicted values from a fitted model\n\n\nplot()\nCreate a plot of predicted values from a fitted model\n\n\nanova()\nCreate an ANOVA table for a fitted model or compare two nested models"
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#calculating-cis-for-linear-combinations",
+    "href": "activity/09-mlr-linear-combos.html#calculating-cis-for-linear-combinations",
+    "title": "Including Categorical Predictors",
+    "section": "Calculating CIs for linear combinations",
+    "text": "Calculating CIs for linear combinations\nTo calculate a confidence interval for a linear combination of coefficients, we must first calculate the estimate and standard error of the linear combination.\nLet’s calculate a 95% confidence interval for the slope of the Cadillac model. Refer to your notes/slides and determine the formulas for the estimate and standard error of this slope.\nNow that you know the formulas, you’ll use R to implement them. First, extract the coefficients and covariance matrix from the model object. Try printing the results to see what they look like and make note of where the Cadillac coefficients are located.\n\n\n\n\n\n\n\n\n\nExtract the coefficients from the model object and store them in car_coefs.\nExtract the covariance matrix from the model object and store it in car_vcov.\n\nNext, calculate the estimate of the slope for Cadillacs.\n\n\n\n\n\n\n\n\n\ncar_coefs is a vector, so we pull off the necessary coefficients using their position in square brackets. Here, car_coefs[2] pulls off the coefficient for Mileage and car_coefs[8] pulls off the coefficient for the interaction term Mileage:MakeCadillac.\n\nNow, calculate the standard error of the slope for Cadillacs.\n\n\n\n\n\n\n\n\n\ncar_vcov is a matrix, so we pull off the necessary variances and covariances using their row and column positions in square brackets. Here, car_vcov[2,2] pulls off the variance for Mileage, car_vcov[8,8] pulls off the variance for the interaction term Mileage:MakeCadillac, and car_vcov[2,8] pulls off the covariance between these two coefficients.\n\nFinally, use the estimate and standard error to calculate a 95% confidence interval for the slope of the Cadillac model. You can use the qt() function to find the appropriate critical value.\nQ10. Calculate a 95% confidence interval for the slope of the Cadillac model."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#calculating-extra-sums-of-squares-f-tests",
+    "href": "activity/09-mlr-linear-combos.html#calculating-extra-sums-of-squares-f-tests",
+    "title": "Including Categorical Predictors",
+    "section": "Calculating extra sums of squares F-tests",
+    "text": "Calculating extra sums of squares F-tests\nDo we really need the interaction terms? To answer this question, we can use an extra sums of squares F-test to compare the model with interaction terms to the model without interaction terms.\nWe have already seen how to use the anova() function to compare two nested models. Here, we will use it again to compare our two car models.\n\n\n\n\n\n\n\n\n\nUsing only the full model\nWe can also calculate the extra sums of squares F-test using only the full model. To do this, we need to extract the SSE and degrees of freedom for both models from the ANOVA table for the full model.\nQ11. Run the below code and verify that the df, sums of squares, mean squares, F value, and p-value match what you got from the previous anova() command."
+  },
+  {
+    "objectID": "activity/09-mlr-linear-combos.html#thinking-about-the-data",
+    "href": "activity/09-mlr-linear-combos.html#thinking-about-the-data",
+    "title": "Including Categorical Predictors",
+    "section": "Thinking about the data",
+    "text": "Thinking about the data\nTo begin, create a scatterplot of Price versus Mileage.\n\n\n\n\n\n\n\n\nQ1. What do you notice about the relationship between these two variables? Is a transformation necessary?\nQ2. The Make variable is categorical with six levels: Buick, Cadillac, Chevrolet, Pontiac, SAAB, and Saturn. To include this variable in a regression model, we need use indicator (i.e., dummy) variables. How many do we need to make?"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html",
+    "href": "activity/09H-mlr-linear-combos.html",
+    "title": "Including Categorical Predictors",
+    "section": "",
+    "text": "In this activity you will learn how to include build multiple regression models in R, including models with categorical predictors. The cars data set loaded below contains information on used cars for sale, including their Price, Mileage, and Make (a categorical variable with six levels).\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\", stringsAsFactors = TRUE)"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#overview",
+    "href": "activity/09H-mlr-linear-combos.html#overview",
+    "title": "Including Categorical Predictors",
+    "section": "",
+    "text": "In this activity you will learn how to include build multiple regression models in R, including models with categorical predictors. The cars data set loaded below contains information on used cars for sale, including their Price, Mileage, and Make (a categorical variable with six levels).\n\ncars &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/Cars.csv\", stringsAsFactors = TRUE)"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#thinking-about-the-data",
+    "href": "activity/09H-mlr-linear-combos.html#thinking-about-the-data",
+    "title": "Including Categorical Predictors",
+    "section": "Thinking about the data",
+    "text": "Thinking about the data\nTo begin, create a scatterplot of Price versus Mileage.\n\n# put your code here\n\nQ1. What do you notice about the relationship between these two variables? Is a transformation necessary?\nQ2. The Make variable is categorical with six levels: Buick, Cadillac, Chevrolet, Pontiac, SAAB, and Saturn. To include this variable in a regression model, we need use indicator (i.e., dummy) variables. How many do we need to make?"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#fitting-an-mlr-model",
+    "href": "activity/09H-mlr-linear-combos.html#fitting-an-mlr-model",
+    "title": "Including Categorical Predictors",
+    "section": "Fitting an MLR model",
+    "text": "Fitting an MLR model\nBuild (fit) a multiple regression model using log(Price) as the response with Mileage and Make as the predictor variables. To do this, you use + to separate the predictor variable on the right side of the ~ in the model formula. R will automatically convert a categorical explanatory variable into a set of indicator variables.\n\n# Fill in the blanks to fit the MLR model\ncar_lm &lt;- lm(___ ~ ___ + ___, data = ___)\nsummary(car_lm)\n\nQ3. Report the fitted regression equation and the \\(R^2\\) value.\nQ4.Which level of Make is the baseline? The baseline level is represented by 0’s across all of the indicator variables and won’t have a coefficient in the output.\nQ5.What strategy did R use to create the indicator variables for Make? In other words, how did R decide which level of Make to use as the baseline?\nQ6. Which of the following models best describes the one just fit: parallel lines, different slopes, or separate lines?"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#plotting-the-fitted-model",
+    "href": "activity/09H-mlr-linear-combos.html#plotting-the-fitted-model",
+    "title": "Including Categorical Predictors",
+    "section": "Plotting the fitted model",
+    "text": "Plotting the fitted model\nTo plot a fitted regression model, we can use the ggpredict() and plot() functions in the {ggeffects} package. The ggpredict() function creates a data frame of predicted values from the model for each Make across a range of Mileage values. The plot() function then creates a plot of these predicted values.\n\n# Be sure to load ggeffects!\nlibrary(ggeffects)\n\n# First, make predictions from the model\n# Fill in the blank with your model name\ncars_pred &lt;- ggpredict(___, terms = ~Mileage + Make)\n\n# Now plot the predictions\nplot(cars_pred)\n\nQ7. Does this plot confirm your answer to the previous question?\n\n\n\n\n\n\nNoteTips on plotting the model\n\n\n\n\nHolding other variables at “typical” values\nIf you have more predictor variables in your model, then variables not specified in the terms argument the ggpredict() function are set to a specific value. Quantitative variables are set to their mean. Categorical variables are set to the mode (the level with the most observations).\n\n\nLabels\nIf you need to adjust your axis labels or title, then you will need to add a labs() layer to your plot. For example,\n\nplot(cars_pred) +\n  labs(x = \"My new x label\", y = \"My new y label\",\n       title = \"My new title\")"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#holding-other-variables-at-typical-values",
+    "href": "activity/09H-mlr-linear-combos.html#holding-other-variables-at-typical-values",
+    "title": "Including Categorical Predictors",
+    "section": "Holding other variables at “typical” values",
+    "text": "Holding other variables at “typical” values\nIf you have more predictor variables in your model, then variables not specified in the terms argument the ggpredict() function are set to a specific value. Quantitative variables are set to their mean. Categorical variables are set to the mode (the level with the most observations)."
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#labels",
+    "href": "activity/09H-mlr-linear-combos.html#labels",
+    "title": "Including Categorical Predictors",
+    "section": "Labels",
+    "text": "Labels\nIf you need to adjust your axis labels or title, then you will need to add a labs() layer to your plot. For example,\n\nplot(cars_pred) +\n  labs(x = \"My new x label\", y = \"My new y label\",\n       title = \"My new title\")"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#fitting-a-model-with-interactions",
+    "href": "activity/09H-mlr-linear-combos.html#fitting-a-model-with-interactions",
+    "title": "Including Categorical Predictors",
+    "section": "Fitting a model with interactions",
+    "text": "Fitting a model with interactions\nIf we believe that the association between Price and Mileage differs by Make, then we can include an interaction term in our model. To do this, we use * instead of + to separate the predictor variables on the right side of the ~ in the model formula. This will include both main effects and the interaction term.\n\n# Fill in the blanks to fit the MLR model with interaction\ncar_lm2 &lt;- lm(___ ~ ___ * ___, data = ___)\nsummary(car_lm2)\n\nQ8. Report the fitted regression equation for Buicks and Cadillacs.\nQ9. What is the \\(R^2\\) value for this model? Does this model appear to fit the data better than the previous model?"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#plotting-the-fitted-model-with-interactions",
+    "href": "activity/09H-mlr-linear-combos.html#plotting-the-fitted-model-with-interactions",
+    "title": "Including Categorical Predictors",
+    "section": "Plotting the fitted model with interactions",
+    "text": "Plotting the fitted model with interactions\nTo plot the interaction model, we again use the ggpredict() and plot() functions in the {ggeffects} package.\n\n# Fill in the blank with your model name\ncars_pred2 &lt;- ggpredict(___, terms = ~Mileage + Make)\n\n# Now plot the predictions\nplot(cars_pred2)\n\n🛑 Stop here. We will have a class discussion before moving on so that the next section makes sense."
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#calculating-cis-for-linear-combinations",
+    "href": "activity/09H-mlr-linear-combos.html#calculating-cis-for-linear-combinations",
+    "title": "Including Categorical Predictors",
+    "section": "Calculating CIs for linear combinations",
+    "text": "Calculating CIs for linear combinations\nTo calculate a confidence interval for a linear combination of coefficients, we must first calculate the estimate and standard error of the linear combination.\nLet’s calculate a 95% confidence interval for the slope of the Cadillac model. Refer to your notes/slides and determine the formulas for the estimate and standard error of this slope.\nNow that you know the formulas, you’ll use R to implement them. First, extract the coefficients and covariance matrix from the model object. Try printing the results to see what they look like and make note of where the Cadillac coefficients are located.\n\n1car_coefs &lt;- coef(car_lm2)\n2car_vcov &lt;- vcov(car_lm2)\n\n\n1\n\nExtract the coefficients from the model object and store them in car_coefs.\n\n2\n\nExtract the covariance matrix from the model object and store it in car_vcov.\n\n\n\n\nNext, calculate the estimate of the slope for Cadillacs.\n\n3estimate &lt;- car_coefs[2] + car_coefs[8]\nestimate\n\n\n3\n\ncar_coefs is a vector, so we pull off the necessary coefficients using their position in square brackets. Here, car_coefs[2] pulls off the coefficient for Mileage and car_coefs[8] pulls off the coefficient for the interaction term Mileage:MakeCadillac.\n\n\n\n\nNow, calculate the standard error of the slope for Cadillacs.\n\n4se &lt;- sqrt(car_vcov[2,2] + car_vcov[8,8] + 2*car_vcov[2,8])\nse\n\n\n4\n\ncar_vcov is a matrix, so we pull off the necessary variances and covariances using their row and column positions in square brackets. Here, car_vcov[2,2] pulls off the variance for Mileage, car_vcov[8,8] pulls off the variance for the interaction term Mileage:MakeCadillac, and car_vcov[2,8] pulls off the covariance between these two coefficients.\n\n\n\n\nFinally, use the estimate and standard error to calculate a 95% confidence interval for the slope of the Cadillac model. You can use the qt() function to find the appropriate critical value.\nQ10. Calculate a 95% confidence interval for the slope of the Cadillac model.\n\n# Calculate the 95% CI here"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#calculating-extra-sums-of-squares-f-tests",
+    "href": "activity/09H-mlr-linear-combos.html#calculating-extra-sums-of-squares-f-tests",
+    "title": "Including Categorical Predictors",
+    "section": "Calculating extra sums of squares F-tests",
+    "text": "Calculating extra sums of squares F-tests\nDo we really need the interaction terms? To answer this question, we can use an extra sums of squares F-test to compare the model with interaction terms to the model without interaction terms.\nWe have already seen how to use the anova() function to compare two nested models. Here, we will use it again to compare our two car models.\n\n# Fill in the blanks to run the extra sums of squares F-test\nanova(___, ___)\n\n\nUsing only the full model\nWe can also calculate the extra sums of squares F-test using only the full model. To do this, we need to extract the SSE and degrees of freedom for both models from the ANOVA table for the full model.\nQ11. Run the below code and verify that the df, sums of squares, mean squares, F value, and p-value match what you got from the previous anova() command.\n\nanova(car_lm2)"
+  },
+  {
+    "objectID": "activity/09H-mlr-linear-combos.html#function-quick-reference",
+    "href": "activity/09H-mlr-linear-combos.html#function-quick-reference",
+    "title": "Including Categorical Predictors",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm()\nFit a linear model\n\n\nsummary()\nDisplay detailed results from a fitted model\n\n\ncoef()\nExtract model coefficients\n\n\nvcov()\nExtract the variance-covariance matrix of model coefficients\n\n\nggpredict()\nCreate a data frame of predicted values from a fitted model\n\n\nplot()\nCreate a plot of predicted values from a fitted model\n\n\nanova()\nCreate an ANOVA table for a fitted model or compare two nested models"
   }
 ]
