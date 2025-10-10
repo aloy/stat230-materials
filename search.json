@@ -315,312 +315,459 @@
     "text": "After fitting the transformed model, our regression line gives predictions for the mean of \\(\\log(Y)\\) for a given value of \\(x\\), which we denote \\(\\mu\\lbrace\\log(Y) | x\\rbrace\\). A sketch of what this model looks like is shown below. Notice that on the log scale, the regression line describes the center (the mean) of a symmetric distribution around the regression line.\n\n\n\n\n\n\n\n\n\nWhen we exponentiate to move back to the original scale we “distort” the model. The plot below shows the back-transformed version of the previous plot. Notice that the distributions are no longer symmetric. What was the mean on the log scale corresponds to the median on the original scale.\n\n\n\n\n\n\n\n\n\nOn the univariate scale, consider the following example:\n\n\n\n\n\n\n\n\n\nNow let’s back transform and move back to the original scale from the log scale. Back-transforming the mean of log(y) gives us \\(e^{0.004}=1.004\\), which is much closer to the median of y than to the mean."
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#fev-example",
-    "href": "slides/09-mlr-inference2.html#fev-example",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "FEV example",
-    "text": "FEV example"
+    "objectID": "slides/10-mlr-diagnostics.html#warm-up",
+    "href": "slides/10-mlr-diagnostics.html#warm-up",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Warm up",
+    "text": "Warm up\nWith your group\n\nList the conditions for MLR\nBrainstorm ways to check these conditions"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#fev-example-1",
-    "href": "slides/09-mlr-inference2.html#fev-example-1",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "FEV example",
-    "text": "FEV example\n\\[{\\rm E}(Y|X) = \\beta_0 + \\beta_1 {\\tt age} + \\beta_2 {\\tt smoke} + \\beta_3 {\\tt age \\times smoke}\\] \n\nMean functions for each group\n\n\n\n\nSmokers:\n\n\\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\n\n\n\n\n\nNon-smokers:\n\n\\({\\rm E}(Y|X) = \\beta_0 + \\beta_1  {\\tt age}\\)"
+    "objectID": "slides/10-mlr-diagnostics.html#regression-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#regression-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Regression is not resistant to outliers",
+    "text": "Regression is not resistant to outliers\nSolid line = with outliers; dashed line = without outliers"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
-    "href": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "SEs for linear combinations",
-    "text": "SEs for linear combinations\nEstimate:\n\\[\\widehat{\\gamma} = c_1 \\widehat{\\beta}_i + c_2 \\widehat{\\beta}_j\\]\n\n\nStandard error:\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_i)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)}\n\\]"
+    "objectID": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "SLR is not resistant to outliers",
+    "text": "SLR is not resistant to outliers\n\n\\[\\widehat{\\beta}_1 = r \\cdot \\dfrac{s_y}{s_x} \\qquad \\qquad \\widehat{\\beta}_0 = \\bar{y} - \\widehat{\\beta}_1 \\bar{x}\\]\n\nWhy?\n\n\\(r\\) is not resistant\n\\(s_y\\), \\(s_x\\) are not resistant\n\\(\\bar{x}\\), \\(\\bar{y}\\) are not resistant"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#fev-example-2",
-    "href": "slides/09-mlr-inference2.html#fev-example-2",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "FEV example",
-    "text": "FEV example\n\n\n\n\n\n\nWarning\n\n\nOur standard table of coefficients doesn’t contain the SEs we need to construct CIs or perform tests for these linear combinations.\n\n\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n0.675\n0.251\n2.684\n0.008\n\n\nAge\n0.210\n0.021\n9.972\n&lt;0.001\n\n\nSmokeSmoker\n1.720\n0.563\n3.053\n0.002\n\n\nAge:SmokeSmoker\n−0.143\n0.042\n−3.397\n&lt;0.001"
+    "objectID": "slides/10-mlr-diagnostics.html#mlr-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#mlr-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "MLR is not resistant to outliers",
+    "text": "MLR is not resistant to outliers\nWe’re still choosing the \\(\\widehat{\\beta}_i\\) to minimize the sum of squared residuals\n\\[\n\\begin{split}\nSSE &= \\sum_{i=1}^n \\left( y_i - \\widehat{y}_i \\right)^2\\\\\n&= \\sum_{i=1}^n \\left( y_i - \\widehat{\\beta}_0 - \\widehat{\\beta}_1 x_{i1} - \\widehat{\\beta}_2 x_{i2} - ... - \\widehat{\\beta}_p x_{ip} \\right)^2\n\\end{split}\n\\]\nSum’s aren’t resistant to outliers!"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#covariance-matrix",
-    "href": "slides/09-mlr-inference2.html#covariance-matrix",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Covariance matrix",
-    "text": "Covariance matrix\n\nThe diagonal (top left to lower right) displays variances, \\(\\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2\\)\nThe off-diagonals display covariances, \\(Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)\\)\nCovariance is like correlation, but not scaled to be between \\(-1\\) and \\(1\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798"
+    "objectID": "slides/10-mlr-diagnostics.html#types-of-outliers",
+    "href": "slides/10-mlr-diagnostics.html#types-of-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Types of outliers",
+    "text": "Types of outliers"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
-    "href": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "SE for a linear combination",
-    "text": "SE for a linear combination\n\nSmokers: \\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\nTarget: \\(\\widehat{\\gamma} = \\widehat{\\beta}_1 + \\widehat{\\beta}_3\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798\n\n\n\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_1)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_2) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_1, \\widehat{\\beta}_2)}\n\\]\n\n\n\n\n\\(c_1 = 1\\), \\(c_2 = 1\\)\n\n\n\n\n\n\n\\(SE(\\widehat{\\beta_1})^2 = 0.0004423\\)\n\n\\(SE(\\widehat{\\beta_2})^2 = 0.0017798\\)\n\n\n\n\n\n\\(Cov(\\widehat{\\beta_1}, \\widehat{\\beta_2}) = -0.0004423\\)"
+    "objectID": "slides/10-mlr-diagnostics.html#outliers",
+    "href": "slides/10-mlr-diagnostics.html#outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Outliers",
+    "text": "Outliers\n\n\nIn higher dimensions, outliers can be tricky to detect\nTo detect outliers in X, you have to consider the multivariate relationships between all of the predictors"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
-    "href": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "CI for a linear combination",
-    "text": "CI for a linear combination\nOnce we have \\(SE(\\widehat{\\gamma})\\), we can construct a CI as usual:\n\\[\n\\widehat{\\gamma} \\pm t^*_{n - (p+1)} \\cdot SE(\\widehat{\\gamma})\n\\]\n\n\\(\\widehat{\\gamma} = 0.0664\\)\n\n\n\\(SE(\\widehat{\\gamma}) = 0.0366\\)\n\n\n\\(df = n - (p+1) = 345 - 4 = 341\\)\n\n\n\\(t^*_{341} \\approx 1.649\\) for a 90% CI"
+    "objectID": "slides/10-mlr-diagnostics.html#not-all-outliers-are-influential",
+    "href": "slides/10-mlr-diagnostics.html#not-all-outliers-are-influential",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Not all outliers are influential",
+    "text": "Not all outliers are influential\nOrange line = SLR with outlier; Black line = SLR without outlier"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
-    "href": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Test for a linear combination",
-    "text": "Test for a linear combination\nWe can also test hypotheses about linear combinations of coefficients using a t-test:\n\\(H_0: \\gamma = \\gamma_0\\) vs. \\(H_a: \\gamma \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\gamma_0\\)\n\\(t = \\dfrac{\\widehat{\\gamma} - \\gamma_0}{SE(\\widehat{\\gamma})}\\)\nReference distribution: \\(t_{n-(p+1)}\\)"
+    "objectID": "slides/10-mlr-diagnostics.html#influential-points",
+    "href": "slides/10-mlr-diagnostics.html#influential-points",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Influential points",
+    "text": "Influential points\nPoints that are able to substantially change the fitted model ares influential\n\n\nHow do we find outliers and determine if they are influential?\n\nPlot the data\nPlot the standardized residuals\nFit the model with/without the point(s)\nCalculate to influence diagnostics"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#example",
-    "href": "slides/09-mlr-inference2.html#example",
-    "title": "Additional Inferential Tools for MLR",
+    "objectID": "slides/10-mlr-diagnostics.html#leverage",
+    "href": "slides/10-mlr-diagnostics.html#leverage",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\nMeasures the potential to influence the SLR line\n\n\nFor SLR:\n\n\\[h_i = \\frac{1}{n-1} \\left[ \\frac{x_i - \\overline{x}}{s_x} \\right]^2 + \\frac{1}{n} = \\dfrac{1}{n} + \\frac{\\left(x_i - \\overline{x}\\right)^2}{\\sum \\left(x_i - \\overline{x}\\right)^2}\\]\n\n\n\nFor MLR:\n\nmore complicated because we’re looking at a distance of a case from the average of p predictors\n\nCutoff\n\n\\(2(p+1)/n\\)\n\\(3(p+1)/n\\)\nAlso a good idea to examine a histogram/index plot\n\n\nI use p to denote the number of slope coefficients, so there are p+1 regression coefficients"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#leverage-1",
+    "href": "slides/10-mlr-diagnostics.html#leverage-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\n“Flares up” when value of x is far from the mean"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#leverage-2",
+    "href": "slides/10-mlr-diagnostics.html#leverage-2",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\nIn higher dimensions, leverage is focusing on the distance from the average of all of the predictors"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#standardized-residuals",
+    "href": "slides/10-mlr-diagnostics.html#standardized-residuals",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\nStandardized residuals are calculated by dividing the residuals by their standard deviation\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}} = \\dfrac{e_i}{ \\widehat{\\sigma} \\sqrt{1 - h_{i}}}\\]\n\nGuidelines:\n\n\\(|r_i|&gt;2\\) for small data sets\n\\(|r_i|&gt;4\\) for large data sets\n\n\nSleuth calls these (internally) studentized residuals while R calls these standardized residuals"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#standardized-residuals-1",
+    "href": "slides/10-mlr-diagnostics.html#standardized-residuals-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n“Flare up” when value of y is far from \\(\\widehat{y}\\)"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#dffits",
+    "href": "slides/10-mlr-diagnostics.html#dffits",
+    "title": "Multiple Regression Diagnostics",
+    "section": "DFFITS",
+    "text": "DFFITS\nMeasures effect the ith case has on its own fitted value\n\\[DFFITS_i = \\frac{\\widehat{y}_i - \\widehat{y}_{i(i)}}{\\widehat{\\sigma}_{(i)} \\sqrt{h_i}}\\] where the subscript \\((i)\\) indicates that the value is based on a model when observation i is omitted\n\nCutoff\n\n1 for small/medium data sets\n\\(2\\sqrt{\\dfrac{p+1}{n}}\\) for large data sets\n\n\nDFFITS is not discussed in Sleuth"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#cooks-distance",
+    "href": "slides/10-mlr-diagnostics.html#cooks-distance",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Cook’s distance",
+    "text": "Cook’s distance\nMeasures effect the ith case has on all of the fitted values\n\\[D_i= \\sum_{j=1}^n\\frac{ \\left(\\widehat{y}_{j(i)} - \\widehat{y}_j \\right)^2}{(p+1) \\widehat{\\sigma}} = \\frac{r_i^2}{p+1} \\left( \\frac{h_i}{1-h_i} \\right)\\]\nwhere \\(\\widehat{y}_{j(i)}\\) is the fitted value for observation j based on a model when observation i is omitted\n\nCutoff\n\n\\(D_i\\) near or above 1 indicates large influence\nFind what quantile of \\(F_{p+1, n-p-1}\\) \\(D_i\\) corresponds to, larger than 0.5 is cause for concern\nAlso can judge relative standing of \\(D_i\\) — make an index plot"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#cooks-distance-1",
+    "href": "slides/10-mlr-diagnostics.html#cooks-distance-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Cook’s distance",
+    "text": "Cook’s distance"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#do-we-calculate-these-by-hand",
+    "href": "slides/10-mlr-diagnostics.html#do-we-calculate-these-by-hand",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Do we calculate these by hand?",
+    "text": "Do we calculate these by hand?\nNo!\n\naugment() from the broom package\ninfluence.measures() from the car package"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#advice-from-sleuth",
+    "href": "slides/10-mlr-diagnostics.html#advice-from-sleuth",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Advice from Sleuth",
+    "text": "Advice from Sleuth\n\n\nSource: Display 11.8 in Sleuth (3rd edition)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
+    "title": "Model Diagnostics",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#residuals",
+    "href": "slides/04-slr-diagnostics.html#residuals",
+    "title": "Model Diagnostics",
+    "section": "Residuals",
+    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
+    "title": "Model Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
+    "title": "Model Diagnostics",
+    "section": "A “good” residual plot",
+    "text": "A “good” residual plot"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#your-turn",
+    "href": "slides/04-slr-diagnostics.html#your-turn",
+    "title": "Model Diagnostics",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
+    "href": "slides/04-slr-diagnostics.html#assessing-normality",
+    "title": "Model Diagnostics",
+    "section": "Assessing normality",
+    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
+    "href": "slides/04-slr-diagnostics.html#assessing-independence",
+    "title": "Model Diagnostics",
+    "section": "Assessing independence",
+    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
+    "title": "Model Diagnostics",
+    "section": "What happens the conditions aren’t valid?",
+    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
+    "title": "Model Diagnostics",
+    "section": "What do we do if our assumptions are violated?",
+    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
+    "title": "Model Diagnostics",
+    "section": "Transforming variables can",
+    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
+    "href": "slides/04-slr-diagnostics.html#applying-transformations",
+    "title": "Model Diagnostics",
+    "section": "Applying transformations",
+    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
+    "title": "Model Diagnostics",
+    "section": "Review of logarithms",
+    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
+    "href": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
+    "title": "Multiple Linear Regression",
+    "section": "Multiple Linear Regression (MLR)",
+    "text": "Multiple Linear Regression (MLR)\n\\[Y_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_p x_{ip} + \\varepsilon_i, \\quad \\varepsilon_i \\overset{iid}{\\sim} N(0, \\sigma^2)\\]\n\n\nThis model requires that…\n\n\\(\\mu\\{Y|x_1, x_2, \\ldots, x_p\\}\\) is a linear function\nThe error terms are independent and are from a single population distribution\nThe error terms follow a normal distribution with mean 0 and variance \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "slides/07-mlr-intro.html#example",
+    "href": "slides/07-mlr-intro.html#example",
+    "title": "Multiple Linear Regression",
     "section": "Example",
-    "text": "Example\n\nWork through the example on the handout with your neighbors\nBe prepared to share your strategy with the class"
+    "text": "Example\n\nIn an effort to understand the important aspects of a satisfactory supervisor, clerical employees at a large financial organization were asked to rate their immediate supervisor.\nThe survey questions were designed to measure overall performance of the supervisor, as well as six additional characteristics.\nEmployees were asked to rate the following statements on a scale from 0 to 100\n(0 = “completely disagree”, 100 = “completely agree”)"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#example-used-car-prices",
-    "href": "slides/09-mlr-inference2.html#example-used-car-prices",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Example: Used car prices",
-    "text": "Example: Used car prices\nWe have data on used car prices, including:\n\nPrice: Price (in dollars)\nMileage: Mileage (in thousands of miles)\nMake: Manufacturer (Buick, Cadillac, Chevrolet, Pontiac, SAAB, Saturn)\n\nAfter some initial EDA, researchers want to fit an MLR model to predict \\(\\log\\)(price) using mileage and make."
+    "objectID": "slides/07-mlr-intro.html#the-data",
+    "href": "slides/07-mlr-intro.html#the-data",
+    "title": "Multiple Linear Regression",
+    "section": "The data",
+    "text": "The data\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nrating\nOverall rating of supervisor performance\n\n\ncomplaints\nScore for “Your supervisor handles employee complaints appropriately.”\n\n\nprivileges\nScore for “Your supervisor allows special privileges.”\n\n\nlearn\nScore for “Your supervisor provides opportunities to learn new things.”\n\n\nraises\nScore for “Your supervisor bases raises on performance.”\n\n\ncritical\nScore for “Your supervisor is too critical of poor performance.”\n\n\nadvance\nScore for “I am not satisfied with the rate I am advancing in the company?”"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#used-car-prices",
-    "href": "slides/09-mlr-inference2.html#used-car-prices",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Used car prices",
-    "text": "Used car prices\nIs Make a useful predictor of price, after accounting for Mileage?\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n10.090\n0.034\n293.975\n&lt;0.001\n\n\nMileage\n0.000\n0.000\n−7.359\n&lt;0.001\n\n\nMakeCadillac\n0.649\n0.038\n17.016\n&lt;0.001\n\n\nMakeChevrolet\n−0.296\n0.030\n−9.809\n&lt;0.001\n\n\nMakePontiac\n−0.144\n0.033\n−4.299\n&lt;0.001\n\n\nMakeSAAB\n0.355\n0.035\n10.108\n&lt;0.001\n\n\nMakeSaturn\n−0.397\n0.041\n−9.650\n&lt;0.001"
+    "objectID": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
+    "href": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
+    "title": "Multiple Linear Regression",
+    "section": "EDA: Scatterplot matrix",
+    "text": "EDA: Scatterplot matrix"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#review-nested-models",
-    "href": "slides/09-mlr-inference2.html#review-nested-models",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Review: Nested models",
-    "text": "Review: Nested models\n\nModel 1:  \\({\\rm E}(\\log(Y)|X) = \\beta_0 + \\beta_1 {\\tt Mileage}\\)\n\nModel 2: \n\\(\\begin{split}\n{\\rm E}(\\log(Y)|X) = \\beta_0 &+ \\beta_1 {\\tt Mileage} + \\beta_2 {\\tt Cadillac} + \\beta_3 {\\tt Chevy}\\\\\n&+ \\beta_4 {\\tt Pontiac} + \\beta_5 {\\tt SAAB} + \\beta_6 {\\tt Saturn}\n\\end{split}\\)\n\n\n\n\nExtra SS F-test:\nNull hypothesis tells us how we can simplify Model 2 (full) to get Model 1 (reduced):\n\\(H_0\\): \\(\\beta_2 = \\beta_3 = \\beta_4 = \\beta_5 = \\beta_6 = 0\\)"
+    "objectID": "slides/07-mlr-intro.html#eda-correlation-matrix",
+    "href": "slides/07-mlr-intro.html#eda-correlation-matrix",
+    "title": "Multiple Linear Regression",
+    "section": "EDA: Correlation matrix",
+    "text": "EDA: Correlation matrix\n\ncor(supervisor)\n\n           overall complaints privileges  learn raises critical advance\noverall     1.0000     0.8254     0.4261 0.6237 0.5901   0.1564  0.1551\ncomplaints  0.8254     1.0000     0.5583 0.5967 0.6692   0.1877  0.2246\nprivileges  0.4261     0.5583     1.0000 0.4933 0.4455   0.1472  0.3433\nlearn       0.6237     0.5967     0.4933 1.0000 0.6403   0.1160  0.5316\nraises      0.5901     0.6692     0.4455 0.6403 1.0000   0.3769  0.5742\ncritical    0.1564     0.1877     0.1472 0.1160 0.3769   1.0000  0.2833\nadvance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#extra-sums-of-squares",
-    "href": "slides/09-mlr-inference2.html#extra-sums-of-squares",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "Extra Sums of Squares",
-    "text": "Extra Sums of Squares\nDefinition: the marginal reduction in the error sum of squares when one (or more) explanatory variable(s) is added to the model\n\n\nF-test for comparing nested models:\n\\(F = \\dfrac{(SSE_{full} - SSE_{reduced}) / (df_{full} - df_{reduced})}{MSE_{full}}\\)"
+    "objectID": "slides/07-mlr-intro.html#fitting-the-model",
+    "href": "slides/07-mlr-intro.html#fitting-the-model",
+    "title": "Multiple Linear Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nTarget:\n\nFitted regression equation: \\(\\widehat{Y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_{i1} + \\widehat{\\beta}_2 x_{i2} + \\cdots + \\widehat{\\beta}_p x_{ip}\\)\nStandard error for MLR model: \\(\\widehat{\\sigma}\\)"
   },
   {
-    "objectID": "slides/09-mlr-inference2.html#anova-table-from-r",
-    "href": "slides/09-mlr-inference2.html#anova-table-from-r",
-    "title": "Additional Inferential Tools for MLR",
-    "section": "ANOVA table from R",
-    "text": "ANOVA table from R\n\nanova(car_lm) produces an ANOVA table for the MLR model, it gives sequential sums of squares, not the extra sums of squares we need for our F-test.\n\n\n\n\n\n\n\n\n\nterm\ndf\nsumsq\nmeansq\nstatistic\np.value\n\n\n\n\nMileage\n1\n2.959\n2.959\n50.941\n&lt;0.001\n\n\nMake\n5\n85.802\n17.160\n295.414\n&lt;0.001\n\n\nResiduals\n797\n46.297\n0.058\nNA\nNA\n\n\n\n\n\n\n\n\n\nMileage row: extra SS for Mileage (compared to intercept-only model)\nMake row: extra SS for Make after accounting for Mileage\nResiduals row: SSE for the full model"
+    "objectID": "slides/07-mlr-intro.html#fitting-the-model-1",
+    "href": "slides/07-mlr-intro.html#fitting-the-model-1",
+    "title": "Multiple Linear Regression",
+    "section": "Fitting the model",
+    "text": "Fitting the model\nProcedure:\nLeast squares estimation: choose the coefficients to minimize \\[\\text{SSE} = \\sum_{i=1}^n \\left(Y_i - \\widehat{Y}_i \\right)^2\\] Then use \\(\\widehat{\\sigma} = \\sqrt{\\frac{\\text{SSE}}{n-(p+1)}}\\)"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#easing-skew",
-    "href": "slides/05-slr-transformations.html#easing-skew",
-    "title": "Remedial Measures: Transformations",
-    "section": "Easing skew",
-    "text": "Easing skew\nIf a set of data values is skewed to the right, taking the (natural) log of each data value can result in a data set that is roughly symmetric and often roughly normal."
+    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
+    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
+    "title": "Multiple Linear Regression",
+    "section": "Interpreting \\(\\widehat{\\beta}_0\\)",
+    "text": "Interpreting \\(\\widehat{\\beta}_0\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected value of the response variable when all explanatory variables are 0\nThe expected overall supervisor score is about 10.8 when all individual scores are 0"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#section",
-    "href": "slides/05-slr-transformations.html#section",
-    "title": "Remedial Measures: Transformations",
-    "section": "",
-    "text": "How are tree height and tree diameter related for the western red cedar?"
+    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
+    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
+    "title": "Multiple Linear Regression",
+    "section": "Interpreting \\(\\widehat{\\beta}_j\\)",
+    "text": "Interpreting \\(\\widehat{\\beta}_j\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected change in the response for a 1-unit increase in \\(x_j\\), when all other variables are held constant.\nWe expect a 0.613 point increase in a supervisor’s overall score for a 1-point increase on the complaints scale, holding all other variables constant"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#are-the-conditions-violated",
-    "href": "slides/05-slr-transformations.html#are-the-conditions-violated",
-    "title": "Remedial Measures: Transformations",
-    "section": "Are the conditions violated?",
-    "text": "Are the conditions violated?\n\nWarning: Using the `size` aesthetic with geom_line was deprecated in ggplot2 3.4.0.\nℹ Please use the `linewidth` aesthetic instead.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
+    "objectID": "slides/07-mlr-intro.html#testing-a-single-coefficient",
+    "href": "slides/07-mlr-intro.html#testing-a-single-coefficient",
+    "title": "Multiple Linear Regression",
+    "section": "Testing a single coefficient",
+    "text": "Testing a single coefficient\n\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\n\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(p+1)\\)\n\n\n\n\np-value: Area in the tail(s) specified by \\(H_a\\)"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#does-transforming-x-help",
-    "href": "slides/05-slr-transformations.html#does-transforming-x-help",
-    "title": "Remedial Measures: Transformations",
-    "section": "Does transforming X help?",
-    "text": "Does transforming X help?"
+    "objectID": "slides/07-mlr-intro.html#confidence-intervals",
+    "href": "slides/07-mlr-intro.html#confidence-intervals",
+    "title": "Multiple Linear Regression",
+    "section": "Confidence intervals",
+    "text": "Confidence intervals\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(p+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\n\\(t^*_{n-(p+1)}\\) is the \\(1 - \\alpha/2\\) quantile from the t-distribution with \\(d.f. = n-(p+1)\\)"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#does-transforming-y-help",
-    "href": "slides/05-slr-transformations.html#does-transforming-y-help",
-    "title": "Remedial Measures: Transformations",
-    "section": "Does transforming Y help?",
-    "text": "Does transforming Y help?"
+    "objectID": "slides/07-mlr-intro.html#example-1",
+    "href": "slides/07-mlr-intro.html#example-1",
+    "title": "Multiple Linear Regression",
+    "section": "Example",
+    "text": "Example\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\nconf.low\nconf.high\n\n\n\n\n(Intercept)\n10.7871\n11.5893\n0.9308\n0.3616\n-13.1871\n34.7613\n\n\ncomplaints\n0.6132\n0.1610\n3.8090\n0.0009\n0.2802\n0.9462\n\n\nprivileges\n-0.0731\n0.1357\n-0.5382\n0.5956\n-0.3538\n0.2077\n\n\nlearn\n0.3203\n0.1685\n1.9009\n0.0699\n-0.0283\n0.6689\n\n\nraises\n0.0817\n0.2215\n0.3690\n0.7155\n-0.3764\n0.5399\n\n\ncritical\n0.0384\n0.1470\n0.2611\n0.7963\n-0.2657\n0.3425\n\n\nadvance\n-0.2171\n0.1782\n-1.2180\n0.2356\n-0.5857\n0.1516"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#transforming-both-x-and-y",
-    "href": "slides/05-slr-transformations.html#transforming-both-x-and-y",
-    "title": "Remedial Measures: Transformations",
-    "section": "Transforming both X and Y?",
-    "text": "Transforming both X and Y?"
+    "objectID": "slides/02-slr-inference.html#warm-up",
+    "href": "slides/02-slr-inference.html#warm-up",
+    "title": "Inference for SLR",
+    "section": "Warm up",
+    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#your-turn",
-    "href": "slides/05-slr-transformations.html#your-turn",
-    "title": "Remedial Measures: Transformations",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork through the first example on the handout with your neighbor(s)\nOnline version with R chunks:"
+    "objectID": "slides/02-slr-inference.html#example",
+    "href": "slides/02-slr-inference.html#example",
+    "title": "Inference for SLR",
+    "section": "Example",
+    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-1",
-    "href": "slides/05-slr-transformations.html#back-transforming-1",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\nRegistered S3 method overwritten by 'mosaic':\n  method                           from   \n  fortify.SpatialPolygonsDataFrame ggplot2\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
+    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
+    "href": "slides/02-slr-inference.html#a-deterministic-model",
+    "title": "Inference for SLR",
+    "section": "A deterministic model",
+    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
   },
   {
-    "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
-    "href": "slides/05-slr-transformations.html#displaying-a-transformed-model",
-    "title": "Remedial Measures: Transformations",
-    "section": "Displaying a transformed model",
-    "text": "Displaying a transformed model\n\nWarning: Using the `size` aesthetic with geom_ribbon was deprecated in ggplot2 3.4.0.\nℹ Please use the `linewidth` aesthetic instead.\n\n\n\n\n\n\n\n\n\n\n\n\n95% confidence intervals for the mean response are displayed"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#rules-of-thumb",
-    "href": "slides/05-slr-transformations.html#rules-of-thumb",
-    "title": "Remedial Measures: Transformations",
-    "section": "Rules of thumb",
-    "text": "Rules of thumb\n\ntransform x: if mean function is nonlinear, but is monotonic and the residual variance is constant\ntransform y: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)\nlog rule: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful\nrange rule: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help\nsquare roots are useful for count data"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#ladder-of-transformations",
-    "href": "slides/05-slr-transformations.html#ladder-of-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Ladder of transformations",
-    "text": "Ladder of transformations\n\n\nImage credit: Andrew Zieffler"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#rule-of-the-bulge",
-    "href": "slides/05-slr-transformations.html#rule-of-the-bulge",
-    "title": "Remedial Measures: Transformations",
-    "section": "Rule of the Bulge",
-    "text": "Rule of the Bulge\nIntroduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity\n\n\nImage credit: Andrew Zieffler"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-2",
-    "href": "slides/05-slr-transformations.html#back-transforming-2",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-Transforming",
-    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#back-transforming-log-transformations",
-    "href": "slides/05-slr-transformations.html#back-transforming-log-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Back-transforming log transformations",
-    "text": "Back-transforming log transformations\n\nOften log-transforming a variable makes in approximately symmetric\nIf symmetric, then the median \\(\\approx\\) mean on the log scale\n\\(\\widehat{\\mu}(Y|X) \\approx \\widehat{\\text{median}}(Y|X)\\)\nInference made mean on the log scale can thought of as inference for the median on the log scale"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-of-y-only",
-    "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform of Y only",
-    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
-    "href": "slides/05-slr-transformations.html#log-transform-of-x-only",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform of X only",
-    "text": "Log-transform of X only\n\n\nA doubling of \\(x\\) is associated with the mean response increasing (decreasing) by \\(\\beta_1 \\log(2)\\) units."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
-    "href": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
-    "title": "Remedial Measures: Transformations",
-    "section": "Log-transform both Y and X",
-    "text": "Log-transform both Y and X\n\n\nThe median of \\(Y\\) at \\(2x\\) is \\(2^{\\beta_1}\\) times greater (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… A doubling of x is associated with the median of Y increasing (decreasing) by a factor of \\(2^{\\beta_1}\\)."
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#your-turn-1",
-    "href": "slides/05-slr-transformations.html#your-turn-1",
-    "title": "Remedial Measures: Transformations",
-    "section": "Your turn",
-    "text": "Your turn\nYou estimated the model \\(\\mu(\\mathtt{brain\\ weight}|\\mathtt{body \\ weight}) = \\beta_0 + \\beta_1 x\\)\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n2.190\n0.176\n12.439\n&lt;0.001\n\n\nlog(bodyweight)\n0.759\n0.042\n18.163\n&lt;0.001\n\n\n\n\n\n\n\n\nInterpret the slope in context\nInterpret the intercept in context"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
-    "href": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
-    "title": "Remedial Measures: Transformations",
-    "section": "Modeling is an iterative process",
-    "text": "Modeling is an iterative process"
-  },
-  {
-    "objectID": "slides/05-slr-transformations.html#issues-with-transformations",
-    "href": "slides/05-slr-transformations.html#issues-with-transformations",
-    "title": "Remedial Measures: Transformations",
-    "section": "Issues with transformations",
-    "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#welcome",
-    "href": "slides/01-slides-slr-review.html#welcome",
-    "title": "Welcome and Review",
-    "section": "Welcome 👋",
-    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#your-turn",
-    "href": "slides/01-slides-slr-review.html#your-turn",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
-    "href": "slides/01-slides-slr-review.html#regression-in-intro",
-    "title": "Welcome and Review",
-    "section": "Regression in intro",
-    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
-    "href": "slides/01-slides-slr-review.html#your-turn-1",
-    "title": "Welcome and Review",
-    "section": "Your turn",
-    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "title": "Welcome and Review",
-    "section": "Regression in Stat 230",
-    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "title": "Welcome and Review",
+    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
+    "title": "Inference for SLR",
     "section": "Simple Linear Regression Model",
     "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#notation",
-    "href": "slides/01-slides-slr-review.html#notation",
-    "title": "Welcome and Review",
+    "objectID": "slides/02-slr-inference.html#linear-regression-model",
+    "href": "slides/02-slr-inference.html#linear-regression-model",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
+    "href": "slides/02-slr-inference.html#linear-regression-model-1",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
+    "href": "slides/02-slr-inference.html#linear-regression-model-2",
+    "title": "Inference for SLR",
+    "section": "Linear Regression Model",
+    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#notation",
+    "href": "slides/02-slr-inference.html#notation",
+    "title": "Inference for SLR",
     "section": "Notation",
     "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "title": "Welcome and Review",
-    "section": "Overview of the term",
-    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#typical-week",
-    "href": "slides/01-slides-slr-review.html#typical-week",
-    "title": "Welcome and Review",
-    "section": "Typical week",
-    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
   },
   {
-    "objectID": "slides/01-slides-slr-review.html#tools",
-    "href": "slides/01-slides-slr-review.html#tools",
-    "title": "Welcome and Review",
-    "section": "Tools",
-    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
+    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
+    "title": "Inference for SLR",
+    "section": "Uncertainty in the parameters",
+    "text": "Uncertainty in the parameters"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution",
+    "href": "slides/02-slr-inference.html#sampling-distribution",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
+    "href": "slides/02-slr-inference.html#sampling-distribution-2",
+    "title": "Inference for SLR",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#confidence-interval",
+    "href": "slides/02-slr-inference.html#confidence-interval",
+    "title": "Inference for SLR",
+    "section": "Confidence interval",
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#hypothesis-test",
+    "href": "slides/02-slr-inference.html#hypothesis-test",
+    "title": "Inference for SLR",
+    "section": "Hypothesis test",
+    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#coefficient-table",
+    "href": "slides/02-slr-inference.html#coefficient-table",
+    "title": "Inference for SLR",
+    "section": "Coefficient table",
+    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#your-turn",
+    "href": "slides/02-slr-inference.html#your-turn",
+    "title": "Inference for SLR",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
+    "title": "Inference for SLR",
+    "section": "A note on reporting test results",
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
+    "title": "Inference for SLR",
+    "section": "Conditions required for inference",
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Overview",
+    "section": "",
+    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+  },
+  {
+    "objectID": "slides.html",
+    "href": "slides.html",
+    "title": "Stat 230 Slide Decks",
+    "section": "",
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMMLR diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/06-mlr-polynomial.html#wildfires",
@@ -826,333 +973,312 @@
     "text": "Extra sums of squares F-test in R\n\n1full &lt;- lm(Acres ~ poly(Year, 4), data = wildfires)\n2reduced &lt;- lm(Acres ~ poly(Year, 2), data = wildfires)\n3anova(reduced, full)\n\n\n1\n\nFit the full model\n\n2\n\nFit the reduced model\n\n3\n\nUse anova() to compare the two models. The first argument should be the reduced model.\n\n\n\n\nAnalysis of Variance Table\n\nModel 1: Acres ~ poly(Year, 2)\nModel 2: Acres ~ poly(Year, 4)\n  Res.Df        RSS Df  Sum of Sq      F Pr(&gt;F)\n1     56 2.0426e+14                            \n2     54 1.9273e+14  2 1.1525e+13 1.6146 0.2084"
   },
   {
-    "objectID": "slides.html",
-    "href": "slides.html",
-    "title": "Stat 230 Slide Decks",
-    "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "objectID": "slides/01-slides-slr-review.html#welcome",
+    "href": "slides/01-slides-slr-review.html#welcome",
+    "title": "Welcome and Review",
+    "section": "Welcome 👋",
+    "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Overview",
-    "section": "",
-    "text": "Most materials for Stat 230 will be posted on Moodle, but some materials will also be hosted on this site for easier access. Everything here will also be linked on Moodle, but sometimes it’s easier to search through materials on this page rather than on Moodle.\n\nSlide decks"
+    "objectID": "slides/01-slides-slr-review.html#your-turn",
+    "href": "slides/01-slides-slr-review.html#your-turn",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
   },
   {
-    "objectID": "slides/02-slr-inference.html#warm-up",
-    "href": "slides/02-slr-inference.html#warm-up",
-    "title": "Inference for SLR",
-    "section": "Warm up",
-    "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
+    "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
+    "href": "slides/01-slides-slr-review.html#regression-in-intro",
+    "title": "Welcome and Review",
+    "section": "Regression in intro",
+    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
   },
   {
-    "objectID": "slides/02-slr-inference.html#example",
-    "href": "slides/02-slr-inference.html#example",
-    "title": "Inference for SLR",
-    "section": "Example",
-    "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
+    "objectID": "slides/01-slides-slr-review.html#your-turn-1",
+    "href": "slides/01-slides-slr-review.html#your-turn-1",
+    "title": "Welcome and Review",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-deterministic-model",
-    "href": "slides/02-slr-inference.html#a-deterministic-model",
-    "title": "Inference for SLR",
-    "section": "A deterministic model",
-    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+    "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
+    "title": "Welcome and Review",
+    "section": "Regression in Stat 230",
+    "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "href": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "title": "Inference for SLR",
+    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
+    "title": "Welcome and Review",
     "section": "Simple Linear Regression Model",
     "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model",
-    "href": "slides/02-slr-inference.html#linear-regression-model",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
-    "href": "slides/02-slr-inference.html#linear-regression-model-1",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
-    "href": "slides/02-slr-inference.html#linear-regression-model-2",
-    "title": "Inference for SLR",
-    "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#notation",
-    "href": "slides/02-slr-inference.html#notation",
-    "title": "Inference for SLR",
+    "objectID": "slides/01-slides-slr-review.html#notation",
+    "href": "slides/01-slides-slr-review.html#notation",
+    "title": "Welcome and Review",
     "section": "Notation",
     "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "href": "slides/01-slides-slr-review.html#overview-of-the-term",
+    "title": "Welcome and Review",
+    "section": "Overview of the term",
+    "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/01-slides-slr-review.html#typical-week",
+    "href": "slides/01-slides-slr-review.html#typical-week",
+    "title": "Welcome and Review",
+    "section": "Typical week",
+    "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
   },
   {
-    "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "title": "Inference for SLR",
-    "section": "Uncertainty in the parameters",
-    "text": "Uncertainty in the parameters"
+    "objectID": "slides/01-slides-slr-review.html#tools",
+    "href": "slides/01-slides-slr-review.html#tools",
+    "title": "Welcome and Review",
+    "section": "Tools",
+    "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution",
-    "href": "slides/02-slr-inference.html#sampling-distribution",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution"
+    "objectID": "slides/05-slr-transformations.html#easing-skew",
+    "href": "slides/05-slr-transformations.html#easing-skew",
+    "title": "Remedial Measures: Transformations",
+    "section": "Easing skew",
+    "text": "Easing skew\nIf a set of data values is skewed to the right, taking the (natural) log of each data value can result in a data set that is roughly symmetric and often roughly normal."
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
-    "href": "slides/02-slr-inference.html#sampling-distribution-1",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
+    "objectID": "slides/05-slr-transformations.html#section",
+    "href": "slides/05-slr-transformations.html#section",
+    "title": "Remedial Measures: Transformations",
+    "section": "",
+    "text": "How are tree height and tree diameter related for the western red cedar?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
-    "href": "slides/02-slr-inference.html#sampling-distribution-2",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
+    "objectID": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "href": "slides/05-slr-transformations.html#are-the-conditions-violated",
+    "title": "Remedial Measures: Transformations",
+    "section": "Are the conditions violated?",
+    "text": "Are the conditions violated?\n\nWarning: Using the `size` aesthetic with geom_line was deprecated in ggplot2 3.4.0.\nℹ Please use the `linewidth` aesthetic instead.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlinearity\nconstant errors\nindependent errors\n\n\n\nnormal errors\noutliers\nnone"
   },
   {
-    "objectID": "slides/02-slr-inference.html#confidence-interval",
-    "href": "slides/02-slr-inference.html#confidence-interval",
-    "title": "Inference for SLR",
-    "section": "Confidence interval",
-    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+    "objectID": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-x-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming X help?",
+    "text": "Does transforming X help?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#hypothesis-test",
-    "href": "slides/02-slr-inference.html#hypothesis-test",
-    "title": "Inference for SLR",
-    "section": "Hypothesis test",
-    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+    "objectID": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "href": "slides/05-slr-transformations.html#does-transforming-y-help",
+    "title": "Remedial Measures: Transformations",
+    "section": "Does transforming Y help?",
+    "text": "Does transforming Y help?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#coefficient-table",
-    "href": "slides/02-slr-inference.html#coefficient-table",
-    "title": "Inference for SLR",
-    "section": "Coefficient table",
-    "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
+    "objectID": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "href": "slides/05-slr-transformations.html#transforming-both-x-and-y",
+    "title": "Remedial Measures: Transformations",
+    "section": "Transforming both X and Y?",
+    "text": "Transforming both X and Y?"
   },
   {
-    "objectID": "slides/02-slr-inference.html#your-turn",
-    "href": "slides/02-slr-inference.html#your-turn",
-    "title": "Inference for SLR",
+    "objectID": "slides/05-slr-transformations.html#your-turn",
+    "href": "slides/05-slr-transformations.html#your-turn",
+    "title": "Remedial Measures: Transformations",
     "section": "Your turn",
-    "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
+    "text": "Your turn\n\nWork through the first example on the handout with your neighbor(s)\nOnline version with R chunks:"
   },
   {
-    "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "title": "Inference for SLR",
-    "section": "A note on reporting test results",
-    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+    "objectID": "slides/05-slr-transformations.html#back-transforming-1",
+    "href": "slides/05-slr-transformations.html#back-transforming-1",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\nRegistered S3 method overwritten by 'mosaic':\n  method                           from   \n  fortify.SpatialPolygonsDataFrame ggplot2\n\n\n\n\n\nmean\n\n\n\n\n2.146\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\n\n\n\n\n98.558\n\n\n\n\n\n\n\n\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)\n\n\n\n\n\n\n\n\nR Note\n\n\n\nlog is the natural log\nexp(x) calculated \\(e^x\\)"
   },
   {
-    "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "href": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "title": "Inference for SLR",
-    "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+    "objectID": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "href": "slides/05-slr-transformations.html#displaying-a-transformed-model",
+    "title": "Remedial Measures: Transformations",
+    "section": "Displaying a transformed model",
+    "text": "Displaying a transformed model\n\nWarning: Using the `size` aesthetic with geom_ribbon was deprecated in ggplot2 3.4.0.\nℹ Please use the `linewidth` aesthetic instead.\n\n\n\n\n\n\n\n\n\n\n\n\n95% confidence intervals for the mean response are displayed"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
-    "href": "slides/07-mlr-intro.html#multiple-linear-regression-mlr",
-    "title": "Multiple Linear Regression",
-    "section": "Multiple Linear Regression (MLR)",
-    "text": "Multiple Linear Regression (MLR)\n\\[Y_i = \\beta_0 + \\beta_1 x_{i1} + \\beta_2 x_{i2} + \\cdots + \\beta_p x_{ip} + \\varepsilon_i, \\quad \\varepsilon_i \\overset{iid}{\\sim} N(0, \\sigma^2)\\]\n\n\nThis model requires that…\n\n\\(\\mu\\{Y|x_1, x_2, \\ldots, x_p\\}\\) is a linear function\nThe error terms are independent and are from a single population distribution\nThe error terms follow a normal distribution with mean 0 and variance \\(\\sigma^2\\)"
+    "objectID": "slides/05-slr-transformations.html#rules-of-thumb",
+    "href": "slides/05-slr-transformations.html#rules-of-thumb",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rules of thumb",
+    "text": "Rules of thumb\n\ntransform x: if mean function is nonlinear, but is monotonic and the residual variance is constant\ntransform y: if mean function is nonlinear and the residual variance increases as the mean increases (log, reciprocal, or square root often work)\nlog rule: if values range over more than 1 order of magnitude and are strictly positive, then the natural log is likely helpful\nrange rule: if the range is considerably less than 1 order of magnitude, then transformations are unlikely to help\nsquare roots are useful for count data"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#example",
-    "href": "slides/07-mlr-intro.html#example",
-    "title": "Multiple Linear Regression",
-    "section": "Example",
-    "text": "Example\n\nIn an effort to understand the important aspects of a satisfactory supervisor, clerical employees at a large financial organization were asked to rate their immediate supervisor.\nThe survey questions were designed to measure overall performance of the supervisor, as well as six additional characteristics.\nEmployees were asked to rate the following statements on a scale from 0 to 100\n(0 = “completely disagree”, 100 = “completely agree”)"
+    "objectID": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "href": "slides/05-slr-transformations.html#ladder-of-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Ladder of transformations",
+    "text": "Ladder of transformations\n\n\nImage credit: Andrew Zieffler"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#the-data",
-    "href": "slides/07-mlr-intro.html#the-data",
-    "title": "Multiple Linear Regression",
-    "section": "The data",
-    "text": "The data\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nrating\nOverall rating of supervisor performance\n\n\ncomplaints\nScore for “Your supervisor handles employee complaints appropriately.”\n\n\nprivileges\nScore for “Your supervisor allows special privileges.”\n\n\nlearn\nScore for “Your supervisor provides opportunities to learn new things.”\n\n\nraises\nScore for “Your supervisor bases raises on performance.”\n\n\ncritical\nScore for “Your supervisor is too critical of poor performance.”\n\n\nadvance\nScore for “I am not satisfied with the rate I am advancing in the company?”"
+    "objectID": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "href": "slides/05-slr-transformations.html#rule-of-the-bulge",
+    "title": "Remedial Measures: Transformations",
+    "section": "Rule of the Bulge",
+    "text": "Rule of the Bulge\nIntroduced by John Tukey and Frederick Mosteller for “straightening” data to better meet the assumption of linearity\n\n\nImage credit: Andrew Zieffler"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
-    "href": "slides/07-mlr-intro.html#eda-scatterplot-matrix",
-    "title": "Multiple Linear Regression",
-    "section": "EDA: Scatterplot matrix",
-    "text": "EDA: Scatterplot matrix"
+    "objectID": "slides/05-slr-transformations.html#back-transforming-2",
+    "href": "slides/05-slr-transformations.html#back-transforming-2",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-Transforming",
+    "text": "Back-Transforming\n\n\nLog scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n2.146\n1.933\n\n\n\n\n\n\nOriginal scale\n\n\n\n\n\nmean\nmedian\n\n\n\n\n98.558\n6.925\n\n\n\n\n\n\n\n\nBack-transformed median: \\(e^{1.933} \\approx 6.91\\)\nBack-transformed mean: \\(e^{2.146} \\approx 8.55\\)"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#eda-correlation-matrix",
-    "href": "slides/07-mlr-intro.html#eda-correlation-matrix",
-    "title": "Multiple Linear Regression",
-    "section": "EDA: Correlation matrix",
-    "text": "EDA: Correlation matrix\n\ncor(supervisor)\n\n           overall complaints privileges  learn raises critical advance\noverall     1.0000     0.8254     0.4261 0.6237 0.5901   0.1564  0.1551\ncomplaints  0.8254     1.0000     0.5583 0.5967 0.6692   0.1877  0.2246\nprivileges  0.4261     0.5583     1.0000 0.4933 0.4455   0.1472  0.3433\nlearn       0.6237     0.5967     0.4933 1.0000 0.6403   0.1160  0.5316\nraises      0.5901     0.6692     0.4455 0.6403 1.0000   0.3769  0.5742\ncritical    0.1564     0.1877     0.1472 0.1160 0.3769   1.0000  0.2833\nadvance     0.1551     0.2246     0.3433 0.5316 0.5742   0.2833  1.0000"
+    "objectID": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "href": "slides/05-slr-transformations.html#back-transforming-log-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Back-transforming log transformations",
+    "text": "Back-transforming log transformations\n\nOften log-transforming a variable makes in approximately symmetric\nIf symmetric, then the median \\(\\approx\\) mean on the log scale\n\\(\\widehat{\\mu}(Y|X) \\approx \\widehat{\\text{median}}(Y|X)\\)\nInference made mean on the log scale can thought of as inference for the median on the log scale"
   },
   {
-    "objectID": "slides/07-mlr-intro.html#fitting-the-model",
-    "href": "slides/07-mlr-intro.html#fitting-the-model",
-    "title": "Multiple Linear Regression",
-    "section": "Fitting the model",
-    "text": "Fitting the model\nTarget:\n\nFitted regression equation: \\(\\widehat{Y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_{i1} + \\widehat{\\beta}_2 x_{i2} + \\cdots + \\widehat{\\beta}_p x_{ip}\\)\nStandard error for MLR model: \\(\\widehat{\\sigma}\\)"
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-y-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of Y only",
+    "text": "Log-transform of Y only\n\n\nThe median of \\(Y\\) at \\(x + 1\\) is \\(e^\\beta_1\\) times larger (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… increasing \\(x\\) by 1 increases (decreases) the median of \\(Y\\) by a factor of \\(e^\\beta_1\\)."
   },
   {
-    "objectID": "slides/07-mlr-intro.html#fitting-the-model-1",
-    "href": "slides/07-mlr-intro.html#fitting-the-model-1",
-    "title": "Multiple Linear Regression",
-    "section": "Fitting the model",
-    "text": "Fitting the model\nProcedure:\nLeast squares estimation: choose the coefficients to minimize \\[\\text{SSE} = \\sum_{i=1}^n \\left(Y_i - \\widehat{Y}_i \\right)^2\\] Then use \\(\\widehat{\\sigma} = \\sqrt{\\frac{\\text{SSE}}{n-(p+1)}}\\)"
+    "objectID": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "href": "slides/05-slr-transformations.html#log-transform-of-x-only",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform of X only",
+    "text": "Log-transform of X only\n\n\nA doubling of \\(x\\) is associated with the mean response increasing (decreasing) by \\(\\beta_1 \\log(2)\\) units."
   },
   {
-    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
-    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_0",
-    "title": "Multiple Linear Regression",
-    "section": "Interpreting \\(\\widehat{\\beta}_0\\)",
-    "text": "Interpreting \\(\\widehat{\\beta}_0\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected value of the response variable when all explanatory variables are 0\nThe expected overall supervisor score is about 10.8 when all individual scores are 0"
+    "objectID": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "href": "slides/05-slr-transformations.html#log-transform-both-y-and-x",
+    "title": "Remedial Measures: Transformations",
+    "section": "Log-transform both Y and X",
+    "text": "Log-transform both Y and X\n\n\nThe median of \\(Y\\) at \\(2x\\) is \\(2^{\\beta_1}\\) times greater (smaller) than the median of \\(Y\\) at \\(x\\).\n\nOr… A doubling of x is associated with the median of Y increasing (decreasing) by a factor of \\(2^{\\beta_1}\\)."
   },
   {
-    "objectID": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
-    "href": "slides/07-mlr-intro.html#interpreting-widehatbeta_j",
-    "title": "Multiple Linear Regression",
-    "section": "Interpreting \\(\\widehat{\\beta}_j\\)",
-    "text": "Interpreting \\(\\widehat{\\beta}_j\\)\n\n\n(Intercept)  complaints  privileges       learn      raises    critical \n     10.787       0.613      -0.073       0.320       0.082       0.038 \n    advance \n     -0.217 \n\n\n\nThe expected change in the response for a 1-unit increase in \\(x_j\\), when all other variables are held constant.\nWe expect a 0.613 point increase in a supervisor’s overall score for a 1-point increase on the complaints scale, holding all other variables constant"
-  },
-  {
-    "objectID": "slides/07-mlr-intro.html#testing-a-single-coefficient",
-    "href": "slides/07-mlr-intro.html#testing-a-single-coefficient",
-    "title": "Multiple Linear Regression",
-    "section": "Testing a single coefficient",
-    "text": "Testing a single coefficient\n\nHypotheses: \\(H_0: \\ \\beta_j = \\#\\) vs. \\(H_a: \\ \\beta_j \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\#\\)\n\n\n\nTest statistic: \\(t = \\dfrac{\\hat{\\beta}_j - \\#}{SE(\\beta_j)}\\)\n\n\n\n\nReference distribution: \\(t\\) distribution with d.f. = \\(n-(p+1)\\)\n\n\n\n\np-value: Area in the tail(s) specified by \\(H_a\\)"
-  },
-  {
-    "objectID": "slides/07-mlr-intro.html#confidence-intervals",
-    "href": "slides/07-mlr-intro.html#confidence-intervals",
-    "title": "Multiple Linear Regression",
-    "section": "Confidence intervals",
-    "text": "Confidence intervals\n\\(\\widehat{\\beta}_j \\pm t^*_{n-(p+1)} \\cdot SE(\\widehat{\\beta}_j )\\)\n\n\n\\(t^*_{n-(p+1)}\\) is the \\(1 - \\alpha/2\\) quantile from the t-distribution with \\(d.f. = n-(p+1)\\)"
-  },
-  {
-    "objectID": "slides/07-mlr-intro.html#example-1",
-    "href": "slides/07-mlr-intro.html#example-1",
-    "title": "Multiple Linear Regression",
-    "section": "Example",
-    "text": "Example\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\nconf.low\nconf.high\n\n\n\n\n(Intercept)\n10.7871\n11.5893\n0.9308\n0.3616\n-13.1871\n34.7613\n\n\ncomplaints\n0.6132\n0.1610\n3.8090\n0.0009\n0.2802\n0.9462\n\n\nprivileges\n-0.0731\n0.1357\n-0.5382\n0.5956\n-0.3538\n0.2077\n\n\nlearn\n0.3203\n0.1685\n1.9009\n0.0699\n-0.0283\n0.6689\n\n\nraises\n0.0817\n0.2215\n0.3690\n0.7155\n-0.3764\n0.5399\n\n\ncritical\n0.0384\n0.1470\n0.2611\n0.7963\n-0.2657\n0.3425\n\n\nadvance\n-0.2171\n0.1782\n-1.2180\n0.2356\n-0.5857\n0.1516"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "href": "slides/04-slr-diagnostics.html#conditions-required-for-inference",
-    "title": "Model Diagnostics",
-    "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#residuals",
-    "href": "slides/04-slr-diagnostics.html#residuals",
-    "title": "Model Diagnostics",
-    "section": "Residuals",
-    "text": "Residuals\nDefinition: \\(e_i =\\widehat{\\varepsilon}_i = y_i - \\widehat{y}_i\\)\n\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(e_i) = \\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "href": "slides/04-slr-diagnostics.html#standardized-residuals",
-    "title": "Model Diagnostics",
-    "section": "Standardized residuals",
-    "text": "Standardized residuals\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}}\\]\nProperties:\n\nsum to zero \\(\\Longrightarrow\\) mean is 0\nuncorrelated with \\(x\\) and \\(\\widehat{y}\\)\nnormally distributed\n\\(SD(r_i) = 1\\)"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "href": "slides/04-slr-diagnostics.html#a-good-residual-plot",
-    "title": "Model Diagnostics",
-    "section": "A “good” residual plot",
-    "text": "A “good” residual plot"
-  },
-  {
-    "objectID": "slides/04-slr-diagnostics.html#your-turn",
-    "href": "slides/04-slr-diagnostics.html#your-turn",
-    "title": "Model Diagnostics",
+    "objectID": "slides/05-slr-transformations.html#your-turn-1",
+    "href": "slides/05-slr-transformations.html#your-turn-1",
+    "title": "Remedial Measures: Transformations",
     "section": "Your turn",
-    "text": "Your turn\n\nWork in groups\nOn the whiteboards, sketch a plot of \\(y\\) vs. \\(x\\) and a corresponding residual plot that would indicate a violation of the\n\nlinearity condition\nconstant variance condition"
+    "text": "Your turn\nYou estimated the model \\(\\mu(\\mathtt{brain\\ weight}|\\mathtt{body \\ weight}) = \\beta_0 + \\beta_1 x\\)\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n2.190\n0.176\n12.439\n&lt;0.001\n\n\nlog(bodyweight)\n0.759\n0.042\n18.163\n&lt;0.001\n\n\n\n\n\n\n\n\nInterpret the slope in context\nInterpret the intercept in context"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-normality",
-    "href": "slides/04-slr-diagnostics.html#assessing-normality",
-    "title": "Model Diagnostics",
-    "section": "Assessing normality",
-    "text": "Assessing normality\n\nhistogram of residuals\nnormal Q-Q plot of residuals\n\nExamples of “good” plots:"
+    "objectID": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "href": "slides/05-slr-transformations.html#modeling-is-an-iterative-process",
+    "title": "Remedial Measures: Transformations",
+    "section": "Modeling is an iterative process",
+    "text": "Modeling is an iterative process"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#assessing-independence",
-    "href": "slides/04-slr-diagnostics.html#assessing-independence",
-    "title": "Model Diagnostics",
-    "section": "Assessing independence",
-    "text": "Assessing independence\n\nplot residuals vs. variable inducing dependence (e.g. time, location, subject ID)\n\nExamples of “good” plots:"
+    "objectID": "slides/05-slr-transformations.html#issues-with-transformations",
+    "href": "slides/05-slr-transformations.html#issues-with-transformations",
+    "title": "Remedial Measures: Transformations",
+    "section": "Issues with transformations",
+    "text": "Issues with transformations\n\nYou’re often guessing — Statistics is an art AND a science! \nChanges the interpretation of the parameters — need to back-transform to provide interpretable results \nChanges SEs of the parameters \nNot always easy to keep track of all your assumptions"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "href": "slides/04-slr-diagnostics.html#what-happens-the-conditions-arent-valid",
-    "title": "Model Diagnostics",
-    "section": "What happens the conditions aren’t valid?",
-    "text": "What happens the conditions aren’t valid?\n\nLinearity: if nonlinear, everything breaks!\nIndependence: estimates are still unbiased (i.e. we fit the right line) but measures of the accuracy of those estimates (the SEs) are typically too small\nNormality: estimates are still unbiased (i.e. we fit the right line), SEs are correct BUT confidence/prediction intervals are wrong (we can’t use t-distribution)\nConstant error variance: estimates are still unbiased but standard errors are wrong (and we don’t know how wrong)"
+    "objectID": "slides/09-mlr-inference2.html#fev-example",
+    "href": "slides/09-mlr-inference2.html#fev-example",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "href": "slides/04-slr-diagnostics.html#what-do-we-do-if-our-assumptions-are-violated",
-    "title": "Model Diagnostics",
-    "section": "What do we do if our assumptions are violated?",
-    "text": "What do we do if our assumptions are violated?\n\nChange our assumptions (hard, need more stats)\nTransform \\(y\\), \\(x\\), or both\nChange the type of inference (remember the bootstrap?)"
+    "objectID": "slides/09-mlr-inference2.html#fev-example-1",
+    "href": "slides/09-mlr-inference2.html#fev-example-1",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example\n\\[{\\rm E}(Y|X) = \\beta_0 + \\beta_1 {\\tt age} + \\beta_2 {\\tt smoke} + \\beta_3 {\\tt age \\times smoke}\\] \n\nMean functions for each group\n\n\n\n\nSmokers:\n\n\\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\n\n\n\n\n\nNon-smokers:\n\n\\({\\rm E}(Y|X) = \\beta_0 + \\beta_1  {\\tt age}\\)"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "href": "slides/04-slr-diagnostics.html#transforming-variables-can",
-    "title": "Model Diagnostics",
-    "section": "Transforming variables can",
-    "text": "Transforming variables can\n\nAddress non-linear patterns (i.e., linear on transformed scale)\nStabilize variance\nCorrect skew\nMinimize the effects of outliers"
+    "objectID": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
+    "href": "slides/09-mlr-inference2.html#ses-for-linear-combinations",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "SEs for linear combinations",
+    "text": "SEs for linear combinations\nEstimate:\n\\[\\widehat{\\gamma} = c_1 \\widehat{\\beta}_i + c_2 \\widehat{\\beta}_j\\]\n\n\nStandard error:\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_i)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)}\n\\]"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#applying-transformations",
-    "href": "slides/04-slr-diagnostics.html#applying-transformations",
-    "title": "Model Diagnostics",
-    "section": "Applying transformations",
-    "text": "Applying transformations\nTo apply a transformation, we calculate a new variable and use it in place of the original variable in our model\n\nExamples\n\\[\n\\begin{split}\n\\log(y) &= \\beta_0 + \\beta_1 x + \\varepsilon\\\\\ny &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\\\\\n\\log(y) &= \\beta_0 + \\beta_1 \\sqrt{x} + \\varepsilon\n\\end{split}\n\\]"
+    "objectID": "slides/09-mlr-inference2.html#fev-example-2",
+    "href": "slides/09-mlr-inference2.html#fev-example-2",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "FEV example",
+    "text": "FEV example\n\n\n\n\n\n\nWarning\n\n\nOur standard table of coefficients doesn’t contain the SEs we need to construct CIs or perform tests for these linear combinations.\n\n\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n0.675\n0.251\n2.684\n0.008\n\n\nAge\n0.210\n0.021\n9.972\n&lt;0.001\n\n\nSmokeSmoker\n1.720\n0.563\n3.053\n0.002\n\n\nAge:SmokeSmoker\n−0.143\n0.042\n−3.397\n&lt;0.001"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\nThe logarithm \\(\\log_b(x)\\) is a function that is the exponent (power) that the base, \\(b\\), must be raised to produce the value \\(x\\):\n\n\\(\\log_{10}(100)=2\\) since \\(10^2 = 100\\)\n\\(\\log_{10}(10)=1\\) since \\(10^1 = 10\\)\n\\(\\log_2(1) = 0\\) since \\(2^0=1\\)\n\\(\\log_2(0.5)=-1\\) since \\(2^{-1}=\\frac{1}{2}\\)"
+    "objectID": "slides/09-mlr-inference2.html#covariance-matrix",
+    "href": "slides/09-mlr-inference2.html#covariance-matrix",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Covariance matrix",
+    "text": "Covariance matrix\n\nThe diagonal (top left to lower right) displays variances, \\(\\lbrace SE(\\widehat{\\beta}_j) \\rbrace^2\\)\nThe off-diagonals display covariances, \\(Cov(\\widehat{\\beta}_i, \\widehat{\\beta}_j)\\)\nCovariance is like correlation, but not scaled to be between \\(-1\\) and \\(1\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798"
   },
   {
-    "objectID": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "href": "slides/04-slr-diagnostics.html#review-of-logarithms-1",
-    "title": "Model Diagnostics",
-    "section": "Review of logarithms",
-    "text": "Review of logarithms\n\nTakes in only positive numbers, i.e. \\(x&gt;0\\)\nThe log of products is the sum of the logs\n\\[\\log_b(mx) = \\log_b(m) + \\log_b(x)\\]\nThe log of quotients is the difference of the logs\n\\[\\log_b\\left(\\frac{m}{x}\\right) = \\log_b(m) - \\log_b(x)\\]\nThe log of powers is the exponent times the log\n\\[\\log_b(x^p) = p \\log_b(x)\\]"
+    "objectID": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#se-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "SE for a linear combination",
+    "text": "SE for a linear combination\n\nSmokers: \\({\\rm E}(Y|X) = (\\beta_0 + \\beta_2) + (\\beta_1 + \\beta_3) {\\tt age}\\)\nTarget: \\(\\widehat{\\gamma} = \\widehat{\\beta}_1 + \\widehat{\\beta}_3\\)\n\n\n\n                (Intercept)        Age SmokeSmoker Age:SmokeSmoker\n(Intercept)        0.063199 -0.0052210   -0.063199       0.0052210\nAge               -0.005221  0.0004423    0.005221      -0.0004423\nSmokeSmoker       -0.063199  0.0052210    0.317248      -0.0234032\nAge:SmokeSmoker    0.005221 -0.0004423   -0.023403       0.0017798\n\n\n\n\n\\[\nSE(\\widehat{\\gamma}) = \\sqrt{c_1^2 \\lbrace SE(\\widehat{\\beta}_1)\\rbrace^2 + c_2^2 \\lbrace SE(\\widehat{\\beta}_2) \\rbrace^2 + 2c_1c_2 Cov(\\widehat{\\beta}_1, \\widehat{\\beta}_2)}\n\\]\n\n\n\n\n\\(c_1 = 1\\), \\(c_2 = 1\\)\n\n\n\n\n\n\n\\(SE(\\widehat{\\beta_1})^2 = 0.0004423\\)\n\n\\(SE(\\widehat{\\beta_2})^2 = 0.0017798\\)\n\n\n\n\n\n\\(Cov(\\widehat{\\beta_1}, \\widehat{\\beta_2}) = -0.0004423\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#ci-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "CI for a linear combination",
+    "text": "CI for a linear combination\nOnce we have \\(SE(\\widehat{\\gamma})\\), we can construct a CI as usual:\n\\[\n\\widehat{\\gamma} \\pm t^*_{n - (p+1)} \\cdot SE(\\widehat{\\gamma})\n\\]\n\n\\(\\widehat{\\gamma} = 0.0664\\)\n\n\n\\(SE(\\widehat{\\gamma}) = 0.0366\\)\n\n\n\\(df = n - (p+1) = 345 - 4 = 341\\)\n\n\n\\(t^*_{341} \\approx 1.649\\) for a 90% CI"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
+    "href": "slides/09-mlr-inference2.html#test-for-a-linear-combination",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Test for a linear combination",
+    "text": "Test for a linear combination\nWe can also test hypotheses about linear combinations of coefficients using a t-test:\n\\(H_0: \\gamma = \\gamma_0\\) vs. \\(H_a: \\gamma \\underset{&gt;}{\\overset{&lt;}{\\ne}} \\gamma_0\\)\n\\(t = \\dfrac{\\widehat{\\gamma} - \\gamma_0}{SE(\\widehat{\\gamma})}\\)\nReference distribution: \\(t_{n-(p+1)}\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#example",
+    "href": "slides/09-mlr-inference2.html#example",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Example",
+    "text": "Example\n\nWork through the example on the handout with your neighbors\nBe prepared to share your strategy with the class"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#example-used-car-prices",
+    "href": "slides/09-mlr-inference2.html#example-used-car-prices",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Example: Used car prices",
+    "text": "Example: Used car prices\nWe have data on used car prices, including:\n\nPrice: Price (in dollars)\nMileage: Mileage (in thousands of miles)\nMake: Manufacturer (Buick, Cadillac, Chevrolet, Pontiac, SAAB, Saturn)\n\nAfter some initial EDA, researchers want to fit an MLR model to predict \\(\\log\\)(price) using mileage and make."
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#used-car-prices",
+    "href": "slides/09-mlr-inference2.html#used-car-prices",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Used car prices",
+    "text": "Used car prices\nIs Make a useful predictor of price, after accounting for Mileage?\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n10.090\n0.034\n293.975\n&lt;0.001\n\n\nMileage\n0.000\n0.000\n−7.359\n&lt;0.001\n\n\nMakeCadillac\n0.649\n0.038\n17.016\n&lt;0.001\n\n\nMakeChevrolet\n−0.296\n0.030\n−9.809\n&lt;0.001\n\n\nMakePontiac\n−0.144\n0.033\n−4.299\n&lt;0.001\n\n\nMakeSAAB\n0.355\n0.035\n10.108\n&lt;0.001\n\n\nMakeSaturn\n−0.397\n0.041\n−9.650\n&lt;0.001"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#review-nested-models",
+    "href": "slides/09-mlr-inference2.html#review-nested-models",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Review: Nested models",
+    "text": "Review: Nested models\n\nModel 1:  \\({\\rm E}(\\log(Y)|X) = \\beta_0 + \\beta_1 {\\tt Mileage}\\)\n\nModel 2: \n\\(\\begin{split}\n{\\rm E}(\\log(Y)|X) = \\beta_0 &+ \\beta_1 {\\tt Mileage} + \\beta_2 {\\tt Cadillac} + \\beta_3 {\\tt Chevy}\\\\\n&+ \\beta_4 {\\tt Pontiac} + \\beta_5 {\\tt SAAB} + \\beta_6 {\\tt Saturn}\n\\end{split}\\)\n\n\n\n\nExtra SS F-test:\nNull hypothesis tells us how we can simplify Model 2 (full) to get Model 1 (reduced):\n\\(H_0\\): \\(\\beta_2 = \\beta_3 = \\beta_4 = \\beta_5 = \\beta_6 = 0\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#extra-sums-of-squares",
+    "href": "slides/09-mlr-inference2.html#extra-sums-of-squares",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "Extra Sums of Squares",
+    "text": "Extra Sums of Squares\nDefinition: the marginal reduction in the error sum of squares when one (or more) explanatory variable(s) is added to the model\n\n\nF-test for comparing nested models:\n\\(F = \\dfrac{(SSE_{full} - SSE_{reduced}) / (df_{full} - df_{reduced})}{MSE_{full}}\\)"
+  },
+  {
+    "objectID": "slides/09-mlr-inference2.html#anova-table-from-r",
+    "href": "slides/09-mlr-inference2.html#anova-table-from-r",
+    "title": "Additional Inferential Tools for MLR",
+    "section": "ANOVA table from R",
+    "text": "ANOVA table from R\n\nanova(car_lm) produces an ANOVA table for the MLR model, it gives sequential sums of squares, not the extra sums of squares we need for our F-test.\n\n\n\n\n\n\n\n\n\nterm\ndf\nsumsq\nmeansq\nstatistic\np.value\n\n\n\n\nMileage\n1\n2.959\n2.959\n50.941\n&lt;0.001\n\n\nMake\n5\n85.802\n17.160\n295.414\n&lt;0.001\n\n\nResiduals\n797\n46.297\n0.058\nNA\nNA\n\n\n\n\n\n\n\n\n\nMileage row: extra SS for Mileage (compared to intercept-only model)\nMake row: extra SS for Make after accounting for Mileage\nResiduals row: SSE for the full model"
   },
   {
     "objectID": "slides/03-slr-prediction.html#warm-up",
