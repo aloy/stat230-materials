@@ -648,7 +648,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMMLR diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activity/08H-mlr-categorical.html",
@@ -1657,5 +1657,138 @@
     "title": "Including Categorical Predictors",
     "section": "Function quick reference",
     "text": "Function quick reference\nThe following table summarizes the functions we learned today:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nlm()\nFit a linear model\n\n\nsummary()\nDisplay detailed results from a fitted model\n\n\ncoef()\nExtract model coefficients\n\n\nvcov()\nExtract the variance-covariance matrix of model coefficients\n\n\nggpredict()\nCreate a data frame of predicted values from a fitted model\n\n\nplot()\nCreate a plot of predicted values from a fitted model\n\n\nanova()\nCreate an ANOVA table for a fitted model or compare two nested models"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "SLR is not resistant to outliers",
+    "text": "SLR is not resistant to outliers\n\n\\[\\widehat{\\beta}_1 = r \\cdot \\dfrac{s_y}{s_x} \\qquad \\qquad \\widehat{\\beta}_0 = \\bar{y} - \\widehat{\\beta}_1 \\bar{x}\\]\n\nWhy?\n\n\\(r\\) is not resistant\n\\(s_y\\), \\(s_x\\) are not resistant\n\\(\\bar{x}\\), \\(\\bar{y}\\) are not resistant"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers-1",
+    "href": "slides/10-mlr-diagnostics.html#slr-is-not-resistant-to-outliers-1",
+    "title": "SLR: Outliers and influential points",
+    "section": "SLR is not resistant to outliers",
+    "text": "SLR is not resistant to outliers\n\n\\[\\widehat{\\beta}_1 = r \\cdot \\dfrac{s_y}{s_x} \\qquad \\qquad \\widehat{\\beta}_0 = \\bar{y} - \\widehat{\\beta}_1 \\bar{x}\\]\n\nWhy?\n\n\\(r\\) is not resistant\n\\(s_y\\), \\(s_x\\) are not resistant\n\\(\\bar{x}\\), \\(\\bar{y}\\) are not resistant"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#types-of-outliers",
+    "href": "slides/10-mlr-diagnostics.html#types-of-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Types of outliers",
+    "text": "Types of outliers"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#not-all-outliers-are-influential",
+    "href": "slides/10-mlr-diagnostics.html#not-all-outliers-are-influential",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Not all outliers are influential",
+    "text": "Not all outliers are influential\nOrange line = SLR with outlier; Black line = SLR without outlier"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#influential-points",
+    "href": "slides/10-mlr-diagnostics.html#influential-points",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Influential points",
+    "text": "Influential points\nPoints that are able to substantially change the fitted model ares influential\n\n\nHow do we find outliers and determine if they are influential?\n\nPlot the data\nPlot the standardized residuals\nFit the model with/without the point(s)\nCalculate to influence diagnostics"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#leverage",
+    "href": "slides/10-mlr-diagnostics.html#leverage",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\nMeasures the potential to influence the SLR line\n\n\nFor SLR:\n\n\\[h_i = \\frac{1}{n-1} \\left[ \\frac{x_i - \\overline{x}}{s_x} \\right]^2 + \\frac{1}{n} = \\dfrac{1}{n} + \\frac{\\left(x_i - \\overline{x}\\right)^2}{\\sum \\left(x_i - \\overline{x}\\right)^2}\\]\n\n\n\nFor MLR:\n\nmore complicated because we’re looking at a distance of a case from the average of p predictors\n\nCutoff\n\n\\(2(p+1)/n\\)\n\\(3(p+1)/n\\)\nAlso a good idea to examine a histogram/index plot\n\n\nI use p to denote the number of slope coefficients, so there are p+1 regression coefficients"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#leverage-1",
+    "href": "slides/10-mlr-diagnostics.html#leverage-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\n“Flares up” when value of x is far from the mean"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#standardized-residuals",
+    "href": "slides/10-mlr-diagnostics.html#standardized-residuals",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\nStandardized residuals are calculated by dividing the residuals by their standard deviation\n\\[r_i = \\frac{e_i}{\\widehat{\\sigma} \\sqrt{1 - \\dfrac{1}{n} - \\dfrac{(x_i - \\overline{x})^2}{\\sum (x_i - \\overline{x})^2}}} = \\dfrac{e_i}{ \\widehat{\\sigma} \\sqrt{1 - h_{i}}}\\]\n\nGuidelines:\n\n\\(|r_i|&gt;2\\) for small data sets\n\\(|r_i|&gt;4\\) for large data sets\n\n\nSleuth calls these (internally) studentized residuals while R calls these standardized residuals"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#standardized-residuals-1",
+    "href": "slides/10-mlr-diagnostics.html#standardized-residuals-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Standardized residuals",
+    "text": "Standardized residuals\n“Flare up” when value of y is far from \\(\\widehat{y}\\)"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#cooks-distance",
+    "href": "slides/10-mlr-diagnostics.html#cooks-distance",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Cook’s distance",
+    "text": "Cook’s distance\nMeasures effect the ith case has on all of the fitted values\n\\[D_i= \\sum_{j=1}^n\\frac{ \\left(\\widehat{y}_{j(i)} - \\widehat{y}_j \\right)^2}{(p+1) \\widehat{\\sigma}} = \\frac{r_i^2}{p+1} \\left( \\frac{h_i}{1-h_i} \\right)\\]\nwhere \\(\\widehat{y}_{j(i)}\\) is the fitted value for observation j based on a model when observation i is omitted\n\nCutoff\n\n\\(D_i\\) near or above 1 indicates large influence\nFind what quantile of \\(F_{p+1, n-p-1}\\) \\(D_i\\) corresponds to, larger than 0.5 is cause for concern\nAlso can judge relative standing of \\(D_i\\) — make an index plot"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#cooks-distance-1",
+    "href": "slides/10-mlr-diagnostics.html#cooks-distance-1",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Cook’s distance",
+    "text": "Cook’s distance"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#warm-up",
+    "href": "slides/10-mlr-diagnostics.html#warm-up",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Warm up",
+    "text": "Warm up\nWith your group\n\nList the conditions for MLR\nBrainstorm ways to check these conditions"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#regression-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#regression-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Regression is not resistant to outliers",
+    "text": "Regression is not resistant to outliers\nSolid line = with outliers; dashed line = without outliers"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#mlr-is-not-resistant-to-outliers",
+    "href": "slides/10-mlr-diagnostics.html#mlr-is-not-resistant-to-outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "MLR is not resistant to outliers",
+    "text": "MLR is not resistant to outliers\nWe’re still choosing the \\(\\widehat{\\beta}_i\\) to minimize the sum of squared residuals\n\\[\n\\begin{split}\nSSE &= \\sum_{i=1}^n \\left( y_i - \\widehat{y}_i \\right)^2\\\\\n&= \\sum_{i=1}^n \\left( y_i - \\widehat{\\beta}_0 - \\widehat{\\beta}_1 x_{i1} - \\widehat{\\beta}_2 x_{i2} - ... - \\widehat{\\beta}_p x_{ip} \\right)^2\n\\end{split}\n\\]\nSum’s aren’t resistant to outliers!"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#outliers",
+    "href": "slides/10-mlr-diagnostics.html#outliers",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Outliers",
+    "text": "Outliers\n\n\nIn higher dimensions, outliers can be tricky to detect\nTo detect outliers in X, you have to consider the multivariate relationships between all of the predictors"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#leverage-2",
+    "href": "slides/10-mlr-diagnostics.html#leverage-2",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Leverage",
+    "text": "Leverage\nIn higher dimensions, leverage is focusing on the distance from the average of all of the predictors"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#dffits",
+    "href": "slides/10-mlr-diagnostics.html#dffits",
+    "title": "Multiple Regression Diagnostics",
+    "section": "DFFITS",
+    "text": "DFFITS\nMeasures effect the ith case has on its own fitted value\n\\[DFFITS_i = \\frac{\\widehat{y}_i - \\widehat{y}_{i(i)}}{\\widehat{\\sigma}_{(i)} \\sqrt{h_i}}\\] where the subscript \\((i)\\) indicates that the value is based on a model when observation i is omitted\n\nCutoff\n\n1 for small/medium data sets\n\\(2\\sqrt{\\dfrac{p+1}{n}}\\) for large data sets\n\n\nDFFITS is not discussed in Sleuth"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#do-we-calculate-these-by-hand",
+    "href": "slides/10-mlr-diagnostics.html#do-we-calculate-these-by-hand",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Do we calculate these by hand?",
+    "text": "Do we calculate these by hand?\nNo!\n\naugment() from the broom package\ninfluence.measures() from the car package"
+  },
+  {
+    "objectID": "slides/10-mlr-diagnostics.html#advice-from-sleuth",
+    "href": "slides/10-mlr-diagnostics.html#advice-from-sleuth",
+    "title": "Multiple Regression Diagnostics",
+    "section": "Advice from Sleuth",
+    "text": "Advice from Sleuth\n\n\nSource: Display 11.8 in Sleuth (3rd edition)"
   }
 ]

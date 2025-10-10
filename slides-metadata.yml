@@ -62,9 +62,16 @@
   categories:
     - "MLR"
 - title: "Categorical Predictor Variables"
-  subtitle: "Day 10"
+  subtitle: "Day 11"
   date: 2025-10-08
   image: slides/featured/09-mlr-inference2.png
   path: slides/09-mlr-inference2.qmd
+  categories:
+    - "MLR"
+- title: "MMLR diagnostics"
+  subtitle: "Day 12"
+  date: 2025-10-10
+  image: slides/featured/10-mlr-diagnostics.png
+  path: slides/10-mlr-diagnostics.qmd
   categories:
     - "MLR"
