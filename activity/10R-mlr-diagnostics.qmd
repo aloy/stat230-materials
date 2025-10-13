@@ -18,11 +18,6 @@ execute:
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
-```{r}
-#| include: false
-#| eval: true
-# surgical_data <- read.csv("data/surgical_example_data.csv")
-```
 
 
 ## Overview
@@ -43,12 +38,19 @@ A hospital surgical unit was interested in predicting the survival in patients u
 The research team determined that the following multiple regression model is a reasonable starting point:
 
 $$
-\text{survival time} = \beta_0 + \beta_1(\text{blood clot score}) + \beta_2(\text{prognostic index}) + \beta_3(\text{enzyme test}) + \beta_4(\text{heavy alcohol use}) + \epsilon
+\begin{split}
+\text{survival time} = \beta_0 &+ \beta_1(\text{blood clot score}) + \beta_2(\text{prognostic index}) + \beta_3(\text{enzyme test})\\ 
+&+ \beta_4(\text{heavy alcohol use}) + \epsilon
+\end{split}
 $$
 
 This model is fit using the below code:
 
-```{r}
+```{webr}
+#| autorun: true
+#| edit: false
+#| runbutton: false
+surgical_data <- read.csv("https://aloy.github.io/stat230-materials/data/surgical_example_data.csv")
 surgical_lm <- lm(survival_time ~ blood_clot_score + prognostic_index + enzyme_test + alchohol_use_heavy, data = surgical_data)
 ```
 
@@ -58,6 +60,7 @@ surgical_lm <- lm(survival_time ~ blood_clot_score + prognostic_index + enzyme_t
 When we have multiple predictors, we can still use residual plots to assess the assumptions of the linear regression model. You can still use the `resid_panel(model, type = "standardized")` function in the `ggResidpanel` package to create a panel of residual plots that includes a plot of the residuals vs. fitted values, a histogram of the residuals, and a Q-Q plot of the residuals. 
 
 ```{webr}
+#| warn: false
 library(ggResidpanel)
 resid_panel(surgical_lm, type = "standardized")
 ```
