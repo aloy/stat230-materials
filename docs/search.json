@@ -1804,5 +1804,194 @@
     "title": "Additional Inferential Tools for MLR",
     "section": "ANOVA table from R",
     "text": "ANOVA table from R\n\nanova(car_lm) produces an ANOVA table for the MLR model, it gives sequential sums of squares, not the extra sums of squares we need for our F-test.\n\n\n\n\n\n\n\n\n\nterm\ndf\nsumsq\nmeansq\nstatistic\np.value\n\n\n\n\nMileage\n1\n2.959\n2.959\n50.941\n&lt;0.001\n\n\nMake\n5\n85.802\n17.160\n295.414\n&lt;0.001\n\n\nResiduals\n797\n46.297\n0.058\nNA\nNA\n\n\n\n\n\n\n\n\n\nMileage row: extra SS for Mileage (compared to intercept-only model)\nMake row: extra SS for Make after accounting for Mileage\nResiduals row: SSE for the full model"
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html",
+    "href": "activity/11-mlr-multicollinearity.html",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "",
+    "text": "In this activity you will learn how to calculate diagnostic measures and create diagnostic plots for multiple linear regression models in R."
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#overview",
+    "href": "activity/11-mlr-multicollinearity.html#overview",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "",
+    "text": "In this activity you will learn how to calculate diagnostic measures and create diagnostic plots for multiple linear regression models in R."
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#example-1-uncorrelated-predictors",
+    "href": "activity/11-mlr-multicollinearity.html#example-1-uncorrelated-predictors",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 1: Uncorrelated Predictors",
+    "text": "Example 1: Uncorrelated Predictors\nAs a first example, let’s consider a multiple linear regression model where the two predictor variables are uncorrelated.\nTask 1. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 0.\n\n\n          x1        x2         y\nx1 1.0000000 0.0000000 0.7419309\nx2 0.0000000 1.0000000 0.6384057\ny  0.7419309 0.6384057 1.0000000\n\n\nTask 2. The below code chunk fits a simple linear regression model with y as the response variable and x1 as the predictor variables. The coefficients table was extract using the broom::tidy(). (Feel free to use broom::tidy() it in your work!)\n\nmod1 &lt;- lm(y ~ x1, data = ex1)\nbroom::tidy(mod1)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nSimilarly, here is the output for the simple linear regression model with y as the response variable and x2 as the predictor variable.\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nAnd finally, here is the output for the multiple linear regression model with y as the response variable and both x1 and x2 as the predictor variables.\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    0.375     4.74     0.0791 0.940   \n2 x1             5.37      0.664    8.10   0.000466\n3 x2             9.25      1.33     6.97   0.000937\n\n\nCompare the model summaries from the three models. What do you observe about the coefficients when both predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?"
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#example-2-prefectly-correlated-predictors",
+    "href": "activity/11-mlr-multicollinearity.html#example-2-prefectly-correlated-predictors",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 2: Prefectly Correlated Predictors",
+    "text": "Example 2: Prefectly Correlated Predictors\nIn many examples the predictor variables will be correlated. As an extreme example, let’s consider a situation where the predictors are perfectly correlated. The data set for this small example is printed below.\n\n\n  x1 x2   y\n1  2  6  23\n2  8  9  83\n3  6  8  63\n4 10 10 103\n\n\nTask 3. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 1.\n\n\n   x1 x2 y\nx1  1  1 1\nx2  1  1 1\ny   1  1 1\n\n\nTask 4. From the previous task, you should have seen that the correlation between x1 and x2 is 1, as is the correlation between both predictors and y. This sounds like a great situation, right? We’ll explore two models to unpack this.\n\nConsider the fitted regression equation: \\(\\widehat{y} = -87 + x_1 + 18x_2\\). Verify that the predicted values are exactly equal to the observed values.\nConsider the fitted regression equation: \\(\\widehat{y} = -7 + 9x_1 + 2x_2\\). Verify that the predicted values are exactly equal to the observed values.\nDiscuss the following questions with your group:\n\nWould you be willing to use either model to make predictions for new observations? Why or why not?\nWould you be willing to interpret the coefficients in either model? Why or why not?\nDo you think the standard error of the slopes is reasonably small or large? Why?"
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#example-3-a-more-realistic-example",
+    "href": "activity/11-mlr-multicollinearity.html#example-3-a-more-realistic-example",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 3: A more realistic example",
+    "text": "Example 3: A more realistic example\nLet’s consider a more realistic example where the predictor variables are correlated, but not perfectly correlated. The data set bodyfat contains measurements on 20 healthy adults between 25 and 34 years of age. We’re interested in predicting body fat percentage using three body measurements: triceps skinfold thickness, thigh circumference, and midarm circumference.\nTask 5. Below is the correlation matrix for the data set. What do you observe about the correlations between the predictor variables?\n\n\n                     triceps_skinfold thigh_circumference midarm_circumference\ntriceps_skinfold            1.0000000           0.9238425            0.4577772\nthigh_circumference         0.9238425           1.0000000            0.0846675\nmidarm_circumference        0.4577772           0.0846675            1.0000000\nbody_fat                    0.8432654           0.8780896            0.1424440\n                      body_fat\ntriceps_skinfold     0.8432654\nthigh_circumference  0.8780896\nmidarm_circumference 0.1424440\nbody_fat             1.0000000\n\n\nTask 6. There are numerous models that we could consider. Below are summary tables from several models. Compare the model summaries from the fitted models. What do you observe about the coefficients when different predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?\nOnly triceps skinfold as a predictor:\n\n\n# A tibble: 2 × 5\n  term             estimate std.error statistic    p.value\n  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)        -1.50      3.32     -0.451 0.658     \n2 triceps_skinfold    0.857     0.129     6.66  0.00000302\n\n\nOnly thigh circumference as a predictor:\n\n\n# A tibble: 2 × 5\n  term                estimate std.error statistic     p.value\n  &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 (Intercept)          -23.6       5.66      -4.18 0.000566   \n2 thigh_circumference    0.857     0.110      7.79 0.000000360\n\n\nOnly midarm circumference as a predictor:\n\n\n# A tibble: 2 × 5\n  term                 estimate std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)            14.7       9.10      1.61    0.124\n2 midarm_circumference    0.199     0.327     0.611   0.549\n\n\nTriceps skinfold and thigh circumference as predictors:\n\n\n# A tibble: 3 × 5\n  term                estimate std.error statistic p.value\n  &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)          -19.2       8.36     -2.29   0.0348\n2 triceps_skinfold       0.222     0.303     0.733  0.474 \n3 thigh_circumference    0.659     0.291     2.26   0.0369\n\n\nTriceps skinfold and midarm circumference as predictors:\n\n\n# A tibble: 3 × 5\n  term                 estimate std.error statistic     p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 (Intercept)          -26.0        7.00     -3.72  0.00172    \n2 midarm_circumference   0.0960     0.161     0.595 0.560      \n3 thigh_circumference    0.851      0.112     7.57  0.000000772\n\n\nThigh circumference and midarm circumference as predictors:\n\n\n# A tibble: 4 × 5\n  term                 estimate std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)            117.       99.8       1.17   0.258\n2 triceps_skinfold         4.33      3.02      1.44   0.170\n3 thigh_circumference     -2.86      2.58     -1.11   0.285\n4 midarm_circumference    -2.19      1.60     -1.37   0.190\n\n\n Let me know when you have reached this spot. We’ll regroup as a class to discuss your observations."
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#what-about-predictions",
+    "href": "activity/11-mlr-multicollinearity.html#what-about-predictions",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "What about predictions?",
+    "text": "What about predictions?\nNow that we’ve discussed the issues revolving around interpreting coefficients and drawing inference on them in the presence of multicollinearity, let’s consider how multicollinearity impacts predictions.\nRecall that the mean squared error (MSE) of a model measures the variability in the error terms (residuals). In other words, it is measuring the variability unexplained by the model.\nTask 7. Below are the MSE values for three of the models we considered in Task 6. What do you observe about the MSE values when different predictors are included in the model?\n\n\n\nPredictors\nMSE\n\n\n\n\ntriceps_skinfold\n7.95\n\n\ntriceps_skinfold, thigh_circumference\n6.47\n\n\ntriceps_skinfold, thigh_circumference, midarm_circumference\n6.15\n\n\n\nTask 8. Based on your observations, do you think we can use any of the models to make predictions for new observations? Why or why not?\n Let me know when you have reached this spot. We’ll regroup as a class to discuss your observations."
+  },
+  {
+    "objectID": "activity/11-mlr-multicollinearity.html#be-wary-of-r2-when-comparing-models",
+    "href": "activity/11-mlr-multicollinearity.html#be-wary-of-r2-when-comparing-models",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Be Wary of R2 when comparing models",
+    "text": "Be Wary of R2 when comparing models\nWe all love R2 right? It is “easy” to interpret and is a popular metric of model fit to report in many fields. While I agree that R2 is a nice metric for describing a single model, it has an issue when it’s used to compare models. In this example, you’ll explore this issue.\nCase Study 10.1.1 in The Statistical Sleuth describes Galileo’s experiment that led him to discover that the trajectory of a body falling with horizontal velocity is a parabola (see page 272). The case1011 data set in the Sleuth3 R package contains the results of Galileo’s experiment. The data set contains seven observations on the following two variables: the horizontal distance traveled from the edge of the table to its landing spot, and the initial height of the object. Both measurements are in punti (1 punti = or 169/180 mm or about 0.037 in).\nTask 9. Fit each of the following models and report the R2 value for each. Fill in the table below.\n\n\n\n\n\n\n\nModel\nR2\n\n\n\n\n\\(\\text{distance} \\sim \\text{height}\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5+ \\text{height}^6\\)\n\n\n\n\nWhat do you observe about the R2 values as you add more polynomial terms to the model?"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#diagnosing-multicollinearity",
+    "href": "slides/11-mlr-multicollinearity.html#diagnosing-multicollinearity",
+    "title": "Regression Cautions",
+    "section": "Diagnosing multicollinearity",
+    "text": "Diagnosing multicollinearity\n\nExamine scatterplot matrix\nExamine pairwise correlations between predictors\nLook for \\(\\widehat{\\beta}_i\\)s with unusual signs\nNotice sensitivity to changes in the model/order of predictors\nCalculate the Variance Inflation Factor (VIF)"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#think-about-it",
+    "href": "slides/11-mlr-multicollinearity.html#think-about-it",
+    "title": "Regression Cautions",
+    "section": "Think about it",
+    "text": "Think about it\n\nWork through Examples 1-3 on worksheet\nWork with your group to complete the tasks\nLet me know when finish Task 6\nBe prepared to share thoughts with the class"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#variance-inflation-factor-vif",
+    "href": "slides/11-mlr-multicollinearity.html#variance-inflation-factor-vif",
+    "title": "Regression Cautions",
+    "section": "Variance Inflation Factor (VIF)",
+    "text": "Variance Inflation Factor (VIF)\n\\({\\rm VIF} = \\dfrac{1}{1 - R^2_i}\\)\n\\(R^2_i=R^2\\) from model predicting \\(x_i\\) using all other predictor variables\n\nGuidelines:\n\n\\(\\text{VIF}_i &gt; 5\\) suspicions begin; \\(R^2_i &gt; .8\\)\n\\(\\text{VIF}_i &gt; 10\\) indicates a problem; \\(R^2_i &gt; .9\\)\n\\(\\text{VIF}_i &gt; 100\\) indicates a big problem; \\(R^2_i &gt; .99\\)"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#vifs-for-example-1",
+    "href": "slides/11-mlr-multicollinearity.html#vifs-for-example-1",
+    "title": "Regression Cautions",
+    "section": "VIFs for Example 1",
+    "text": "VIFs for Example 1\n\nex1_mod &lt;- lm(y ~ x1 + x2, data = ex1)\ncar::vif(ex1_mod)\n\n\n\n\n\n\n\n\n\n\nVariable\nVIF\n\n\n\n\nx1\n1\n\n\nx2\n1\n\n\n\n\n\n\n\n\nThe vif() command is in the car R package"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#vifs-for-example-2",
+    "href": "slides/11-mlr-multicollinearity.html#vifs-for-example-2",
+    "title": "Regression Cautions",
+    "section": "VIFs for Example 2",
+    "text": "VIFs for Example 2\ncar::vif() throws an error! Why?\n\n\\(\\text{VIF} = \\dfrac{1}{1 - R^2_i}\\)\n\nSince \\(x_1\\) and \\(x_2\\) are perfectly correlated, \\(R^2_i = 1\\)\nThis makes the denominator \\(1 - R^2_i = 0\\)\nSo, \\(\\text{VIF} = \\dfrac{1}{0}\\) is undefined"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#vifs-for-example-1-1",
+    "href": "slides/11-mlr-multicollinearity.html#vifs-for-example-1-1",
+    "title": "Regression Cautions",
+    "section": "VIFs for Example 1",
+    "text": "VIFs for Example 1\n\nbodyfat_mod &lt;- lm(body_fat ~ ., data = bodyfat)\ncar::vif(bodyfat_mod)\n\n\n\n\n\n\n\n\n\nVariable\nVIF\n\n\n\n\ntriceps_skinfold\n708.8\n\n\nthigh_circumference\n564.3\n\n\nmidarm_circumference\n104.6\n\n\n\n\n\n\n\n\nThe . on the right side of the model formula tells R to use all other variables in the data frame as predictors"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#vifs-for-example-3",
+    "href": "slides/11-mlr-multicollinearity.html#vifs-for-example-3",
+    "title": "Regression Cautions",
+    "section": "VIFs for Example 3",
+    "text": "VIFs for Example 3\n\nbodyfat_mod &lt;- lm(body_fat ~ ., data = bodyfat)\ncar::vif(bodyfat_mod)\n\n\n\n\n\n\n\n\n\n\nVariable\nVIF\n\n\n\n\ntriceps_skinfold\n708.8\n\n\nthigh_circumference\n564.3\n\n\nmidarm_circumference\n104.6\n\n\n\n\n\n\n\n\nThe . on the right side of the model formula tells R to use all other variables in the data frame as predictors"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#remedial-measures",
+    "href": "slides/11-mlr-multicollinearity.html#remedial-measures",
+    "title": "Regression Cautions",
+    "section": "Remedial measures",
+    "text": "Remedial measures\n\nUse the model only for prediction, if you think future observations will have the same relationships amongst variables\nFor polynomials, use poly(x, degree) in R, or center the variable\nDrop some of highly correlated variables — USE CAUTION, doesn’t always work and loses information\nAdd cases that break the correlation between predictors – reasonable in designed experiments\nCreate composite variables (e.g., sums, averages, principal components) – can be harder to interpret\nUse ridge regression or LASSO – need Stat 270 (Statistical Learning)"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#the-problem-with-r2",
+    "href": "slides/11-mlr-multicollinearity.html#the-problem-with-r2",
+    "title": "Regression Cautions",
+    "section": "The problem with R2",
+    "text": "The problem with R2\nDifferent polynomial models were used to predict the horizontal distance based on the starting point in Galileo’s experimental data\n\n\n\n\nOrder\nR2\n\n\n\n\n1\n0.9264\n\n\n2\n0.9903\n\n\n3\n0.9994\n\n\n4\n0.9998\n\n\n5\n0.99996\n\n\n6\n1.0000"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html",
+    "href": "slides/11-mlr-multicollinearity.html",
+    "title": "Regression Cautions",
+    "section": "",
+    "text": "Situation where 2+ predictors are “nearly” perfectly correlated\n\n\n\nWork through Examples 1-3 on worksheet\nWork with your group to complete the tasks\nLet me know when finish Task 6\nBe prepared to share thoughts with the class\n\n\n\n\n\n\nExamine scatterplot matrix\nExamine pairwise correlations between predictors\nLook for \\(\\widehat{\\beta}_i\\)s with unusual signs\nNotice sensitivity to changes in the model/order of predictors\nCalculate the Variance Inflation Factor (VIF)\n\n\n\n\n\n\\({\\rm VIF} = \\dfrac{1}{1 - R^2_i}\\)\n\\(R^2_i=R^2\\) from model predicting \\(x_i\\) using all other predictor variables\n. . .\nGuidelines:\n\n\\(\\text{VIF}_i &gt; 5\\) suspicions begin; \\(R^2_i &gt; .8\\)\n\\(\\text{VIF}_i &gt; 10\\) indicates a problem; \\(R^2_i &gt; .9\\)\n\\(\\text{VIF}_i &gt; 100\\) indicates a big problem; \\(R^2_i &gt; .99\\)\n\n\n\n\n\nex1_mod &lt;- lm(y ~ x1 + x2, data = ex1)\ncar::vif(ex1_mod)\n\n\n\n\n\n\n\n\n\n\nVariable\nVIF\n\n\n\n\nx1\n1\n\n\nx2\n1\n\n\n\n\n\n\n\n\nThe vif() command is in the car R package\n\n\n\n\ncar::vif() throws an error! Why?\n. . .\n\\(\\text{VIF} = \\dfrac{1}{1 - R^2_i}\\)\n\n\nSince \\(x_1\\) and \\(x_2\\) are perfectly correlated, \\(R^2_i = 1\\)\nThis makes the denominator \\(1 - R^2_i = 0\\)\nSo, \\(\\text{VIF} = \\dfrac{1}{0}\\) is undefined\n\n\n\n\n\n\nbodyfat_mod &lt;- lm(body_fat ~ ., data = bodyfat)\ncar::vif(bodyfat_mod)\n\n\n\n\n\n\n\n\n\n\nVariable\nVIF\n\n\n\n\ntriceps_skinfold\n708.8\n\n\nthigh_circumference\n564.3\n\n\nmidarm_circumference\n104.6\n\n\n\n\n\n\n\n\nThe . on the right side of the model formula tells R to use all other variables in the data frame as predictors\n\n\n\n\n\n\nUse the model only for prediction, if you think future observations will have the same relationships amongst variables\nFor polynomials, use poly(x, degree) in R, or center the variable\nDrop some of highly correlated variables — USE CAUTION, doesn’t always work and loses information\nAdd cases that break the correlation between predictors – reasonable in designed experiments\nCreate composite variables (e.g., sums, averages, principal components) – can be harder to interpret\nUse ridge regression or LASSO – need Stat 270 (Statistical Learning)\n\n\n\n\n\nDifferent polynomial models were used to predict the horizontal distance based on the starting point in Galileo’s experimental data\n\n\n\n\nOrder\nR2\n\n\n\n\n1\n\n\n\n2\n\n\n\n3\n\n\n\n4\n\n\n\n5\n\n\n\n6"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#adjusted-r2",
+    "href": "slides/11-mlr-multicollinearity.html#adjusted-r2",
+    "title": "Regression Cautions",
+    "section": "Adjusted R2",
+    "text": "Adjusted R2\nImposes a penalty for model complexity, so it increases only if the improvement outweighs the cost of making the model more complex\n\\[\nR^2_{\\text{adj}} = 1 - \\left( \\frac{n-1}{n-p-1} \\right)  \\cdot \\left(1 - R^2 \\right)\n\\]"
+  },
+  {
+    "objectID": "slides/11-mlr-multicollinearity.html#adjusted-r2-1",
+    "href": "slides/11-mlr-multicollinearity.html#adjusted-r2-1",
+    "title": "Regression Cautions",
+    "section": "Adjusted R2",
+    "text": "Adjusted R2\n\n\n\nOrder\nR2\nR2adj\n\n\n\n\n1\n0.9264\n0.9116\n\n\n2\n0.9903\n0.9855\n\n\n3\n0.9994\n0.9988\n\n\n4\n0.9998\n0.9995\n\n\n5\n0.99996\n0.9998\n\n\n6\n1.0000\nundefined\n\n\n\n\nRecall that there are only n = 7 observations in this data set"
+  },
+  {
+    "objectID": "activity/11R-mlr-multicollinearity.html",
+    "href": "activity/11R-mlr-multicollinearity.html",
+    "title": "Regression Cautions",
+    "section": "",
+    "text": "We all love R2 right? It is “easy” to interpret and is a popular metric of model fit to report in many fields. While I agree that R2 is a nice metric for describing a single model, it has an issue when it’s used to compare models. In this example, you’ll explore this issue.\nCase Study 10.1.1 in The Statistical Sleuth describes Galileo’s experiment that led him to discover that the trajectory of a body falling with horizontal velocity is a parabola (see page 272). The case1011 data set in the Sleuth3 R package contains the results of Galileo’s experiment. The data set contains seven observations on the following two variables: the horizontal distance traveled from the edge of the table to its landing spot, and the initial height of the object. Both measurements are in punti (1 punti = or 169/180 mm or about 0.037 in).\nFit each of the polynomial models specified on your worksheet and record the R2 value for each in the table on your handout. I’ve gotten you started with the first-order model below.\n\n\n\n\n\n\n\n\nWhat do you observe about the R2 values as you add more polynomial terms to the model?"
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html",
+    "href": "activity/11H-mlr-multicollinearity.html",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "",
+    "text": "In this activity you will learn how to calculate diagnostic measures and create diagnostic plots for multiple linear regression models in R."
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#overview",
+    "href": "activity/11H-mlr-multicollinearity.html#overview",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "",
+    "text": "In this activity you will learn how to calculate diagnostic measures and create diagnostic plots for multiple linear regression models in R."
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#example-1-uncorrelated-predictors",
+    "href": "activity/11H-mlr-multicollinearity.html#example-1-uncorrelated-predictors",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 1: Uncorrelated Predictors",
+    "text": "Example 1: Uncorrelated Predictors\nAs a first example, let’s consider a multiple linear regression model where the two predictor variables are uncorrelated.\nTask 1. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 0.\n\n\n          x1        x2         y\nx1 1.0000000 0.0000000 0.7419309\nx2 0.0000000 1.0000000 0.6384057\ny  0.7419309 0.6384057 1.0000000\n\n\nTask 2. The below code chunk fits a simple linear regression model with y as the response variable and x1 as the predictor variables. The coefficients table was extract using the broom::tidy(). (Feel free to use broom::tidy() it in your work!)\n\nmod1 &lt;- lm(y ~ x1, data = ex1)\nbroom::tidy(mod1)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nSimilarly, here is the output for the simple linear regression model with y as the response variable and x2 as the predictor variable.\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nAnd finally, here is the output for the multiple linear regression model with y as the response variable and both x1 and x2 as the predictor variables.\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    0.375     4.74     0.0791 0.940   \n2 x1             5.37      0.664    8.10   0.000466\n3 x2             9.25      1.33     6.97   0.000937\n\n\nCompare the model summaries from the three models. What do you observe about the coefficients when both predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?"
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#example-2-prefectly-correlated-predictors",
+    "href": "activity/11H-mlr-multicollinearity.html#example-2-prefectly-correlated-predictors",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 2: Prefectly Correlated Predictors",
+    "text": "Example 2: Prefectly Correlated Predictors\nIn many examples the predictor variables will be correlated. As an extreme example, let’s consider a situation where the predictors are perfectly correlated. The data set for this small example is printed below.\n\n\n  x1 x2   y\n1  2  6  23\n2  8  9  83\n3  6  8  63\n4 10 10 103\n\n\nTask 3. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 1.\n\n\n   x1 x2 y\nx1  1  1 1\nx2  1  1 1\ny   1  1 1\n\n\nTask 4. From the previous task, you should have seen that the correlation between x1 and x2 is 1, as is the correlation between both predictors and y. This sounds like a great situation, right? We’ll explore two models to unpack this.\n\nConsider the fitted regression equation: \\(\\widehat{y} = -87 + x_1 + 18x_2\\). Verify that the predicted values are exactly equal to the observed values.\nConsider the fitted regression equation: \\(\\widehat{y} = -7 + 9x_1 + 2x_2\\). Verify that the predicted values are exactly equal to the observed values.\nDiscuss the following questions with your group:\n\nWould you be willing to use either model to make predictions for new observations? Why or why not?\nWould you be willing to interpret the coefficients in either model? Why or why not?\nDo you think the standard error of the slopes is reasonably small or large? Why?"
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#example-3-a-more-realistic-example",
+    "href": "activity/11H-mlr-multicollinearity.html#example-3-a-more-realistic-example",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Example 3: A more realistic example",
+    "text": "Example 3: A more realistic example\nLet’s consider a more realistic example where the predictor variables are correlated, but not perfectly correlated. The data set bodyfat contains measurements on 20 healthy adults between 25 and 34 years of age. We’re interested in predicting body fat percentage using three body measurements: triceps skinfold thickness, thigh circumference, and midarm circumference.\nTask 5. Below is the correlation matrix for the data set. What do you observe about the correlations between the predictor variables?\n\n\n                     triceps_skinfold thigh_circumference midarm_circumference\ntriceps_skinfold            1.0000000           0.9238425            0.4577772\nthigh_circumference         0.9238425           1.0000000            0.0846675\nmidarm_circumference        0.4577772           0.0846675            1.0000000\nbody_fat                    0.8432654           0.8780896            0.1424440\n                      body_fat\ntriceps_skinfold     0.8432654\nthigh_circumference  0.8780896\nmidarm_circumference 0.1424440\nbody_fat             1.0000000\n\n\nTask 6. There are numerous models that we could consider. Below are summary tables from several models. Compare the model summaries from the fitted models. What do you observe about the coefficients when different predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?\nOnly triceps skinfold as a predictor:\n\n\n# A tibble: 2 × 5\n  term             estimate std.error statistic    p.value\n  &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;\n1 (Intercept)        -1.50      3.32     -0.451 0.658     \n2 triceps_skinfold    0.857     0.129     6.66  0.00000302\n\n\nOnly thigh circumference as a predictor:\n\n\n# A tibble: 2 × 5\n  term                estimate std.error statistic     p.value\n  &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 (Intercept)          -23.6       5.66      -4.18 0.000566   \n2 thigh_circumference    0.857     0.110      7.79 0.000000360\n\n\nOnly midarm circumference as a predictor:\n\n\n# A tibble: 2 × 5\n  term                 estimate std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)            14.7       9.10      1.61    0.124\n2 midarm_circumference    0.199     0.327     0.611   0.549\n\n\nTriceps skinfold and thigh circumference as predictors:\n\n\n# A tibble: 3 × 5\n  term                estimate std.error statistic p.value\n  &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)          -19.2       8.36     -2.29   0.0348\n2 triceps_skinfold       0.222     0.303     0.733  0.474 \n3 thigh_circumference    0.659     0.291     2.26   0.0369\n\n\nTriceps skinfold and midarm circumference as predictors:\n\n\n# A tibble: 3 × 5\n  term                 estimate std.error statistic     p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;\n1 (Intercept)          -26.0        7.00     -3.72  0.00172    \n2 midarm_circumference   0.0960     0.161     0.595 0.560      \n3 thigh_circumference    0.851      0.112     7.57  0.000000772\n\n\nThigh circumference and midarm circumference as predictors:\n\n\n# A tibble: 4 × 5\n  term                 estimate std.error statistic p.value\n  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)            117.       99.8       1.17   0.258\n2 triceps_skinfold         4.33      3.02      1.44   0.170\n3 thigh_circumference     -2.86      2.58     -1.11   0.285\n4 midarm_circumference    -2.19      1.60     -1.37   0.190\n\n\n Let me know when you have reached this spot. We’ll regroup as a class to discuss your observations."
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#what-about-predictions",
+    "href": "activity/11H-mlr-multicollinearity.html#what-about-predictions",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "What about predictions?",
+    "text": "What about predictions?\nNow that we’ve discussed the issues revolving around interpreting coefficients and drawing inference on them in the presence of multicollinearity, let’s consider how multicollinearity impacts predictions.\nRecall that the mean squared error (MSE) of a model measures the variability in the error terms (residuals). In other words, it is measuring the variability unexplained by the model.\nTask 7. Below are the MSE values for three of the models we considered in Task 6. What do you observe about the MSE values when different predictors are included in the model?\n\n\n\nPredictors\nMSE\n\n\n\n\ntriceps_skinfold\n7.95\n\n\ntriceps_skinfold, thigh_circumference\n6.47\n\n\ntriceps_skinfold, thigh_circumference, midarm_circumference\n6.15\n\n\n\nTask 8. Based on your observations, do you think we can use any of the models to make predictions for new observations? Why or why not?\n Let me know when you have reached this spot. We’ll regroup as a class to discuss your observations."
+  },
+  {
+    "objectID": "activity/11H-mlr-multicollinearity.html#be-wary-of-r2-when-comparing-models",
+    "href": "activity/11H-mlr-multicollinearity.html#be-wary-of-r2-when-comparing-models",
+    "title": "Regression Cautions: Multicollinearity and R2",
+    "section": "Be Wary of R2 when comparing models",
+    "text": "Be Wary of R2 when comparing models\nWe all love R2 right? It is “easy” to interpret and is a popular metric of model fit to report in many fields. While I agree that R2 is a nice metric for describing a single model, it has an issue when it’s used to compare models. In this example, you’ll explore this issue.\nCase Study 10.1.1 in The Statistical Sleuth describes Galileo’s experiment that led him to discover that the trajectory of a body falling with horizontal velocity is a parabola (see page 272). The case1011 data set in the Sleuth3 R package contains the results of Galileo’s experiment. The data set contains seven observations on the following two variables: the horizontal distance traveled from the edge of the table to its landing spot, and the initial height of the object. Both measurements are in punti (1 punti = or 169/180 mm or about 0.037 in).\nTask 9. Fit each of the following models and report the R2 value for each. Fill in the table below.\n\n\n\n\n\n\n\nModel\nR2\n\n\n\n\n\\(\\text{distance} \\sim \\text{height}\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5+ \\text{height}^6\\)\n\n\n\n\nWhat do you observe about the R2 values as you add more polynomial terms to the model?"
   }
 ]
