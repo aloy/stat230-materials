@@ -68,10 +68,24 @@
   path: slides/09-mlr-inference2.qmd
   categories:
     - "MLR"
-- title: "MMLR diagnostics"
+- title: "MLR Diagnostics"
   subtitle: "Day 12"
   date: 2025-10-10
   image: slides/featured/10-mlr-diagnostics.png
   path: slides/10-mlr-diagnostics.qmd
+  categories:
+    - "MLR"
+- title: "Multicollinearity"
+  subtitle: "Day 13"
+  date: 2025-10-15
+  image: slides/featured/11-mlr-multicollinearity.png
+  path: slides/11-mlr-multicollinearity.qmd
+  categories:
+    - "MLR"
+- title: "MLR Model Selection"
+  subtitle: "Day 14"
+  date: 2025-10-17
+  image: slides/featured/12-mlr-selection.png
+  path: slides/12-mlr-selection.qmd
   categories:
     - "MLR"

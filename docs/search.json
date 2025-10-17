@@ -1964,7 +1964,7 @@
     "href": "activity/11H-mlr-multicollinearity.html#example-1-uncorrelated-predictors",
     "title": "Regression Cautions: Multicollinearity and R2",
     "section": "Example 1: Uncorrelated Predictors",
-    "text": "Example 1: Uncorrelated Predictors\nAs a first example, let’s consider a multiple linear regression model where the two predictor variables are uncorrelated.\nTask 1. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 0.\n\n\n          x1        x2         y\nx1 1.0000000 0.0000000 0.7419309\nx2 0.0000000 1.0000000 0.6384057\ny  0.7419309 0.6384057 1.0000000\n\n\nTask 2. The below code chunk fits a simple linear regression model with y as the response variable and x1 as the predictor variables. The coefficients table was extract using the broom::tidy(). (Feel free to use broom::tidy() it in your work!)\n\nmod1 &lt;- lm(y ~ x1, data = ex1)\nbroom::tidy(mod1)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nSimilarly, here is the output for the simple linear regression model with y as the response variable and x2 as the predictor variable.\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nAnd finally, here is the output for the multiple linear regression model with y as the response variable and both x1 and x2 as the predictor variables.\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    0.375     4.74     0.0791 0.940   \n2 x1             5.37      0.664    8.10   0.000466\n3 x2             9.25      1.33     6.97   0.000937\n\n\nCompare the model summaries from the three models. What do you observe about the coefficients when both predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?"
+    "text": "Example 1: Uncorrelated Predictors\nAs a first example, let’s consider a multiple linear regression model where the two predictor variables are uncorrelated.\nTask 1. Inspect the below correlation matrix and verify that the correlation between the two predictor variables (x1 and x2) is 0.\n\n\n          x1        x2         y\nx1 1.0000000 0.0000000 0.7419309\nx2 0.0000000 1.0000000 0.6384057\ny  0.7419309 0.6384057 1.0000000\n\n\nTask 2. The below code chunk fits a simple linear regression model with y as the response variable and x1 as the predictor variables. The coefficients table was extract using the broom::tidy(). (Feel free to use broom::tidy() it in your work!)\n\nmod1 &lt;- lm(y ~ x1, data = ex1)\nbroom::tidy(mod1)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    23.5      10.1       2.32  0.0591\n2 x1              5.37      1.98      2.71  0.0351\n\n\nSimilarly, here is the output for the simple linear regression model with y as the response variable and x2 as the predictor variable.\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 (Intercept)    27.3      11.6       2.35  0.0572\n2 x2              9.25      4.55      2.03  0.0885\n\n\nAnd finally, here is the output for the multiple linear regression model with y as the response variable and both x1 and x2 as the predictor variables.\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    0.375     4.74     0.0791 0.940   \n2 x1             5.37      0.664    8.10   0.000466\n3 x2             9.25      1.33     6.97   0.000937\n\n\nCompare the model summaries from the three models. What do you observe about the coefficients when both predictors are included in the model? What do you observe about the standard errors? The results of the hypothesis tests?"
   },
   {
     "objectID": "activity/11H-mlr-multicollinearity.html#example-2-prefectly-correlated-predictors",
@@ -1993,5 +1993,292 @@
     "title": "Regression Cautions: Multicollinearity and R2",
     "section": "Be Wary of R2 when comparing models",
     "text": "Be Wary of R2 when comparing models\nWe all love R2 right? It is “easy” to interpret and is a popular metric of model fit to report in many fields. While I agree that R2 is a nice metric for describing a single model, it has an issue when it’s used to compare models. In this example, you’ll explore this issue.\nCase Study 10.1.1 in The Statistical Sleuth describes Galileo’s experiment that led him to discover that the trajectory of a body falling with horizontal velocity is a parabola (see page 272). The case1011 data set in the Sleuth3 R package contains the results of Galileo’s experiment. The data set contains seven observations on the following two variables: the horizontal distance traveled from the edge of the table to its landing spot, and the initial height of the object. Both measurements are in punti (1 punti = or 169/180 mm or about 0.037 in).\nTask 9. Fit each of the following models and report the R2 value for each. Fill in the table below.\n\n\n\n\n\n\n\nModel\nR2\n\n\n\n\n\\(\\text{distance} \\sim \\text{height}\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5\\)\n\n\n\n\\(\\text{distance} \\sim \\text{height} + \\text{height}^2 + \\text{height}^3 + \\text{height}^4 + \\text{height}^5+ \\text{height}^6\\)\n\n\n\n\nWhat do you observe about the R2 values as you add more polynomial terms to the model?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#partial-regression-plots",
+    "href": "slides/12-mlr-selection.html#partial-regression-plots",
+    "title": "Model Selection",
+    "section": "Partial regression plots",
+    "text": "Partial regression plots\nConsider a model with two predictors, \\(x_1\\) and \\(x_2\\):\n\\[\\mu(Y|X) = g(x_1, x_2) = ??\\] Visualizing the relationship between \\(Y\\) and \\(x_2\\), after accounting for the linear effect of \\(x_1\\):\n\\(\\mu(Y|X) = \\beta_0 + \\beta_1 x_1 + g(x_2)\\)\nSolving for \\(g(x_2)\\), we find \\(g(x_2) = \\mu(Y|X) - (\\beta_0 + \\beta_1 x_1)\\)\nSo, plots of \\(Y - (\\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_1)\\) should provide insight about \\(g(x_2)\\)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#partial-residual-plots",
+    "href": "slides/12-mlr-selection.html#partial-residual-plots",
+    "title": "Model Selection",
+    "section": "Partial residual plots",
+    "text": "Partial residual plots\nConsider two-predictor model: \\(\\widehat{y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_1 + \\widehat{\\beta}_2 x_2\\)\n\nTo isolate the relationship between \\(Y\\) and \\(x_2\\) after accounting for \\(x_1\\), we can:\n\nFit the MLR model\nCalculate the residuals from the fitted model: \\(e_i = y_i - \\widehat{y}_i\\)\nAdd the “contribution” of \\(x_j\\) back into residuals: \\(\\text{pres}_{j,i} = e_i + \\widehat{\\beta}_jx_{j,i}\\)\nPlot \\(\\text{pres}_j\\) against \\(x_j\\)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example",
+    "href": "slides/12-mlr-selection.html#example",
+    "title": "Model Selection",
+    "section": "Example",
+    "text": "Example\nAfter accounting for climb, what is the relationship between time and distance?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#remarks",
+    "href": "slides/12-mlr-selection.html#remarks",
+    "title": "Model Selection",
+    "section": "Remarks",
+    "text": "Remarks\n\nThe partial residuals for \\(x_i\\) tell us about the variation in Y that hasn’t been explained by the other predictors in the model.\nWe can use partial residual plots to check on whether a predictor may be useful to add\nSlope of the partial residual plot equals the estimated effect of \\(x_i\\) after accounting for other predictors.\nAs defined here, partial residuals plots cannot be constructed for terms involved in an interaction."
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#construction-in-r",
+    "href": "slides/12-mlr-selection.html#construction-in-r",
+    "title": "Model Selection",
+    "section": "Construction in R",
+    "text": "Construction in R\nLoad the car package and use the crPlot() function\n\nmod &lt;- lm(Time ~ Distance + Climb, data = races)\nlibrary(car)\n\ncrPlots(mod)                        # for all variables\ncrPlots(mod, smooth = FALSE)        # no loess smoother\ncrPlot(mod, variable = \"Distance\")  # just Distance\ncrPlot(mod, variable = \"Climb\")     # just Climb\n\nNote: crPlot() centers the partial residuals so that these plots have the feel of our “typical” residual plots.\n\nPartial residual plots are also called “component + residual plots”"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#the-problem-with-scatterplots",
+    "href": "slides/12-mlr-selection.html#the-problem-with-scatterplots",
+    "title": "Model Selection",
+    "section": "The problem with scatterplots",
+    "text": "The problem with scatterplots\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe only see the marginal relationships between pairs of variables, not the relationships after accounting for other variables"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#accounting-for-the-other-variables",
+    "href": "slides/12-mlr-selection.html#accounting-for-the-other-variables",
+    "title": "Model Selection",
+    "section": "Accounting for the other variables",
+    "text": "Accounting for the other variables\nConsider two-predictor model: \\(\\widehat{y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_1 + \\widehat{\\beta}_2 x_2\\)\n\nTo isolate the relationship between \\(Y\\) and \\(x_2\\) after accounting for \\(x_1\\), we can:\n\nFit the MLR model\nCalculate the residuals from the fitted model: \\(e_i = y_i - \\widehat{y}_i\\)\nAdd the “contribution” of \\(x_j\\) back into residuals: \\(\\text{pres}_{j,i} = e_i + \\widehat{\\beta}_jx_{j,i}\\)\nPlot \\(\\text{pres}_j\\) against \\(x_j\\)\n\nThis is called a partial residual plot"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-1",
+    "href": "slides/12-mlr-selection.html#example-1",
+    "title": "Model Selection",
+    "section": "Example",
+    "text": "Example\nAfter accounting for distance, what is the relationship between time and climb?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-2",
+    "href": "slides/12-mlr-selection.html#example-2",
+    "title": "Model Selection",
+    "section": "Example 2",
+    "text": "Example 2\n\n\nTrue model\nFitted model\n\n\\(y = x_1^2 + 0.5x_2 + \\epsilon\\)\n\\(y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)\n\nBut now \\(x_1\\) is strictly positive \\(\\rightarrow\\) monotone relationship"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#partial-residual-plots-in-r",
+    "href": "slides/12-mlr-selection.html#partial-residual-plots-in-r",
+    "title": "Model Selection",
+    "section": "Partial residual plots in R",
+    "text": "Partial residual plots in R\nThe car package calls them component + residual plots\n\nlibrary(car)\nmod &lt;- lm(time ~ dist + climb, data = hills2000)\ncrPlots(mod, layout = c(1, 2))\n\n\n\nNote: The partial residuals in these plots are centered"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#accounting-for-the-other-variables-added-variable-plot",
+    "href": "slides/12-mlr-selection.html#accounting-for-the-other-variables-added-variable-plot",
+    "title": "Model Selection",
+    "section": "Accounting for the other variables – added variable plot",
+    "text": "Accounting for the other variables – added variable plot\nConsider two-predictor model: \\(\\widehat{y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_1 + \\widehat{\\beta}_2 x_2\\)\n\nTo isolate the relationship between \\(Y\\) and \\(x_2\\) after accounting for \\(x_1\\), we can:\n\nRegress \\(y\\) on \\(x_1\\) and obtain the residuals \\(e(y|x_1) = y - \\widehat{y}\\)\nRegress \\(x_2\\) on \\(x_1\\) and obtain the residuals \\(e(x_2|x_1) = x_2 - \\widehat{x}_2\\)\nPlot \\(e(y|x_1)\\) against \\(e(x_2|x_1)\\)\n\nThis is called a partial regression plot"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-3",
+    "href": "slides/12-mlr-selection.html#example-3",
+    "title": "Model Selection",
+    "section": "Example",
+    "text": "Example\nWhats the relationship between record time and distance, holding the total climb constant?\n\n\nClimb held constant at its mean value, 2077.32 ft"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#why-does-this-work",
+    "href": "slides/12-mlr-selection.html#why-does-this-work",
+    "title": "Model Selection",
+    "section": "Why does this work?",
+    "text": "Why does this work?\nSuppose that in reality \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)\nBut we use the model \\(Y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#why-is-this-useful",
+    "href": "slides/12-mlr-selection.html#why-is-this-useful",
+    "title": "Model Selection",
+    "section": "Why is this useful?",
+    "text": "Why is this useful?\n\nWe can see the “effect” of \\(x_j\\) after adjusting for other model terms\nWe can see the variation in \\(y\\) that remains after adjusting for other model terms\nWe can look for outliers that could be affecting the estimated effect of \\(x_j\\)\nWe can see if the effect of \\(x_j\\) is correctly modeled, non-linearity and/or non-constant variance suggest we need to correct our model form"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-1-1",
+    "href": "slides/12-mlr-selection.html#example-1-1",
+    "title": "Model Selection",
+    "section": "Example 1",
+    "text": "Example 1\n\n\nTrue model\nFitted model\n\n\\(y = x_1^2 + 0.5x_2 + \\epsilon\\)\n\\(y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)\n\nBoth \\(x_1\\) and \\(x_2\\) are numeric, roughly between -5 and 5"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-1-2",
+    "href": "slides/12-mlr-selection.html#example-1-2",
+    "title": "Model Selection",
+    "section": "Example 1",
+    "text": "Example 1\n\n\nTrue model\nFitted model\n\n\\(y = x_1^2 + 0.5x_2 + \\epsilon\\)\n\\(y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)\n\nBoth \\(x_1\\) and \\(x_2\\) are numeric, roughly between -5 and 5"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-2-1",
+    "href": "slides/12-mlr-selection.html#example-2-1",
+    "title": "Model Selection",
+    "section": "Example 2",
+    "text": "Example 2\n\n\nTrue model\nFitted model\n\n\\(y = x_1^2 + 0.5x_2 + \\epsilon\\)\n\\(y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\epsilon\\)\n\nBut now \\(x_1\\) is strictly positive \\(\\rightarrow\\) monotone relationship"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#effects-plots",
+    "href": "slides/12-mlr-selection.html#effects-plots",
+    "title": "Model Selection",
+    "section": "Effects plots",
+    "text": "Effects plots\nConsider two-predictor model: \\(\\widehat{y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_1 + \\widehat{\\beta}_2 x_2\\)\n\n\nFix \\(x_1\\) at some value, say \\(x_1 = c\\)\nCalculate \\(\\widehat{y}\\) for a range of \\(x_2\\) values: \\(\\widehat{y} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 c + \\widehat{\\beta}_2 x_2\\)\nPlot \\(\\widehat{y}\\) against \\(x_2\\)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-4",
+    "href": "slides/12-mlr-selection.html#example-4",
+    "title": "Model Selection",
+    "section": "Example",
+    "text": "Example\nWhats the relationship between record time and the total climb, holding the distance constant?\n\n\nDistance held constant at its mean value, 7.53 miles"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#effects-plots-in-r",
+    "href": "slides/12-mlr-selection.html#effects-plots-in-r",
+    "title": "Model Selection",
+    "section": "Effects plots in R",
+    "text": "Effects plots in R\nThe ggeffects package provides a nice way to visualize fitted models\n\nlibrary(ggeffects)\nmod &lt;- lm(time ~ dist + climb, data = hills2000)\npredict_response(mod, terms = \"dist\") |&gt; \n  plot() +\n  labs(\n    y = \"My y-axis label\",\n    x = \"My x-axis label\"\n  )\n\n\n\n\n\n\n\n\n\nNote\n\n\nIt holds the other predictors at their mean (for numeric) or mode (for categorical)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#plotting-interaction-models",
+    "href": "slides/12-mlr-selection.html#plotting-interaction-models",
+    "title": "Model Selection",
+    "section": "Plotting interaction models",
+    "text": "Plotting interaction models\nRecall the FEV model with interaction between age and smoking status:\n\\(\\mu(y|x) = \\beta_0 + \\beta_1 \\mathtt{smoker} + \\beta_2 \\mathtt{age} + \\beta_3 \\mathtt{age} \\times \\mathtt{smoker}\\)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#effects-plots-in-r-1",
+    "href": "slides/12-mlr-selection.html#effects-plots-in-r-1",
+    "title": "Model Selection",
+    "section": "Effects plots in R",
+    "text": "Effects plots in R\n\n\n\n\n\n\nNote\n\n\nTo get multiple fitted lines representing different groups, specify the variable you want to plot and the grouping variable in the terms argument\n\n\n\n\n\nfev_lm &lt;- lm(FEV ~ Age * Smoke, data = fev)\npredict_response(fev_lm, terms = c(\"Age\", \"Smoke\")) |&gt;\n  plot()"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#your-turn",
+    "href": "slides/12-mlr-selection.html#your-turn",
+    "title": "Model Selection",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through example on the handout\nBe ready to share your thoughts (I’m going to cold call)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#your-turn-1",
+    "href": "slides/12-mlr-selection.html#your-turn-1",
+    "title": "Model Selection",
+    "section": "Your turn",
+    "text": "Your turn\n\nWork through example on the handout\nBe ready to share your thoughts (I’m going to cold call)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#reasons-to-build-a-model",
+    "href": "slides/12-mlr-selection.html#reasons-to-build-a-model",
+    "title": "Model Selection",
+    "section": "Reasons to build a model",
+    "text": "Reasons to build a model\n\nPredictive reasons - the model will be used to predict the response variable from a chosen set of predictors.\nTheoretical reasons - the researcher wants to estimate a model based on a known theoretical relationship between the response and predictors.\nControl purposes - the model will be used to control a response variable by manipulating the values of the predictor variables.\nInferential reasons - the model will be used to explore the strength of the relationships between the response and the predictors.\nData summary reasons - the model will be used merely as a way to summarize a large set of data by a single equation."
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#define-the-goal",
+    "href": "slides/12-mlr-selection.html#define-the-goal",
+    "title": "Model Selection",
+    "section": "1. Define the goal",
+    "text": "1. Define the goal\nBefore you start building a model you need to identify why you are building the model.\n\nExploring associations\nTesting a theoretical relationship\nControlling for confounders\nPrediction\n\n\nReasons can be intertwined"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#choose-an-initial-pool-of-predictors",
+    "href": "slides/12-mlr-selection.html#choose-an-initial-pool-of-predictors",
+    "title": "Model Selection",
+    "section": "2. Choose an initial pool of predictors",
+    "text": "2. Choose an initial pool of predictors\n\nTheory might dictate some/all variables\nDesigned experiment might dictate some/all variables\nIn other situations\n\nExamine variables one at a time – beware of skew, note outliers\nExamine pairwise correlations/scatterplot matrix – note potential predictors, multicollinearity"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#fit-a-full-regression-model",
+    "href": "slides/12-mlr-selection.html#fit-a-full-regression-model",
+    "title": "Model Selection",
+    "section": "3. Fit a full regression model",
+    "text": "3. Fit a full regression model\nFit a “full” initial regression model where you include all of the potential variables"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#question-your-full-model",
+    "href": "slides/12-mlr-selection.html#question-your-full-model",
+    "title": "Model Selection",
+    "section": "4. Question your full model",
+    "text": "4. Question your full model\n\nCheck the full model for violations to the conditions, fix as needed.\nOrder I check/fix:\n\nLinearity\nHeteroscedasticity\nNormality\nOutliers and influential points"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#examine-if-any-variables-can-be-droppedadded",
+    "href": "slides/12-mlr-selection.html#examine-if-any-variables-can-be-droppedadded",
+    "title": "Model Selection",
+    "section": "5. Examine if any variables can be dropped/added",
+    "text": "5. Examine if any variables can be dropped/added\n\nThere may be “insignificant” predictor variables that you can consider dropping\nYou could use t-tests or extra-sums-of-squares F-tests to guide these decisions\nYou could use model selection criteria (AIC, BIC, adjusted R2) to guide these decisions\nSometimes you discover reasons to add variables (e.g., remedy model deficiencies, discovery of interactions)"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#iterate-through-steps-4-and-5",
+    "href": "slides/12-mlr-selection.html#iterate-through-steps-4-and-5",
+    "title": "Model Selection",
+    "section": "6. Iterate through steps 4 and 5",
+    "text": "6. Iterate through steps 4 and 5"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#do-a-final-model-check",
+    "href": "slides/12-mlr-selection.html#do-a-final-model-check",
+    "title": "Model Selection",
+    "section": "7. Do a final model check",
+    "text": "7. Do a final model check"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#proceed-with-your-analysis",
+    "href": "slides/12-mlr-selection.html#proceed-with-your-analysis",
+    "title": "Model Selection",
+    "section": "8. Proceed with your analysis",
+    "text": "8. Proceed with your analysis\n\nInterpret coefficients\nTest hypotheses\nMake predictions\n\n\n\n\n\n\n\nConfirming a theory\n\n\nWhen you want to confirm a theory, only include “extra” predictors in the model building process.\nAdd the variables that are “predetermined” by the theory back into the model at the end of the model building process."
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#section",
+    "href": "slides/12-mlr-selection.html#section",
+    "title": "Model Selection",
+    "section": "",
+    "text": "6. Iterate through steps 4 and 5\n\nModeling is an iterative process, unlikely to find the “best” model on the first try\nEach time you change the model, you need to re-check/fix the model conditions\n\n7. Do a final model check\n\nAre the conditions are satisfied?\nOutliers and influential points?\nMulticollinearity?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-5",
+    "href": "slides/12-mlr-selection.html#example-5",
+    "title": "Model Selection",
+    "section": "Example",
+    "text": "Example"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#sat-data",
+    "href": "slides/12-mlr-selection.html#sat-data",
+    "title": "Model Selection",
+    "section": "SAT data",
+    "text": "SAT data\n\nData for the 50 states\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nsat\naverage of combined verbal and math SAT\n\n\ntakers\npercentage of eligible seniors who took exam\n\n\nincome\nmedian income of families of test-takers\n\n\nyears\nmean number of years of schooling\n\n\npublic\npercentage of test-takers attending public school\n\n\nexpend\ntotal state expenditure on secondary schools (in hundreds of dollars per student)\n\n\nrank\nmedian percentile rank of test-takers in their high school classes\n\n\n\n\n\ncase0901 in the Sleuth"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#example-working-for-the-legislature",
+    "href": "slides/12-mlr-selection.html#example-working-for-the-legislature",
+    "title": "Model Selection",
+    "section": "Example: Working for the legislature",
+    "text": "Example: Working for the legislature\nWhat is the impact of state expenditures on SAT scores after accounting for other factors?\n\nStrategy: First, choose controls, then add expenditures\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n144.5300\n297.1628\n0.4864\n0.6291\n\n\nRank\n4.4498\n2.7466\n1.6201\n0.1124\n\n\nIncome\n0.2054\n0.1162\n1.7672\n0.0841\n\n\nYears\n24.8751\n6.4223\n3.8732\n0.0004\n\n\nlog(Takers)\n-26.0915\n17.0035\n-1.5345\n0.1321\n\n\nPublic\n0.6962\n0.5513\n1.2630\n0.2132\n\n\n\n\n\n\n\n\nRank, log(Takers), and Public may not be significant - but can we trust these results?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#working-for-the-legislature",
+    "href": "slides/12-mlr-selection.html#working-for-the-legislature",
+    "title": "Model Selection",
+    "section": "Working for the legislature",
+    "text": "Working for the legislature\n\nWhat is the impact of state expenditures on SAT scores after accounting for other factors?\n\n\n\nStrategy: First, choose controls, then add expenditures\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n144.5300\n297.1628\n0.4864\n0.6291\n\n\nRank\n4.4498\n2.7466\n1.6201\n0.1124\n\n\nIncome\n0.2054\n0.1162\n1.7672\n0.0841\n\n\nYears\n24.8751\n6.4223\n3.8732\n0.0004\n\n\nlog(Takers)\n-26.0915\n17.0035\n-1.5345\n0.1321\n\n\nPublic\n0.6962\n0.5513\n1.2630\n0.2132\n\n\n\n\n\n\n\n\n\n\nRank, log(Takers), and Public may not be significant - but can we trust these results?"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#our-model-is-overspecified",
+    "href": "slides/12-mlr-selection.html#our-model-is-overspecified",
+    "title": "Model Selection",
+    "section": "Our model is overspecified!",
+    "text": "Our model is overspecified!\nRank and log(Takers) are highly correlated!\n\n\nvif(political_lm)\n\n       Rank      Income       Years log(Takers)      Public \n     21.068       1.692       1.326      22.175       1.928 \n\n\n\n\nLet’s try dropping Rank and refitting the model…"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#model-b",
+    "href": "slides/12-mlr-selection.html#model-b",
+    "title": "Model Selection",
+    "section": "Model B",
+    "text": "Model B\nIt looks like Public can also be removed as it doesn’t explain a substantial proportion of the variability in SAT scores\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n-268.779\n127.4007\n-2.1097\n0.0405\n\n\nRank\n8.509\n0.7496\n11.3522\n0.0000\n\n\nIncome\n0.230\n0.1168\n1.9689\n0.0551\n\n\nYears\n27.564\n6.2710\n4.3954\n0.0001\n\n\nPublic\n0.267\n0.4821\n0.5539\n0.5824"
+  },
+  {
+    "objectID": "slides/12-mlr-selection.html#now-add-expenditure",
+    "href": "slides/12-mlr-selection.html#now-add-expenditure",
+    "title": "Model Selection",
+    "section": "Now, add expenditure",
+    "text": "Now, add expenditure\nExamine the significance of expenditure after controlling for rank, income and years.\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n-285.4613\n98.9617\n-2.885\n0.0060\n\n\nRank\n9.3411\n0.7393\n12.636\n0.0000\n\n\nIncome\n0.1199\n0.1078\n1.112\n0.2719\n\n\nYears\n25.5321\n5.3994\n4.729\n0.0000\n\n\nExpend\n1.6162\n0.6706\n2.410\n0.0201"
   }
 ]

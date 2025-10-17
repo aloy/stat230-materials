@@ -1,0 +1,603 @@
+---
+title: "Model Selection"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, dev = 'svg', comment = NULL)
+
+library(ggformula)
+library(dplyr)
+library(broom)
+library(gridExtra)
+library(effects)
+library(ggthemes)
+library(car)
+library(here)
+library(gt)
+library(gtsummary)
+library(DAAG)
+library(GGally)
+library(ggeffects)
+library(Sleuth3)
+
+options(digits=4) # display four significant digits by default
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+graph_paper <- ggplot(data = data.frame(x = 0:20, y = 0:20), aes(x, y)) +
+  theme_classic() +
+  scale_x_continuous(name = "Age", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  scale_y_continuous(name = "FEV", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  theme(  
+    panel.grid.major = element_line(color = "gray60", size = 0.5), # Major grid lines
+    panel.grid.minor = element_line(color = "gray60", size = 0.25), # Minor grid lines
+  )
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+
+
+races <- read.table("http://www1.aucegypt.edu/faculty/hadi/RABE5/Data5/P120.txt", header = TRUE, sep="\t")
+```
+
+# Visualizing a fitted model
+
+How can we create a useful 2-dimensional picture of the relationship between $Y$ and $x_i$, after accounting for the other variables in the model?
+
+## The problem with scatterplots
+
+
+:::{.columns}
+::: {.column width="65%"}
+
+```{r echo=FALSE, fig.width = 5, fig.height=5, fig.align='center'}
+#| out.width: 90%
+ggpairs(hills2000, columns = c(3:1)) + theme_light()
+```
+
+:::
+
+::: {.column width="35%"}
+<br>
+
+We only see the marginal relationships between pairs of variables, not the relationships after accounting for other variables
+:::
+:::
+
+
+## Partial residual plots
+
+Consider two-predictor model: $\widehat{y} = \widehat{\beta}_0 + \widehat{\beta}_1 x_1 + \widehat{\beta}_2 x_2$
+
+<br>
+
+To isolate the relationship between $Y$ and $x_2$ after accounting for $x_1$, we can:
+
+1. Fit the MLR model
+
+2. Calculate the residuals from the fitted model: $e_i = y_i - \widehat{y}_i$
+
+3. Add the "contribution" of $x_j$ back into residuals: $\text{pres}_{j,i} = e_i + \widehat{\beta}_jx_{j,i}$
+
+4. Plot $\text{pres}_j$ against $x_j$
+
+
+## Example
+
+After accounting for climb, what is the relationship between time and distance?
+
+```{r}
+#| fig.asp: 1
+#| fig.width: 4.5
+#| fig.align: center
+#| echo: false
+hill_lm <- lm(time ~ dist + climb, data = hills2000)
+crPlot(hill_lm, smooth = FALSE, "dist")
+```
+
+
+## Example
+
+After accounting for distance, what is the relationship between time and climb?
+
+```{r}
+#| fig.asp: 1
+#| fig.width: 4.5
+#| fig.align: center
+#| echo: false
+crPlot(hill_lm, smooth = FALSE, "climb")
+```
+
+## Why is this useful?
+
+- We can see the “effect” of $x_j$ after adjusting for other model terms
+
+- We can see the variation in $y$ that remains after adjusting for other model terms
+
+- We can look for outliers that could be affecting the estimated effect of $x_j$
+
+- We can see if the effect of $x_j$ is correctly modeled, **non-linearity** and/or non-constant variance suggest we need to correct our model form
+
+
+## Partial residual plots in R
+
+The `car` package calls them **component + residual plots**
+
+
+```{r}
+#| fig.asp: 0.5
+#| fig.align: center
+library(car)
+mod <- lm(time ~ dist + climb, data = hills2000)
+crPlots(mod, layout = c(1, 2))
+```
+
+:::{.footer}
+Note: The partial residuals in these plots are centered
+:::
+
+
+## Example 1
+
+:::{.columns}
+::: {.column width="30%"}
+True model
+
+Fitted model
+
+:::
+::: {.column width="50%"}
+$y = x_1^2 + 0.5x_2 + \epsilon$
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$
+:::
+:::
+
+Both $x_1$ and $x_2$ are numeric, roughly between -5 and 5
+
+```{r}
+#| include: false
+set.seed(1)
+n  <- 100
+x1 <- runif(n, -5, 5)
+x2 <- runif(n, -5, 5) + rnorm(n, sd = 0.2)   # strong collinearity
+y  <- x1^2 + 0.5*x2 + rnorm(n, sd = 1)
+
+x1b <- abs(x1)
+yb <- x1^2 + 0.5*x2 + rnorm(n, sd = 1)
+
+m  <- lm(y ~ x1 + x2)
+mb <- lm(yb ~ x1b + x2)
+```
+
+```{r}
+#| fig.asp: 0.33
+#| echo: false
+#| fig.width: 7
+residualPlots(m, layout = c(1, 3), tests = FALSE, type = "rstandard", main = "Standardized residual plots")
+```
+
+
+
+## Example 2
+
+
+:::{.columns}
+::: {.column width="30%"}
+True model
+
+Fitted model
+
+:::
+::: {.column width="50%"}
+$y = x_1^2 + 0.5x_2 + \epsilon$
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$
+:::
+:::
+
+But now $x_1$ is strictly positive $\rightarrow$ monotone relationship
+
+```{r}
+#| fig.asp: 0.33
+#| echo: false
+#| fig.width: 7
+residualPlots(mb, layout = c(1, 3), tests = FALSE, type = "rstandard", main = "Standardized residual plots")
+```
+
+## Example 1
+
+:::{.columns}
+::: {.column width="30%"}
+True model
+
+Fitted model
+
+:::
+::: {.column width="50%"}
+$y = x_1^2 + 0.5x_2 + \epsilon$
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$
+:::
+:::
+
+Both $x_1$ and $x_2$ are numeric, roughly between -5 and 5
+
+```{r}
+#| fig.asp: 0.5
+#| echo: false
+#| fig.width: 6.5
+#| fig.align: center
+crPlots(m, layout = c(1, 2))
+```
+
+## Example 2
+
+
+:::{.columns}
+::: {.column width="30%"}
+True model
+
+Fitted model
+
+:::
+::: {.column width="50%"}
+$y = x_1^2 + 0.5x_2 + \epsilon$
+
+$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon$
+:::
+:::
+
+But now $x_1$ is strictly positive $\rightarrow$ monotone relationship
+
+```{r}
+#| fig.asp: 0.5
+#| echo: false
+#| fig.width: 6.5
+#| fig.align: center
+crPlots(mb, layout = c(1, 2))
+```
+
+
+## Your turn
+
+- Work through example on the handout
+
+- Be ready to share your thoughts (I'm going to cold call)
+
+
+
+## Effects plots
+
+Consider two-predictor model: $\widehat{y} = \widehat{\beta}_0 + \widehat{\beta}_1 x_1 + \widehat{\beta}_2 x_2$
+
+<br>
+
+1. Fix $x_1$ at some value, say $x_1 = c$
+
+2. Calculate $\widehat{y}$ for a range of $x_2$ values: $\widehat{y} = \widehat{\beta}_0 + \widehat{\beta}_1 c + \widehat{\beta}_2 x_2$
+
+3. Plot $\widehat{y}$ against $x_2$ 
+
+
+## Example
+
+Whats the relationship between record time and distance, holding the total climb constant?
+
+```{r}
+#| echo: false
+#| fig.asp: 1
+#| fig.width: 3.5
+#| fig.align: center
+ggpredict(mod, terms = "dist") |>
+  plot() +
+  labs(
+    y = "Predicted Record Time (minutes)",
+    x = "Distance (miles)"
+  )  
+```
+
+:::{.footer}
+Climb held constant at its mean value, 2077.32 ft
+:::
+
+
+---
+## Example
+
+Whats the relationship between record time and the total climb, holding the distance constant?
+
+```{r}
+#| echo: false
+#| fig.asp: 1
+#| fig.width: 3.5
+#| fig.align: center
+ggpredict(mod, terms = "climb") |>
+  plot() +
+  labs(
+    y = "Predicted Record Time (minutes)",
+    x = "Total climb (feet)"
+  )  
+```
+
+
+:::{.footer}
+Distance held constant at its mean value, 7.53 miles
+:::
+
+## Effects plots in R
+
+The `ggeffects` package provides a nice way to visualize fitted models
+
+```{r}
+#| eval: false
+library(ggeffects)
+mod <- lm(time ~ dist + climb, data = hills2000)
+predict_response(mod, terms = "dist") |> 
+  plot() +
+  labs(
+    y = "My y-axis label",
+    x = "My x-axis label"
+  )
+```
+
+. . .
+
+<br>
+
+:::{.callout-note}
+It holds the other predictors at their mean (for numeric) or mode (for categorical)
+:::
+
+
+## Plotting interaction models
+
+Recall the FEV model with interaction between age and smoking status:
+
+$\mu(y|x) = \beta_0 + \beta_1 \mathtt{smoker} + \beta_2 \mathtt{age} + \beta_3 \mathtt{age} \times \mathtt{smoker}$
+
+```{r}
+#| echo: false
+#| fig.asp: 1
+#| fig.width: 4.5
+#| fig.align: center
+fev <- read.table(here("data/FEVdataAge10to19.txt"), sep = "\t", header = TRUE)
+
+smoke.binary <- fev$Smoke
+fev$Smoke <- factor(fev$Smoke, labels = c("Nonsmoker", "Smoker"))
+
+fev_lm <- lm(FEV ~ Age * Smoke, data = fev)
+predict_response(fev_lm, terms = c("Age", "Smoke")) |>
+  plot() +
+  labs(
+    y = "Predicted FEV",
+    x = "Age (years)",
+    color = ""
+  ) +
+  theme(legend.position = c(0.8, 0.15))
+```
+
+
+## Effects plots in R
+
+
+:::{.callout-note}
+To get multiple fitted lines representing different groups, specify the variable you want to plot and the grouping variable in the `terms` argument
+:::
+
+<br>
+
+
+```{r}
+#| eval: false
+fev_lm <- lm(FEV ~ Age * Smoke, data = fev)
+predict_response(fev_lm, terms = c("Age", "Smoke")) |>
+  plot()
+```
+
+
+## Your turn
+
+- Work through example on the handout
+
+- Be ready to share your thoughts (I'm going to cold call)
+
+
+
+# Model building
+
+## 1. Define the goal
+
+Before you start building a model you need to identify why you are building the model. 
+
+* Exploring associations
+
+* Testing a theoretical relationship
+
+* Controlling for confounders
+
+* Prediction
+
+
+:::{.footer}
+Reasons can be intertwined
+:::
+
+
+## 2. Choose an initial pool of predictors
+
+
+- Theory might dictate some/all variables
+
+- Designed experiment might dictate some/all variables
+
+- In other situations
+
+    + Examine variables one at a time -- beware of skew, note outliers
+    + Examine pairwise correlations/scatterplot matrix -- note potential predictors, multicollinearity
+
+    
+## 3. Fit a full regression model
+
+Fit a "full" initial regression model where you include all of the potential variables
+
+
+## 4. Question your full model
+
+- Check the full model for violations to the conditions, fix as needed.
+
+- Order I check/fix:
+
+    1.  Linearity
+    2.  Heteroscedasticity
+    3.  Normality
+    4.  Outliers and influential points 
+
+
+## 5. Examine if any variables can be dropped/added
+
+- There may be "insignificant" predictor variables that you can consider dropping
+
+- You could use t-tests or extra-sums-of-squares F-tests to guide these decisions
+
+- You could use model selection criteria (AIC, BIC, adjusted R<sup>2</sup>) to guide these decisions
+
+- Sometimes you discover reasons to add variables (e.g., remedy model deficiencies, discovery of interactions)
+
+## 
+
+### 6. Iterate through steps 4 and 5
+
+- Modeling is an iterative process, unlikely to find the "best" model on the first try
+- Each time you change the model, you need to re-check/fix the model conditions
+
+### 7. Do a final model check
+
+- Are the conditions are satisfied?
+- Outliers and influential points?
+- Multicollinearity?
+
+## 8. Proceed with your analysis
+
+- Interpret coefficients
+- Test hypotheses
+- Make predictions
+
+:::{.callout-note}
+## Confirming a theory
+
+When you want to confirm a theory, only include "extra" predictors in the model building process.
+
+Add the variables that are "predetermined" by the theory back into the model at the end of the model building process.
+
+:::
+
+
+
+## SAT data
+
+:::{style="font-size: 0.85em;"}
+
+Data for the 50 states
+
+Variable | Description
+---------|----------------------------
+`sat`  | average of combined verbal and math SAT
+`takers` | percentage of eligible seniors who took exam
+`income`  | median income of families of test-takers
+`years` | mean number of years of schooling
+`public`   | percentage of test-takers attending public school
+`expend` | total state expenditure on secondary schools (in hundreds of dollars per student)
+`rank`   | median percentile rank of test-takers in their high school classes
+
+:::
+
+:::{.footer}
+`case0901` in the Sleuth
+:::
+
+## Working for the legislature
+
+:::{style="font-size: 0.85em;"}
+What is the impact of state expenditures on SAT scores after accounting for other factors?
+:::
+
+. . .
+
+:::{style="font-size: 0.85em;"}
+**Strategy**: First, choose controls, then add expenditures
+:::
+
+. . .
+
+:::{style="font-size: 0.75em;"}
+```{r, echo=FALSE}
+political_lm <- lm(SAT ~ Rank + Income + Years + log(Takers) + Public, data = case1201)
+knitr::kable(tidy(political_lm), format = "html")
+```
+:::
+
+. . . 
+
+:::{style="font-size: 0.85em;"}
+- `Rank`, `log(Takers)`, and `Public` may not be significant - but can we trust these results?
+:::
+
+## Our model is overspecified!
+
+`Rank` and `log(Takers)` are highly correlated!
+
+:::{style="font-size: 1.2em;"}
+```{r}
+vif(political_lm)
+```
+:::
+
+<br>
+
+Let's try dropping `Rank` and refitting the model...
+
+
+## Model B
+
+It looks like `Public` can also be removed as it doesn't explain a substantial proportion of the variability in `SAT` scores
+
+<br>
+
+:::{style="font-size: 0.9em;"}
+```{r, echo=FALSE}
+political_lmb <- lm(SAT ~ Rank + Income + Years + Public, data = case1201)
+knitr::kable(tidy(political_lmb), format = "html")
+```
+:::
+
+
+
+## Now, add expenditure
+
+Examine the significance of expenditure after controlling for rank, income and years.
+
+```{r, echo=FALSE}
+political_lmc <- lm(SAT ~ Rank + Income + Years + Expend, data = case1201)
+knitr::kable(tidy(political_lmc), format = "html")
+```

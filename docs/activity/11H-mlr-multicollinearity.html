@@ -74,9 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,8 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
-<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -137,16 +133,30 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#example-1-uncorrelated-predictors" id="toc-example-1-uncorrelated-predictors" class="nav-link" data-scroll-target="#example-1-uncorrelated-predictors">Example 1: Uncorrelated Predictors</a></li>
+  <li><a href="#example-2-prefectly-correlated-predictors" id="toc-example-2-prefectly-correlated-predictors" class="nav-link" data-scroll-target="#example-2-prefectly-correlated-predictors">Example 2: Prefectly Correlated Predictors</a></li>
+  <li><a href="#example-3-a-more-realistic-example" id="toc-example-3-a-more-realistic-example" class="nav-link" data-scroll-target="#example-3-a-more-realistic-example">Example 3: A more realistic example</a></li>
+  <li><a href="#what-about-predictions" id="toc-what-about-predictions" class="nav-link" data-scroll-target="#what-about-predictions">What about predictions?</a></li>
+  <li><a href="#be-wary-of-r2-when-comparing-models" id="toc-be-wary-of-r2-when-comparing-models" class="nav-link" data-scroll-target="#be-wary-of-r2-when-comparing-models">Be Wary of R<sup>2</sup> when comparing models</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -203,8 +213,8 @@ y  0.7419309 0.6384057 1.0000000</code></pre>
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 (Intercept)    23.5      10.1       2.32  0.0591
-2 x1              5.37      1.98      2.71  0.0351</code></pre>
+1 (Intercept)    27.3      11.6       2.35  0.0572
+2 x2              9.25      4.55      2.03  0.0885</code></pre>
 </div>
 </div>
 <p>And finally, here is the output for the multiple linear regression model with <code>y</code> as the response variable and both <code>x1</code> and <code>x2</code> as the predictor variables.</p>
@@ -414,34 +424,9 @@ body_fat             1.0000000</code></pre>
 <p>What do you observe about the R<sup>2</sup> values as you add more polynomial terms to the model?</p>
 
 
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
-<div id="exercise-loading-status" class="d-flex gap-2">
-
-</div>
-<div class="spinner-grow spinner-grow-sm">
-
-</div>
-</div>
-<script type="vfs-file">
-W10=
-</script>
 </section>
 
 </main> <!-- /main -->
-<script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
-</script>
-<script type="module">
-if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
-window._ojs.paths.runtimeToDoc = "../../activity";
-window._ojs.paths.runtimeToRoot = "../..";
-window._ojs.paths.docToRoot = "..";
-window._ojs.selfContained = false;
-window._ojs.runtime.interpretFromScriptTags();
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

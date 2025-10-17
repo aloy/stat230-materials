@@ -46,7 +46,7 @@ Similarly, here is the output for the simple linear regression model with `y` as
 
 ```{r}
 #| echo: false
-mod2 <- lm(y ~ x1, data = ex1)
+mod2 <- lm(y ~ x2, data = ex1)
 broom::tidy(mod2)
 ```
 
