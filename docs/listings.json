@@ -2,6 +2,8 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/12-mlr-selection.html",
+      "/slides/11-mlr-multicollinearity.html",
       "/slides/10-mlr-diagnostics.html",
       "/slides/09-mlr-inference2.html",
       "/slides/08-mlr-categorical.html",
