@@ -1,0 +1,259 @@
+---
+title: "Model Validation"
+subtitle: "Stat 230: Applied Regression Analysis"
+format: 
+  revealjs:
+    theme: [serif, styles.scss]
+    scrollable: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+code-annotations: hover
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, dev = 'svg', comment = NULL)
+
+library(ggformula)
+library(dplyr)
+library(broom)
+library(gridExtra)
+library(effects)
+library(ggthemes)
+library(car)
+library(here)
+library(gt)
+library(gtsummary)
+library(gtsummary)
+library(DAAG)
+library(GGally)
+library(ggeffects)
+library(Sleuth3)
+
+options(digits=4) # display four significant digits by default
+
+theme_classic <- function() {
+  ggplot2::theme_classic() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
+      axis.line = ggplot2::element_line(color = "#003069"),
+      axis.text = ggplot2::element_text(color = "#003069"),
+      axis.ticks = ggplot2::element_line(color = "#003069"),
+      axis.title = ggplot2::element_text(color = "#003069")
+    )
+}
+
+graph_paper <- ggplot(data = data.frame(x = 0:20, y = 0:20), aes(x, y)) +
+  theme_classic() +
+  scale_x_continuous(name = "Age", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  scale_y_continuous(name = "FEV", breaks = seq(0, 20, by = 2), expand = c(0, 0)) +
+  theme(  
+    panel.grid.major = element_line(color = "gray60", size = 0.5), # Major grid lines
+    panel.grid.minor = element_line(color = "gray60", size = 0.25), # Minor grid lines
+  )
+
+# set ggplot2 theme
+ggplot2::theme_set(theme_classic())
+
+library(fivethirtyeight)
+```
+
+
+# First, other model comparison metrics
+
+## Metrics that avoid testing
+
+- Adjusted $R^2$
+
+- Akaike’s Information Criteria (AIC)
+
+- Bayesian Information Criteria (BIC)
+
+- Mallow's $C_p$
+
+These do not rely on p-values, and they balance both complexity and fit
+
+## Mallow's $C_p$
+
+Let $p$ be # of coefficients for the model in question
+
+$$C_p = \underbrace{\frac{SSE_{p}}{MSE_{full}}}_{\text{error part}} - \underbrace{(n - 2p)}_{\text{penalty for complexity}}$$
+
+- Want small $C_p$, but also want $C_p \approx p$
+
+- $C_m = m$ for the biggest model ( $m$ = # of coefficients)
+
+- $C_p$ focuses on prediction
+
+- Or, $C_p$ minimizes $SSE + \text{penalty}$
+
+
+
+## AIC
+
+$$AIC = \underbrace{n \log(SSE/n)}_{\text{error part}} + \underbrace{2p}_{\text{penalty for complexity}}$$
+
+- choose model with smaller AIC
+
+- models do not need to be nested to be compared
+
+- based on asymptotic theory
+
+- generally favors models that are bigger than the "true" model
+
+
+
+## BIC
+
+$$BIC = \underbrace{n \log(SSE/n)}_{\text{error part}} + \underbrace{p \log(n)}_{\text{penalty for complexity}}$$
+
+- choose model with smaller BIC
+
+- models do not need to be nested to be compared
+
+- based on asymptotic theory
+
+- usually larger penalty than AIC $\Longrightarrow$ leads to smaller models
+
+
+# Model validation
+
+## Example: Candy rankings
+
+- "we devised an experiment: Pit dozens of fun-sized candy varietals against one another"
+- Crowd-sourced evaluations
+- response = win percentage
+- possible predictor variables:
+
+:::columns
+:::{.column width=50%}
+Indicator variables:
+chocolate, fruity, caramel,
+peanutyalmondy, 
+nougat,
+crispedricewafer, 
+hard, 
+bar,
+pluribus (one of many candies)
+:::
+:::{.column width=50%}
+Quantitative variables:
+sugarpercent, <br>
+pricepercent
+:::
+:::
+
+:::{.footer}
+https://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/
+:::
+
+## Selected model
+
+Starting with a model that contained all predictor variables, dropped variables that were unimportant:
+
+```{r}
+#| cache: true
+#| include: false
+set.seed(1234)
+nsim <- 100
+coef_list <- vector("list", nsim)
+y_list <- vector("list", nsim)
+for(i in seq_len(nsim)) {
+  candy <- candy_rankings
+  candy$winpercent <- 100 * runif(nrow(candy))
+  model <- step(lm(winpercent ~ . - competitorname, data = candy), k = 2, trace = FALSE)
+  coef_list[[i]] <- broom::tidy(model)
+  y_list[[i]] <- candy$winpercent
+}
+```
+
+<br>
+
+```{r}
+#| echo: false
+candy_fake <- candy
+candy_fake$winpercent <- y_list[[3]]
+selected_model <- lm(winpercent ~ caramel + peanutyalmondy + hard + bar, data = candy_fake)
+
+tidy(selected_model) |>
+mutate(p.value = style_pvalue(p.value)) |>
+  gt() |> 
+  fmt_number(columns = c(estimate, std.error, statistic), decimals = 3) |>
+  fmt_number(columns = p.value, decimals = 4) |>
+  tab_options(
+    table.font.size = px(36),
+    table.background.color = "#fffef5",
+    table.font.color = "#003069"
+  )
+```
+
+
+## But wait!
+
+- I replaced the real win percentage with randomly generated values between 0 and 100!
+
+- We still got "significant" results...
+
+
+## Beware of inference after model selection!
+
+If we use the same data set to conduct inference as we used to select our model we run into (related) issues 
+
+- overfitting
+
+- selection bias
+
+- under-estimation of MSE
+
+
+## Validation
+
+If you want to run inference on variables used in model selection...
+
+1. Collect new data for inference -> might be possible in controlled experiments
+
+2. Compare results with past results
+
+3. Use a holdout sample -> most practical
+
+
+## Data splitting
+
+- Split your original data set into two pieces: a **training set** and a **validation set**
+
+- Training set is only used for model selection, should have at least 6 to 10 times as many rows as there are slope coefficients in the biggest model considered
+
+- What split?
+
+    + Random 50/50 split is a starting point
+    + Increase size of training set until you get 6-10 x rows as slopes
+    
+- Sometimes you don't have enough data to do this!
+
+    
+## Interpreting results
+
+::: {style="font-size: 0.9em;"}
+- Fit the model selected to the validation set and check
+
+    + coefficients - are they similar?
+    + significance tests - similar results?
+    + MSE - similar prediction error?
+    
+- If the results are similar between the sets, no big issues with bias from model selection
+
+    + Customary to refit the model to the entire (training + validation) data set
+:::
+
+. . .
+
+::: {style="font-size: 0.9em;"}
+
+- If they are quite different, trust the results from the validation set
+
+:::
+
+
+

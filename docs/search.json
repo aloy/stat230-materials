@@ -2189,5 +2189,103 @@
     "title": "Polynomial Regression",
     "section": "Extra sums of squares F-test in R",
     "text": "Extra sums of squares F-test in R\n\n1full &lt;- lm(Acres ~ poly(Year, 4), data = wildfires)\n2reduced &lt;- lm(Acres ~ poly(Year, 2), data = wildfires)\n3anova(reduced, full)\n\n\n1\n\nFit the full model\n\n2\n\nFit the reduced model\n\n3\n\nUse anova() to compare the two models. The first argument should be the reduced model.\n\n\n\n\nAnalysis of Variance Table\n\nModel 1: Acres ~ poly(Year, 2)\nModel 2: Acres ~ poly(Year, 4)\n  Res.Df        RSS Df  Sum of Sq      F Pr(&gt;F)\n1     56 2.0426e+14                            \n2     54 1.9273e+14  2 1.1525e+13 1.6146 0.2084"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#aic",
+    "href": "slides/13-mlr-validation.html#aic",
+    "title": "Model Validation",
+    "section": "AIC",
+    "text": "AIC\n\\[AIC = \\underbrace{n \\log(SSE/n)}_{\\text{error part}} + \\underbrace{2p}_{\\text{penalty for complexity}}\\]\n\nchoose model with smaller AIC\nmodels do not need to be nested to be compared\nbased on asymptotic theory\ngenerally favors models that are bigger than the “true” model"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#bic",
+    "href": "slides/13-mlr-validation.html#bic",
+    "title": "Model Validation",
+    "section": "BIC",
+    "text": "BIC\n\\[BIC = \\underbrace{n \\log(SSE/n)}_{\\text{error part}} + \\underbrace{p \\log(n)}_{\\text{penalty for complexity}}\\]\n\nchoose model with smaller BIC\nmodels do not need to be nested to be compared\nbased on asymptotic theory\nusually larger penalty than AIC \\(\\Longrightarrow\\) leads to smaller models"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#example-candy-rankings",
+    "href": "slides/13-mlr-validation.html#example-candy-rankings",
+    "title": "Model Validation",
+    "section": "Example: Candy rankings",
+    "text": "Example: Candy rankings\n\n“we devised an experiment: Pit dozens of fun-sized candy varietals against one another”\nCrowd-sourced evaluations\nresponse = win percentage\npossible predictor variables:\n\n\n\nIndicator variables: chocolate, fruity, caramel, peanutyalmondy, nougat, crispedricewafer, hard, bar, pluribus (one of many candies)\n\nQuantitative variables: sugarpercent,  pricepercent\n\n\nhttps://fivethirtyeight.com/videos/the-ultimate-halloween-candy-power-ranking/"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#selected-model",
+    "href": "slides/13-mlr-validation.html#selected-model",
+    "title": "Model Validation",
+    "section": "Selected model",
+    "text": "Selected model\nStarting with a model that contained all predictor variables, dropped variables that were unimportant:\n\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n51.804\n3.749\n13.817\n&lt;0.001\n\n\ncaramelTRUE\n−14.510\n7.609\n−1.907\n0.060\n\n\npeanutyalmondyTRUE\n−18.192\n7.505\n−2.424\n0.018\n\n\nhardTRUE\n16.201\n7.313\n2.215\n0.030\n\n\nbarTRUE\n20.275\n6.898\n2.939\n0.004"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#but-wait",
+    "href": "slides/13-mlr-validation.html#but-wait",
+    "title": "Model Validation",
+    "section": "But wait!",
+    "text": "But wait!\n\nI replaced the real win percentage with randomly generated values between 0 and 100!\nWe still got “significant” results…"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#beware-of-inference-after-model-selection",
+    "href": "slides/13-mlr-validation.html#beware-of-inference-after-model-selection",
+    "title": "Model Validation",
+    "section": "Beware of inference after model selection!",
+    "text": "Beware of inference after model selection!\nIf we use the same data set to conduct inference as we used to select our model we run into (related) issues\n\noverfitting\nselection bias\nunder-estimation of MSE"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#validation",
+    "href": "slides/13-mlr-validation.html#validation",
+    "title": "Model Validation",
+    "section": "Validation",
+    "text": "Validation\nIf you want to run inference on variables used in model selection…\n\nCollect new data for inference -&gt; might be possible in controlled experiments\nCompare results with past results\nUse a holdout sample -&gt; most practical"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#data-splitting",
+    "href": "slides/13-mlr-validation.html#data-splitting",
+    "title": "Model Validation",
+    "section": "Data splitting",
+    "text": "Data splitting\n\nSplit your original data set into two pieces: a training set and a validation set\nTraining set is only used for model selection, should have at least 6 to 10 times as many rows as there are slope coefficients in the biggest model considered\nWhat split?\n\nRandom 50/50 split is a starting point\nIncrease size of training set until you get 6-10 x rows as slopes\n\nSometimes you don’t have enough data to do this!"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#interpretting-results",
+    "href": "slides/13-mlr-validation.html#interpretting-results",
+    "title": "Model Validation",
+    "section": "Interpretting results",
+    "text": "Interpretting results\n\n\nFit the model selected to the validation set and check\n\ncoefficients - are they similar?\nsignificance testts - similar results?\nMSE - similar prediction error?\n\nIf the results are similar between the sets, no big issues with bias from model selection\n\nCustomary to refit the model to the entire (training + validation) data set\n\n\n\n\n\n\nIf they are quite different, trust the results from the validation set"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#metrics-that-avoid-testing",
+    "href": "slides/13-mlr-validation.html#metrics-that-avoid-testing",
+    "title": "Model Validation",
+    "section": "Metrics that avoid testing",
+    "text": "Metrics that avoid testing\n\nAdjusted \\(R^2\\)\nAkaike’s Information Criteria (AIC)\nBayesian Information Criteria (BIC)\nMallow’s \\(C_p\\)\n\nThese do not rely on p-values, and they balance both complexity and fit"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#mallows-c_p",
+    "href": "slides/13-mlr-validation.html#mallows-c_p",
+    "title": "Model Validation",
+    "section": "Mallow’s \\(C_p\\)",
+    "text": "Mallow’s \\(C_p\\)\nLet \\(p\\) be # of coefficients for the model in question\n\\[C_p = \\underbrace{\\frac{SSE_{p}}{MSE_{full}}}_{\\text{error part}} - \\underbrace{(n - 2p)}_{\\text{penalty for complexity}}\\]\n\nWant small \\(C_p\\), but also want \\(C_p \\approx p\\)\n\\(C_m = m\\) for the biggest model ( \\(m\\) = # of coefficients)\n\\(C_p\\) focuses on prediction\nOr, \\(C_p\\) minimizes \\(SSE + \\text{penalty}\\)"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#aic-akaikes-information-criterion",
+    "href": "slides/13-mlr-validation.html#aic-akaikes-information-criterion",
+    "title": "Model Validation",
+    "section": "AIC (Akaike’s Information Criterion)",
+    "text": "AIC (Akaike’s Information Criterion)\n\\[AIC = \\underbrace{n \\log(SSE/n)}_{\\text{error part}} + \\underbrace{2p}_{\\text{penalty for complexity}}\\]\n\npresented with several models, we choose the one with smallest AIC\nmodels do not need to be nested to be compared\nbased on asymptotic theory\ngenerally favors models that are bigger than the “true” model"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#bic-bayesian-information-criterion",
+    "href": "slides/13-mlr-validation.html#bic-bayesian-information-criterion",
+    "title": "Model Validation",
+    "section": "BIC (Bayesian Information Criterion)",
+    "text": "BIC (Bayesian Information Criterion)\n\\[BIC = \\underbrace{n \\log(SSE/n)}_{\\text{error part}} + \\underbrace{p \\log(n)}_{\\text{penalty for complexity}}\\]\n\npresented with several models, we choose the one with smallest BIC\nmodels do not need to be nested to be compared\nbased on asymptotic theory\nusually larger penalty than AIC \\(\\Longrightarrow\\) leads to smaller models"
+  },
+  {
+    "objectID": "slides/13-mlr-validation.html#interpreting-results",
+    "href": "slides/13-mlr-validation.html#interpreting-results",
+    "title": "Model Validation",
+    "section": "Interpreting results",
+    "text": "Interpreting results\n\n\nFit the model selected to the validation set and check\n\ncoefficients - are they similar?\nsignificance tests - similar results?\nMSE - similar prediction error?\n\nIf the results are similar between the sets, no big issues with bias from model selection\n\nCustomary to refit the model to the entire (training + validation) data set\n\n\n\n\n\n\nIf they are quite different, trust the results from the validation set"
   }
 ]
