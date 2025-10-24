@@ -89,3 +89,10 @@
   path: slides/12-mlr-selection.qmd
   categories:
     - "MLR"
+- title: "MLR Model Validation"
+  subtitle: "Day 14"
+  date: 2025-10-24
+  image: slides/featured/13-mlr-validation.png
+  path: slides/12-mlr-validation.qmd
+  categories:
+    - "MLR"
