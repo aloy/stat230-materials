@@ -1,0 +1,383 @@
+---
+title: "Modeling a Binary Response"
+subtitle: "Logistic regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, comment = NULL)
+library(here)
+library(pander)
+library(broom)
+library(car)
+library(dplyr)
+library(kableExtra)
+library(ggformula)
+library(gridExtra)
+
+framingham <- read.csv(here("data/framingham.csv"))
+
+mod1 <- glm(TenYearCHD ~ totChol, data = framingham, family = "binomial")
+
+options(digits=4) # display four significant digits by default
+```
+
+## Framingham Heart Study {.smaller}
+
+- Long-term study of cardiovascular disease (heart attack, stroke, and other heart problems) 
+
+- First study of cardiovascular disease to follow initially healthy people over a long period of time
+
+- Identified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease.
+
+- Participants from a population of free living (not hospitalized) subjects in the community of Framingham, Mass.
+
+- Started in 1948, participants have been examined every other year since the inception
+
+- In 3rd generation of participants!
+
+
+## Modeling overview
+
+**Goal:** Determine whether participant experienced coronary heart disease (CHD) in 10-year window after their exam
+
+- Y = CHD (0 = no, 1 = yes)
+
+- X = participant's age, sex, total cholesterol, and systolic blood pressure
+
+**Strategy:** model the probability of CHD given these factors
+
+
+
+
+## How can we model a binary response?
+
+:::: {.columns}
+::: {.column width="50%"}
+
+:::{.fragment}
+
+::: {style="text-align: center;"}
+**Linear regression**
+:::
+```{r echo=FALSE, fig.width=4, fig.height=4, fig.align='center', out.width="100%"}
+set.seed(1234)
+canvas <- gf_jitter(TenYearCHD ~ age, data = framingham, alpha = 0.5, height = 0.02) %>%
+  gf_labs(y = "Probability of CHD", x = "Age")
+
+set.seed(1234)
+canvas %>% 
+  gf_lm() %>% 
+  gf_lims(y = c(-0.02, 1.02))
+```
+:::
+
+:::
+
+
+::: {.column width="50%"}
+
+
+:::{.fragment}
+
+::: {style="text-align: center;"}
+**Logistic regression**
+:::
+```{r echo=FALSE, fig.width=4, fig.height=4, fig.align='center', out.width="100%"}
+set.seed(1234)
+canvas %>% 
+  gf_smooth(method = "glm", method.args = list(family = "binomial"), se = FALSE)
+```
+:::
+
+:::
+
+::::
+
+
+## Generalized linear model
+
+::: {.fragment fragment-index=1}
+**Random component: **
+:::
+
+::: {.fragment fragment-index=2}
+What distribution does the response variable follow?
+:::
+
+<br>
+
+
+::: {.fragment fragment-index=1}
+**Linear predictor (systematic component): **
+:::
+
+::: {.fragment fragment-index=3}
+What function of the predictors should we use?
+:::
+
+<br>
+
+
+::: {.fragment fragment-index=1}
+**Link function: **
+:::
+
+::: {.fragment fragment-index=4}
+How can we relate the expectation of $Y$ and our linear predictor?
+:::
+
+
+## Random component
+
+What distribution does the response variable follow?
+
+<br>
+
+**Possible values:** $Y = 0 \text{ or } 1$
+
+<br>
+
+**Bernoulli distribution**
+
+$P(Y = y) = \pi^y (1-\pi)^{1-y}, \ y=0,1$
+
+
+
+## Linear predictor
+
+What function of the predictors should we use?
+
+<br>
+
+$\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$
+
+:::{.aside}
+$\eta =$ "eta"
+:::
+
+
+## Link function
+
+How can we relate the expectation of $Y$ and our linear predictor?
+
+. . .
+
+<br>
+
+$E(Y) = \pi \longrightarrow$ between 0 and 1
+
+<br>
+
+$\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p \longrightarrow$ between $-\infty$ and $\infty$
+
+<br>
+
+What function takes numbers between 0 and 1 as input and maps them to the real line?
+
+
+## The logit function
+
+
+${\rm logit}(\pi) = \log \left( \dfrac{\pi}{1 - \pi} \right)$
+
+. . .
+
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.width=3.25, fig.height=3.25, out.width="100%"}
+p <- seq(0, 1, len=1000)
+eta <- log(p/(1-p))
+
+gf_line(eta~p) %>%
+  gf_labs(y = "log odds", title = "Logit function", x = expression(pi))
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.width=3.25, fig.height=3.25, out.width="100%"}
+p <- seq(0, 1, len=1000)
+eta <- log(p/(1-p))
+
+gf_line(-eta~p) %>%
+  gf_labs(y = "log odds", title = "Logit function", x = expression(pi))
+```
+:::
+::::
+
+
+## Link function
+
+How can we relate the expectation of $Y$ and our linear predictor?
+
+<br>
+
+${\rm logit}(\pi) = \log \left( \dfrac{\pi}{1 - \pi} \right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta$
+
+
+## Example: A quantitative predictor
+
+Let's use total cholesterol as a predictor of CHD
+
+. . .
+
+
+$$\widehat{\eta}_i = \log \left( \dfrac{\widehat{\pi}(\mathtt{totChol_i})}{1-\widehat{\pi}(\mathtt{totChol_i})} \right) = -2.894 + 0.005 \mathtt{totChol}_i$$
+
+. . .
+
+$\widehat{\beta}_1 = 0.005$ is the expected change in the log odds associated with a 1-unit increase in total cholesterol...
+
+<br>
+
+. . . 
+
+We don't think in terms of log odds, so we need more interpretable quantities!
+
+
+## Log odds $\to$ odds
+
+**Log odds:** 
+
+$\widehat{\eta} = \log \left( \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} \right) = \widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p$
+
+<br>
+
+. . .
+
+
+**Odds of success:** 
+
+$\widehat{\omega} = \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} = e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}$
+
+
+## Example: A quantitative predictor {.smaller}
+
+
+$$\widehat{\eta}_i = \log \left( \dfrac{\widehat{\pi}(\mathtt{totChol})}{1-\widehat{\pi}(\mathtt{totChol})} \right) = -2.894 + 0.005 \mathtt{totChol}_i$$
+
+How do we interpret $e^{\widehat{\beta}}_1 = e^{0.005} \approx 1.005$??
+
+. . .
+
+$\dfrac{\widehat{\pi}(\mathtt{totChol})}{1-\widehat{\pi}(\mathtt{totChol})} = e^{-2.894 + 0.005 \mathtt{totChol}_i} = e^{-2.894} \cdot e^{0.005 \mathtt{totChol}_i}$
+
+. . .
+
+So if `totChol` increases by one unit...
+
+$\dfrac{\widehat{\pi}(\mathtt{totChol+1}) / \lbrace 1-\widehat{\pi}(\mathtt{totChol+1}) \rbrace}{ \widehat{\pi}(\mathtt{totChol}) / \lbrace 1-\widehat{\pi}(\mathtt{totChol}) \rbrace} = \dfrac{e^{-2.894} \cdot e^{0.005 \mathtt{totChol+1}}}{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}}}$
+
+. . .
+
+
+:::: {.columns}
+::: {.column width="50%"}
+:::
+
+::: {.column width="50%"}
+$=\dfrac{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}} \cdot e^{0.005(1)}}{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}}}$
+:::
+::::
+
+. . .
+
+:::: {.columns}
+::: {.column width="50%"}
+:::
+
+::: {.column width="50%"}
+$=e^{0.005(1)} \approx 1.005$
+:::
+::::
+
+. . .
+
+we expect the odds of CHD to increase by a factor of 1.005
+
+
+## Estimating probabilities
+
+What's the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?
+
+. . .
+
+
+$$\widehat{\eta}(\mathtt{240}) = \log \left( \dfrac{\widehat{\pi}(\mathtt{240})}{1-\widehat{\pi}(\mathtt{240})} \right) = -2.894 + 0.005(\mathtt{240}) = -1.694$$
+
+. . .
+
+<br>
+
+How do we get from the estimated log odds to a probability?
+
+
+## Log odds $\to$ probability {.smaller}
+
+**Log odds:** 
+
+$\widehat{\eta} = \log \left( \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} \right) = \widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p$
+
+<br>
+
+
+**Odds of success:** 
+
+$\widehat{\omega} = \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} = e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}$
+
+<br>
+
+. . .
+
+**Probability of success:** 
+
+
+$\widehat{\pi}(X) = \dfrac{e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}}{1+e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}}$
+
+
+## Estimating probabilities
+
+What's the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?
+
+
+$$\widehat{\eta}(\mathtt{240}) = \log \left( \dfrac{\widehat{\pi}(\mathtt{240})}{1-\widehat{\pi}(\mathtt{240})} \right) = -2.894 + 0.005(\mathtt{240}) = -1.694$$
+
+
+How do we get from the estimated log odds to a probability?
+
+<br>
+
+. . .
+
+$\widehat{\pi}(240) = \dfrac{e^{-1.694}}{1 + e^{-1.694}} \approx  0.155$
+
+
+## Fitted logistic regression model
+
+${\rm logistic}(\widehat{\eta}) = \dfrac{ \exp(\widehat{\eta}) }{ 1+  \exp(\widehat{\eta})}$ is the fitted curve on the probability scale
+
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r echo=FALSE, fig.width=3.25, fig.height=3.25, out.width = "80%"}
+p <- seq(0, 1, len=1000)
+eta <- log(p/(1-p))
+
+gf_line(p~eta) %>%
+  gf_labs(x = "log odds", title = "Logistic function", y = expression(pi))
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, fig.width=3.25, fig.height=3.25, out.width = "80%"}
+gf_line(p~-eta) %>%
+  gf_labs(x = "log odds", title = "Logistic function", y = expression(pi))
+```
+:::
+::::

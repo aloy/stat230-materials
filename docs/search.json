@@ -2287,5 +2287,117 @@
     "title": "Model Validation",
     "section": "Interpreting results",
     "text": "Interpreting results\n\n\nFit the model selected to the validation set and check\n\ncoefficients - are they similar?\nsignificance tests - similar results?\nMSE - similar prediction error?\n\nIf the results are similar between the sets, no big issues with bias from model selection\n\nCustomary to refit the model to the entire (training + validation) data set\n\n\n\n\n\n\nIf they are quite different, trust the results from the validation set"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#framingham-heart-study",
+    "href": "slides/14-binary-logistic.html#framingham-heart-study",
+    "title": "Modeling a Binary Response",
+    "section": "Framingham Heart Study",
+    "text": "Framingham Heart Study\n\nLong-term study of cardiovascular disease (heart attack, stroke, and other heart problems)\nFirst study of cardiovascular disease to follow initially healthy people over a long period of time\nIdentified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease.\nParticipants from a population of free living (not hospitalized) subjects in the community of Framingham, Mass.\nStarted in 1948, participants have been examined every other year since the inception\nIn 3rd generation of participants!"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#modeling-overview",
+    "href": "slides/14-binary-logistic.html#modeling-overview",
+    "title": "Modeling a Binary Response",
+    "section": "Modeling overview",
+    "text": "Modeling overview\nGoal: Determine whether participant experienced coronary heart disease (CHD) in 10-year window after their exam\n\nY = CHD (0 = no, 1 = yes)\nX = participant’s age, sex, total cholesterol, and systolic blood pressure\n\nStrategy: model the probability of CHD given these factors"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#how-can-we-model-a-binary-response",
+    "href": "slides/14-binary-logistic.html#how-can-we-model-a-binary-response",
+    "title": "Modeling a Binary Response",
+    "section": "How can we model a binary response?",
+    "text": "How can we model a binary response?\n\n\n\n\nLinear regression\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLogistic regression"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#generalized-linear-model",
+    "href": "slides/14-binary-logistic.html#generalized-linear-model",
+    "title": "Modeling a Binary Response",
+    "section": "Generalized linear model",
+    "text": "Generalized linear model\n\nRandom component: \n\n\nWhat distribution does the response variable follow?\n\n\n\nLinear predictor (systematic component): \n\n\nWhat function of the predictors should we use?\n\n\n\nLink function: \n\n\nHow can we relate the expectation of \\(Y\\) and our linear predictor?"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#random-component",
+    "href": "slides/14-binary-logistic.html#random-component",
+    "title": "Modeling a Binary Response",
+    "section": "Random component",
+    "text": "Random component\nWhat distribution does the response variable follow?\n\nPossible values: \\(Y = 0 \\text{ or } 1\\)\n\nBernoulli distribution\n\\(P(Y = y) = \\pi^y (1-\\pi)^{1-y}, \\ y=0,1\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#linear-predictor",
+    "href": "slides/14-binary-logistic.html#linear-predictor",
+    "title": "Modeling a Binary Response",
+    "section": "Linear predictor",
+    "text": "Linear predictor\nWhat function of the predictors should we use?\n\n\\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\)\n\n\n\\(\\eta =\\) “eta”"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#link-function",
+    "href": "slides/14-binary-logistic.html#link-function",
+    "title": "Modeling a Binary Response",
+    "section": "Link function",
+    "text": "Link function\nHow can we relate the expectation of \\(Y\\) and our linear predictor?\n\n\n\\(E(Y) = \\pi \\longrightarrow\\) between 0 and 1\n\n\\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p \\longrightarrow\\) between \\(-\\infty\\) and \\(\\infty\\)\n\nWhat function takes numbers between 0 and 1 as input and maps them to the real line?"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#the-logit-function",
+    "href": "slides/14-binary-logistic.html#the-logit-function",
+    "title": "Modeling a Binary Response",
+    "section": "The logit function",
+    "text": "The logit function\n\\({\\rm logit}(\\pi) = \\log \\left( \\dfrac{\\pi}{1 - \\pi} \\right)\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#link-function-1",
+    "href": "slides/14-binary-logistic.html#link-function-1",
+    "title": "Modeling a Binary Response",
+    "section": "Link function",
+    "text": "Link function\nHow can we relate the expectation of \\(Y\\) and our linear predictor?\n\n\\({\\rm logit}(\\pi) = \\log \\left( \\dfrac{\\pi}{1 - \\pi} \\right) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p = \\eta\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#example-a-quantitative-predictor",
+    "href": "slides/14-binary-logistic.html#example-a-quantitative-predictor",
+    "title": "Modeling a Binary Response",
+    "section": "Example: A quantitative predictor",
+    "text": "Example: A quantitative predictor\nLet’s use total cholesterol as a predictor of CHD\n\n\\[\\widehat{\\eta}_i = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{totChol_i})}{1-\\widehat{\\pi}(\\mathtt{totChol_i})} \\right) = -2.894 + 0.005 \\mathtt{totChol}_i\\]\n\n\n\\(\\widehat{\\beta}_1 = 0.005\\) is the expected change in the log odds associated with a 1-unit increase in total cholesterol…\n\n\n\nWe don’t think in terms of log odds, so we need more interpretable quantities!"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#log-odds-to-odds",
+    "href": "slides/14-binary-logistic.html#log-odds-to-odds",
+    "title": "Modeling a Binary Response",
+    "section": "Log odds \\(\\to\\) odds",
+    "text": "Log odds \\(\\to\\) odds\nLog odds:\n\\(\\widehat{\\eta} = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{X})}{1-\\widehat{\\pi}(\\mathtt{X})} \\right) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p\\)\n\n\nOdds of success:\n\\(\\widehat{\\omega} = \\dfrac{\\widehat{\\pi}(\\mathtt{X})}{1-\\widehat{\\pi}(\\mathtt{X})} = e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p}\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#example-a-quantitative-predictor-1",
+    "href": "slides/14-binary-logistic.html#example-a-quantitative-predictor-1",
+    "title": "Modeling a Binary Response",
+    "section": "Example: A quantitative predictor",
+    "text": "Example: A quantitative predictor\n\\[\\widehat{\\eta}_i = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{totChol})}{1-\\widehat{\\pi}(\\mathtt{totChol})} \\right) = -2.894 + 0.005 \\mathtt{totChol}_i\\]\nHow do we interpret \\(e^{\\widehat{\\beta}}_1 = e^{0.005} \\approx 1.005\\)??\n\n\\(\\dfrac{\\widehat{\\pi}(\\mathtt{totChol})}{1-\\widehat{\\pi}(\\mathtt{totChol})} = e^{-2.894 + 0.005 \\mathtt{totChol}_i} = e^{-2.894} \\cdot e^{0.005 \\mathtt{totChol}_i}\\)\n\n\nSo if totChol increases by one unit…\n\\(\\dfrac{\\widehat{\\pi}(\\mathtt{totChol+1}) / \\lbrace 1-\\widehat{\\pi}(\\mathtt{totChol+1}) \\rbrace}{ \\widehat{\\pi}(\\mathtt{totChol}) / \\lbrace 1-\\widehat{\\pi}(\\mathtt{totChol}) \\rbrace} = \\dfrac{e^{-2.894} \\cdot e^{0.005 \\mathtt{totChol+1}}}{e^{-2.894} \\cdot e^{0.005 \\mathtt{totChol}}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{e^{-2.894} \\cdot e^{0.005 \\mathtt{totChol}} \\cdot e^{0.005(1)}}{e^{-2.894} \\cdot e^{0.005 \\mathtt{totChol}}}\\)\n\n\n\n\n\n\n\n\\(=e^{0.005(1)} \\approx 1.005\\)\n\n\n\nwe expect the odds of CHD to increase by a factor of 1.005"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#estimating-probabilities",
+    "href": "slides/14-binary-logistic.html#estimating-probabilities",
+    "title": "Modeling a Binary Response",
+    "section": "Estimating probabilities",
+    "text": "Estimating probabilities\nWhat’s the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?\n\n\\[\\widehat{\\eta}(\\mathtt{240}) = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{240})}{1-\\widehat{\\pi}(\\mathtt{240})} \\right) = -2.894 + 0.005(\\mathtt{240}) = -1.694\\]\n\n\n\nHow do we get from the estimated log odds to a probability?"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#log-odds-to-probability",
+    "href": "slides/14-binary-logistic.html#log-odds-to-probability",
+    "title": "Modeling a Binary Response",
+    "section": "Log odds \\(\\to\\) probability",
+    "text": "Log odds \\(\\to\\) probability\nLog odds:\n\\(\\widehat{\\eta} = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{X})}{1-\\widehat{\\pi}(\\mathtt{X})} \\right) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p\\)\n\nOdds of success:\n\\(\\widehat{\\omega} = \\dfrac{\\widehat{\\pi}(\\mathtt{X})}{1-\\widehat{\\pi}(\\mathtt{X})} = e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p}\\)\n\n\nProbability of success:\n\\(\\widehat{\\pi}(X) = \\dfrac{e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p}}{1+e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1 X_1 + \\cdots + \\widehat{\\beta}_p X_p}}\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#estimating-probabilities-1",
+    "href": "slides/14-binary-logistic.html#estimating-probabilities-1",
+    "title": "Modeling a Binary Response",
+    "section": "Estimating probabilities",
+    "text": "Estimating probabilities\nWhat’s the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?\n\\[\\widehat{\\eta}(\\mathtt{240}) = \\log \\left( \\dfrac{\\widehat{\\pi}(\\mathtt{240})}{1-\\widehat{\\pi}(\\mathtt{240})} \\right) = -2.894 + 0.005(\\mathtt{240}) = -1.694\\]\nHow do we get from the estimated log odds to a probability?\n\n\n\\(\\widehat{\\pi}(240) = \\dfrac{e^{-1.694}}{1 + e^{-1.694}} \\approx  0.155\\)"
+  },
+  {
+    "objectID": "slides/14-binary-logistic.html#fitted-logistic-regression-model",
+    "href": "slides/14-binary-logistic.html#fitted-logistic-regression-model",
+    "title": "Modeling a Binary Response",
+    "section": "Fitted logistic regression model",
+    "text": "Fitted logistic regression model\n\\({\\rm logistic}(\\widehat{\\eta}) = \\dfrac{ \\exp(\\widehat{\\eta}) }{ 1+  \\exp(\\widehat{\\eta})}\\) is the fitted curve on the probability scale"
   }
 ]
