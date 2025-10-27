@@ -2399,5 +2399,19 @@
     "title": "Modeling a Binary Response",
     "section": "Fitted logistic regression model",
     "text": "Fitted logistic regression model\n\\({\\rm logistic}(\\widehat{\\eta}) = \\dfrac{ \\exp(\\widehat{\\eta}) }{ 1+  \\exp(\\widehat{\\eta})}\\) is the fitted curve on the probability scale"
+  },
+  {
+    "objectID": "activity/12R-binary-logistic.html",
+    "href": "activity/12R-binary-logistic.html",
+    "title": "Binary Logistic Regression in R",
+    "section": "",
+    "text": "Fitting a binary logistic regression model in R is similar to fitting a linear regression model. To guide you through this process, let’s revisit the Framingham Heart Study data set that we discussed in class.\nTo load the data, run the following code chunk:\n\n\n\n\n\n\n\n\nBinary logistic regression requires a binary response variable. In this case, we will use the TenYearCHD variable, which indicates whether an individual developed coronary heart disease within ten years (1 = yes, 0 = no). Be sure to always check that your response variable is coded correctly before modeling.\nNext, we will fit a binary logistic regression model using the glm() function in R. The syntax is similar to that of the lm() function, but we need to specify the family argument as binomial to indicate that we are performing logistic regression. Here, we will model the probability of developing coronary heart disease based on age.\n\n\n\n\n\n\n\n\nYou can still use the summary() function to view the results of the model fit:\n\n\n\n\n\n\n\n\nMuch of the regression output looks the same as in linear regression, but there are some key differences. The main differences are:\n\nThe test statistic is no labeled z value instead of t value.\nA Null deviance and Residual deviance are reported instead of Multiple R-squared and Adjusted R-squared.\n\nWe’ll discuss the use and interpretation of these results in more detail in class."
+  },
+  {
+    "objectID": "activity/12R-binary-logistic.html#fitting-a-binary-logistic-regression-model",
+    "href": "activity/12R-binary-logistic.html#fitting-a-binary-logistic-regression-model",
+    "title": "Binary Logistic Regression in R",
+    "section": "",
+    "text": "Fitting a binary logistic regression model in R is similar to fitting a linear regression model. To guide you through this process, let’s revisit the Framingham Heart Study data set that we discussed in class.\nTo load the data, run the following code chunk:\n\n\n\n\n\n\n\n\nBinary logistic regression requires a binary response variable. In this case, we will use the TenYearCHD variable, which indicates whether an individual developed coronary heart disease within ten years (1 = yes, 0 = no). Be sure to always check that your response variable is coded correctly before modeling.\nNext, we will fit a binary logistic regression model using the glm() function in R. The syntax is similar to that of the lm() function, but we need to specify the family argument as binomial to indicate that we are performing logistic regression. Here, we will model the probability of developing coronary heart disease based on age.\n\n\n\n\n\n\n\n\nYou can still use the summary() function to view the results of the model fit:\n\n\n\n\n\n\n\n\nMuch of the regression output looks the same as in linear regression, but there are some key differences. The main differences are:\n\nThe test statistic is no labeled z value instead of t value.\nA Null deviance and Residual deviance are reported instead of Multiple R-squared and Adjusted R-squared.\n\nWe’ll discuss the use and interpretation of these results in more detail in class."
   }
 ]

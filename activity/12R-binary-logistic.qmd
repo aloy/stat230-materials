@@ -1,0 +1,49 @@
+---
+title: "Binary Logistic Regression in R"
+webr:
+  packages:
+    - Sleuth3
+format: 
+  live-html:
+    toc: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+## Fitting a Binary Logistic Regression Model
+
+Fitting a binary logistic regression model in R is similar to fitting a linear regression model. To guide you through this process, let's revisit the Framingham Heart Study data set that we discussed in class.
+
+To load the data, run the following code chunk:
+
+```{webr}
+framingham <- read.csv("https://aloy.github.io/stat230-materials/data/framingham.csv")
+```
+
+Binary logistic regression requires a binary response variable. In this case, we will use the `TenYearCHD` variable, which indicates whether an individual developed coronary heart disease within ten years (1 = yes, 0 = no). Be sure to always check that your response variable is coded correctly before modeling.
+
+
+Next, we will fit a binary logistic regression model using the `glm()` function in R. The syntax is similar to that of the `lm()` function, but we need to specify the `family` argument as `binomial` to indicate that we are performing logistic regression. Here, we will model the probability of developing coronary heart disease based on age.
+
+```{webr}
+logistic_model <- glm(TenYearCHD ~ age, data = framingham, family = binomial)
+```
+
+You can still use the `summary()` function to view the results of the model fit:
+
+```{webr}
+summary(logistic_model)
+```
+
+Much of the regression output looks the same as in linear regression, but there are some key differences. The main differences are:
+
+- The test statistic is no labeled `z value` instead of `t value`.
+- A `Null deviance` and `Residual deviance` are reported instead of `Multiple R-squared` and `Adjusted R-squared`.
+
+We'll discuss the use and interpretation of these results in more detail in class.
+
+
+
