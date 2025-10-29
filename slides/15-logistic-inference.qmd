@@ -1,0 +1,494 @@
+---
+title: "Inference and Multiple Explanatory Variables"
+subtitle: "Logistic regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, comment = NULL)
+
+library(pander)
+library(broom)
+library(car)
+library(dplyr)
+library(kableExtra)
+library(ggformula)
+library(gridExtra)
+library(here)
+
+framingham <- read.csv(here("data/framingham.csv"))
+
+mod1 <- glm(TenYearCHD ~ totChol, data = framingham, family = "binomial")
+
+# options(digits=4) # display four significant digits by default
+```
+
+
+## Recap: Framingham heart study
+
+**Goal:** Determine whether participant experienced coronary heart disease (CHD) in 10-year window after their exam
+
+- Y = CHD (0 = no, 1 = yes)
+
+- X = participant's age, sex, total cholesterol, and systolic blood pressure
+
+**Strategy:** model the probability of CHD given these factors
+
+
+
+## Binary logistic regression model
+
+If $Y$ follows a Bernoulli distribution
+
+$${\rm E}(Y | X) = \pi(X)$$
+
+We link this mean function to the explanatory variables using the logit link
+
+\begin{align*}
+\eta &= {\rm logit}(\pi(X))\\ 
+&= \log \left( \dfrac{\pi(X)}{1 - \pi(X)} \right) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_p x_p
+\end{align*}
+
+
+## Framingham model {.smaller}
+
+$\log \left( \dfrac{\hat{\pi}(X)}{1 - \hat{\pi}(X)} \right) = -8.08 + 0.061 {\tt age} + 0.686{\tt male} + 0.002 {\tt totChol} - 0.018 {\tt sysBP}$
+
+. . .
+
+$\widehat{\beta}_2$
+
+- $e^{0.686} = 1.986$
+
+- The odds of having a heart attack in the next ten years are nearly twice as high for males as females, after accounting for age, total cholesterol, and systolic blood pressure.
+
+. . .
+
+$\widehat{\beta}_4$
+
+- $e^{-0.018} = 0.9822$
+
+- The odds of having a heart attack in the next ten years decrease by about 1.8% (i.e., a factor of 0.982) for a one-unit increase is systolic blood pressure, after accounting for age, sex, and total cholesterol.
+
+
+
+# Wald-based inference for logistic regression
+
+## Maximum likelihood (ML) estimation {.smaller}
+
+The coefficients in logistic regression are estimated by finding the $\widehat{\beta}_0, \ldots, \widehat{\beta}_p$ that maximize the probability of the observed outcomes
+
+
+
+$$L(\beta) = P(Y_1 = y_1, \ldots Y_n = y_n | \beta, X) = \prod_{i=1}^{n} \pi(X)^{y_i} \Big[ 1 - \pi(X) \Big]^{1- y_i}$$
+
+
+where
+
+$$\pi(X) = \dfrac{e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}{1 + e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}}$$
+
+
+
+
+## Properties of ML estimators
+
+Large-sample properties of ML estimators, $\widehat{\beta}_i$s <br> (if the model is correct):
+
+1. Essentially unbiased
+
+1. SEs can be computed and are about as small as any other unbiased estimator
+
+1. The sampling distributions for the estimators are approximately normal
+
+
+## Wald test for a coefficient 
+
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=1}
+$H_0: \beta_i = 0 \quad$ vs. $\quad H_a: \beta_i \ne 0$
+:::
+:::
+
+::::
+
+:::: {.columns}
+::: {.column width="25%"}
+**Test statistic:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=2}
+$z = \dfrac{\widehat{\beta}_i}{SE(\widehat{\beta}_i)}$
+:::
+:::
+
+::::
+
+<br>
+
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reference distribution:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=3}
+$N(0, 1)$
+:::
+:::
+
+::::
+
+
+```{r include=FALSE}
+heart_mod <- glm(TenYearCHD ~ age + male + totChol + sysBP, data = framingham, family = "binomial")
+# tidy(heart_mod)
+```
+
+
+<!-- ## Framingham example {.smaller} -->
+
+<!-- Does total cholesterol increase the odds of CHD after accounting for age, sex, and systolic blood pressure? -->
+
+
+
+
+<!-- ::: {.fragment fragment-index=1} -->
+<!-- $H_0: \beta_3 = 0 \quad \text{vs.} \quad \beta_3 > 0$ -->
+<!-- ::: -->
+
+<!-- ::: {.fragment fragment-index=2} -->
+<!-- $z = \dfrac{\widehat{\beta}_3 - 0}{{\rm SE}(\widehat{\beta}_3)} = \dfrac{0.00201 - 0}{0.00102} \approx 1.98$ -->
+<!-- ::: -->
+
+<!-- ::::: {.fragment fragment-index=3} -->
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="35%"} -->
+<!-- ```{r} -->
+<!-- 1 - pnorm(1.98) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+<!-- ::::: -->
+
+
+<!-- ::: {.fragment fragment-index=4} -->
+<!-- There is a statistically discernible positive association between the odds of success and total cholesterol, after accounting for age, sex, and systolic blood pressure ($z=1.98$, $p$-value$=0.024$). -->
+<!-- ::: -->
+
+
+## CI for a coefficient 
+
+A normal-based confidence interval for ${\beta}_i$
+
+$$\widehat{\beta}_i \pm z^*_{1-\alpha/2} SE(\widehat{\beta}_i)$$
+
+. . .
+
+CI for the multiplicative effect on odds of success for a 1- unit change in $x$ (odds ratio of Success for $x+1$ vs. $x$):
+
+$$e^{\widehat{\beta}_i - z^*_{1-\alpha/2} SE(\widehat{\beta}_i)} \quad \text{to} \quad e^{\widehat{\beta}_i + z^*_{1-\alpha/2} SE(\widehat{\beta}_i)}$$
+
+. . .
+
+... for a $C$-unit change in $x$
+
+$$e^{C \cdot\widehat{\beta}_i - z^*_{1-\alpha/2} C \cdot SE(\widehat{\beta}_i)} \quad \text{to} \quad e^{C \cdot\widehat{\beta}_i + z^*_{1-\alpha/2} C \cdot SE(\widehat{\beta}_i)}$$
+
+
+## Framingham example
+
+
+What impact does age have on the odds of having a heart attack in the next 10 years?
+
+```{r echo=FALSE}
+tidy(heart_mod, conf.int = TRUE) |> select(-statistic, -p.value)
+```
+
+::: {.fragment fragment-index=1}
+Let's construct a 95% confidence interval for $\beta_1$: $\quad \widehat{\beta}_1 \pm z^*_{1-\alpha/2} SE(\widehat{\beta}_1)$
+:::
+
+::: {.fragment fragment-index=2}
+$z^*_{1-0.05/2} = z^*_{0.975} =$ 0.975 quantile from $N(0, 1)$ 
+:::
+
+::::: {.fragment fragment-index=3}
+:::: {.columns}
+::: {.column width="35%"}
+```{r}
+qnorm(0.975)
+```
+:::
+::::
+:::::
+
+::: {.fragment fragment-index=4}
+$0.0610 \pm 1.96 \cdot (0.00579) = (0.0497,\ 0.0724)$
+:::
+
+
+## Framingham example
+
+$0.0610 \pm 1.96 \cdot (0.00579) = (0.0497,\ 0.0724)$
+
+<br>
+
+::: {.fragment fragment-index=1}
+Exponentiating the endpoints to get the CI for the odds ratio for a one-year increase in age:
+
+$$e^{0.0497} = 1.051 \quad \text{to} \quad e^{0.0724} = 1.075$$
+:::
+<br>
+
+::: {.fragment fragment-index=2}
+We are 95% confident that a one-year increase in age is associated with an increase in the odds of having a heart attack in the next 10 year of between 5.1% (a 1.051 factor increase) and  7.5% (a 1.075 factor increase), holding all other variables constant. 
+:::
+
+
+## Framingham example
+
+:::{style="font-size:0.9em"}
+How do the odds of having a heart attack in the next 10 years change for someone 10 years older?
+
+```{r echo=FALSE}
+tidy(heart_mod, conf.int = TRUE) |> select(-statistic, -p.value)
+```
+:::
+
+::: {.fragment fragment-index=1}
+:::{style="font-size:0.9em"}
+95% CI: $\quad C \cdot \left[\widehat{\beta}_1 \pm z^*_{1-\alpha/2} SE(\widehat{\beta}_1)\right]$
+:::
+:::
+
+
+::: {.fragment fragment-index=2}
+:::{style="font-size:0.9em"}
+$\begin{split}
+10 \left[0.0610 \pm 1.96 \cdot (0.00579) \right] &= (10(0.0497),\ 10(0.0724))\\ &= (0.497, \ 0.724)\end{split}$
+:::
+:::
+
+::: {.fragment fragment-index=3}
+:::{style="font-size:0.9em"}
+We are 95% confident that a 10-year increase in age is associated with an increase in the odds of having a heart attack in the next 10 year of between a factor of 1.644 (a 64.4% increase) and  a factor of 2.063 (a 106.3% increase), holding all other variables constant. 
+:::
+:::
+
+
+# Likelihood-based inference for logistic regression
+
+## Likelihood function
+
+Recall that the likelihood function gives the plausibility of the observed data given our parameter values
+
+:::{style="font-size:0.9em"}
+$$L(\beta) = P(Y_1 = y_1, \ldots Y_n = y_n | \beta, X) = \prod_{i=1}^{n} \pi(X)^{y_i} \Big[ 1 - \pi(X) \Big]^{1- y_i}$$
+:::
+
+. . .
+
+<br>
+
+
+**Idea:**
+
+- "better" model explains more of the variation in our data set
+- "better" model makes our data more plausible
+
+## Likelihood ratio test {.smaller}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Full model:** 
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_k x_k + \beta_{k+1} x_{k+1} + \cdots + \beta_p x_p$
+:::
+::::
+
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reduced model: **
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_k x_k$
+:::
+::::
+
+
+:::::{.fragment fragment-index=1}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses: **
+:::
+
+::: {.column width="75%"}
+$H_0: \beta_{k+1} = \cdots = \beta_{p} = 0 \quad \text{vs.} \quad H_a:$ at least one $\beta_j \ne 0$
+:::
+
+::::
+
+:::::
+
+:::::{.fragment fragment-index=2}
+:::: {.columns}
+::: {.column width="25%"}
+**Test statistic: **
+:::
+::::
+
+
+$$G = 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}$$
+:::::
+
+:::::{.fragment fragment-index=3}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reference distribution:** 
+:::
+
+::: {.column width="75%"}
+$\chi^2$ distribution
+
+d.f. = # $\beta$s in full model $-$ # $\beta$s in reduced model
+:::
+
+::::
+:::::
+
+
+
+## Deviance
+
+:::{style="font-size:1em"}
+:::{.callout-note}
+## R implementation
+R reports the **deviance** rather than the log-likelihood
+:::
+:::
+
+In GLM, deviance is used to measure “unexplained” variation in the response
+
+. . .
+
+<br>
+
+Alternate representation of the LRT test statistic
+
+:::{style="font-size:0.8em"}
+\begin{align*}
+G &= 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\\
+&= \text{deviance(reduced model)} - \text{deviance(full model)}
+\end{align*}
+:::
+
+The LRT is sometimes called the drop-in-deviance test
+
+
+## Framingham example {.smaller}
+
+R's default output gives
+
+```{r echo=FALSE}
+tidy(heart_mod)
+```
+
+```
+    Null deviance: 3564.8  on 4189  degrees of freedom
+Residual deviance: 3214.1  on 4185  degrees of freedom
+```
+:::::{.fragment fragment-index=1}
+:::: {.columns}
+::: {.column width="25%"}
+**Full model: **
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0 + \beta_1 {\tt age} + \beta_2 {\tt male} + \beta_3 {\tt totChol} + \beta_4 {\tt sysBP}$
+:::
+::::
+
+
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reduced model: **
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0$
+:::
+::::
+:::::
+
+:::::{.fragment fragment-index=2}
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses: **
+:::
+
+::: {.column width="75%"}
+$H_0: \beta_1=\beta_2=\beta_3=\beta_4 = 0 \quad \text{vs.} \quad H_a:$ at least one $\beta_j \ne 0$
+:::
+
+::::
+:::::
+
+:::::{.fragment fragment-index=3}
+$G = \text{deviance(reduced model)} - \text{deviance(full model)}$
+
+$G = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
+:::::
+
+:::::{.fragment fragment-index=4}
+d.f. $=5 - 1 = 4$
+:::::
+
+## Framingham example
+
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses: **
+:::
+
+::: {.column width="75%"}
+$H_0: \beta_1=\beta_2=\beta_3=\beta_4 = 0 \quad \text{vs.} \quad H_a:$ at least one $\beta_j \ne 0$
+:::
+
+::::
+
+$G = \text{deviance(reduced model)} - \text{deviance(full model)}$
+
+$G = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
+
+d.f. $=5 - 1 = 4$
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+1 - pchisq(350.7, df = 4)
+```
+:::
+::::
+
+:::{.fragment fragment-index=1}
+There is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years ($G=350.7$, ${\sf d.f.} = 4$, <br> $p$-value < 0.001).
+:::

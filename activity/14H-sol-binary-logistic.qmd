@@ -1,0 +1,278 @@
+---
+title: "Binary Logistic Regression"
+format: html
+engine: knitr
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+#| eval: true
+p <- 0
+
+framingham <- read.csv("https://aloy.github.io/stat230-materials/data/framingham.csv")
+```
+
+
+## Overview
+
+In this activity you will practice how to interpret fitted logistic regression models using a sample from the Framingham Heart Study data set.
+
+ slides that the Framingham Heart Study is a long-term study of cardiovascular disease (heart attack, stroke, and other heart problems) that began in 1948. The study identified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease. In this activity we will explore an expanded set of predictor variables to model whether a participant experienced coronary heart disease (CHD) in a 10-year window after their exam. The variables we will consider include:
+ 
+- `age`: age of participant (in years)
+- `male`: biological sex of participant (1 = male, 0 = female)
+- `totChol`: total cholesterol (mg/dL)
+- `sysBP`: systolic blood pressure (mm Hg)
+
+
+## A "simple" logistic regression model
+
+Like in linear regression, we refer to a "simple" logistic regression model as one with a single predictor variable. Below is the output from fitting a simple logistic regression model with `totChol` as the predictor variable.
+
+```{r}
+#| eval: true
+#| echo: false
+mod1 <- glm(TenYearCHD ~ totChol, data = framingham, family = "binomial")
+broom::tidy(mod1)
+```
+
+**Task 1.** Interpret the coefficient for `totChol` in the context of this problem. In particular, explain what this coefficient tells us about the relationship between total cholesterol and the odds of experiencing coronary heart disease in a 10-year window.
+
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+The coefficient for `totChol` is approximately 0.00488. This means that for each additional 1 mg/dL increase in total cholesterol, the log odds of experiencing coronary heart disease in a 10-year window increases by about 0.00488, holding all other variables constant. 
+
+But... we don't think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: $e^{0.00488.} \approx 1.005$.
+
+A 1 mg/dL increase in total cholesterol is associated with an approximate 0.5% increase in the odds of experiencing coronary heart disease in a 10-year window.
+:::
+
+
+**Task 2.** Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for participants with the following total cholesterol levels:
+
+a. 240 mg/dL
+b. 250 mg/dL
+c. 210 mg/dL
+d. 220 md/dL
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+To calculate the predicted probability, we first need to calculate the log odds using the fitted logistic regression equation:
+$$\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -2.89 + 0.00488 \times \text{totChol}$$ 
+Then, we convert the log odds to a predicted probability using the formula:
+$$\widehat{\pi} = \dfrac{e^{\text{log odds}}}{1 + e^{\text{log odds}}}$$
+
+a. For `totChol` = 240 mg/dL:
+- Log odds: $-2.89 + 0.00488 \times 240 \approx -1.7188$
+- Predicted probability: $\dfrac{e^{-1.7188}}{1 + e^{-1.7188}} \approx 0.152$
+b. For `totChol` = 250 mg/dL:
+- Log odds: $-2.89 + 0.00488 \times 250 \approx -1.67$
+- Predicted probability: $\dfrac{e^{-1.67}}{1 + e^{-1.67}} \approx 0.158$
+c. For `totChol` = 210 mg/dL:
+- Log odds: $-2.89 + 0.00488 \times 210 \approx -1.8652$
+- Predicted probability: $\dfrac{e^{-1.8652}}{1 + e^{-1.8652}} \approx 0.134$
+d. For `totChol` = 220 mg/dL:
+- Log odds: $-2.89 + 0.00488 \times 220 \approx -1.8164$
+- Predicted probability: $\dfrac{e^{-1.8164}}{1 + e^{-1.8164}} \approx 0.139$
+:::
+
+
+**Task 3.** Based on your calculations above, is the effect of a 10 mg/dL increase in total cholesterol on the predicted probability of experiencing coronary heart disease in a 10-year window constant?
+
+::: {.callout-tip collapse="true"}
+### Solution
+No, the effect of a 10 mg/dL increase in total cholesterol on the predicted probability is not constant.
+From 240 to 250 mg/dL, the predicted probability increases from approximately 0.152 to 0.158, an increase of about 0.006.
+From 210 to 220 mg/dL, the predicted probability increases from approximately 0.134 to 0.139, an increase of about 0.005.
+The increase in predicted probability is slightly larger when moving from 240 to 250 mg/dL compared to moving from 210 to 220 mg/dL.
+:::
+
+**Task 4.** Calculate the log odds ratio for an increase from 240 to 250 mg/dL in total cholesterol. Then, calculate the log odds ratio for an increase from 210 to 220 mg/dL in total cholesterol. Are these log odds ratios the same? 
+
+::: {.callout-tip collapse="true"}
+### Solution
+The log odds ratio for an increase from 240 to 250 mg/dL in total cholesterol is calculated as follows:
+- Log odds at 250 mg/dL: $-2.89 + 0.00488 \times 250 \approx -1.67$
+- Log odds at 240 mg/dL: $-2.89 + 0.00488 \times 240 \approx -1.7188$
+- Log odds ratio: $-1.67 - (-1.7188) \approx 0.0488$
+
+The log odds ratio for an increase from 210 to 220 mg/dL in total cholesterol is calculated as follows:
+- Log odds at 220 mg/dL: $-2.89 + 0.00488 \times 220 \approx -1.8164$
+- Log odds at 210 mg/dL: $-2.89 + 0.00488 \times 210 \approx -1.8652$
+- Log odds ratio: $-1.8164 - (-1.8652) \approx 0.0488$
+
+Yes, these log odds ratios are the same, both approximately 0.0488. This indicates that the effect of a 10 mg/dL increase in total cholesterol on the log odds of experiencing coronary heart disease in a 10-year window is constant.
+:::
+
+
+## A categorical predictor variable
+
+Next, let's add biological sex as a predictor variable to the model. Below is the output from fitting a logistic regression model with `totChol` and `male` as the predictor variables.
+
+```{r}
+#| eval: true
+#| echo: false
+mod2 <- glm(TenYearCHD ~ totChol + male, data = framingham, family = "binomial")
+broom::tidy(mod2)
+```
+
+**Task 5.** Interpret the coefficient for `male` in the context of this problem. In particular, explain what this coefficient tells us about the relationship between biological sex and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol constant.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- The coefficient for `male` is approximately 0.538. The expected log odds of experiencing coronary heart disease in a 10-year window for male participants is about 0.538 higher than that for female participants, holding total cholesterol constant. -->
+
+<!-- Of course, we don't think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: $e^{0.538} \approx 1.713$. Thus, the expected odds of experiencing coronary heart disease in a 10-year window for male participants are about 1.713 times higher than for female participants, holding total cholesterol constant. -->
+<!-- ::: -->
+
+**Task 6.** Write the fitted logistic regression equation for both sexes.
+
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- Females: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -3.28 + 0.00541 \times \text{totChol}$ -->
+
+<!-- Males: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-3.28 + 0.538) + 0.00541 \times \text{totChol}  = -2.742 + 0.00541 \times \text{totChol}$ -->
+<!-- ::: -->
+
+
+## A multiple logistic regression model
+
+Next, let's consider the full model with all four predictor variables. Below is the output from fitting a multiple logistic regression model with `totChol`, `male`, `age`, and `sysBP` as the predictor variables.
+
+```{r}
+#| eval: true
+#| echo: false
+mod3 <- glm(TenYearCHD ~ totChol + male + age + sysBP, data = framingham, family = "binomial")
+broom::tidy(mod3)
+```
+
+**Task 7.** Interpret the coefficient for `age` in the context of this problem. In particular, explain what this coefficient tells us about the relationship between age and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol , biological sex, and systolic blood pressure constant.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- The coefficient for `age` is approximately 0.061. This means that for each additional year increase in age, the log odds of experiencing coronary heart disease in a 10-year window increases by about 0.061, holding total cholesterol, biological sex, and systolic blood pressure constant. -->
+
+<!-- But... we don't think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: $e^{0.061} \approx 1.063$. Thus, a 1 year increase in age is associated with an approximate 6.3% increase in the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol, biological sex, and systolic blood pressure constant. -->
+<!-- ::: -->
+
+
+**Task 8.** Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- To calculate the predicted probability, we first need to calculate the log odds using the fitted logistic regression equation: -->
+<!-- $$\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -8.08 + 0.00201 \imes \text{totChol} + 0.686 \times \text{male} + 0.061 \times \text{age} + 0.0176 \times \text{sysBP}$$ -->
+<!-- Then, we convert the log odds to a predicted probability using the formula: -->
+<!-- $$\widehat{\pi} = \dfrac{e^{\text{log odds}}}{1 + e^{\text{log odds}}}$$   -->
+<!-- For a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg: -->
+<!-- - Log odds: $-8.08 + 0.00201 \times 240 + 0.686 \times 1 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.2686$ -->
+<!-- - Predicted probability: $\dfrac{e^{-1.2686}}{1 + e^{-1.2686}} \approx 0.219$ -->
+<!-- ::: -->
+
+
+**Task 9.** Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- For a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg: -->
+<!-- - Log odds: $-8.08 + 0.00201 \times 240 + 0.686 \times 0 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.9546$ -->
+<!-- - Predicted probability: $\dfrac{e^{-1.9546}}{1 + e^{-1.9546}} \approx 0.124$ -->
+<!-- ::: -->
+
+
+
+## An interaction term
+
+Finally, let's consider a model with an interaction term between `totChol` and `male`. Below is the output from fitting a multiple logistic regression model with `totChol`, `male`, `age`, `sysBP`, and the interaction between `totChol` and `male` as the predictor variables.
+
+```{r}
+#| eval: true
+#| echo: false
+mod4 <- glm(TenYearCHD ~ totChol * male + age + sysBP, data = framingham, family = "binomial")
+broom::tidy(mod4)
+```
+
+**Task 10.** Write the fitted logistic regression equation for both sexes.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- Females: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -7.76 + 0.000373 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}$ -->
+
+<!-- Males: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-7.76 -0.124) + (0.000373 + 0.00333) \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}  = -7.884 + 0.0037 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}$ -->
+
+<!-- ::: -->
+
+## Hypothesis tests for individual regression coefficients
+
+The regression coefficients from a logistic regression model are approximately normally distributed, so we can use the normal distribution to conduct hypothesis tests for individual regression coefficients. These tests are called Wald tests. 
+
+
+**Task 11.** Using the model output from `mod4` above, let's conduct a hypothesis test to determine whether the interaction between `totChol` and `male` is necessary.
+
+a. State the null and alternative hypotheses for this test.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- Null hypothesis ($H_0$): The interaction between `totChol` and `male` is not necessary (the coefficient for the interaction term is equal to zero); thus, $\beta_{5} = 0$. -->
+
+<!-- Alternative hypothesis ($H_a$): The interaction between `totChol` and `male` is necessary (the coefficient for the interaction term is not equal to zero); thus, $\beta_{5} \neq 0$. -->
+<!-- ::: -->
+
+b. Calculate the test statistic for this test. Note: this test statistic is provided in the model output above, but you should check that it is calculated just like we did in the linear regression setting.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- The test statistic for the interaction term `totChol:male` is calculated as follows: -->
+<!-- $$z = \dfrac{\hat{\beta}_{5} - 0}{SE(\hat{\beta}_{5})} = \dfrac{0.00333 - 0}{0.00205} \approx 1.62$$ -->
+<!-- ::: -->
+
+c. Report the p-value for this test (from the summary table).
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- The p-value for the interaction term `totChol:male` is approximately 0.105. -->
+<!-- ::: -->
+
+d. Sketch a normal distribution and shade in the area corresponding to the p-value for this test.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- To sketch a normal distribution and shade in the area corresponding to the p-value for this test, we would draw a standard normal distribution curve (mean = 0, standard deviation = 1).  -->
+
+<!-- ```{r} -->
+<!-- #| message: false -->
+<!-- #| fig-asp: 0.6 -->
+<!-- #| fig-width: 3.5 -->
+<!-- #| echo: false -->
+<!-- library(ggplot2) -->
+<!-- library(dplyr) -->
+<!-- x <- seq(-4, 4, length=1000) -->
+<!-- y <- dnorm(x) -->
+<!-- data <- data.frame(x, y) -->
+<!-- ggplot(data, aes(x=x, y=y)) + -->
+<!--   geom_line() + -->
+<!--   geom_area(data = subset(data, x <= -1.62), aes(y=y), fill="blue", alpha=0.5) + -->
+<!--   geom_area(data = subset(data, x >= 1.62), aes(y=y), fill="blue", alpha=0.5) + -->
+<!--   labs(title="Normal Distribution with Shaded p-value Area", -->
+<!--        x="z-score", -->
+<!--        y="Density") + -->
+<!--   theme_minimal() + -->
+<!--   theme(plot.title = element_text(size = 10)) -->
+<!-- ``` -->
+
+
+<!-- ::: -->
+
+e. Using a significance level of $\alpha = 0.05$, what is your conclusion for this test? Interpret your conclusion in the context of this problem.
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ### Solution -->
+<!-- Since the p-value (approximately 0.105) is greater than the significance level of $\alpha = 0.05$, we fail to reject the null hypothesis. There is not enough evidence to conclude that the interaction between total cholesterol and biological sex is necessary in predicting the odds of experiencing coronary heart disease in a 10-year window. -->
+<!-- ::: -->

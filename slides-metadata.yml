@@ -96,3 +96,9 @@
   path: slides/12-mlr-validation.qmd
   categories:
     - "MLR"
+- title: "Binary Logistic Regression"
+  date: 2025-10-27
+  image: slides/featured/14-binary-logistic.png
+  path: slides/14-binary-logistic.qmd
+  categories:
+    - "Logistic Regression"

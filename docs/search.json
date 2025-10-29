@@ -774,7 +774,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nMLR Model Validation\n\n\n\nMLR\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Selection\n\n\n\nMLR\n\n\n\n\nOct 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMulticollinearity\n\n\n\nMLR\n\n\n\n\nOct 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBinary Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Validation\n\n\n\nMLR\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Selection\n\n\n\nMLR\n\n\n\n\nOct 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMulticollinearity\n\n\n\nMLR\n\n\n\n\nOct 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "activity/08H-mlr-categorical.html",
@@ -2413,5 +2413,159 @@
     "title": "Binary Logistic Regression in R",
     "section": "",
     "text": "Fitting a binary logistic regression model in R is similar to fitting a linear regression model. To guide you through this process, let’s revisit the Framingham Heart Study data set that we discussed in class.\nTo load the data, run the following code chunk:\n\n\n\n\n\n\n\n\nBinary logistic regression requires a binary response variable. In this case, we will use the TenYearCHD variable, which indicates whether an individual developed coronary heart disease within ten years (1 = yes, 0 = no). Be sure to always check that your response variable is coded correctly before modeling.\nNext, we will fit a binary logistic regression model using the glm() function in R. The syntax is similar to that of the lm() function, but we need to specify the family argument as binomial to indicate that we are performing logistic regression. Here, we will model the probability of developing coronary heart disease based on age.\n\n\n\n\n\n\n\n\nYou can still use the summary() function to view the results of the model fit:\n\n\n\n\n\n\n\n\nMuch of the regression output looks the same as in linear regression, but there are some key differences. The main differences are:\n\nThe test statistic is no labeled z value instead of t value.\nA Null deviance and Residual deviance are reported instead of Multiple R-squared and Adjusted R-squared.\n\nWe’ll discuss the use and interpretation of these results in more detail in class."
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#recap-framingham-heart-study",
+    "href": "slides/15-logistic-inference.html#recap-framingham-heart-study",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Recap: Framingham heart study",
+    "text": "Recap: Framingham heart study\nGoal: Determine whether participant experienced coronary heart disease (CHD) in 10-year window after their exam\n\nY = CHD (0 = no, 1 = yes)\nX = participant’s age, sex, total cholesterol, and systolic blood pressure\n\nStrategy: model the probability of CHD given these factors"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#binary-logistic-regression-model",
+    "href": "slides/15-logistic-inference.html#binary-logistic-regression-model",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Binary logistic regression model",
+    "text": "Binary logistic regression model\nIf \\(Y\\) follows a Bernoulli distribution\n\\[{\\rm E}(Y | X) = \\pi(X)\\]\nWe link this mean function to the explanatory variables using the logit link\n\\[\\begin{align*}\n\\eta &= {\\rm logit}(\\pi(X))\\\\\n&= \\log \\left( \\dfrac{\\pi(X)}{1 - \\pi(X)} \\right) = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\cdots + \\beta_p x_p\n\\end{align*}\\]"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-model",
+    "href": "slides/15-logistic-inference.html#framingham-model",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham model",
+    "text": "Framingham model\n\\(\\log \\left( \\dfrac{\\hat{\\pi}(X)}{1 - \\hat{\\pi}(X)} \\right) = -8.08 + 0.061 {\\tt age} + 0.686{\\tt male} + 0.002 {\\tt totChol} - 0.018 {\\tt sysBP}\\)\n\n\\(\\widehat{\\beta}_2\\)\n\n\\(e^{0.686} = 1.986\\)\nThe odds of having a heart attack in the next ten years are nearly twice as high for males as females, after accounting for age, total cholesterol, and systolic blood pressure.\n\n\n\n\\(\\widehat{\\beta}_4\\)\n\n\\(e^{-0.018} = 0.9822\\)\nThe odds of having a heart attack in the next ten years decrease by about 1.8% (i.e., a factor of 0.982) for a one-unit increase is systolic blood pressure, after accounting for age, sex, and total cholesterol."
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#maximum-likelihood-ml-estimation",
+    "href": "slides/15-logistic-inference.html#maximum-likelihood-ml-estimation",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Maximum likelihood (ML) estimation",
+    "text": "Maximum likelihood (ML) estimation\nThe coefficients in logistic regression are estimated by finding the \\(\\widehat{\\beta}_0, \\ldots, \\widehat{\\beta}_p\\) that maximize the probability of the observed outcomes\n\\[L(\\beta) = P(Y_1 = y_1, \\ldots Y_n = y_n | \\beta, X) = \\prod_{i=1}^{n} \\pi(X)^{y_i} \\Big[ 1 - \\pi(X) \\Big]^{1- y_i}\\]\nwhere\n\\[\\pi(X) = \\dfrac{e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}}{1 + e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}}\\]"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#properties-of-ml-estimators",
+    "href": "slides/15-logistic-inference.html#properties-of-ml-estimators",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Properties of ML estimators",
+    "text": "Properties of ML estimators\nLarge-sample properties of ML estimators, \\(\\widehat{\\beta}_i\\)s  (if the model is correct):\n\nEssentially unbiased\nSEs can be computed and are about as small as any other unbiased estimator\nThe sampling distributions for the estimators are approximately normal"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#wald-test-for-a-coefficient",
+    "href": "slides/15-logistic-inference.html#wald-test-for-a-coefficient",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Wald test for a coefficient",
+    "text": "Wald test for a coefficient\n\n\nHypotheses:\n\n\n\\(H_0: \\beta_i = 0 \\quad\\) vs. \\(\\quad H_a: \\beta_i \\ne 0\\)\n\n\n\n\nTest statistic:\n\n\n\\(z = \\dfrac{\\widehat{\\beta}_i}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\n\nReference distribution:\n\n\n\\(N(0, 1)\\)"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-example",
+    "href": "slides/15-logistic-inference.html#framingham-example",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham example",
+    "text": "Framingham example\nWhat impact does age have on the odds of having a heart attack in the next 10 years?\n\n\n# A tibble: 5 × 5\n  term        estimate std.error    conf.low conf.high\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) -8.08      0.412   -8.90        -7.29   \n2 age          0.0610    0.00579  0.0497       0.0724 \n3 male         0.686     0.0930   0.505        0.869  \n4 totChol      0.00201   0.00102  0.00000310   0.00401\n5 sysBP        0.0176    0.00200  0.0137       0.0215 \n\n\n\nLet’s construct a 95% confidence interval for \\(\\beta_1\\): \\(\\quad \\widehat{\\beta}_1 \\pm z^*_{1-\\alpha/2} SE(\\widehat{\\beta}_1)\\)\n\n\n\\(z^*_{1-0.05/2} = z^*_{0.975} =\\) 0.975 quantile from \\(N(0, 1)\\)\n\n\n\n\n\nqnorm(0.975)\n\n[1] 1.959964\n\n\n\n\n\n\\(0.0610 \\pm 1.96 \\cdot (0.00579) = (0.0497,\\ 0.0724)\\)"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#ci-for-a-coefficient",
+    "href": "slides/15-logistic-inference.html#ci-for-a-coefficient",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "CI for a coefficient",
+    "text": "CI for a coefficient\nA normal-based confidence interval for \\({\\beta}_i\\)\n\\[\\widehat{\\beta}_i \\pm z^*_{1-\\alpha/2} SE(\\widehat{\\beta}_i)\\]\n\nCI for the multiplicative effect on odds of success for a 1- unit change in \\(x\\) (odds ratio of Success for \\(x+1\\) vs. \\(x\\)):\n\\[e^{\\widehat{\\beta}_i - z^*_{1-\\alpha/2} SE(\\widehat{\\beta}_i)} \\quad \\text{to} \\quad e^{\\widehat{\\beta}_i + z^*_{1-\\alpha/2} SE(\\widehat{\\beta}_i)}\\]\n\n\n… for a \\(C\\)-unit change in \\(x\\)\n\\[e^{C \\cdot\\widehat{\\beta}_i - z^*_{1-\\alpha/2} C \\cdot SE(\\widehat{\\beta}_i)} \\quad \\text{to} \\quad e^{C \\cdot\\widehat{\\beta}_i + z^*_{1-\\alpha/2} C \\cdot SE(\\widehat{\\beta}_i)}\\]"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-example-1",
+    "href": "slides/15-logistic-inference.html#framingham-example-1",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham example",
+    "text": "Framingham example\n\\(0.0610 \\pm 1.96 \\cdot (0.00579) = (0.0497,\\ 0.0724)\\)\n\n\nExponentiating the endpoints to get the CI for the odds ratio for a one-year increase in age:\n\\[e^{0.0497} = 1.051 \\quad \\text{to} \\quad e^{0.0724} = 1.075\\]\n\n\n\nWe are 95% confident that a one-year increase in age is associated with an increase in the odds of having a heart attack in the next 10 year of between 5.1% (a 1.051 factor increase) and 7.5% (a 1.075 factor increase), holding all other variables constant."
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-example-2",
+    "href": "slides/15-logistic-inference.html#framingham-example-2",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham example",
+    "text": "Framingham example\n\nHow do the odds of having a heart attack in the next 10 years change for someone 10 years older?\n\n\n# A tibble: 5 × 5\n  term        estimate std.error    conf.low conf.high\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;\n1 (Intercept) -8.08      0.412   -8.90        -7.29   \n2 age          0.0610    0.00579  0.0497       0.0724 \n3 male         0.686     0.0930   0.505        0.869  \n4 totChol      0.00201   0.00102  0.00000310   0.00401\n5 sysBP        0.0176    0.00200  0.0137       0.0215 \n\n\n\n\n\n95% CI: \\(\\quad C \\cdot \\left[\\widehat{\\beta}_1 \\pm z^*_{1-\\alpha/2} SE(\\widehat{\\beta}_1)\\right]\\)\n\n\n\n\n\\(\\begin{split}\n10 \\left[0.0610 \\pm 1.96 \\cdot (0.00579) \\right] &= (10(0.0497),\\ 10(0.0724))\\\\ &= (0.497, \\ 0.724)\\end{split}\\)\n\n\n\n\nWe are 95% confident that a 10-year increase in age is associated with an increase in the odds of having a heart attack in the next 10 year of between a factor of 1.644 (a 64.4% increase) and a factor of 2.063 (a 106.3% increase), holding all other variables constant."
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#likelihood-function",
+    "href": "slides/15-logistic-inference.html#likelihood-function",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Likelihood function",
+    "text": "Likelihood function\nRecall that the likelihood function gives the plausibility of the observed data given our parameter values\n\n\\[L(\\beta) = P(Y_1 = y_1, \\ldots Y_n = y_n | \\beta, X) = \\prod_{i=1}^{n} \\pi(X)^{y_i} \\Big[ 1 - \\pi(X) \\Big]^{1- y_i}\\]\n\n\n\nIdea:\n\n“better” model explains more of the variation in our data set\n“better” model makes our data more plausible"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#likelihood-ratio-test",
+    "href": "slides/15-logistic-inference.html#likelihood-ratio-test",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Likelihood ratio test",
+    "text": "Likelihood ratio test\n\n\nFull model:\n\n\\(\\eta = \\beta_0 + \\beta_1x_1 + \\beta_2x_2 + \\cdots + \\beta_k x_k + \\beta_{k+1} x_{k+1} + \\cdots + \\beta_p x_p\\)\n\n\n\nReduced model: \n\n\\(\\eta = \\beta_0 + \\beta_1x_1 + \\beta_2x_2 + \\cdots + \\beta_k x_k\\)\n\n\n\n\nHypotheses: \n\n\\(H_0: \\beta_{k+1} = \\cdots = \\beta_{p} = 0 \\quad \\text{vs.} \\quad H_a:\\) at least one \\(\\beta_j \\ne 0\\)\n\n\n\n\n\nTest statistic: \n\n\\[G = 2 \\cdot \\text{log-likelihood(full model)} - 2 \\cdot  \\text{log-likelihood(reduced model)}\\]\n\n\n\n\nReference distribution:\n\n\\(\\chi^2\\) distribution\nd.f. = # \\(\\beta\\)s in full model \\(-\\) # \\(\\beta\\)s in reduced model"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#deviance",
+    "href": "slides/15-logistic-inference.html#deviance",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Deviance",
+    "text": "Deviance\n\n\n\n\n\n\n\nR implementation\n\n\nR reports the deviance rather than the log-likelihood\n\n\n\n\nIn GLM, deviance is used to measure “unexplained” variation in the response\n\n\nAlternate representation of the LRT test statistic\n\n\\[\\begin{align*}\nG &= 2 \\cdot \\text{log-likelihood(full model)} - 2 \\cdot  \\text{log-likelihood(reduced model)}\\\\\n&= \\text{deviance(reduced model)} - \\text{deviance(full model)}\n\\end{align*}\\]\n\nThe LRT is sometimes called the drop-in-deviance test"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-example-3",
+    "href": "slides/15-logistic-inference.html#framingham-example-3",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham example",
+    "text": "Framingham example\nR’s default output gives\n\n\n# A tibble: 5 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept) -8.08      0.412      -19.6  9.65e-86\n2 age          0.0610    0.00579     10.5  5.32e-26\n3 male         0.686     0.0930       7.38 1.56e-13\n4 totChol      0.00201   0.00102      1.98 4.83e- 2\n5 sysBP        0.0176    0.00200      8.80 1.39e-18\n\n\n    Null deviance: 3564.8  on 4189  degrees of freedom\nResidual deviance: 3214.1  on 4185  degrees of freedom\n\n\n\nFull model: \n\n\\(\\eta = \\beta_0 + \\beta_1 {\\tt age} + \\beta_2 {\\tt male} + \\beta_3 {\\tt totChol} + \\beta_4 {\\tt sysBP}\\)\n\n\n\nReduced model: \n\n\\(\\eta = \\beta_0\\)\n\n\n\n\n\nHypotheses: \n\n\\(H_0: \\beta_1=\\beta_2=\\beta_3=\\beta_4 = 0 \\quad \\text{vs.} \\quad H_a:\\) at least one \\(\\beta_j \\ne 0\\)\n\n\n\n\\(G = \\text{deviance(reduced model)} - \\text{deviance(full model)}\\)\n\\(G = 3564.8 - 3214.1 = 350.7\\)\n\n\nd.f. \\(=5 - 1 = 4\\)"
+  },
+  {
+    "objectID": "slides/15-logistic-inference.html#framingham-example-4",
+    "href": "slides/15-logistic-inference.html#framingham-example-4",
+    "title": "Inference and Multiple Explanatory Variables",
+    "section": "Framingham example",
+    "text": "Framingham example\n\n\nHypotheses: \n\n\\(H_0: \\beta_1=\\beta_2=\\beta_3=\\beta_4 = 0 \\quad \\text{vs.} \\quad H_a:\\) at least one \\(\\beta_j \\ne 0\\)\n\n\\(G = \\text{deviance(reduced model)} - \\text{deviance(full model)}\\)\n\\(G = 3564.8 - 3214.1 = 350.7\\)\nd.f. \\(=5 - 1 = 4\\)\n\n\n\n1 - pchisq(350.7, df = 4)\n\n[1] 0\n\n\n\n\nThere is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years (\\(G=350.7\\), \\({\\sf d.f.} = 4\\),  \\(p\\)-value &lt; 0.001)."
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html",
+    "href": "activity/14H-sol-binary-logistic.html",
+    "title": "Binary Logistic Regression",
+    "section": "",
+    "text": "In this activity you will practice how to interpret fitted logistic regression models using a sample from the Framingham Heart Study data set.\nslides that the Framingham Heart Study is a long-term study of cardiovascular disease (heart attack, stroke, and other heart problems) that began in 1948. The study identified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease. In this activity we will explore an expanded set of predictor variables to model whether a participant experienced coronary heart disease (CHD) in a 10-year window after their exam. The variables we will consider include:\n\nage: age of participant (in years)\nmale: biological sex of participant (1 = male, 0 = female)\ntotChol: total cholesterol (mg/dL)\nsysBP: systolic blood pressure (mm Hg)"
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#overview",
+    "href": "activity/14H-sol-binary-logistic.html#overview",
+    "title": "Binary Logistic Regression",
+    "section": "",
+    "text": "In this activity you will practice how to interpret fitted logistic regression models using a sample from the Framingham Heart Study data set.\nslides that the Framingham Heart Study is a long-term study of cardiovascular disease (heart attack, stroke, and other heart problems) that began in 1948. The study identified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease. In this activity we will explore an expanded set of predictor variables to model whether a participant experienced coronary heart disease (CHD) in a 10-year window after their exam. The variables we will consider include:\n\nage: age of participant (in years)\nmale: biological sex of participant (1 = male, 0 = female)\ntotChol: total cholesterol (mg/dL)\nsysBP: systolic blood pressure (mm Hg)"
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#a-simple-logistic-regression-model",
+    "href": "activity/14H-sol-binary-logistic.html#a-simple-logistic-regression-model",
+    "title": "Binary Logistic Regression",
+    "section": "A “simple” logistic regression model",
+    "text": "A “simple” logistic regression model\nLike in linear regression, we refer to a “simple” logistic regression model as one with a single predictor variable. Below is the output from fitting a simple logistic regression model with totChol as the predictor variable.\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept) -2.89     0.230       -12.6  1.92e-36\n2 totChol      0.00488  0.000926      5.27 1.38e- 7\n\n\nTask 1. Interpret the coefficient for totChol in the context of this problem. In particular, explain what this coefficient tells us about the relationship between total cholesterol and the odds of experiencing coronary heart disease in a 10-year window.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe coefficient for totChol is approximately 0.00488. This means that for each additional 1 mg/dL increase in total cholesterol, the log odds of experiencing coronary heart disease in a 10-year window increases by about 0.00488, holding all other variables constant.\nBut… we don’t think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: \\(e^{0.00488.} \\approx 1.005\\).\nA 1 mg/dL increase in total cholesterol is associated with an approximate 0.5% increase in the odds of experiencing coronary heart disease in a 10-year window.\n\n\n\nTask 2. Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for participants with the following total cholesterol levels:\n\n240 mg/dL\n250 mg/dL\n210 mg/dL\n220 md/dL\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nTo calculate the predicted probability, we first need to calculate the log odds using the fitted logistic regression equation: \\[\\log \\left( \\dfrac{\\widehat{\\pi}}{1-\\widehat{\\pi}} \\right) = -2.89 + 0.00488 \\times \\text{totChol}\\] Then, we convert the log odds to a predicted probability using the formula: \\[\\widehat{\\pi} = \\dfrac{e^{\\text{log odds}}}{1 + e^{\\text{log odds}}}\\]\n\nFor totChol = 240 mg/dL:\n\n\nLog odds: \\(-2.89 + 0.00488 \\times 240 \\approx -1.7188\\)\nPredicted probability: \\(\\dfrac{e^{-1.7188}}{1 + e^{-1.7188}} \\approx 0.152\\)\n\n\nFor totChol = 250 mg/dL:\n\n\nLog odds: \\(-2.89 + 0.00488 \\times 250 \\approx -1.67\\)\nPredicted probability: \\(\\dfrac{e^{-1.67}}{1 + e^{-1.67}} \\approx 0.158\\)\n\n\nFor totChol = 210 mg/dL:\n\n\nLog odds: \\(-2.89 + 0.00488 \\times 210 \\approx -1.8652\\)\nPredicted probability: \\(\\dfrac{e^{-1.8652}}{1 + e^{-1.8652}} \\approx 0.134\\)\n\n\nFor totChol = 220 mg/dL:\n\n\nLog odds: \\(-2.89 + 0.00488 \\times 220 \\approx -1.8164\\)\nPredicted probability: \\(\\dfrac{e^{-1.8164}}{1 + e^{-1.8164}} \\approx 0.139\\)\n\n\n\n\nTask 3. Based on your calculations above, is the effect of a 10 mg/dL increase in total cholesterol on the predicted probability of experiencing coronary heart disease in a 10-year window constant?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nNo, the effect of a 10 mg/dL increase in total cholesterol on the predicted probability is not constant. From 240 to 250 mg/dL, the predicted probability increases from approximately 0.152 to 0.158, an increase of about 0.006. From 210 to 220 mg/dL, the predicted probability increases from approximately 0.134 to 0.139, an increase of about 0.005. The increase in predicted probability is slightly larger when moving from 240 to 250 mg/dL compared to moving from 210 to 220 mg/dL.\n\n\n\nTask 4. Calculate the log odds ratio for an increase from 240 to 250 mg/dL in total cholesterol. Then, calculate the log odds ratio for an increase from 210 to 220 mg/dL in total cholesterol. Are these log odds ratios the same?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe log odds ratio for an increase from 240 to 250 mg/dL in total cholesterol is calculated as follows: - Log odds at 250 mg/dL: \\(-2.89 + 0.00488 \\times 250 \\approx -1.67\\) - Log odds at 240 mg/dL: \\(-2.89 + 0.00488 \\times 240 \\approx -1.7188\\) - Log odds ratio: \\(-1.67 - (-1.7188) \\approx 0.0488\\)\nThe log odds ratio for an increase from 210 to 220 mg/dL in total cholesterol is calculated as follows: - Log odds at 220 mg/dL: \\(-2.89 + 0.00488 \\times 220 \\approx -1.8164\\) - Log odds at 210 mg/dL: \\(-2.89 + 0.00488 \\times 210 \\approx -1.8652\\) - Log odds ratio: \\(-1.8164 - (-1.8652) \\approx 0.0488\\)\nYes, these log odds ratios are the same, both approximately 0.0488. This indicates that the effect of a 10 mg/dL increase in total cholesterol on the log odds of experiencing coronary heart disease in a 10-year window is constant."
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#a-categorical-predictor-variable",
+    "href": "activity/14H-sol-binary-logistic.html#a-categorical-predictor-variable",
+    "title": "Binary Logistic Regression",
+    "section": "A categorical predictor variable",
+    "text": "A categorical predictor variable\nNext, let’s add biological sex as a predictor variable to the model. Below is the output from fitting a logistic regression model with totChol and male as the predictor variables.\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept) -3.28     0.243       -13.5  1.43e-41\n2 totChol      0.00541  0.000945      5.73 1.02e- 8\n3 male         0.538    0.0874        6.16 7.51e-10\n\n\nTask 5. Interpret the coefficient for male in the context of this problem. In particular, explain what this coefficient tells us about the relationship between biological sex and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol constant.\n\n\n\n\n\nTask 6. Write the fitted logistic regression equation for both sexes."
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#a-multiple-logistic-regression-model",
+    "href": "activity/14H-sol-binary-logistic.html#a-multiple-logistic-regression-model",
+    "title": "Binary Logistic Regression",
+    "section": "A multiple logistic regression model",
+    "text": "A multiple logistic regression model\nNext, let’s consider the full model with all four predictor variables. Below is the output from fitting a multiple logistic regression model with totChol, male, age, and sysBP as the predictor variables.\n\n\n# A tibble: 5 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept) -8.08      0.412      -19.6  9.65e-86\n2 totChol      0.00201   0.00102      1.98 4.83e- 2\n3 male         0.686     0.0930       7.38 1.56e-13\n4 age          0.0610    0.00579     10.5  5.32e-26\n5 sysBP        0.0176    0.00200      8.80 1.39e-18\n\n\nTask 7. Interpret the coefficient for age in the context of this problem. In particular, explain what this coefficient tells us about the relationship between age and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol , biological sex, and systolic blood pressure constant.\n\n\n\n\n\nTask 8. Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg.\n\n\n\n\n\n\n\n\n\n\nTask 9. Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg."
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#an-interaction-term",
+    "href": "activity/14H-sol-binary-logistic.html#an-interaction-term",
+    "title": "Binary Logistic Regression",
+    "section": "An interaction term",
+    "text": "An interaction term\nFinally, let’s consider a model with an interaction term between totChol and male. Below is the output from fitting a multiple logistic regression model with totChol, male, age, sysBP, and the interaction between totChol and male as the predictor variables.\n\n\n# A tibble: 6 × 5\n  term          estimate std.error statistic  p.value\n  &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)  -7.76       0.457     -17.0   1.25e-64\n2 totChol       0.000373   0.00144     0.259 7.96e- 1\n3 male         -0.124      0.508      -0.244 8.07e- 1\n4 age           0.0624     0.00585    10.7   1.56e-26\n5 sysBP         0.0177     0.00200     8.82  1.11e-18\n6 totChol:male  0.00333    0.00205     1.62  1.05e- 1\n\n\nTask 10. Write the fitted logistic regression equation for both sexes."
+  },
+  {
+    "objectID": "activity/14H-sol-binary-logistic.html#hypothesis-tests-for-individual-regression-coefficients",
+    "href": "activity/14H-sol-binary-logistic.html#hypothesis-tests-for-individual-regression-coefficients",
+    "title": "Binary Logistic Regression",
+    "section": "Hypothesis tests for individual regression coefficients",
+    "text": "Hypothesis tests for individual regression coefficients\nThe regression coefficients from a logistic regression model are approximately normally distributed, so we can use the normal distribution to conduct hypothesis tests for individual regression coefficients. These tests are called Wald tests.\nTask 11. Using the model output from mod4 above, let’s conduct a hypothesis test to determine whether the interaction between totChol and male is necessary.\n\nState the null and alternative hypotheses for this test.\n\n\n\n\n\n\n\nCalculate the test statistic for this test. Note: this test statistic is provided in the model output above, but you should check that it is calculated just like we did in the linear regression setting.\n\n\n\n\n\n\n\nReport the p-value for this test (from the summary table).\n\n\n\n\n\n\nSketch a normal distribution and shade in the area corresponding to the p-value for this test.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing a significance level of \\(\\alpha = 0.05\\), what is your conclusion for this test? Interpret your conclusion in the context of this problem."
   }
 ]
