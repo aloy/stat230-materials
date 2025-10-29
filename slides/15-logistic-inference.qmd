@@ -355,7 +355,7 @@ $H_0: \beta_{k+1} = \cdots = \beta_{p} = 0 \quad \text{vs.} \quad H_a:$ at least
 ::::
 
 
-$$G = 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}$$
+$$\text{LRT} = 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}$$
 :::::
 
 :::::{.fragment fragment-index=3}
@@ -395,7 +395,7 @@ Alternate representation of the LRT test statistic
 
 :::{style="font-size:0.8em"}
 \begin{align*}
-G &= 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\\
+\text{LRT} &= 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\\
 &= \text{deviance(reduced model)} - \text{deviance(full model)}
 \end{align*}
 :::
@@ -453,9 +453,9 @@ $H_0: \beta_1=\beta_2=\beta_3=\beta_4 = 0 \quad \text{vs.} \quad H_a:$ at least 
 :::::
 
 :::::{.fragment fragment-index=3}
-$G = \text{deviance(reduced model)} - \text{deviance(full model)}$
+$\text{LRT} = \text{deviance(reduced model)} - \text{deviance(full model)}$
 
-$G = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
+$\text{LRT} = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
 :::::
 
 :::::{.fragment fragment-index=4}
@@ -475,9 +475,9 @@ $H_0: \beta_1=\beta_2=\beta_3=\beta_4 = 0 \quad \text{vs.} \quad H_a:$ at least 
 
 ::::
 
-$G = \text{deviance(reduced model)} - \text{deviance(full model)}$
+$\text{LRT} = \text{deviance(reduced model)} - \text{deviance(full model)}$
 
-$G = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
+$\text{LRT} = 3564.8 - 3214.1 = `r 3564.8 - 3214.1`$
 
 d.f. $=5 - 1 = 4$
 
@@ -490,5 +490,5 @@ d.f. $=5 - 1 = 4$
 ::::
 
 :::{.fragment fragment-index=1}
-There is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years ($G=350.7$, ${\sf d.f.} = 4$, <br> $p$-value < 0.001).
+There is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years ($\text{LRT}=350.7$, ${\sf d.f.} = 4$, <br> $p$-value < 0.001).
 :::

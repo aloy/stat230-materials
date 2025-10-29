@@ -288,17 +288,41 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Task 5.</strong> Interpret the coefficient for <code>male</code> in the context of this problem. In particular, explain what this coefficient tells us about the relationship between biological sex and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol constant.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- The coefficient for `male` is approximately 0.538. The expected log odds of experiencing coronary heart disease in a 10-year window for male participants is about 0.538 higher than that for female participants, holding total cholesterol constant. -->
-<!-- Of course, we don't think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: $e^{0.538} \approx 1.713$. Thus, the expected odds of experiencing coronary heart disease in a 10-year window for male participants are about 1.713 times higher than for female participants, holding total cholesterol constant. -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The coefficient for <code>male</code> is approximately 0.538. The expected log odds of experiencing coronary heart disease in a 10-year window for male participants is about 0.538 higher than that for female participants, holding total cholesterol constant.</p>
+<p>Of course, we don’t think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: <span class="math inline">\(e^{0.538} \approx 1.713\)</span>. Thus, the expected odds of experiencing coronary heart disease in a 10-year window for male participants are about 1.713 times higher than for female participants, holding total cholesterol constant.</p>
+</div>
+</div>
+</div>
 <p><strong>Task 6.</strong> Write the fitted logistic regression equation for both sexes.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- Females: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -3.28 + 0.00541 \times \text{totChol}$ -->
-<!-- Males: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-3.28 + 0.538) + 0.00541 \times \text{totChol}  = -2.742 + 0.00541 \times \text{totChol}$ -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Females: <span class="math inline">\(\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -3.28 + 0.00541 \times \text{totChol}\)</span></p>
+<p>Males: <span class="math inline">\(\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-3.28 + 0.538) + 0.00541 \times \text{totChol}  = -2.742 + 0.00541 \times \text{totChol}\)</span></p>
+</div>
+</div>
+</div>
 </section>
 <section id="a-multiple-logistic-regression-model" class="level2">
 <h2 class="anchored" data-anchor-id="a-multiple-logistic-regression-model">A multiple logistic regression model</h2>
@@ -316,29 +340,65 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Task 7.</strong> Interpret the coefficient for <code>age</code> in the context of this problem. In particular, explain what this coefficient tells us about the relationship between age and the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol , biological sex, and systolic blood pressure constant.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- The coefficient for `age` is approximately 0.061. This means that for each additional year increase in age, the log odds of experiencing coronary heart disease in a 10-year window increases by about 0.061, holding total cholesterol, biological sex, and systolic blood pressure constant. -->
-<!-- But... we don't think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: $e^{0.061} \approx 1.063$. Thus, a 1 year increase in age is associated with an approximate 6.3% increase in the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol, biological sex, and systolic blood pressure constant. -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The coefficient for <code>age</code> is approximately 0.061. This means that for each additional year increase in age, the log odds of experiencing coronary heart disease in a 10-year window increases by about 0.061, holding total cholesterol, biological sex, and systolic blood pressure constant.</p>
+<p>But… we don’t think on the log-odds scale, so we convert that to an odds ratio by exponentiating the coefficient: <span class="math inline">\(e^{0.061} \approx 1.063\)</span>. Thus, a 1 year increase in age is associated with an approximate 6.3% increase in the odds of experiencing coronary heart disease in a 10-year window, holding total cholesterol, biological sex, and systolic blood pressure constant.</p>
+</div>
+</div>
+</div>
 <p><strong>Task 8.</strong> Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- To calculate the predicted probability, we first need to calculate the log odds using the fitted logistic regression equation: -->
-<!-- $$\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -8.08 + 0.00201 \imes \text{totChol} + 0.686 \times \text{male} + 0.061 \times \text{age} + 0.0176 \times \text{sysBP}$$ -->
-<!-- Then, we convert the log odds to a predicted probability using the formula: -->
-<!-- $$\widehat{\pi} = \dfrac{e^{\text{log odds}}}{1 + e^{\text{log odds}}}$$   -->
-<!-- For a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg: -->
-<!-- - Log odds: $-8.08 + 0.00201 \times 240 + 0.686 \times 1 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.2686$ -->
-<!-- - Predicted probability: $\dfrac{e^{-1.2686}}{1 + e^{-1.2686}} \approx 0.219$ -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To calculate the predicted probability, we first need to calculate the log odds using the fitted logistic regression equation: <span class="math display">\[\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -8.08 + 0.00201 \imes \text{totChol} + 0.686 \times \text{male} + 0.061 \times \text{age} + 0.0176 \times \text{sysBP}\]</span> Then, we convert the log odds to a predicted probability using the formula: <span class="math display">\[\widehat{\pi} = \dfrac{e^{\text{log odds}}}{1 + e^{\text{log odds}}}\]</span> For a 55-year old male participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg:</p>
+<ul>
+<li>Log odds: <span class="math inline">\(-8.08 + 0.00201 \times 240 + 0.686 \times 1 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.2686\)</span></li>
+<li>Predicted probability: <span class="math inline">\(\dfrac{e^{-1.2686}}{1 + e^{-1.2686}} \approx 0.219\)</span></li>
+</ul>
+</div>
+</div>
+</div>
 <p><strong>Task 9.</strong> Using the model output above, calculate the predicted probability of experiencing coronary heart disease in a 10-year window for a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- For a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg: -->
-<!-- - Log odds: $-8.08 + 0.00201 \times 240 + 0.686 \times 0 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.9546$ -->
-<!-- - Predicted probability: $\dfrac{e^{-1.9546}}{1 + e^{-1.9546}} \approx 0.124$ -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For a 55-year old female participant with a total cholesterol level of 240 mg/dL and a systolic blood pressure of 130 mm Hg:</p>
+<ul>
+<li>Log odds: <span class="math inline">\(-8.08 + 0.00201 \times 240 + 0.686 \times 0 + 0.061 \times 55 + 0.0176 \times 130 \approx -1.9546\)</span></li>
+<li>Predicted probability: <span class="math inline">\(\dfrac{e^{-1.9546}}{1 + e^{-1.9546}} \approx 0.124\)</span></li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="an-interaction-term" class="level2">
 <h2 class="anchored" data-anchor-id="an-interaction-term">An interaction term</h2>
@@ -357,11 +417,23 @@ window.Quarto = {
 </div>
 </div>
 <p><strong>Task 10.</strong> Write the fitted logistic regression equation for both sexes.</p>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- Females: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -7.76 + 0.000373 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}$ -->
-<!-- Males: $\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-7.76 -0.124) + (0.000373 + 0.00333) \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}  = -7.884 + 0.0037 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}$ -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Females: <span class="math inline">\(\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = -7.76 + 0.000373 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}\)</span></p>
+<p>Males: <span class="math inline">\(\log \left( \dfrac{\widehat{\pi}}{1-\widehat{\pi}} \right) = (-7.76 -0.124) + (0.000373 + 0.00333) \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}  = -7.884 + 0.0037 \times \text{totChol} + 0.0624 \times \text{age} + 0.0177 \times \text{sysBP}\)</span></p>
+</div>
+</div>
+</div>
 </section>
 <section id="hypothesis-tests-for-individual-regression-coefficients" class="level2">
 <h2 class="anchored" data-anchor-id="hypothesis-tests-for-individual-regression-coefficients">Hypothesis tests for individual regression coefficients</h2>
@@ -370,60 +442,108 @@ window.Quarto = {
 <ol type="a">
 <li>State the null and alternative hypotheses for this test.</li>
 </ol>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- Null hypothesis ($H_0$): The interaction between `totChol` and `male` is not necessary (the coefficient for the interaction term is equal to zero); thus, $\beta_{5} = 0$. -->
-<!-- Alternative hypothesis ($H_a$): The interaction between `totChol` and `male` is necessary (the coefficient for the interaction term is not equal to zero); thus, $\beta_{5} \neq 0$. -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Null hypothesis (<span class="math inline">\(H_0\)</span>): The interaction between <code>totChol</code> and <code>male</code> is not necessary (the coefficient for the interaction term is equal to zero); thus, <span class="math inline">\(\beta_{5} = 0\)</span>.</p>
+<p>Alternative hypothesis (<span class="math inline">\(H_a\)</span>): The interaction between <code>totChol</code> and <code>male</code> is necessary (the coefficient for the interaction term is not equal to zero); thus, <span class="math inline">\(\beta_{5} \neq 0\)</span>.</p>
+</div>
+</div>
+</div>
 <ol start="2" type="a">
 <li>Calculate the test statistic for this test. Note: this test statistic is provided in the model output above, but you should check that it is calculated just like we did in the linear regression setting.</li>
 </ol>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- The test statistic for the interaction term `totChol:male` is calculated as follows: -->
-<!-- $$z = \dfrac{\hat{\beta}_{5} - 0}{SE(\hat{\beta}_{5})} = \dfrac{0.00333 - 0}{0.00205} \approx 1.62$$ -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The test statistic for the interaction term <code>totChol:male</code> is calculated as follows: <span class="math display">\[z = \dfrac{\hat{\beta}_{5} - 0}{SE(\hat{\beta}_{5})} = \dfrac{0.00333 - 0}{0.00205} \approx 1.62\]</span></p>
+</div>
+</div>
+</div>
 <ol start="3" type="a">
 <li>Report the p-value for this test (from the summary table).</li>
 </ol>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- The p-value for the interaction term `totChol:male` is approximately 0.105. -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The p-value for the interaction term <code>totChol:male</code> is approximately 0.105.</p>
+</div>
+</div>
+</div>
 <ol start="4" type="a">
 <li>Sketch a normal distribution and shade in the area corresponding to the p-value for this test.</li>
 </ol>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- To sketch a normal distribution and shade in the area corresponding to the p-value for this test, we would draw a standard normal distribution curve (mean = 0, standard deviation = 1).  -->
-<!-- ```{r} -->
-<!-- #| message: false -->
-<!-- #| fig-asp: 0.6 -->
-<!-- #| fig-width: 3.5 -->
-<!-- #| echo: false -->
-<!-- library(ggplot2) -->
-<!-- library(dplyr) -->
-<!-- x <- seq(-4, 4, length=1000) -->
-<!-- y <- dnorm(x) -->
-<!-- data <- data.frame(x, y) -->
-<!-- ggplot(data, aes(x=x, y=y)) + -->
-<!--   geom_line() + -->
-<!--   geom_area(data = subset(data, x <= -1.62), aes(y=y), fill="blue", alpha=0.5) + -->
-<!--   geom_area(data = subset(data, x >= 1.62), aes(y=y), fill="blue", alpha=0.5) + -->
-<!--   labs(title="Normal Distribution with Shaded p-value Area", -->
-<!--        x="z-score", -->
-<!--        y="Density") + -->
-<!--   theme_minimal() + -->
-<!--   theme(plot.title = element_text(size = 10)) -->
-<!-- ``` -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To sketch a normal distribution and shade in the area corresponding to the p-value for this test, we would draw a standard normal distribution curve (mean = 0, standard deviation = 1).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14H-sol-binary-logistic_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="336"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <ol start="5" type="a">
 <li>Using a significance level of <span class="math inline">\(\alpha = 0.05\)</span>, what is your conclusion for this test? Interpret your conclusion in the context of this problem.</li>
 </ol>
-<!-- ::: {.callout-tip collapse="true"} -->
-<!-- ### Solution -->
-<!-- Since the p-value (approximately 0.105) is greater than the significance level of $\alpha = 0.05$, we fail to reject the null hypothesis. There is not enough evidence to conclude that the interaction between total cholesterol and biological sex is necessary in predicting the odds of experiencing coronary heart disease in a 10-year window. -->
-<!-- ::: -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since the p-value (approximately 0.105) is greater than the significance level of <span class="math inline">\(\alpha = 0.05\)</span>, we fail to reject the null hypothesis. There is not enough evidence to conclude that the interaction between total cholesterol and biological sex is necessary in predicting the odds of experiencing coronary heart disease in a 10-year window.</p>
+</div>
+</div>
+</div>
 
 
 </section>
