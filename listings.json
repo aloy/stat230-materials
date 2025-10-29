@@ -2,6 +2,7 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/15-logistic-inference.html",
       "/slides/14-binary-logistic.html",
       "/slides/12-mlr-selection.html",
       "/slides/11-mlr-multicollinearity.html",
