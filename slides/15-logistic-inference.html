@@ -450,7 +450,7 @@
 <div class="column" style="width:25%;">
 <p><strong>Test statistic: </strong></p>
 </div></div>
-<p><span class="math display">\[G = 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\]</span></p>
+<p><span class="math display">\[\text{LRT} = 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\]</span></p>
 </div>
 <div class="fragment" data-fragment-index="3">
 <div class="columns">
@@ -485,7 +485,7 @@
 <p>Alternate representation of the LRT test statistic</p>
 <div style="font-size:0.8em">
 <p><span class="math display">\[\begin{align*}
-G &amp;= 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\\
+\text{LRT} &amp;= 2 \cdot \text{log-likelihood(full model)} - 2 \cdot  \text{log-likelihood(reduced model)}\\
 &amp;= \text{deviance(reduced model)} - \text{deviance(full model)}
 \end{align*}\]</span></p>
 </div>
@@ -532,8 +532,8 @@ Residual deviance: 3214.1  on 4185  degrees of freedom</code></pre>
 </div></div>
 </div>
 <div class="fragment" data-fragment-index="3">
-<p><span class="math inline">\(G = \text{deviance(reduced model)} - \text{deviance(full model)}\)</span></p>
-<p><span class="math inline">\(G = 3564.8 - 3214.1 = 350.7\)</span></p>
+<p><span class="math inline">\(\text{LRT} = \text{deviance(reduced model)} - \text{deviance(full model)}\)</span></p>
+<p><span class="math inline">\(\text{LRT} = 3564.8 - 3214.1 = 350.7\)</span></p>
 </div>
 <div class="fragment" data-fragment-index="4">
 <p>d.f. <span class="math inline">\(=5 - 1 = 4\)</span></p>
@@ -547,8 +547,8 @@ Residual deviance: 3214.1  on 4185  degrees of freedom</code></pre>
 </div><div class="column" style="width:75%;">
 <p><span class="math inline">\(H_0: \beta_1=\beta_2=\beta_3=\beta_4 = 0 \quad \text{vs.} \quad H_a:\)</span> at least one <span class="math inline">\(\beta_j \ne 0\)</span></p>
 </div></div>
-<p><span class="math inline">\(G = \text{deviance(reduced model)} - \text{deviance(full model)}\)</span></p>
-<p><span class="math inline">\(G = 3564.8 - 3214.1 = 350.7\)</span></p>
+<p><span class="math inline">\(\text{LRT} = \text{deviance(reduced model)} - \text{deviance(full model)}\)</span></p>
+<p><span class="math inline">\(\text{LRT} = 3564.8 - 3214.1 = 350.7\)</span></p>
 <p>d.f. <span class="math inline">\(=5 - 1 = 4\)</span></p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -560,7 +560,7 @@ Residual deviance: 3214.1  on 4185  degrees of freedom</code></pre>
 </div>
 </div></div>
 <div class="fragment" data-fragment-index="1">
-<p>There is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years (<span class="math inline">\(G=350.7\)</span>, <span class="math inline">\({\sf d.f.} = 4\)</span>, <br> <span class="math inline">\(p\)</span>-value &lt; 0.001).</p>
+<p>There is overwhelming evidence that at least one of the explanatory variables helps explain the odds of having a heart attack in the next ten years (<span class="math inline">\(\text{LRT}=350.7\)</span>, <span class="math inline">\({\sf d.f.} = 4\)</span>, <br> <span class="math inline">\(p\)</span>-value &lt; 0.001).</p>
 </div>
 
 
