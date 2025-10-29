@@ -102,3 +102,9 @@
   path: slides/14-binary-logistic.qmd
   categories:
     - "Logistic Regression"
+- title: "Inference for Logistic Regression"
+  date: 2025-10-29
+  image: slides/featured/15-logistic-inference.png
+  path: slides/15-logistic-inference.qmd
+  categories:
+    - "Logistic Regression"
