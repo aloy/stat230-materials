@@ -3,6 +3,7 @@ title: "Binary Logistic Regression in R"
 webr:
   packages:
     - Sleuth3
+    - broom
 format: 
   live-html:
     toc: true
@@ -43,7 +44,46 @@ Much of the regression output looks the same as in linear regression, but there 
 - The test statistic is no labeled `z value` instead of `t value`.
 - A `Null deviance` and `Residual deviance` are reported instead of `Multiple R-squared` and `Adjusted R-squared`.
 
-We'll discuss the use and interpretation of these results in more detail in class.
+
+## Making predictions
+
+We can also use R to calculate the predicted probabilities from our fitted logistic regression model using the `predict()` function. Below is an example where we are calculating the predicted probability that a 50-year old develops CHD in the next ten years:
+
+```{webr}
+predict(logistic_model, newdata = data.frame(age = 50), type = "response")
+```
+
+Notice that we are specifying the data (x values) use for prediction using the same argument as in linear regression: we create a data frame with columns named identically to the actual data set used to fit the mode. We also must specify `type = "response"` to get probabilities. If you omit this argument, you will get a prediction on the log-odds scale, which isn't a probability!
+
+
+## Inference for single regression coefficients
+
+You have already seen that we can obtain Wald-based tests via the `summary()` command. To extract only that coefficient table, you can use the `tidy()` command from the broom package:
+
+```{webr}
+library(broom)
+tidy(logistic_model)
+```
+
+To calculate Wald-based confidence intervals for each regression coefficient, we can use the `confint()` command, specifying the `level` argument:
+
+```{webr}
+tidy(logistic_model, conf.int = TRUE, conf.level = 0.9)
+```
+
+
+***
+
+## Function quick reference
+
+The following table summarizes the functions discussed above:
+
+| Function | Purpose |
+|----|-----------|
+| `glm(formula, data, family = binomial)` | Fit a binary logistic regression model |
+| `summary(model)` | View model summary and Wald tests |
+| `predict(model, newdata, type = "response")` | Make predictions on the probability scale |
+| `tidy(model, conf.int = TRUE, conf.level)` | Extract coefficient table with confidence intervals |
 
 
 
