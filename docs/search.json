@@ -1593,7 +1593,7 @@
     "href": "slides.html",
     "title": "Stat 230 Slide Decks",
     "section": "",
-    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nInference for Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nBinary Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Validation\n\n\n\nMLR\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Selection\n\n\n\nMLR\n\n\n\n\nOct 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMulticollinearity\n\n\n\nMLR\n\n\n\n\nOct 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
+    "text": "All of the slide decks for Stat 230 are available here. You can filter the slide decks by topics or date using the filter box above. You can also click on any of the categories to see only slide decks in that category.\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDiagnostics for Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 31, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nBinary Logistic Regression\n\n\n\nLogistic Regression\n\n\n\n\nOct 27, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Validation\n\n\n\nMLR\n\n\n\n\nOct 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Model Selection\n\n\n\nMLR\n\n\n\n\nOct 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMulticollinearity\n\n\n\nMLR\n\n\n\n\nOct 15, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMLR Diagnostics\n\n\n\nMLR\n\n\n\n\nOct 10, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCategorical Predictor Variables\n\n\n\nMLR\n\n\n\n\nOct 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nMultiple Regression\n\n\n\nMLR\n\n\n\n\nOct 1, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nPolynomial Regression\n\n\n\nMLR\n\nPolynomial\n\n\n\n\nSep 29, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Transformations\n\n\n\nSLR\n\nTransformations\n\n\n\n\nSep 26, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nSLR Diagnostics and Transformations\n\n\n\nSLR\n\nDiagnostics\n\nTransformations\n\n\n\n\nSep 24, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Prediction\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 22, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nInference for SLR Coefficients\n\n\n\nSLR\n\nInference\n\n\n\n\nSep 17, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nCourse overview, SLR review\n\n\n\nSLR\n\n\n\n\nSep 15, 2025\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "slides/10-mlr-diagnostics.html#warm-up",
@@ -2567,5 +2567,201 @@
     "title": "Binary Logistic Regression in R",
     "section": "Function quick reference",
     "text": "Function quick reference\nThe following table summarizes the functions discussed above:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nglm(formula, data, family = binomial)\nFit a binary logistic regression model\n\n\nsummary(model)\nView model summary and Wald tests\n\n\npredict(model, newdata, type = \"response\")\nMake predictions on the probability scale\n\n\ntidy(model, conf.int = TRUE, conf.level)\nExtract coefficient table with confidence intervals"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#revisiting-the-framingham-model",
+    "href": "slides/16-logistic-diagnostics.html#revisiting-the-framingham-model",
+    "title": "Model Assessment",
+    "section": "Revisiting the Framingham model",
+    "text": "Revisiting the Framingham model\n\nY = CHD (0 = no, 1 = yes)\nX = participant’s age, sex, total cholesterol, and systolic blood pressure"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#measures-of-association",
+    "href": "slides/16-logistic-diagnostics.html#measures-of-association",
+    "title": "Model Assessment",
+    "section": "Measures of association",
+    "text": "Measures of association\nThere is no widely agreed upon equivalent of R2 in logistic regression\n\nKuiper and Skal recommend a few options to measure the association include:\n\nSomers’ D\nGoodman-Kruskal gamma\nKendall’s tau"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#concordant-pairs",
+    "href": "slides/16-logistic-diagnostics.html#concordant-pairs",
+    "title": "Model Assessment",
+    "section": "Concordant pairs",
+    "text": "Concordant pairs\n\nLet’s consider pairs of observations: 1 success and 1 failure\n\nFind their predicted probabilities of success, \\(\\pi_i\\), from the model\nIf \\(\\pi_i\\) for the observed success \\(&gt;\\) \\(\\pi_i\\) for the observed failure \\(\\Longrightarrow\\) concordant\nIf \\(\\pi_i\\) for the observed success \\(&lt;\\) \\(\\pi_i\\) for the observed failure \\(\\Longrightarrow\\) discordant\nTies are possible"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#concordant-pairs-1",
+    "href": "slides/16-logistic-diagnostics.html#concordant-pairs-1",
+    "title": "Model Assessment",
+    "section": "Concordant pairs",
+    "text": "Concordant pairs\n\n\nExample 1.\n\n\n\n\n\nCase\nObserved\nPredicted probability\n\n\n\n\n1\n0\n0.4\n\n\n2\n1\n0.7\n\n\n\n\n\nThe predicted probability of success is higher for the actual success \\(\\Longrightarrow\\) concordant\n\n\n\n\nExample 2.\n\n\n\n\n\nCase\nObserved\nPredicted probability\n\n\n\n\n3\n0\n0.62\n\n\n4\n1\n0.51\n\n\n\n\n\nThe predicted probability of success is lower for the actual success \\(\\Longrightarrow\\) discordant"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#measures-of-association-1",
+    "href": "slides/16-logistic-diagnostics.html#measures-of-association-1",
+    "title": "Model Assessment",
+    "section": "Measures of association",
+    "text": "Measures of association\nLet \\(N_C =\\) # concordant pairs, \\(N_D=\\) # discordant pairs,  \\(N_T=\\) # ties, n = # observations\n\n\n\nSomers’ D\n\n\\(D = \\frac{N_C - N_D}{N_C + N_D + N_T}\\)\n\n\n\n\n\n\nGoodman-Kruskal gamma\n\n\\(\\gamma = \\frac{N_C - N_D}{N_C + N_D}\\)\n\n(No ties!)\n\n\n\n\n\n\nKendall’s tau\n\n\\(\\tau_a = \\frac{N_C - N_D}{n(n-1)/2}\\)\n\n(All pairs, even within same observed 0/1 group)\n\n\n\n\n\n\n\n\n\nNote\n\n\nFor all three metrics, 0 = model has no predictive power\nMetrics are between -1 and 1"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#framingham-model",
+    "href": "slides/16-logistic-diagnostics.html#framingham-model",
+    "title": "Model Assessment",
+    "section": "Framingham model",
+    "text": "Framingham model\nWe fit a model using a participant’s age, sex, total cholesterol, and systolic blood pressure to predict the odds of having a heart attack in the next 10-years we\n\n\n\n\n\n\n\n   Dxy  Gamma  Tau-a \n0.4467 0.4468 0.1149"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#model-assumptions",
+    "href": "slides/16-logistic-diagnostics.html#model-assumptions",
+    "title": "Model Assessment",
+    "section": "Model assumptions",
+    "text": "Model assumptions\n\nLinearity: there is a linear relationship between the log odds (logit) and the predictors\nIndependence: no pairing, clustering, etc.\nRandomness: we have a random sample from the population or the data were collected from a randomized experiment"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#residual-plots",
+    "href": "slides/16-logistic-diagnostics.html#residual-plots",
+    "title": "Model Assessment",
+    "section": "Residual plots",
+    "text": "Residual plots\nResponse residuals:\n\n\\(e_i = y_i - \\widehat{\\pi}_i\\)\nwill always be between -1 and 1 . . ."
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#binned-residuals",
+    "href": "slides/16-logistic-diagnostics.html#binned-residuals",
+    "title": "Model Assessment",
+    "section": "Binned residuals",
+    "text": "Binned residuals\n\n\nGelman and Hill suggest binning (grouping) cases by a predictor and computing mean response residuals value within each group\n\nCalculate response residuals\nOrder observations either by the values of the predicted log odds/probabilities, or by quantitative predictor variable\nUse the ordered data to create \\(g\\) bins of approximately equal size. (Default value: \\(g = \\sqrt{n}\\))\nCalculate average residual value in each bin\nPlot average residuals vs. average predicted log odds, probability, or predictor value"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#binned-residuals-1",
+    "href": "slides/16-logistic-diagnostics.html#binned-residuals-1",
+    "title": "Model Assessment",
+    "section": "Binned residuals",
+    "text": "Binned residuals"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#binned-residuals-2",
+    "href": "slides/16-logistic-diagnostics.html#binned-residuals-2",
+    "title": "Model Assessment",
+    "section": "Binned residuals",
+    "text": "Binned residuals\n\nNonlinear trend may be indication that squared term or log transformation of predictor variable required\n\n\n\nIf bins have large average residuals (in magnitude)\n\nLook at averages of other predictor variables across bins\nInteraction may be required if large magnitude residuals correspond to certain combinations of predictor variables"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#binned-residuals-3",
+    "href": "slides/16-logistic-diagnostics.html#binned-residuals-3",
+    "title": "Model Assessment",
+    "section": "Binned residuals",
+    "text": "Binned residuals"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#residuals-vs.-categorical-predictor",
+    "href": "slides/16-logistic-diagnostics.html#residuals-vs.-categorical-predictor",
+    "title": "Model Assessment",
+    "section": "Residuals vs. categorical predictor",
+    "text": "Residuals vs. categorical predictor\n\nCalculate average residual for each level of the predictor\nAll the means should close to 0\n\n\n\n\n\n\nmale\naverage residual\n\n\n\n\n0\n-8.88e-13\n\n\n1\n-3.51e-13"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#case-influence",
+    "href": "slides/16-logistic-diagnostics.html#case-influence",
+    "title": "Model Assessment",
+    "section": "Case influence",
+    "text": "Case influence\nWe can still calculate and interpret leverage and Cook’s distance as before"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#model-assumptions-1",
+    "href": "slides/16-logistic-diagnostics.html#model-assumptions-1",
+    "title": "Model Assessment",
+    "section": "Model assumptions",
+    "text": "Model assumptions\n\nLinearity: there is a linear relationship between the log odds (logit) and the predictors\nIndependence: no pairing, clustering, etc.\nRandomness: we have a random sample from the population or the data were collected from a randomized experiment"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#response-residuals",
+    "href": "slides/16-logistic-diagnostics.html#response-residuals",
+    "title": "Model Assessment",
+    "section": "Response residuals",
+    "text": "Response residuals\n\n\\(e_i = y_i - \\widehat{\\pi}_i = \\begin{cases} 1 - \\widehat{\\pi}_i & \\text{if } y_i = 1 \\\\ - \\widehat{\\pi}_i & \\text{if } y_i = 0 \\end{cases}\\)\nAlways be between -1 and 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNot normally distributed\n\n\n\n\nTrue distribution under correct model is unknown"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#pearson-residuals",
+    "href": "slides/16-logistic-diagnostics.html#pearson-residuals",
+    "title": "Model Assessment",
+    "section": "Pearson residuals",
+    "text": "Pearson residuals\nStandardize the distance between the observation (0 or 1) and the expected value (probability)\n\\[r_{p_i} = \\dfrac{y_i - \\widehat{\\pi}_i}{\\sqrt{\\widehat{\\pi}_i (1 - \\widehat{\\pi}_i)}}\\]"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#pearson-residuals-vs.-predicted-probabilities",
+    "href": "slides/16-logistic-diagnostics.html#pearson-residuals-vs.-predicted-probabilities",
+    "title": "Model Assessment",
+    "section": "Pearson residuals vs. predicted probabilities",
+    "text": "Pearson residuals vs. predicted probabilities\n\nIf the model is correct, then the expected (average) Pearson residual within each bin should be close to 0\nA smoother should be approximately horizontal line with intercept 0\n\n\nresidualPlot(heart_mod, type = \"pearson\", smooth = TRUE)"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#pearson-residuals-vs.-widehateta-or-widehatpi",
+    "href": "slides/16-logistic-diagnostics.html#pearson-residuals-vs.-widehateta-or-widehatpi",
+    "title": "Model Assessment",
+    "section": "Pearson residuals vs. \\(\\widehat{\\eta}\\) or \\(\\widehat{\\pi}\\)",
+    "text": "Pearson residuals vs. \\(\\widehat{\\eta}\\) or \\(\\widehat{\\pi}\\)\n\n\nIf the model is correct, then the expected (average) Pearson residual within each bin should be close to 0\nA smoother should be approximately horizontal line with intercept 0\n\n\n\nresidualPlot(heart_mod, type = \"pearson\", smooth = TRUE)"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#building-intuition",
+    "href": "slides/16-logistic-diagnostics.html#building-intuition",
+    "title": "Model Assessment",
+    "section": "Building intuition",
+    "text": "Building intuition"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#section",
+    "href": "slides/16-logistic-diagnostics.html#section",
+    "title": "Model Assessment",
+    "section": "",
+    "text": "19 of these residual plots were created (simulated) from a model we know is correct, and one is from our actual data"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#section-1",
+    "href": "slides/16-logistic-diagnostics.html#section-1",
+    "title": "Model Assessment",
+    "section": "",
+    "text": "Smoothers can help draw attention to major flaws, but there will always be variation from the horizontal!"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#framingham-model-pearson-residuals",
+    "href": "slides/16-logistic-diagnostics.html#framingham-model-pearson-residuals",
+    "title": "Model Assessment",
+    "section": "Framingham model Pearson residuals",
+    "text": "Framingham model Pearson residuals"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#empirical-logit",
+    "href": "slides/16-logistic-diagnostics.html#empirical-logit",
+    "title": "Model Assessment",
+    "section": "Empirical logit",
+    "text": "Empirical logit\nToy example: Our \\(x\\) values are all unique and range from 2-20. Let’s divide the \\(n=7\\) cases into four groups according to their \\(x\\) value: \\[[0,5], (5-10], (10-15], (15-20]\\]"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#empirical-logit-1",
+    "href": "slides/16-logistic-diagnostics.html#empirical-logit-1",
+    "title": "Model Assessment",
+    "section": "Empirical logit",
+    "text": "Empirical logit\nFor each group, compute the empirical probability and odds of success\nAdd 0.5 a success and failure to each group to eliminate computational problems when we see 0 S or F in a group.\n\\(\\widehat{p} = \\dfrac{\\text{# successes in bin} + 0.5}{\\text{# cases in bin} + 1}\\)\n\\(\\widehat{\\omega} = \\dfrac{\\widehat{p}}{1-\\widehat{p}}= \\dfrac{\\text{# successes in bin} + 0.5}{\\text{# failures in bin} + 0.5}\\)\n\n\n\n\n\n\nbin\n[0,5]\n(5-10]\n(10-15]\n(15-20]\n\n\nemp.prob\n0.625\n0.750\n0.500\n0.250\n\n\nemp.odds\n1.6666667\n3.0000000\n1.0000000\n0.3333333"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#empirical-logit-plots",
+    "href": "slides/16-logistic-diagnostics.html#empirical-logit-plots",
+    "title": "Model Assessment",
+    "section": "Empirical logit plots",
+    "text": "Empirical logit plots\nPlot the empirical log odds vs. midpoint for each bin.\nfor linearity, strength, direction, curvature, etc.\n\n\nIt’s hard to see a trend (whether good or bad) with only 4 bins!"
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#setting-the-bin-width",
+    "href": "slides/16-logistic-diagnostics.html#setting-the-bin-width",
+    "title": "Model Assessment",
+    "section": "Setting the bin width",
+    "text": "Setting the bin width\nTarget: relatively constant probability/odds of success within each group and enough cases in each group to estimate prob/odds\n\nBins that are too wide (e.g. too few bins) means this assumption is likely not met\nBins that are too narrow (e.g. too many bins) means that we don’t have enough cases within each bin to accurately estimate the probability/odds of success."
+  },
+  {
+    "objectID": "slides/16-logistic-diagnostics.html#back-to-the-heart-study",
+    "href": "slides/16-logistic-diagnostics.html#back-to-the-heart-study",
+    "title": "Model Assessment",
+    "section": "Back to the heart study",
+    "text": "Back to the heart study"
   }
 ]

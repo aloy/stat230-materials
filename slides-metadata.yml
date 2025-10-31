@@ -108,3 +108,9 @@
   path: slides/15-logistic-inference.qmd
   categories:
     - "Logistic Regression"
+- title: "Diagnostics for Logistic Regression"
+  date: 2025-10-31
+  image: slides/featured/16-logistic-diagnostics.png
+  path: slides/16-logistic-diagnostics.qmd
+  categories:
+    - "Logistic Regression"

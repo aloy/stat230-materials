@@ -1,0 +1,462 @@
+---
+title: "Model Assessment"
+subtitle: "Logistic regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+---
+
+```{r setup, include=FALSE}
+library(here)
+framingham <- read.csv(here("data/framingham.csv"))
+
+library(ggplot2)
+library(ggformula)
+library(dplyr)
+library(car)
+library(gridExtra)
+library(broom)
+library(Sleuth3)
+library(ggthemes)
+library(patchwork)
+
+# options(digits=4) # display four significant digits by default
+```
+
+
+## Revisiting the Framingham model
+
+- Y = CHD (0 = no, 1 = yes)
+
+- X = participant's age, sex, total cholesterol, and systolic blood pressure
+
+```{r fig.width = 12, fig.height = 4}
+heart_mod <- glm(TenYearCHD ~ age + male + totChol + sysBP, data = framingham, 
+family = "binomial")
+heart_aug <- augment(heart_mod, type.predict= "response") |>
+  dplyr::mutate(.resp.resid = resid(heart_mod, type= "response"))
+```
+
+
+## Model assumptions
+::: {.incremental}
+1. **Linearity:** there is a linear relationship between the log odds (logit) and the predictors
+
+2. **Independence:** no pairing, clustering, etc.
+
+3. **Randomness:** we have a random sample from the population or the data were collected from a randomized experiment
+:::
+
+# Residual analysis
+
+## Response residuals
+
+- $e_i = y_i - \widehat{\pi}_i = \begin{cases} 1 - \widehat{\pi}_i & \text{if } y_i = 1 \\ - \widehat{\pi}_i & \text{if } y_i = 0 \end{cases}$
+- Always be between -1 and 1
+
+. . .
+
+:::{.columns}
+:::{.column width="50%"}
+```{r}
+#| fig-height: 4
+#| fig-width: 4
+#| out-width: "100%"
+par(mar = c(4, 4, 0.1, 0.1))
+residualPlot(heart_mod, type = "response", smooth = FALSE)
+```
+:::
+
+:::{.column width="50%"}
+
+:::fragment
+- Not normally distributed
+:::
+
+:::fragment
+- True distribution under correct model is unknown
+:::
+:::
+:::
+
+
+
+
+## Binned residuals
+
+:::{style="font-size: 0.9em;"}
+
+<!-- - It is not useful to plot the raw residuals, so we will examine binned residual plots -->
+
+Gelman and Hill suggest binning (grouping) cases by a predictor and computing mean response residuals value within each group
+
+:::{.incremental}
+- Calculate response residuals
+
+- Order observations either by the values of the predicted log odds/probabilities, or by quantitative predictor variable
+
+- Use the ordered data to create $g$ bins of approximately equal size.<br> (Default value: $g = \sqrt{n}$)
+
+- Calculate average residual value in each bin
+
+- Plot average residuals vs. average predicted log odds, probability, or predictor value
+:::
+
+:::
+
+
+## Binned residuals
+
+```{r fig.width = 5, fig.height = 4.5, echo=FALSE, out.width="95%", fig.align='center'}
+heart_aug <- augment(heart_mod, type.predict= "link", type.residuals = "pearson") |>
+  mutate(.resp.resid = resid(heart_mod, type= "response"))
+
+binned_resids <- heart_aug |> 
+  mutate(bin = ntile(heart_mod$linear.predictors, 65)) |>
+  group_by(bin) |>
+  summarize(mean_linear_pred = mean(.fitted),
+            avg_resid = mean(.resp.resid))
+
+gf_point(avg_resid ~ mean_linear_pred, data = binned_resids) |>
+  gf_hline(yintercept = 0, linetype = 2) +
+  labs(x = "Predicted log odds", y = "Average response residual") +
+  theme_classic()
+```
+
+
+## Binned residuals
+
+
+- Nonlinear trend may be indication that squared term or log transformation of predictor variable required
+
+:::{.fragment}
+- If bins have large average residuals (in magnitude)
+
+    + Look at averages of other predictor variables across bins
+
+    + Interaction may be required if large magnitude residuals correspond to certain combinations of predictor variables
+:::
+
+## Binned residuals
+
+```{r echo=FALSE}
+#| layout-ncol: 2
+#| fig-height: 3.25
+#| fig-width: 3.75
+heart_aug |> 
+  mutate(bin = ntile(age, 65)) |>
+  group_by(bin) |>
+  summarize(mean_age = mean(age),
+            avg_resid = mean(.resp.resid)) |>
+  ggplot(aes(x = mean_age, y = avg_resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = 2) +
+  labs(x = "Age", y = "Average response residual") +
+  theme_classic()
+  
+
+heart_aug |> 
+  mutate(bin = ntile(totChol, 65)) |>
+  group_by(bin) |>
+  summarize(mean_totChol = mean(totChol),
+            avg_resid = mean(.resp.resid)) |>
+  ggplot(aes(x = mean_totChol, y = avg_resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = 2) +
+  labs(x = "Total cholesterol", y = "Average response residual") +
+  theme_classic()
+
+heart_aug |> 
+  mutate(bin = ntile(sysBP, 65)) |>
+  group_by(bin) |>
+  summarize(mean_sysBP = mean(sysBP),
+            avg_resid = mean(.resp.resid)) |>
+  ggplot(aes(x = mean_sysBP, y = avg_resid)) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = 2) +
+  labs(x = "Systolic blood pressure", y = "Average response residual") +
+  theme_classic()
+```
+
+
+## Residuals vs. categorical predictor
+
+- Calculate average residual for each level of the predictor
+
+- All the means should close to 0
+
+
+```{r echo=FALSE}
+heart_aug |>
+  group_by(male) |>
+  dplyr::summarize(`average residual` = mean(.resp.resid)) |>
+  knitr::kable(digits = 15)
+```
+
+
+## Pearson residuals
+
+Standardize the distance between the observation (0 or 1)
+and the expected value (probability)
+
+$$r_{p_i} = \dfrac{y_i - \widehat{\pi}_i}{\sqrt{\widehat{\pi}_i (1 - \widehat{\pi}_i)}}$$
+
+## Pearson residuals vs. $\widehat{\eta}$ or $\widehat{\pi}$
+
+
+:::{style="font-size: 0.8em;"}
+- If the model is correct, then the expected (average) Pearson residual within each bin should be close to 0
+
+- A smoother should be approximately horizontal line with intercept 0
+:::
+
+```{r}
+#| echo: true
+#| fig-height: 4.25
+#| fig-width: 4.25
+#| out-width: 60%
+#| fig-align: 'center'
+residualPlot(heart_mod, type = "pearson", smooth = TRUE)
+```
+
+
+##
+
+19 of these residual plots were created (simulated) from a model we know is correct, and one is from our actual data
+
+```{r}
+#| cache: true
+#| echo: false
+#| fig-height: 6
+#| fig-width: 8
+#| out-width: 90%
+#| fig-align: 'center'
+set.seed(354798)
+heart1 <- glm(formula = TenYearCHD ~ age, family = "binomial", data = framingham)
+glm_lineup <- replicate(19, expr = simulate(heart1), simplify = FALSE)
+glm_lineup[[20]] <- data.frame(sim_1 = framingham[["TenYearCHD"]])
+
+glm_lineup <- lapply(glm_lineup, FUN = function(x) {
+  broom::augment(glm(x[[1]] ~ age, data = framingham, family = binomial), type.residuals = "pearson")
+}) 
+
+glm_lineup <- glm_lineup %>% 
+  bind_rows() %>%
+  mutate(.sample = rep(1:20, each = nrow(framingham)),
+         .id = sample(20, size = 20, replace = FALSE) %>% rep(., each = nrow(framingham))) 
+
+glm_lineup %>%
+  ggplot(aes(x = .fitted, y = .resid)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(shape = 1) +
+  geom_smooth(method = "loess", se = FALSE, color = "magenta") +
+  facet_wrap(~ .id, ncol = 5) +
+  labs(x = "Linear predictor", y = "Pearson residuals") +
+  theme_bw()
+```
+
+
+##
+
+Smoothers can help draw attention to major flaws, but there will always be
+variation from the horizontal!
+
+```{r}
+#| cache: true
+#| echo: false
+#| fig-height: 6
+#| fig-width: 8
+#| fig-align: 'center'
+#| message: false
+library(nullabor) # lineup tools
+library(tidyverse)
+N <- 1000
+df <- tibble(
+  x1 = rnorm(N),
+  x2 = rnorm(N),
+  prob_y = exp(-1 + x1 + x2 + 0.7 * x1^2) / 
+    (1 + exp(-1 + x1 + x2 + 0.7 * x1^2)),
+  y = rbinom(N, size = 1, prob = prob_y)
+)
+
+no_quad <- glm(y ~ x1 + x2, data = df, family = "binomial")
+no_quad_aug <- augment(no_quad, type.residuals = "pearson")
+
+sim_ys <- simulate(no_quad, nsim = 19)
+sim_aug <- map_dfr(
+  sim_ys, 
+  ~augment(glm(.x ~ x1 + x2, data = df, family = binomial))
+)
+sim_aug$.n <- rep(1:19, each = nrow(df))
+
+no_quad_raw_lineup <- lineup(true = no_quad_aug, n = 19, samples = sim_aug) %>%
+    ggplot(aes(x = .fitted, y = .resid)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point(shape = 1) +
+  geom_smooth(method = "loess", se = FALSE, color = "magenta") +
+  facet_wrap(~.sample, ncol = 5) +
+  labs(x = "Linear predictor", y = "Pearson residuals") +
+  theme_bw()
+
+no_quad_raw_lineup
+```
+
+
+## Framingham model Pearson residuals
+
+```{r}
+#| warning: false
+#| fig-height: 5
+#| fig-width: 7.5
+residualPlots(heart_mod, type = "pearson", tests = FALSE, layout = c(2, 3))
+```
+
+# Checking linearity is hard!
+
+
+## Empirical logit
+
+*Toy example:* Our $x$ values are all unique and range from 2-20. Let's
+divide the $n=7$ cases into four groups according to their $x$ value:
+$$[0,5], (5-10], (10-15], (15-20]$$
+
+```{r echo=FALSE, fig.height = 4, fig.width=4, fig.align='center'}
+x <- c(2, 4, 5, 7, 13, 14, 20)
+y <- c(1, 1, 0, 1, 1, 0, 0)
+gf_point(y ~ x) %>%
+  gf_vline(xintercept = c(5, 10, 15)) +
+  annotate(geom = "text", x = c(2.5, 7.5, 12.5, 17.5), y = 0.5, label = c("[0,5]", "(5-10]", "(10-15]", "(15-20]"))
+```
+
+
+## Empirical logit
+
+**For each group, compute the empirical probability and odds of success**
+
+Add 0.5 a success and failure to each group to eliminate computational problems
+when we see 0 S or F in a group.
+
+$\widehat{p} = \dfrac{\text{# successes in bin} + 0.5}{\text{# cases in bin} + 1}$
+
+$\widehat{\omega} = \dfrac{\widehat{p}}{1-\widehat{p}}= \dfrac{\text{# successes in bin} + 0.5}{\text{# failures in bin} + 0.5}$
+
+<br>
+
+```{r echo=FALSE}
+df <- tibble(
+  bin = c("[0,5]", "(5-10]", "(10-15]", "(15-20]"),
+  emp.prob = c(2.5/4, 1.5/2, 1.5/3, 0.5/2),
+  emp.odds = emp.prob / (1 - emp.prob)
+)
+
+knitr::kable(t(df), format = "html", digits = 3)
+```
+
+
+## Empirical logit plots
+
+**Plot the empirical log odds vs. midpoint for each bin.**
+
+for linearity, strength, direction, curvature, etc.
+
+```{r echo=FALSE, fig.height = 3.75, fig.width=3.75, out.width="50%", fig.align='center'}
+df$midpoint <- c(2.5, 7.5, 12.5, 17.5)
+gf_point(log(emp.odds) ~ midpoint, data = df) %>%
+  gf_lm() %>%
+  gf_labs(x = "x (midpoint)", y = "Empirical log odds")
+```
+
+
+- It’s hard to see a trend (whether good or bad) with only 4 bins!
+
+
+## Setting the bin width
+
+**Target:** relatively constant probability/odds of success within each
+group *and* enough cases in each group to estimate prob/odds
+
+-  Bins that are too wide (e.g. too few bins) means this assumption is likely not met
+
+-  Bins that are too narrow (e.g. too many bins) means that we don’t have enough cases
+within each bin to accurately estimate the probability/odds of success.
+
+
+
+## Back to the heart study
+
+
+```{r}
+#| echo: false
+#| layout-ncol: 3
+#| fig-height: 3
+#| fig-width: 3
+heart_aug <- augment(heart_mod, type.predict= "response") |>
+  mutate(
+    age_bin = ntile(age, 50),
+    totChol_bin = ntile(totChol, 50),
+    sysBP_bin = ntile(sysBP, 50)
+  )
+
+age_emp_logit <- heart_aug |>
+  group_by(age_bin) |>
+  summarize(
+    midpoint = mean(age),
+    emp.prob = (sum(TenYearCHD) + 0.5) / (n() + 1),
+    emp.odds = emp.prob / (1 - emp.prob),
+    emp.logit = log(emp.odds)
+  )
+
+totChol_emp_logit <- heart_aug |>
+  group_by(totChol_bin) |>
+  summarize(
+    midpoint = mean(totChol),
+    emp.prob = (sum(TenYearCHD) + 0.5) / (n() + 1),
+    emp.odds = emp.prob / (1 - emp.prob),
+    emp.logit = log(emp.odds)
+  )
+
+sysBP_emp_logit <- heart_aug |>
+  group_by(sysBP_bin) |>
+  summarize(
+    midpoint = mean(sysBP),
+    emp.prob = (sum(TenYearCHD) + 0.5) / (n() + 1),
+    emp.odds = emp.prob / (1 - emp.prob),
+    emp.logit = log(emp.odds)
+  )
+
+age_emp_logit |>
+  gf_point(emp.logit ~ midpoint) %>%
+  gf_lm(linetype = 2) %>%
+  gf_labs(x = "Age", y = "Empirical log odds") +
+  ggtitle("Age") +
+  theme_classic()
+
+totChol_emp_logit |>
+  gf_point(emp.logit ~ midpoint) %>%
+  gf_lm(linetype = 2) %>%
+  gf_labs(x = "Total cholesterol", y = "Empirical log odds") +
+  ggtitle("Total cholesterol") +
+  theme_classic()
+
+sysBP_emp_logit |>
+  gf_point(emp.logit ~ midpoint) %>%
+  gf_lm(linetype = 2) %>%
+  gf_labs(x = "Systolic blood pressure", y = "Empirical log odds") +
+  ggtitle("Systolic blood pressure") +
+  theme_classic()
+```
+
+
+
+
+
+## Case influence
+
+We can still calculate and interpret leverage and Cook's distance as before
+
+```{r fig.height = 6, fig.width = 6, echo=FALSE, fig.align='center'}
+infIndexPlot(heart_mod, vars = c("hat", "Cook"), id = list(n = 4))
+```
+

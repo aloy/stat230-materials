@@ -1,5 +1,5 @@
 # Create a screenshot of the featured post for sharing on webpage
-deck <- "15-logistic-inference"
+deck <- "16-logistic-diagnostics"
 quarto::quarto_render(paste0("slides/", deck, ".qmd"))
 webshot2::webshot(
   url = paste0("docs/slides/", deck, ".html"),
