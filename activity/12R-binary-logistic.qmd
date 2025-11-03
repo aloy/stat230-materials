@@ -72,6 +72,34 @@ tidy(logistic_model, conf.int = TRUE, conf.level = 0.9)
 ```
 
 
+## Drop-in deviance tests
+
+We could perform drop-in deviance tests "by hand" by fitting two models and comparing their reisduals deviances. However, a more convenient way to perform these tests is to use the `anova()` function with the `test = "Chisq"` argument. As an example, let's compare the 
+`logistic_model` above to a model that includes age, smoking status, total cholesterol, and BMI:
+
+```{webr}
+framingham_complete <- tidyr::drop_na(framingham, TenYearCHD, age, currentSmoker, totChol, BMI)
+
+full_model <- glm(TenYearCHD ~ age + currentSmoker + totChol + BMI,
+                  data = framingham_complete, family = binomial)
+reduced_model <- glm(TenYearCHD ~ age, data = framingham_complete, family = binomial)
+```
+
+Now we can use the `anova()` function to compare the two models:
+
+```{webr}
+anova(reduced_model, full_model, test = "Chisq")
+```
+
+:::{.callout-note}
+## Why did we use `drop_na()`?
+
+When fitting models in R, any rows with missing values in the variables used in the model are automatically excluded. However, when comparing two models using `anova()`, it's crucial that both models are fitted on the same subset of data. If one model has missing values in additional variables not present in the other model, it could lead to discrepancies in the number of observations used for each model.
+
+To ensure that both models are fitted on the same data, we use `tidyr::drop_na()` to remove any rows with missing values in any of the variables used in either model. This guarantees that both the reduced and full models are based on the same set of observations, allowing for a valid comparison using the drop-in deviance test.
+:::
+
+
 ***
 
 ## Function quick reference
@@ -84,6 +112,8 @@ The following table summarizes the functions discussed above:
 | `summary(model)` | View model summary and Wald tests |
 | `predict(model, newdata, type = "response")` | Make predictions on the probability scale |
 | `tidy(model, conf.int = TRUE, conf.level)` | Extract coefficient table with confidence intervals |
+| `anova(reduced_model, full_model, test = "Chisq")` | Perform drop-in deviance test between two nested models |
+| `tidyr::drop_na(data, vars...)` | Remove rows with missing values in specified variables |
 
 
 

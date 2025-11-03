@@ -1,0 +1,206 @@
+---
+title: "Diagnostic Tools for Binary Logistic Regression"
+subtitle: "An R Tutorial"
+webr:
+  packages:
+    - Sleuth3
+    - broom
+    - dplyr
+    - ggformula
+    - car
+format: 
+  live-html:
+    toc: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+
+In this tutorial we'll explore the model fit of a binary logistic regression using R. We'll use the Framingham Heart Study data set as an example. To load the data, run the following code chunk:
+
+```{webr}
+framingham <- read.csv("https://aloy.github.io/stat230-materials/data/framingham.csv")
+```
+
+:::{.callout-note}
+## R packages
+
+I have run the following command to load the required R packages for this tutorial:
+
+```
+library(dplyr)
+library(broom)
+library(ggformula)
+library(car)
+```
+
+
+:::
+
+
+We'll explore the same model discussed in class, which is fit below.
+
+```{webr}
+heart_mod <- glm(TenYearCHD ~ age + male + totChol + sysBP, data = framingham, 
+family = "binomial")
+```
+
+In the next sections, you'll be guided through the creation of the various diagnostic plots discussed in class. Be sure to run each code chunk to see the resulting plots, and don't hesitate to ask me questions if things are unclear!
+
+
+## Residual plots
+
+Like in linear regression, we can construct residual plots to assess the fit of our binary logistic regression model. The interpretation of these plots is harder, however, since the response variable is binary; thus, we can't expect to see a random scatter of points around zero like we did in linear regression. To help with the interpretation, we'll explore both binned residual plots and Pearson residual plots with a LOESS smoother.
+
+### Binned residual plots
+
+To construct a binned residual plot we follow these steps:
+
+1. Calculate response residuals
+2. Order observations either by the values of the predicted log odds/probabilities, or by quantitative predictor variable
+3. Use the ordered data to create $g$ bins of approximately equal size. (A reasonable starting point is $g = \sqrt{n}$)
+4. Calculate average residual value in each bin
+5. Plot average residuals vs. average predicted log odds, probability, or predictor value
+
+
+Let's implement these steps in R. First, we augment (add columns to) our data set with the predicted values and response residuals:
+
+```{webr}
+heart_aug <- augment(heart_mod, type.predict= "link", type.residuals = "pearson") |>
+  mutate(.resp.resid = resid(heart_mod, type= "response"))
+```
+
+:::{.callout-note}
+## Adapting the code
+To adapt this code for your own binary logistic regression model, simply replace `heart_mod` with the name of your model object in both the `augment()` function and the `resid()` function.
+:::
+
+Next, we create the binned residual plot by following steps 2-4 outlined above:
+
+```{webr}
+binned_resids <- heart_aug |> 
+  mutate(bin = ntile(heart_mod$linear.predictors, 65)) |>
+  group_by(bin) |>
+  summarize(mean_linear_pred = mean(.fitted),
+            avg_resid = mean(.resp.resid),
+            .groups = "drop")
+```
+
+:::{.callout-note}
+## Adapting the code
+To adapt this code for your own binary logistic regression model, replace `heart_aug` with the name of your augmented data set and then replace `heart_mod$linear.predictors` with the linear predictors from your model object (by changing the model name to the left of the `$`). Additionally, you can adjust the number of bins (currently set to 65) based on your data size.
+:::
+
+Finally, we plot the binned residuals:
+
+```{webr}
+gf_point(avg_resid ~ mean_linear_pred, data = binned_resids,
+         xlab = "Predicted log odds", ylab = "Average response residual") |>
+  gf_hline(yintercept = 0, linetype = 2) 
+```
+
+
+The above process creates a binned residual plot of the response residuals against the predicted log odds. You can also create similar plots using predicted probabilities or individual predictor variables by adjusting the code accordingly.
+
+Below we create a binned residual plot where 65 bins were created from the `age` variable. Notice that now we need to calculate both the mean value of the predictor and the mean value of the residual.
+
+```{webr}
+heart_aug |> 
+  mutate(bin = ntile(age, 65)) |>  # Creating 65 bins for age
+  group_by(bin) |>
+  summarize(mean_age = mean(age),
+            avg_resid = mean(.resp.resid)) |>
+  gf_point(
+    avg_resid ~ mean_age,
+    xlab = "Mean age in bin", 
+    ylab = "Average response residual"
+  ) |>
+  gf_hline(yintercept = 0, linetype = 2) 
+```
+
+
+
+## Empirical logit
+
+To create empirical (sample) logit plots, we need to create bins based on the values of our predictor variables and then calculate the sample logits. To reproduce the plot on the slides, we first augment the data set with the predicted probabilities (`type.predict = "response"` means that the `.fitted` column gives us the $\widehat{\pi}_i$ values for each row). Then, we can use the `mutate()` command to add columns for the bins via the `ntile()` function.
+
+```{webr}
+heart_aug <- augment(heart_mod, type.predict = "response") |>
+  mutate(
+    age_bin = ntile(age, 50),           # Bins for age
+    totChol_bin = ntile(totChol, 50),   # Bins for totChol
+    sysBP_bin = ntile(sysBP, 50)        # Bins for sysBP
+  )
+```
+
+:::{.callout-note}
+## Adapting the code
+To adapt this code for your own binary logistic regression model, simply replace `heart_mod` with the name of your model object in the `augment()` function. Then, replace `age`, `totChol`, and `sysBP` with the names of the predictor variables you wish to create bins for (or delete them if not needed).
+:::
+
+To create the data set needed for the plot, we use our augmented data set, group it by the binned version of the response variable (age for the example below). Then we calculate the mean of the predictor (to plot as out x coordinate), the empirical probability (`emp.prob`), the empirical odds (`emp.odds`), and the empirical logit (`emp.logit`).
+
+```{webr}
+emp_logit_df <- heart_aug |>
+  group_by(age_bin) |>
+  summarize(
+    midpoint = mean(age),
+    emp.prob = (sum(TenYearCHD) + 0.5) / (n() + 1),
+    emp.odds = emp.prob / (1 - emp.prob),
+    emp.logit = log(emp.odds),
+    .groups = "drop"
+  )
+```
+
+
+:::{.callout-note}
+## Adapting the code
+To adapt this code for your own binary logistic regression model, replace `heart_aug` with the name of your augmented data set and then replace `age_bin` with the binned version of the predictor variable you wish to create the empirical logit plot for. Then, replace `age` with the name of the predictor variable you wish to calculate the midpoint for and `TenYearCHD` with the name of your binary response variable.
+:::
+
+
+Finally, we can create a plot of the empirical logit against the mean value of the predictor variable in each bin:
+
+```{webr}
+gf_point(emp.logit ~ midpoint, data = emp_logit_df,
+         xlab = "Mean age in bin", ylab = "Empirical logit")
+```
+
+:::{.callout-note}
+## Adapting the code
+To adapt this code for your own binary logistic regression model, replace `emp_logit_df` with the name of your empirical logit data set and then replace `midpoint` and `emp.logit` with the names of the corresponding columns in your data set (if you changed those names at all). Then, change your `xlab` to match the predictor variable you are plotting.
+:::
+
+
+## Pearson residuals
+
+To create a Pearson residual plot with a LOESS smoother, we can use the `residualPlots()` command from the `car` Package, similar to what we did in linear regression. The only difference is that we need to specify `type = "pearson"` to indicate that we want to plot Pearson residuals.
+
+Below we recreate the residual plots from the slides:
+
+
+```{webr}
+residualPlots(heart_mod, type = "pearson", smooth = TRUE, tests = FALSE)
+```
+
+
+
+
+***
+
+## Function quick reference
+
+The following table summarizes the functions discussed above:
+
+| Function | Purpose |
+|----|-----------|
+| `augment(model, type.predict, type.residuals)` | Add predicted values and residuals to data set |
+| `residualPlots(model, type = "pearson", smooth = TRUE, tests = FALSE)` | Create residual plots with LOESS smoother |
+| `group_by(variable)` | Group data by variable for summarization |
+| `summarize()` | Summarize data by calculating statistics like mean, count, etc. |
+| `gf_point(y ~ x, data, xlab, ylab)` | Create scatter plot of y vs. x with labels |
+
+
+

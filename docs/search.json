@@ -2566,7 +2566,7 @@
     "href": "activity/12R-binary-logistic.html#function-quick-reference",
     "title": "Binary Logistic Regression in R",
     "section": "Function quick reference",
-    "text": "Function quick reference\nThe following table summarizes the functions discussed above:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nglm(formula, data, family = binomial)\nFit a binary logistic regression model\n\n\nsummary(model)\nView model summary and Wald tests\n\n\npredict(model, newdata, type = \"response\")\nMake predictions on the probability scale\n\n\ntidy(model, conf.int = TRUE, conf.level)\nExtract coefficient table with confidence intervals"
+    "text": "Function quick reference\nThe following table summarizes the functions discussed above:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\nglm(formula, data, family = binomial)\nFit a binary logistic regression model\n\n\nsummary(model)\nView model summary and Wald tests\n\n\npredict(model, newdata, type = \"response\")\nMake predictions on the probability scale\n\n\ntidy(model, conf.int = TRUE, conf.level)\nExtract coefficient table with confidence intervals\n\n\nanova(reduced_model, full_model, test = \"Chisq\")\nPerform drop-in deviance test between two nested models\n\n\ntidyr::drop_na(data, vars...)\nRemove rows with missing values in specified variables"
   },
   {
     "objectID": "slides/16-logistic-diagnostics.html#revisiting-the-framingham-model",
@@ -2889,5 +2889,82 @@
     "title": "Inference for Logistic Regression",
     "section": "Drop-in deviance tests",
     "text": "Drop-in deviance tests\nIf you are “star gazing” at the previous output, you may notice that two predictors are statistically significant at the 0.05 level.\nTask 5. Use a drop-in deviance test to determine whether we can drop totChol and BMI from our logistic regression model.\n\nState the null and alternative hypotheses for this test.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\n\\(H_0: \\beta_3 = \\beta_5 = 0\\) (The coefficients for totChol and BMI are both zero, meaning they do not contribute to the model.)\n\\(H_a\\): At least one of \\(\\beta_3\\) or \\(\\beta_5\\) is not equal to zero\n\n\n\n\nCalculate the test statistic for this test. Below are snippets from the output from both models, which you need for this calculation.\n\nFull model:\n    Null deviance: 3524.3  on 4171  degrees of freedom\nResidual deviance: 3203.3  on 4166  degrees of freedom\nReduced model:\n    Null deviance: 3612.2  on 4239  degrees of freedom\nResidual deviance: 3298.2  on 4236  degrees of freedom\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe test statistic for a drop-in deviance test is calculated as the difference in residual deviance between the reduced and full models:\n\\[\n\\begin{split}\n\\text{LRT} &= \\text{deviance(reduced model)} - \\text{deviance(full model)}\\\\\n&= 3298.2 - 3203.3\\\\\n&= 94.9\n\\end{split}\n\\]\n\n\n\n\nCalculate the p-value for this test.\n\n\n\n\n\n\n\nTippchisq()\n\n\n\nYou can use the pchisq() function in R to calculate areas under a chi-square distribution. For example, to calculate the area to the right of 5.99 under a chi-square distribution with 2 degrees of freedom, you would use the following code:\n\n1 - pchisq(5.99, df = 2)\n\n[1] 0.05003663\n\n\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe degrees of freedom for this test is equal to the difference in the number of predictors between the full and reduced models; thus, df = 2.\nThe p-value can be calculated using the chi-square distribution. Specifically, we want to find the the tail area to the right of our test statistic (94.9) with 2 degrees of freedom.\nIn R, we can use the pchisq() function to calculate this area:\n\n1 - pchisq(94.9, df = 2)\n\n[1] 0\n\n\nOur p-value is essentially 0 (very small). We know it’s not exactly 0, so I prefer to report that it’s less than 0.0001.\n\n\n\n\nState your conclusion in the context of the problem. You may use a significance level of 0.05.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nSince our p-value is less than 0.05, we reject the null hypothesis. There is very strong evidence to suggest that at least one of the coefficients for totChol or BMI is not equal to zero. Therefore, we should not drop these predictors from our logistic regression model.\n\n\n\nTask 6. What model do you think is being described by the Null deviance line of the output above? (Hint: think about what “null” means in this context, it’s similar to our extra-sums-of-squares F-test.)\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe Null deviance corresponds to a model that only includes the intercept (no predictors). This model predicts the same probability of experiencing coronary heart disease for all participants, regardless of their individual characteristics."
+  },
+  {
+    "objectID": "activity/12R-binary-logistic.html#drop-in-deviance-tests",
+    "href": "activity/12R-binary-logistic.html#drop-in-deviance-tests",
+    "title": "Binary Logistic Regression in R",
+    "section": "Drop-in deviance tests",
+    "text": "Drop-in deviance tests\nWe could perform drop-in deviance tests “by hand” by fitting two models and comparing their reisduals deviances. However, a more convenient way to perform these tests is to use the anova() function with the test = \"Chisq\" argument. As an example, let’s compare the logistic_model above to a model that includes age, smoking status, total cholesterol, and BMI:\n\n\n\n\n\n\n\n\nNow we can use the anova() function to compare the two models:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteWhy did we use drop_na()?\n\n\n\nWhen fitting models in R, any rows with missing values in the variables used in the model are automatically excluded. However, when comparing two models using anova(), it’s crucial that both models are fitted on the same subset of data. If one model has missing values in additional variables not present in the other model, it could lead to discrepancies in the number of observations used for each model.\nTo ensure that both models are fitted on the same data, we use tidyr::drop_na() to remove any rows with missing values in any of the variables used in either model. This guarantees that both the reduced and full models are based on the same set of observations, allowing for a valid comparison using the drop-in deviance test."
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html",
+    "href": "activity/16R-logistic-diagnostics.html",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "",
+    "text": "In this tutorial we’ll explore the model fit of a binary logistic regression using R. We’ll use the Framingham Heart Study data set as an example. To load the data, run the following code chunk:\nWe’ll explore the same model discussed in class, which is fit below.\nIn the next sections, you’ll be guided through the creation of the various diagnostic plots discussed in class. Be sure to run each code chunk to see the resulting plots, and don’t hesitate to ask me questions if things are unclear!"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#fitting-a-binary-logistic-regression-model",
+    "href": "activity/16R-logistic-diagnostics.html#fitting-a-binary-logistic-regression-model",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "",
+    "text": "Fitting a binary logistic regression model in R is similar to fitting a linear regression model. To guide you through this process, let’s revisit the Framingham Heart Study data set that we discussed in class.\nTo load the data, run the following code chunk:\n\n\n\n\n\n\n\n\nBinary logistic regression requires a binary response variable. In this case, we will use the TenYearCHD variable, which indicates whether an individual developed coronary heart disease within ten years (1 = yes, 0 = no). Be sure to always check that your response variable is coded correctly before modeling.\nNext, we will fit a binary logistic regression model using the glm() function in R. The syntax is similar to that of the lm() function, but we need to specify the family argument as binomial to indicate that we are performing logistic regression. Here, we will model the probability of developing coronary heart disease based on age.\n\n\n\n\n\n\n\n\nYou can still use the summary() function to view the results of the model fit:\n\n\n\n\n\n\n\n\nMuch of the regression output looks the same as in linear regression, but there are some key differences. The main differences are:\n\nThe test statistic is no labeled z value instead of t value.\nA Null deviance and Residual deviance are reported instead of Multiple R-squared and Adjusted R-squared."
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#making-predictions",
+    "href": "activity/16R-logistic-diagnostics.html#making-predictions",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Making predictions",
+    "text": "Making predictions\nWe can also use R to calculate the predicted probabilities from our fitted logistic regression model using the predict() function. Below is an example where we are calculating the predicted probability that a 50-year old develops CHD in the next ten years:\n\n\n\n\n\n\n\n\nNotice that we are specifying the data (x values) use for prediction using the same argument as in linear regression: we create a data frame with columns named identically to the actual data set used to fit the mode. We also must specify type = \"response\" to get probabilities. If you omit this argument, you will get a prediction on the log-odds scale, which isn’t a probability!"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#inference-for-single-regression-coefficients",
+    "href": "activity/16R-logistic-diagnostics.html#inference-for-single-regression-coefficients",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Inference for single regression coefficients",
+    "text": "Inference for single regression coefficients\nYou have already seen that we can obtain Wald-based tests via the summary() command. To extract only that coefficient table, you can use the tidy() command from the broom package:\n\n\n\n\n\n\n\n\nTo calculate Wald-based confidence intervals for each regression coefficient, we can use the confint() command, specifying the level argument:"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#function-quick-reference",
+    "href": "activity/16R-logistic-diagnostics.html#function-quick-reference",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Function quick reference",
+    "text": "Function quick reference\nThe following table summarizes the functions discussed above:\n\n\n\n\n\n\n\nFunction\nPurpose\n\n\n\n\naugment(model, type.predict, type.residuals)\nAdd predicted values and residuals to data set\n\n\nresidualPlots(model, type = \"pearson\", smooth = TRUE, tests = FALSE)\nCreate residual plots with LOESS smoother\n\n\ngroup_by(variable)\nGroup data by variable for summarization\n\n\nsummarize()\nSummarize data by calculating statistics like mean, count, etc.\n\n\ngf_point(y ~ x, data, xlab, ylab)\nCreate scatter plot of y vs. x with labels"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#empirical-logit",
+    "href": "activity/16R-logistic-diagnostics.html#empirical-logit",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Empirical logit",
+    "text": "Empirical logit\nTo create empirical (sample) logit plots, we need to create bins based on the values of our predictor variables and then calculate the sample logits. To reproduce the plot on the slides, we first augment the data set with the predicted probabilities (type.predict = \"response\" means that the .fitted column gives us the \\(\\widehat{\\pi}_i\\) values for each row). Then, we can use the mutate() command to add columns for the bins via the ntile() function.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, simply replace heart_mod with the name of your model object in the augment() function. Then, replace age, totChol, and sysBP with the names of the predictor variables you wish to create bins for (or delete them if not needed).\n\n\nTo create the data set needed for the plot, we use our augmented data set, group it by the binned version of the response variable (age for the example below). Then we calculate the mean of the predictor (to plot as out x coordinate), the empirical probability (emp.prob), the empirical odds (emp.odds), and the empirical logit (emp.logit).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, replace heart_aug with the name of your augmented data set and then replace age_bin with the binned version of the predictor variable you wish to create the empirical logit plot for. Then, replace age with the name of the predictor variable you wish to calculate the midpoint for and TenYearCHD with the name of your binary response variable.\n\n\nFinally, we can create a plot of the empirical logit against the mean value of the predictor variable in each bin:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, replace emp_logit_df with the name of your empirical logit data set and then replace midpoint and emp.logit with the names of the corresponding columns in your data set (if you changed those names at all). Then, change your xlab to match the predictor variable you are plotting."
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#raw-residuals",
+    "href": "activity/16R-logistic-diagnostics.html#raw-residuals",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Raw residuals",
+    "text": "Raw residuals"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#pearson-residuals",
+    "href": "activity/16R-logistic-diagnostics.html#pearson-residuals",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Pearson residuals",
+    "text": "Pearson residuals\nTo create a Pearson residual plot with a LOESS smoother, we can use the residualPlots() command from the car Package, similar to what we did in linear regression. The only difference is that we need to specify type = \"pearson\" to indicate that we want to plot Pearson residuals.\nBelow we recreate the residual plots from the slides:"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#binned-residuals",
+    "href": "activity/16R-logistic-diagnostics.html#binned-residuals",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Binned residuals",
+    "text": "Binned residuals"
+  },
+  {
+    "objectID": "activity/16R-logistic-diagnostics.html#residual-plots",
+    "href": "activity/16R-logistic-diagnostics.html#residual-plots",
+    "title": "Diagnostic Tools for Binary Logistic Regression",
+    "section": "Residual plots",
+    "text": "Residual plots\nLike in linear regression, we can construct residual plots to assess the fit of our binary logistic regression model. The interpretation of these plots is harder, however, since the response variable is binary; thus, we can’t expect to see a random scatter of points around zero like we did in linear regression. To help with the interpretation, we’ll explore both binned residual plots and Pearson residual plots with a LOESS smoother.\n\nBinned residual plots\nTo construct a binned residual plot we follow these steps:\n\nCalculate response residuals\nOrder observations either by the values of the predicted log odds/probabilities, or by quantitative predictor variable\nUse the ordered data to create \\(g\\) bins of approximately equal size. (A reasonable starting point is \\(g = \\sqrt{n}\\))\nCalculate average residual value in each bin\nPlot average residuals vs. average predicted log odds, probability, or predictor value\n\nLet’s implement these steps in R. First, we augment (add columns to) our data set with the predicted values and response residuals:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, simply replace heart_mod with the name of your model object in both the augment() function and the resid() function.\n\n\nNext, we create the binned residual plot by following steps 2-4 outlined above:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, replace heart_aug with the name of your augmented data set and then replace heart_mod$linear.predictors with the linear predictors from your model object (by changing the model name to the left of the $). Additionally, you can adjust the number of bins (currently set to 65) based on your data size.\n\n\nFinally, we plot the binned residuals:\n\n\n\n\n\n\n\n\nThe above process creates a binned residual plot of the response residuals against the predicted log odds. You can also create similar plots using predicted probabilities or individual predictor variables by adjusting the code accordingly.\nBelow we create a binned residual plot where 65 bins were created from the age variable. Notice that now we need to calculate both the mean value of the predictor and the mean value of the residual."
   }
 ]
