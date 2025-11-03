@@ -109,8 +109,14 @@
   categories:
     - "Logistic Regression"
 - title: "Diagnostics for Logistic Regression"
-  date: 2025-10-31
+  date: 2025-11-03
   image: slides/featured/16-logistic-diagnostics.png
   path: slides/16-logistic-diagnostics.qmd
+  categories:
+    - "Logistic Regression"
+- title: "Binomial Logistic Regression"
+  date: 2025-11-03
+  image: slides/featured/17-logistic-binomial.png
+  path: slides/17-logistic-binomial.qmd
   categories:
     - "Logistic Regression"
