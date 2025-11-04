@@ -2966,5 +2966,26 @@
     "title": "Diagnostic Tools for Binary Logistic Regression",
     "section": "Residual plots",
     "text": "Residual plots\nLike in linear regression, we can construct residual plots to assess the fit of our binary logistic regression model. The interpretation of these plots is harder, however, since the response variable is binary; thus, we can’t expect to see a random scatter of points around zero like we did in linear regression. To help with the interpretation, we’ll explore both binned residual plots and Pearson residual plots with a LOESS smoother.\n\nBinned residual plots\nTo construct a binned residual plot we follow these steps:\n\nCalculate response residuals\nOrder observations either by the values of the predicted log odds/probabilities, or by quantitative predictor variable\nUse the ordered data to create \\(g\\) bins of approximately equal size. (A reasonable starting point is \\(g = \\sqrt{n}\\))\nCalculate average residual value in each bin\nPlot average residuals vs. average predicted log odds, probability, or predictor value\n\nLet’s implement these steps in R. First, we augment (add columns to) our data set with the predicted values and response residuals:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, simply replace heart_mod with the name of your model object in both the augment() function and the resid() function.\n\n\nNext, we create the binned residual plot by following steps 2-4 outlined above:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteAdapting the code\n\n\n\nTo adapt this code for your own binary logistic regression model, replace heart_aug with the name of your augmented data set and then replace heart_mod$linear.predictors with the linear predictors from your model object (by changing the model name to the left of the $). Additionally, you can adjust the number of bins (currently set to 65) based on your data size.\n\n\nFinally, we plot the binned residuals:\n\n\n\n\n\n\n\n\nThe above process creates a binned residual plot of the response residuals against the predicted log odds. You can also create similar plots using predicted probabilities or individual predictor variables by adjusting the code accordingly.\nBelow we create a binned residual plot where 65 bins were created from the age variable. Notice that now we need to calculate both the mean value of the predictor and the mean value of the residual."
+  },
+  {
+    "objectID": "slides/18-binomial-gof.html#model-assumptions",
+    "href": "slides/18-binomial-gof.html#model-assumptions",
+    "title": "Goodness-of-Fit Tests",
+    "section": "Model assumptions",
+    "text": "Model assumptions\n\nBinomial counts\nIndependence: observations are independent\nLinearity: the log odds is a linear function of the predictors\nVariance structure: the variance of a binomial random variable is \\(n \\pi (1 - \\pi)\\)\n\\(\\Longrightarrow\\) so the variance of \\(Y_i\\) is \\(m_i \\pi_i (1 - \\pi_i)\\) (not constant!)"
+  },
+  {
+    "objectID": "slides/18-binomial-gof.html#goodness-of-fit-test",
+    "href": "slides/18-binomial-gof.html#goodness-of-fit-test",
+    "title": "Goodness-of-Fit Tests",
+    "section": "Goodness-of-fit test",
+    "text": "Goodness-of-fit test\nDeviance can be used to assess the binomial logistic regression\n\n\n\nObserved\nPredicted\nTrue\n\n\n\n\n\\(Y_i\\)\n\\(\\widehat{\\pi}_i\\)\n\\(\\pi_i\\)\n\n\n\n\nDeviance: \\(D = 2 \\sum \\left[ Y_i \\log \\left( \\dfrac{Y_i}{m_i\\widehat{\\pi}_i} \\right)  + (m_i - Y_i)  \\log \\left( \\dfrac{m_i - Y_i}{m_i - m_i \\widehat{\\pi}_i} \\right) \\right]\\)\n\n\n\\(D \\overset{\\cdot}{\\sim} \\chi^2\\) with \\(\\text{d.f.}= n-(p+1)\\), if the model is correct and all \\(m_i\\) are large enough (&gt;5)\n\\(n =\\) # of binomial observations (# of proportions, not # of moths)"
+  },
+  {
+    "objectID": "slides/18-binomial-gof.html#goodness-of-fit-test-1",
+    "href": "slides/18-binomial-gof.html#goodness-of-fit-test-1",
+    "title": "Goodness-of-Fit Tests",
+    "section": "Goodness-of-fit test",
+    "text": "Goodness-of-fit test\n\n(the model is adequate)\n\n\nH0: \\({\\rm logit}(\\pi_i) = \\beta_0 + \\beta_1 x_{1i} + \\cdots + \\beta_p x_{pi}\\)\n\n\n(the model is inadequate)\n\n\nHa: \\({\\rm logit}(\\pi_i) = \\alpha_i\\)\n\n\n\nsummary(moth_glm)\n\nCall:\nglm(formula = Removed/Placed ~ Distance * Morph,\n    family = binomial, data = case2102, weights = Placed)\n\n    Null deviance: 35.385  on 13  degrees of freedom\n*Residual deviance: 13.230  on 10  degrees of freedom\n\n\n1- pchisq(13.230, 10)\n\n[1] 0.2110951\n\n\n\n\nNote: This test is only valid for the binomial logistic regression, it is not valid for binary logistic regression."
   }
 ]

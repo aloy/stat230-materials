@@ -1,0 +1,120 @@
+---
+title: "Goodness-of-Fit Tests"
+subtitle: "Logistic regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, dev = 'svg', comment = NULL)
+
+library(ggplot2)
+library(ggformula)
+library(dplyr)
+library(car)
+library(gridExtra)
+library(broom)
+library(Sleuth3)
+library(ggthemes)
+```
+
+
+## Model assumptions
+
+- **Binomial counts**
+
+- **Independence**: observations are independent
+
+- **Linearity**: the log odds is a linear function of the predictors
+
+- **Variance structure**: the variance of a binomial random variable is $n \pi (1 - \pi)$
+
+    $\Longrightarrow$ so the variance of $Y_i$ is $m_i \pi_i (1 - \pi_i)$ (not constant!)
+
+
+## Goodness-of-fit test
+
+
+
+Deviance can be used to assess the binomial logistic regression
+
+Observed | Predicted | True
+:---------:|:---------:|:---------:
+$Y_i$ | $\widehat{\pi}_i$ | $\pi_i$
+
+
+<br>
+
+
+
+**Deviance:** $D = 2 \sum \left[ Y_i \log \left( \dfrac{Y_i}{m_i\widehat{\pi}_i} \right)  + (m_i - Y_i)  \log \left( \dfrac{m_i - Y_i}{m_i - m_i \widehat{\pi}_i} \right) \right]$
+
+<br>
+
+
+:::{style="font-size:0.9em"}
+
+$D \overset{\cdot}{\sim} \chi^2$ with $\text{d.f.}= n-(p+1)$, **if** the model is correct and all $m_i$ are large enough (>5)
+
+
+$n =$ \# of binomial observations (\# of proportions, not # of moths)
+:::
+
+
+
+
+
+## Goodness-of-fit test
+
+<div style="float: right; clear: right; margin: 10px;">(the model is adequate)</div>
+
+:::{style="font-size:0.9em"}
+H<sub>0</sub>: ${\rm logit}(\pi_i) = \beta_0 + \beta_1 x_{1i} + \cdots + \beta_p x_{pi}$
+:::
+
+<div style="float: right; clear: right; margin: 10px;">(the model is inadequate)</div>
+
+:::{style="font-size:0.9em"}
+H<sub>a</sub>: ${\rm logit}(\pi_i) = \alpha_i$
+:::
+
+
+<br>
+
+```{r eval=FALSE}
+summary(moth_glm)
+```
+```
+Call:
+glm(formula = Removed/Placed ~ Distance * Morph,
+    family = binomial, data = case2102, weights = Placed)
+
+    Null deviance: 35.385  on 13  degrees of freedom
+*Residual deviance: 13.230  on 10  degrees of freedom
+```
+
+<br>
+
+```{r}
+1- pchisq(13.230, 10)
+```
+
+
+<br>
+
+:::{style="font-size:0.5em"}
+Note: This test is *only valid for the binomial logistic regression*, it is not valid for binary logistic regression.
+:::
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+{
+  "hash": "88ee77aa09b75907ba19b8c87474077c",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Goodness-of-Fit Tests\"\nsubtitle: \"Logistic regression -- Stat 230\"\nformat: \n  revealjs:\n    chalkboard: \n      buttons: false\neditor: source\n---\n\n\n\n\n## Model assumptions\n\n- **Binomial counts**\n\n- **Independence**: observations are independent\n\n- **Linearity**: the log odds is a linear function of the predictors\n\n- **Variance structure**: the variance of a binomial random variable is $n \\pi (1 - \\pi)$\n\n    $\\Longrightarrow$ so the variance of $Y_i$ is $m_i \\pi_i (1 - \\pi_i)$ (not constant!)\n\n\n## Goodness-of-fit test\n\n\n\nDeviance can be used to assess the binomial logistic regression\n\nObserved | Predicted | True\n:---------:|:---------:|:---------:\n$Y_i$ | $\\widehat{\\pi}_i$ | $\\pi_i$\n\n\n<br>\n\n\n\n**Deviance:** $D = 2 \\sum \\left[ Y_i \\log \\left( \\dfrac{Y_i}{m_i\\widehat{\\pi}_i} \\right)  + (m_i - Y_i)  \\log \\left( \\dfrac{m_i - Y_i}{m_i - m_i \\widehat{\\pi}_i} \\right) \\right]$\n\n<br>\n\n\n:::{style=\"font-size:0.9em\"}\n\n$D \\overset{\\cdot}{\\sim} \\chi^2$ with $\\text{d.f.}= n-(p+1)$, **if** the model is correct and all $m_i$ are large enough (>5)\n\n\n$n =$ \\# of binomial observations (\\# of proportions, not # of moths)\n:::\n\n\n\n\n\n## Goodness-of-fit test\n\n<div style=\"float: right; clear: right; margin: 10px;\">(the model is adequate)</div>\n\n:::{style=\"font-size:0.9em\"}\nH<sub>0</sub>: ${\\rm logit}(\\pi_i) = \\beta_0 + \\beta_1 x_{1i} + \\cdots + \\beta_p x_{pi}$\n:::\n\n<div style=\"float: right; clear: right; margin: 10px;\">(the model is inadequate)</div>\n\n:::{style=\"font-size:0.9em\"}\nH<sub>a</sub>: ${\\rm logit}(\\pi_i) = \\alpha_i$\n:::\n\n\n<br>\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsummary(moth_glm)\n```\n:::\n\n```\nCall:\nglm(formula = Removed/Placed ~ Distance * Morph,\n    family = binomial, data = case2102, weights = Placed)\n\n    Null deviance: 35.385  on 13  degrees of freedom\n*Residual deviance: 13.230  on 10  degrees of freedom\n```\n\n<br>\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1- pchisq(13.230, 10)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 0.2110951\n```\n\n\n:::\n:::\n\n\n\n<br>\n\n:::{style=\"font-size:0.5em\"}\nNote: This test is *only valid for the binomial logistic regression*, it is not valid for binary logistic regression.\n:::\n\n\n\n\n\n\n\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
