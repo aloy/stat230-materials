@@ -1,0 +1,116 @@
+---
+title: "Binomial Logistic Regression"
+format: html
+engine: knitr
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+\vspace{-0.5in}
+
+```{r setup}
+#| include: false
+library(ggformula)
+library(car)
+library(broom)
+library(dplyr)
+
+task <- 0
+table73 <- read.csv("https://aloy.rbind.io/kuiper_data/Table7.3.csv")
+```
+
+## Overview
+
+In this class, you will fit logistic regression models to binomial count data rather to a binary response variable. To learn the basic idea, we'll consider the cancer data displayed in the table below.
+
+| Median Radius | Benign | Malignant | Total | Proportion Malignant |
+|:--------------|-------:|----------:|------:|---------------------:|
+| 2.5           |    113 |         2 |   115 | 0.017               |
+| 3.5           |    140 |        12 |   152 | 0.079               |
+| 4.0           |     85 |        34 |   119 | 0.286               |
+| 4.5           |     17 |        43 |    60 | 0.717               |
+| 6.5           |      2 |       121 |   123 | 0.984               |
+| Total         |    357 |       212 |   569 |
+
+
+The data set contains a single predictor variable, `Median Radius`, which is the median radius of the cell nuclei (in micrometers) observed in a biopsy. The response variable is the number of malignant cells (out of the total number of cells observed) for each value of the predictor variable.
+
+## Fitting a binomial logistic regression model
+
+Below is the output from the `glm()` command to fit a binomial logistic regression model to these data.
+
+```{r}
+#| echo: false
+binom_glm <- glm(Malignant/Total ~ Median.Radius, data = table73, family = "binomial", weights = Total)
+summary(binom_glm)
+```
+
+
+**Task `r (task <- task + 1)`.** Report the fitted logistic regression equation (i.e., the fitted log odds).
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+The fitted logistic regression equation is:
+
+$$\hat{\eta}=\log\left(\frac{\hat{\pi}}{1 - \hat{\pi}}\right) = -11.1359 + 2.5729 \cdot \text{Median Radius}$$
+where $\hat{\pi}$ is the estimated probability of malignancy.
+:::
+
+
+**Task `r (task <- task + 1)`.** Estimate the probability of malignancy when the radius is 4.5.
+
+::: {.callout-tip collapse="true"}
+### Solution
+To estimate the probability of malignancy when the radius is 4.5, we first calculate the linear predictor:
+$$\hat{\eta} = -11.1359 + 2.5729 \cdot 4.5 = 0.44215$$
+Next, we convert the linear predictor to a probability using the logistic function:
+$$\hat{\pi} = \frac{e^{\hat{\eta}}}{1 + e^{\hat{\eta}}} = \frac{e^{0.44215}}{1 + e^{0.44215}} \approx 0.609$$
+Thus, the estimated probability of malignancy when the radius is 4.5 is approximately 0.608.
+:::
+
+**Task `r (task <- task + 1)`.** Use Wald's test to determine if there is evidence that the probability of malignancy is related to cell radius.
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+To use Wald's test, we look at the coefficient for `Median Radius` in the model summary. 
+
+$H_0: \beta_1 = 0$ vs. $H_a: \beta_1 \neq 0$
+
+The test statistic is calculated as:
+$$z = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)} = \frac{2.5729}{0.2848} \approx 9.035$$
+
+The p-value is found using the standard normal distribution (you should know how to do this). It is very small (less than 0.0001), indicating strong evidence against the null hypothesis. Thus, there is very strong evidence that the probability of malignancy is related to cell radius.
+:::
+
+**Task `r (task <- task + 1)`.** Use a drop-in deviance test to determine if there is evidence that the probability of malignancy is related to cell radius.
+
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+This drop-in-deviance test has the same null and alternative hypotheses as Wald's test.
+
+To perform a drop-in deviance test, we compare the deviance of the full model (with `Median Radius`) to the deviance of the null model (without any predictors).
+
+The `Null deviance` given in the model summary is 412.9453, and the `Residual deviance` is 8.0215. The test statistic is:
+$$LRT = \text{Null deviance} - \text{Residual deviance} = 412.9453 - 8.0215 = 404.9238$$
+The p-value can be found using the chi-square distribution with 1 degree of freedom. 
+
+```{r}
+1 - pchisq(404.9238, df = 1)
+```
+
+This p-value is also very small (less than 0.0001), indicating strong evidence against the null hypothesis. Thus, there is very strong evidence that the probability of malignancy is related to cell radius.
+:::
+
+**Task `r (task <- task + 1)`.** Do the two tests agree?
+
+::: {.callout-tip collapse="true"}
+### Solution
+Yes, both Wald's test and the drop-in deviance test lead to the same conclusion. Both tests provide very strong evidence that the probability of malignancy is related to cell radius.
+
+This is often the case in practice; both tests will usually lead to the same conclusion. When they conflict, trust the drop-in deviance test.
+:::
