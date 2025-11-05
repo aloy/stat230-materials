@@ -17,7 +17,7 @@ editor_options:
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
-In this tutorial we'll how to work with a binomial logistic regression mdel in R. To load the data for this tutorial, run the following code chunk:
+In this tutorial we'll how to work with a binomial logistic regression model in R.
 
 ```{r}
 #| include: false
