@@ -3,12 +3,10 @@ title: "Binomial Logistic Regression"
 subtitle: "An R Tutorial"
 webr:
   packages:
-    - Sleuth3
     - broom
     - dplyr
     - ggformula
     - car
-    - here
 format: 
   live-html:
     toc: true
@@ -33,7 +31,7 @@ task <- 0
 
 Run the code chunk below to load the data:
 ```{webr}
-orobanche <- read.csv(here("data/orobanche.csv"))
+orobanche <- read.csv("https://aloy.github.io/stat230-materials/data/orobanche.csv")
 ```
 
 The variables in the data set are:
