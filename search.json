@@ -2811,7 +2811,7 @@
     "href": "activity/18R-binomial-logistic.html",
     "title": "Binomial Logistic Regression",
     "section": "",
-    "text": "In this tutorial we’ll how to work with a binomial logistic regression mdel in R. To load the data for this tutorial, run the following code chunk:"
+    "text": "In this tutorial we’ll how to work with a binomial logistic regression model in R."
   },
   {
     "objectID": "activity/18R-binomial-logistic.html#data-overview",
