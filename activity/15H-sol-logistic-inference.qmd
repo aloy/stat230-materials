@@ -150,8 +150,9 @@ Residual deviance: 3203.3  on 4166  degrees of freedom
 
 ```{r}
 #| include: false
+framingham_aug <- broom::augment(framingham_glm)
 framingham_glm_reduced <- glm(TenYearCHD ~ age + currentSmoker + sysBP,
-                              data = framingham,
+                              data = framingham_aug,
                               family = binomial)
 ```
 
@@ -159,8 +160,8 @@ framingham_glm_reduced <- glm(TenYearCHD ~ age + currentSmoker + sysBP,
 Reduced model:
 
 ```
-    Null deviance: 3612.2  on 4239  degrees of freedom
-Residual deviance: 3298.2  on 4236  degrees of freedom
+    Null deviance: 3524.3  on 4171  degrees of freedom
+Residual deviance: 3207.1  on 4168  degrees of freedom
 ```
 
 :::{.callout-tip collapse="true"}
@@ -170,8 +171,8 @@ The test statistic for a drop-in deviance test is calculated as the difference i
 $$
 \begin{split}
 \text{LRT} &= \text{deviance(reduced model)} - \text{deviance(full model)}\\
-&= 3298.2 - 3203.3\\
-&= 94.9
+&= 3207.1 - 3203.3\\
+&= 3.8
 \end{split}
 $$
 
@@ -193,15 +194,15 @@ You can use the `pchisq()` function in R to calculate areas under a chi-square d
 ### Solution
 The degrees of freedom for this test is equal to the difference in the number of predictors between the full and reduced models; thus, df = 2. 
 
-The p-value can be calculated using the chi-square distribution. Specifically, we want to find the the tail area to the right of our test statistic (94.9) with 2 degrees of freedom.
+The p-value can be calculated using the chi-square distribution. Specifically, we want to find the the tail area to the right of our test statistic (3.8) with 2 degrees of freedom.
 
 In R, we can use the `pchisq()` function to calculate this area:
 
 ```{r}
-1 - pchisq(94.9, df = 2)
+1 - pchisq(3.8, df = 2)
 ```
 
-Our p-value is essentially 0 (very small). We know it's not exactly 0, so I prefer to report that it's less than 0.0001.
+Our p-value is approximately 0.15.
 
 :::
 
@@ -212,7 +213,7 @@ d. State your conclusion in the context of the problem. You may use a significan
 :::{.callout-tip collapse="true"}
 ### Solution
 
-Since our p-value is less than 0.05, we reject the null hypothesis. There is very strong evidence to suggest that at least one of the coefficients for `totChol` or `BMI` is not equal to zero. Therefore, we should not drop these predictors from our logistic regression model.
+Since our p-value is greater than 0.05, we fail to reject the null hypothesis. There is no evidence to suggest that at least one of the coefficients for `totChol` or `BMI` is not equal to zero. Therefore, we can drop these predictors from our logistic regression model.
 
 :::
 
