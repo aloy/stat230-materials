@@ -120,3 +120,15 @@
   path: slides/17-logistic-binomial.qmd
   categories:
     - "Logistic Regression"
+- title: "Binomial GOF"
+  date: 2025-11-05
+  image: slides/featured/18-binomial-gof.png
+  path: slides/18-binomial-gof.qmd
+  categories:
+    - "Logistic Regression"
+- title: "Overdispersion"
+  date: 2025-11-07
+  image: slides/featured/19-quasibinomial.png
+  path: slides/19-quasibinomial.qmd
+  categories:
+    - "Logistic Regression"

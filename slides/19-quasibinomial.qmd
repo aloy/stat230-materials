@@ -1,0 +1,496 @@
+---
+title: "Quasibinomial Logistic Regression"
+subtitle: "Logistic regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+    scrollable: true
+editor: source
+filters:
+ - flourish
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+library(ggplot2)
+library(ggformula)
+library(ggrepel)   # label outliers
+library(dplyr)
+library(car)
+library(gridExtra)
+library(broom)
+library(Sleuth3)
+library(ggthemes)
+
+rrdata <- read.csv("https://aloy.rbind.io/data/rrdata.csv")
+```
+
+## Support for railroad referenda in 1870s Alabama {.smaller}
+
+**Research question:** 
+
+Was voting on railroad referenda during the Reconstruction Era related to distance from the proposed railroad line and the racial composition of a community?
+
+<br>
+
+**Hypotheses:**
+
+- Positive votes were inversely proportional to the distance a voter is from the proposed railroad
+
+- racial composition of a community is hypothesized to be associated with voting behavior
+
+::: footer
+Data source: *Broadening Your Statistical Horizons*, Legler & Roback
+:::
+
+
+
+## Data {.smaller}
+
+Michael Fitzgerald obtained data from the 1870 U.S. Census from communities in Hale County, Alabama
+
+- `YesVotes` = the number of “Yes” votes in favor of the proposed railroad line (primary response variable)
+
+- `NumVotes` = total number of votes cast in the election
+
+- `pctBlack` = racial composition (% black)
+
+- `distance` = the distance from the proposed railroad (in miles)
+
+```{r echo=FALSE}
+knitr::kable(head(rrdata, 4), format = "html", digits = 3)
+```
+
+
+
+
+## EDA
+
+Was voting on railroad referenda during the Reconstruction Era related to distance from the proposed railroad line and the racial composition of a community?
+
+```{r fig.width = 10.5, fig.height = 3.5, echo=FALSE}
+rrdata <- rrdata %>%
+  mutate(logit = log((YesVotes + 0.5) / (NumVotes - YesVotes + 0.5))) 
+
+p1 <- gf_point(logit ~ distance, data = rrdata, shape = ~InFavor, color = ~InFavor, show.legend = FALSE)  %>%
+  gf_labs(x = "Distance from proposed railroad (miles)", y = "Empirical logit") +
+  geom_label_repel(data = filter(rrdata, logit > 4), aes(label = community), show.legend = FALSE) +
+    scale_shape_manual(values = c(1, 17)) + 
+  scale_color_colorblind() 
+  
+
+p2 <- gf_point(logit ~ pctBlack, data = rrdata, shape = ~InFavor, color = ~InFavor, show.legend = FALSE) %>%
+  gf_labs(x = "Racial composition (% black)", y = "Empirical logit") +
+  geom_label_repel(data = filter(rrdata, logit > 4), aes(label = community), show.legend = FALSE) +
+    scale_shape_manual(values = c(1, 17)) + 
+  scale_color_colorblind() 
+
+
+p3 <- ggplot(data = rrdata, aes( y=pctBlack, x= distance, shape = InFavor, color = InFavor)) +
+  geom_point() +
+  geom_label_repel(data = filter(rrdata, logit > 4), aes(label = community), show.legend = FALSE) +
+  labs(y = "Racial composition (% black)", x = "Distance from proposed railroad (miles)") +
+  theme(legend.position=c(0.15,0.15)) +
+  scale_shape_manual(values = c(1, 17)) + 
+  scale_color_colorblind() +
+  guides(label = "none")
+
+grid.arrange(p1, p2, p3, ncol = 3)
+```
+
+
+
+## Is there evidence of lack of fit?
+
+```{r include=FALSE}
+hale_glm1 <- glm(YesVotes/NumVotes ~ distance * pctBlack, 
+                 data = rrdata, family = binomial, weights = NumVotes)
+```
+
+```{eval=FALSE}
+glm(formula = YesVotes/NumVotes ~ distance * pctBlack, 
+    family = binomial, data = rrdata, weights = NumVotes)
+
+Coefficients:
+                    Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        7.5509017  0.6383697  11.828  < 2e-16
+distance          -0.6140052  0.0573808 -10.701  < 2e-16
+pctBlack          -0.0647308  0.0091723  -7.057 1.70e-12
+distance:pctBlack  0.0053665  0.0008984   5.974 2.32e-09
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 988.45  on 10  degrees of freedom
+Residual deviance: 274.23  on  7  degrees of freedom
+AIC: 320.53
+```
+
+
+
+
+## Possible causes of lack of fit 
+
+:::{style="font-size: 0.9em"}
+**Outliers**
+
+- Deviance in logistic regression is analogous to SSE in linear regression
+
+- Outliers can inflate the deviance
+:::
+
+. . .
+
+:::{style="font-size: 0.9em"}
+**Detection**
+
+- Deviance residual plots
+:::
+
+. . .
+
+
+:::{style="font-size: 0.9em"}
+**Why do we care?**
+
+
+- Influential outliers result in biased estimates of the $\widehat{\beta}_i$s
+:::
+
+
+## Possible causes of lack of fit {.smaller}
+
+**Incorrect logit (mean) function**
+
+- We fit a line to a curve
+
+- We omitted important predictor variables
+
+. . .
+
+**Detection**
+
+- Empirical logit plots
+
+- Deviance residual plots 
+
+- GOF test
+
+. . .
+
+**Why do we care?**
+
+- Biased estimates of the $\widehat{\beta}_i$s
+
+
+
+## Possible causes of lack of fit {.smaller}
+
+**Binomial model for $Y$ is wrong**
+
+- Trials are not independent
+
+- Probability of success is not the same across trials
+
+- Important predictors might be omitted
+
+. . . 
+
+**Detection**
+
+- Think
+
+- GOF test
+
+- Deviance residuals
+
+. . .
+
+**Why do we care?**
+
+- Variance is greater than $n_i \pi (X_i) (1 - \pi (X_i))$
+
+- SEs are likely too small $\Longrightarrow$ p-values too small and  CIs too narrow
+
+
+
+## Exploring lack of fit
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r fig.width = 3.5, fig.height = 3.5, echo=FALSE, out.width="100%"}
+resid_df <- rrdata %>%
+  mutate(.resid = resid(hale_glm1, type = "deviance"),
+         .fitted = fitted(hale_glm1))
+gf_point(.resid ~ .fitted, data = resid_df) %>%
+  gf_hline(yintercept = 0, linetype = 2, color = "gray60") %>%
+  gf_labs(x = "Predicted proportions", y = "Deviance residuals") %>%
+  gf_smooth(method = "loess", se = FALSE, size = 0.5) + 
+  geom_text_repel(data = filter(resid_df, .resid > 5), aes(label = community))
+```
+:::
+
+::: {.column width="50%"}
+- Since we have lack of fit, don't treat residuals as normal
+
+- Greensboro not really an outlier
+
+- Possible nonlinearity
+:::
+::::
+
+
+
+
+## Quadratic model
+
+
+::: {style="font-size: 0.8em"}
+\begin{aligned}
+{\rm logit}(\pi) = \beta_0 + \beta_1 {\tt distance} + \beta_2 {\tt pctBlack} + \beta_3 {\tt distance^2}\\ + \beta_4 {\tt distance \times pctBlack}
+\end{aligned}
+:::
+
+
+```{r eval=FALSE, echo=TRUE}
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        8.365538   0.919710   9.096  < 2e-16 ***
+distance          -1.592867   0.131070 -12.153  < 2e-16 ***
+pctBlack          -0.062498   0.012845  -4.866 1.14e-06 ***
+I(distance^2)      0.044576   0.003388  13.156  < 2e-16 ***
+distance:pctBlack  0.009830   0.001514   6.493 8.43e-11 ***
+  
+    Null deviance: 988.450  on 10  degrees of freedom
+Residual deviance:  72.018  on  6  degrees of freedom
+```
+
+:::{style="font-size: 0.8em"}
+Is there still evidence of lack of fit?
+:::
+
+. . .
+
+```{r echo=TRUE}
+1 - pchisq(72.018, df = 6)
+```
+
+
+
+
+## Exploring lack of fit
+
+:::: {.columns}
+
+::: {.column width="50%"}
+```{r fig.width = 3.5, fig.height = 3.5, echo=FALSE, out.width="100%"}
+hale_glm2 <- update(hale_glm1, . ~ . + I(distance^2))
+resid_df2 <- rrdata %>%
+  mutate(.resid = resid(hale_glm2, type = "deviance"),
+         .fitted = fitted(hale_glm2))
+gf_point(.resid ~ .fitted, data = resid_df2) %>%
+  gf_hline(yintercept = 0, linetype = 2, color = "gray60") %>%
+  gf_labs(x = "Predicted proportions", y = "Deviance residuals") +
+  geom_text_repel(data = filter(resid_df2, community == "Greensboro"), aes(label = community))
+```
+:::
+
+::: {.column width="50%"}
+
+::::: {style="padding: 175px 0;"}
+Do you see anything concerning here?
+:::::
+
+:::
+::::
+
+
+
+# Overdispersion
+ (extra-binomial variation)
+
+
+
+## Model assumptions
+
+:::{style="font-size: 0.95em"}
+We **assume** that $Y_i$ is binomial
+
+$$Y | X_i \sim {\rm Binomial}(n_i, \pi_i)$$
+
+This implies that within the same subpopulation<br> (combo of $x_i$s)
+
+- trials are independent
+
+- trials have the same probability of success
+
+- ${\rm E}(Y|X_i) = n_i \pi_i$
+
+- ${\rm Var}(Y|X_i) = n_i \pi_i(1- \pi_i)$
+:::
+
+
+
+## Overdispersion
+
+If the binomial assumptions are not met, then the variance of the $Y_i$ will usually be larger than what is expected for a binomial distribution:
+
+$${\rm Var}(Y|X_i) > n_i \pi_i (1 - \pi_i)$$
+
+## Overdispersion
+
+:::{style="font-size: 0.9em"}
+Let $Z_1, \ldots, Z_m$ be iid Bernoulli (S/F) trials with probability of success $\pi$.
+:::
+
+::: {style="font-size: 0.8em"}
+\begin{aligned}
+Y &= Z_1 + \ldots + Z_m\\
+{\rm Var} (Y) &= {\rm Var}(Z_1 + \ldots + Z_m)\\
+  &= {\rm Var}(Z_1) + \ldots + {\rm Var}(Z_m) + 2 \sum_{i<j} {\rm Cov}(Z_i, Z_j)\\
+  &= \psi m \pi (1 - \pi)
+\end{aligned}
+:::
+
+:::{style="font-size: 0.9em"}
+**So what?**
+
+- p-values too small  
+
+- CIs too narrow
+:::
+
+
+## Ad hoc test of overdispersion
+
+:::{style="font-size: 0.9em"}
+Recall:
+
+$D^2 = 2 \sum \left[ Y_i \log \left( \dfrac{Y_i}{n_i\widehat{\pi}_i} \right)  + (n_i - Y_i)  \log \left( \dfrac{n_i - Y_i}{n_i - n_i \widehat{\pi}_i} \right) \right]$
+
+<br>
+
+**If the model is correct and all *n<sub>i</sub>* are large enough**, $D^2 \overset{\cdot}{\sim} \chi^2$ with $\text{df}= n-(p+1)$ 
+
+
+::: r-stack
+:::{style="background: #B7CFDC; border-radius: 10px;"}
+:::{style="margin: 30px;"}
+$E\left( D^2 \right) = {\rm df} \Longrightarrow \dfrac{D^2}{{\rm df}} \approx 1$
+
+Red flag if $D^2/{\rm df} >\!\!> 1$
+:::
+:::
+:::
+
+:::
+
+
+## Model checking
+
+If over-dispersion exists, check whether the assumptions are met
+
+
+:::{.incremental}
+
+1. Do we have independence?
+    <br>
+
+1. If assumptions met, then check for outliers.
+    <br>
+
+1. If assumptions met, do we need to include an interaction term, some other term(s)?
+    <br>
+
+1. If assumptions met, then maybe an incorrect model (binomial model not appropriate)?
+
+:::
+
+## Quasi-likelihood approach
+
+:::{style="font-size: 0.9em"}
+:::{.incremental}
+
+1. Estimate $\beta_i$s using ML estimation, as before
+
+2. Estimate $\psi$ using $\widehat{\psi} = \dfrac{\text{deviance}}{{\rm df}}$
+
+3. Use ${\rm SE_{quasibinomial}}(\widehat{\beta}_i) = \sqrt{\widehat{\psi}} \cdot {\rm SE_{binomial}}(\widehat{\beta}_i)$ and use the $t$-distribution with $n-(p+1)$ degrees of freedom
+
+4. You can do a "drop-in-deviance" test using an F test:
+
+    $${\rm F} = \dfrac{\left[ \text{deviance(reduced)} - \text{deviance(full)} \right] / d}{\widehat{\psi}}$$
+
+    where ${\rm F} \sim F_{d,\, n-(p+1)}$
+    
+:::
+:::
+
+
+
+## Ad-hoc adjustment
+
+```{r eval=FALSE, echo=TRUE}
+Coefficients:
+                   Estimate Std. Error z value Pr(>|z|)    
+(Intercept)        8.365538   0.919710   9.096  < 2e-16 ***
+distance          -1.592867   0.131070 -12.153  < 2e-16 ***
+pctBlack          -0.062498   0.012845  -4.866 1.14e-06 ***
+I(distance^2)      0.044576   0.003388  13.156  < 2e-16 ***
+distance:pctBlack  0.009830   0.001514   6.493 8.43e-11 ***
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 988.45  on 10  degrees of freedom
+Residual deviance: 72.018  on  6  degrees of freedom
+```
+
+Let's correct the test for whether $\beta_{\rm distance} = 0$
+
+
+
+## Quasi-likelihood in R ("proactive" approach)
+
+```{r eval=FALSE, echo=TRUE}
+glm(YesVotes/NumVotes ~ distance * pctBlack + I(distance^2), 
+    data = rrdata, weights = NumVotes, family = quasibinomial)
+```
+
+```{r eval=FALSE, echo=TRUE}
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)   
+(Intercept)        8.365538   3.038714   2.753  0.03316 * 
+distance          -1.592867   0.433054  -3.678  0.01035 * 
+pctBlack          -0.062498   0.042440  -1.473  0.19127   
+I(distance^2)      0.044576   0.011195   3.982  0.00727 **
+distance:pctBlack  0.009830   0.005003   1.965  0.09701 . 
+
+(Dispersion parameter for quasibinomial family taken to be 10.91635)
+
+    Null deviance: 988.450  on 10  degrees of freedom
+Residual deviance:  72.018  on  6  degrees of freedom
+```
+
+
+::: {.aside}
+R estimates the dispersion parameter differently than I showed you, that's why the results are a bit different.
+:::
+
+
+## Comparing models in R
+
+You have to tell R to use an F-test to conduct the quasi-binomial drop-in-deviance  test
+
+```{r echo=TRUE}
+#| flourish:
+#| - target: "test = 'F'"
+full <- glm(YesVotes/NumVotes ~ distance * pctBlack + I(distance^2), 
+    data = rrdata, weights = NumVotes, family = quasibinomial)
+
+reduced <- update(full, . ~ . - distance:pctBlack)
+
+anova(reduced, full, test = 'F')
+```
+
