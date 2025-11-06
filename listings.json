@@ -2,6 +2,8 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/19-quasibinomial.html",
+      "/slides/18-binomial-gof.html",
       "/slides/16-logistic-diagnostics.html",
       "/slides/17-logistic-binomial.html",
       "/slides/15-logistic-inference.html",
