@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <title>Stat 230 - Fall 2025 – Modeling a Binary Response</title>
+  <title>Stat 230 - Fall 2025 – Modeling Counts</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -128,68 +194,110 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Modeling a Binary Response</h1>
-  <p class="subtitle">Logistic regression – Stat 230</p>
+  <h1 class="title">Modeling Counts</h1>
+  <p class="subtitle">Poisson regression – Stat 230</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="framingham-heart-study" class="slide level2 smaller">
-<h2>Framingham Heart Study</h2>
-<ul>
-<li><p>Long-term study of cardiovascular disease (heart attack, stroke, and other heart problems)</p></li>
-<li><p>First study of cardiovascular disease to follow initially healthy people over a long period of time</p></li>
-<li><p>Identified the idea that body measurements (blood pressure, cholesterol, etc) could predict cardiovascular disease.</p></li>
-<li><p>Participants from a population of free living (not hospitalized) subjects in the community of Framingham, Mass.</p></li>
-<li><p>Started in 1948, participants have been examined every other year since the inception</p></li>
-<li><p>In 3rd generation of participants!</p></li>
-</ul>
-</section>
-<section id="modeling-overview" class="slide level2">
-<h2>Modeling overview</h2>
-<p><strong>Goal:</strong> Determine whether participant experienced coronary heart disease (CHD) in 10-year window after their exam</p>
-<ul>
-<li><p>Y = CHD (0 = no, 1 = yes)</p></li>
-<li><p>X = participant’s age, sex, total cholesterol, and systolic blood pressure</p></li>
-</ul>
-<p><strong>Strategy:</strong> model the probability of CHD given these factors</p>
-</section>
-<section id="how-can-we-model-a-binary-response" class="slide level2">
-<h2>How can we model a binary response?</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment">
-<div style="text-align: center;">
-<p><strong>Linear regression</strong></p>
+<section id="puffin-nesting" class="slide level2">
+<h2>Puffin nesting</h2>
+<p><strong>Goal:</strong> describe the nesting frequency of the common puffin in a 3m × 3m grid of plots.</p>
+<p><br></p>
+<div style="font-size: 33px">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>nests</code></td>
+<td>number of nests (burrows) per 9 m<sup>2</sup> quadrat</td>
+</tr>
+<tr class="even">
+<td><code>grass</code></td>
+<td>grass cover percentage</td>
+</tr>
+<tr class="odd">
+<td><code>soil</code></td>
+<td>mean soil depth in cm</td>
+</tr>
+<tr class="even">
+<td><code>angle</code></td>
+<td>angle of slope in degrees</td>
+</tr>
+<tr class="odd">
+<td><code>distance</code></td>
+<td>distance from cliff edge in meters</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell" data-layout-align="center">
+<div class="footer" style="text-align: left; margin-left: 50px">
+<p>Source: Nettleship, D. N. (1972). Breeding success of the Common Puffin (Fratercula arctica L.) on different habitats at Great Island, Newfoundland. <em>Ecological Monographs</em>, 42(2), 239-268.</p>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="20-poisson-counts_files/figure-revealjs/unnamed-chunk-1-1.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"></section>
+<section id="initial-model" class="slide level2">
+<h2>Initial model</h2>
+<p>First, consider the association between the number of nests and the distance from the cliff edge</p>
+<p><strong>Which version of <code>Nests</code> would you prefer to use in a linear model?</strong></p>
+
+<img data-src="20-poisson-counts_files/figure-revealjs/unnamed-chunk-2-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="672"></section>
+<section id="slr-model" class="slide level2">
+<h2>SLR model</h2>
+<p>If we wanted to use an SLR model, then we could consider the square-root transformation of the response</p>
+<p><span class="math display">\[\mu \lbrace \sqrt{{\tt nests}} | {\tt distance} \rbrace = \beta_0 + \beta_1 {\tt distance}\]</span></p>
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-1-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">4.6313</td>
+<td style="text-align: right;">0.2114</td>
+<td style="text-align: right;">21.9123</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">distance</td>
+<td style="text-align: right;">-0.0634</td>
+<td style="text-align: right;">0.0090</td>
+<td style="text-align: right;">-7.0167</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
 <div class="fragment">
-<div style="text-align: center;">
-<p><strong>Logistic regression</strong></p>
+<p><strong>The diagnostics check out, so why might we prefer a different model?</strong></p>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div></div>
 </section>
+<section id="linear-regression" class="slide level2">
+<h2>Linear regression</h2>
+
+<img data-src="20-poisson-counts_files/figure-revealjs/unnamed-chunk-4-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
+<section id="poisson-regression" class="slide level2">
+<h2>Poisson regression</h2>
+
+<img data-src="20-poisson-counts_files/figure-revealjs/unnamed-chunk-5-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="576"></section>
 <section id="generalized-linear-model" class="slide level2">
 <h2>Generalized linear model</h2>
 <div class="fragment" data-fragment-index="1">
@@ -217,10 +325,10 @@
 <h2>Random component</h2>
 <p>What distribution does the response variable follow?</p>
 <p><br></p>
-<p><strong>Possible values:</strong> <span class="math inline">\(Y = 0 \text{ or } 1\)</span></p>
+<p><strong>Possible values:</strong> We are counting the number of events that occur over a fixed interval, so <span class="math inline">\(Y =0, 1, 2, \ldots\)</span></p>
 <p><br></p>
-<p><strong>Bernoulli distribution</strong></p>
-<p><span class="math inline">\(P(Y = y) = \pi^y (1-\pi)^{1-y}, \ y=0,1\)</span></p>
+<p><strong>Poisson distribution</strong></p>
+<p><span class="math inline">\(P(Y = y) = \frac{e^{-\lambda} \lambda^y}{y!}, \quad \text{for} \quad y = 0, 2, 1, \ldots\)</span></p>
 </section>
 <section id="linear-predictor" class="slide level2">
 <h2>Linear predictor</h2>
@@ -236,161 +344,94 @@
 <p>How can we relate the expectation of <span class="math inline">\(Y\)</span> and our linear predictor?</p>
 <div class="fragment">
 <p><br></p>
-<p><span class="math inline">\(E(Y) = \pi \longrightarrow\)</span> between 0 and 1</p>
+<p><span class="math inline">\(E(Y) = \lambda\)</span> between 0 and <span class="math inline">\(\infty\)</span></p>
 <p><br></p>
 <p><span class="math inline">\(\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p \longrightarrow\)</span> between <span class="math inline">\(-\infty\)</span> and <span class="math inline">\(\infty\)</span></p>
 <p><br></p>
-<p>What function takes numbers between 0 and 1 as input and maps them to the real line?</p>
-</div>
-</section>
-<section id="the-logit-function" class="slide level2">
-<h2>The logit function</h2>
-<p><span class="math inline">\({\rm logit}(\pi) = \log \left( \dfrac{\pi}{1 - \pi} \right)\)</span></p>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-3-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></div>
+<p>What function takes numbers between between 0 and <span class="math inline">\(\infty\)</span> as input and maps them to the real line?</p>
 </div>
 </section>
 <section id="link-function-1" class="slide level2">
 <h2>Link function</h2>
 <p>How can we relate the expectation of <span class="math inline">\(Y\)</span> and our linear predictor?</p>
-<p><br></p>
-<p><span class="math inline">\({\rm logit}(\pi) = \log \left( \dfrac{\pi}{1 - \pi} \right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta\)</span></p>
+<p><span class="math inline">\(\log(\lambda) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta\)</span></p>
 </section>
-<section id="example-a-quantitative-predictor" class="slide level2">
-<h2>Example: A quantitative predictor</h2>
-<p>Let’s use total cholesterol as a predictor of CHD</p>
+<section id="poisson-regression-model-for-counts" class="slide level2">
+<h2>Poisson regression model for counts</h2>
+<p><strong>Random component:</strong> <span class="math inline">\(Y_i = \#\)</span> nests in a 9 m<sup>2</sup> quadrat; Poisson distribution is reasonable</p>
 <div class="fragment">
-<p><span class="math display">\[\widehat{\eta}_i = \log \left( \dfrac{\widehat{\pi}(\mathtt{totChol_i})}{1-\widehat{\pi}(\mathtt{totChol_i})} \right) = -2.894 + 0.005 \mathtt{totChol}_i\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\widehat{\beta}_1 = 0.005\)</span> is the expected change in the log odds associated with a 1-unit increase in total cholesterol…</p>
 <p><br></p>
+<p><strong>Link function:</strong> <span class="math inline">\(E(Y) = \lambda\)</span> and <span class="math inline">\(\lambda &gt;0\)</span></p>
+<p><span class="math inline">\(\Longrightarrow \log(\lambda) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta\)</span></p>
 </div>
 <div class="fragment">
-<p>We don’t think in terms of log odds, so we need more interpretable quantities!</p>
+<p><br></p>
+<p><strong>Inverse-link function:</strong> <span class="math inline">\(E(Y) = e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}\)</span></p>
 </div>
 </section>
-<section id="log-odds-to-odds" class="slide level2">
-<h2>Log odds <span class="math inline">\(\to\)</span> odds</h2>
-<p><strong>Log odds:</strong></p>
-<p><span class="math inline">\(\widehat{\eta} = \log \left( \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} \right) = \widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p\)</span></p>
-<p><br></p>
-<div class="fragment">
-<p><strong>Odds of success:</strong></p>
-<p><span class="math inline">\(\widehat{\omega} = \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} = e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}\)</span></p>
-</div>
-</section>
-<section id="example-a-quantitative-predictor-1" class="slide level2 smaller">
-<h2>Example: A quantitative predictor</h2>
-<p><span class="math display">\[\widehat{\eta}_i = \log \left( \dfrac{\widehat{\pi}(\mathtt{totChol})}{1-\widehat{\pi}(\mathtt{totChol})} \right) = -2.894 + 0.005 \mathtt{totChol}_i\]</span></p>
-<p>How do we interpret <span class="math inline">\(e^{\widehat{\beta}}_1 = e^{0.005} \approx 1.005\)</span>??</p>
-<div class="fragment">
-<p><span class="math inline">\(\dfrac{\widehat{\pi}(\mathtt{totChol})}{1-\widehat{\pi}(\mathtt{totChol})} = e^{-2.894 + 0.005 \mathtt{totChol}_i} = e^{-2.894} \cdot e^{0.005 \mathtt{totChol}_i}\)</span></p>
-</div>
-<div class="fragment">
-<p>So if <code>totChol</code> increases by one unit…</p>
-<p><span class="math inline">\(\dfrac{\widehat{\pi}(\mathtt{totChol+1}) / \lbrace 1-\widehat{\pi}(\mathtt{totChol+1}) \rbrace}{ \widehat{\pi}(\mathtt{totChol}) / \lbrace 1-\widehat{\pi}(\mathtt{totChol}) \rbrace} = \dfrac{e^{-2.894} \cdot e^{0.005 \mathtt{totChol+1}}}{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}}}\)</span></p>
-</div>
-<div class="fragment">
+<section id="eda" class="slide level2">
+<h2>EDA</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-
-</div><div class="column" style="width:50%;">
-<p><span class="math inline">\(=\dfrac{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}} \cdot e^{0.005(1)}}{e^{-2.894} \cdot e^{0.005 \mathtt{totChol}}}\)</span></p>
-</div></div>
-</div>
-<div class="fragment">
-<div class="columns">
-<div class="column" style="width:50%;">
-
-</div><div class="column" style="width:50%;">
-<p><span class="math inline">\(=e^{0.005(1)} \approx 1.005\)</span></p>
-</div></div>
-</div>
-<div class="fragment">
-<p>we expect the odds of CHD to increase by a factor of 1.005</p>
-</div>
-</section>
-<section id="estimating-probabilities" class="slide level2">
-<h2>Estimating probabilities</h2>
-<p>What’s the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?</p>
-<div class="fragment">
-<p><span class="math display">\[\widehat{\eta}(\mathtt{240}) = \log \left( \dfrac{\widehat{\pi}(\mathtt{240})}{1-\widehat{\pi}(\mathtt{240})} \right) = -2.894 + 0.005(\mathtt{240}) = -1.694\]</span></p>
-</div>
-<div class="fragment">
-<p><br></p>
-<p>How do we get from the estimated log odds to a probability?</p>
-</div>
-</section>
-<section id="log-odds-to-probability" class="slide level2 smaller">
-<h2>Log odds <span class="math inline">\(\to\)</span> probability</h2>
-<p><strong>Log odds:</strong></p>
-<p><span class="math inline">\(\widehat{\eta} = \log \left( \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} \right) = \widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p\)</span></p>
-<p><br></p>
-<p><strong>Odds of success:</strong></p>
-<p><span class="math inline">\(\widehat{\omega} = \dfrac{\widehat{\pi}(\mathtt{X})}{1-\widehat{\pi}(\mathtt{X})} = e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}\)</span></p>
-<p><br></p>
-<div class="fragment">
-<p><strong>Probability of success:</strong></p>
-<p><span class="math inline">\(\widehat{\pi}(X) = \dfrac{e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}}{1+e^{\widehat{\beta}_0 + \widehat{\beta}_1 X_1 + \cdots + \widehat{\beta}_p X_p}}\)</span></p>
-</div>
-</section>
-<section id="estimating-probabilities-1" class="slide level2">
-<h2>Estimating probabilities</h2>
-<p>What’s the probability that a person with total cholesterol of 240 mg/dL will develop CHD in the next 10 years?</p>
-<p><span class="math display">\[\widehat{\eta}(\mathtt{240}) = \log \left( \dfrac{\widehat{\pi}(\mathtt{240})}{1-\widehat{\pi}(\mathtt{240})} \right) = -2.894 + 0.005(\mathtt{240}) = -1.694\]</span></p>
-<p>How do we get from the estimated log odds to a probability?</p>
-<p><br></p>
-<div class="fragment">
-<p><span class="math inline">\(\widehat{\pi}(240) = \dfrac{e^{-1.694}}{1 + e^{-1.694}} \approx  0.155\)</span></p>
-</div>
-</section>
-<section id="fitted-logistic-regression-model" class="slide level2">
-<h2>Fitted logistic regression model</h2>
-<p><span class="math inline">\({\rm logistic}(\widehat{\eta}) = \dfrac{ \exp(\widehat{\eta}) }{ 1+  \exp(\widehat{\eta})}\)</span> is the fitted curve on the probability scale</p>
-<div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:60%;">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-5-1.png" style="width:80.0%"></p>
+<p><img data-src="20-poisson-counts_files/figure-revealjs/unnamed-chunk-6-1.svg" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="14-binary-logistic_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:80.0%"></p>
-</figure>
-</div>
-</div>
-</div>
+</div><div class="column" style="width:40%;">
+<!-- - Why did we use <br> `log(nests + 0.5)`? -->
+<p>What structure are we looking for in this plot?</p>
+<p><br></p>
+<p><br></p>
+<p>There are no 0 counts in this data set, how could we create this plot if we had observed 0s?</p>
 </div></div>
+</section>
+<section id="model-fitting" class="slide level2">
+<h2>Model fitting</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">glm</span>(nests <span class="sc">~</span> distance, <span class="at">data =</span> puffin, <span class="at">family =</span> poisson)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>Coefficients<span class="sc">:</span></span>
+<span id="cb2-2"><a></a>            Estimate Std. Error z value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
+<span id="cb2-3"><a></a>(Intercept)  <span class="fl">3.12797</span>    <span class="fl">0.11049</span>  <span class="fl">28.311</span>  <span class="sc">&lt;</span> <span class="fl">2e-16</span></span>
+<span id="cb2-4"><a></a>distance    <span class="sc">-</span><span class="fl">0.03585</span>    <span class="fl">0.00562</span>  <span class="sc">-</span><span class="fl">6.378</span> <span class="fl">1.79e-10</span></span>
+<span id="cb2-5"><a></a></span>
+<span id="cb2-6"><a></a>(Dispersion parameter <span class="cf">for</span> poisson family taken to be <span class="dv">1</span>)</span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a>    Null deviance<span class="sc">:</span> <span class="fl">65.900</span>  on <span class="dv">24</span>  degrees of freedom</span>
+<span id="cb2-9"><a></a>Residual deviance<span class="sc">:</span> <span class="fl">23.653</span>  on <span class="dv">23</span>  degrees of freedom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><br></p>
+<p><strong>Fitted model:</strong> <span class="math inline">\(\log(\widehat{\lambda}) = 3.128 -0.036{\tt distance}\)</span></p>
+<div class="fragment">
+<p><strong>How can we interpret the coefficients?</strong></p>
+</div>
+</section>
+<section id="multiple-predictors" class="slide level2">
+<h2>Multiple predictors</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>full <span class="ot">&lt;-</span> <span class="fu">glm</span>(nests <span class="sc">~</span> grass <span class="sc">+</span> soil <span class="sc">+</span> angle <span class="sc">+</span> distance, <span class="at">data =</span> puffin,</span>
+<span id="cb3-2"><a></a>            <span class="at">family =</span> poisson)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>Coefficients<span class="sc">:</span></span>
+<span id="cb4-2"><a></a>              Estimate Std. Error z value <span class="fu">Pr</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>) </span>
+<span id="cb4-3"><a></a>(Intercept)  <span class="fl">2.1202963</span>  <span class="fl">0.4733672</span>   <span class="fl">4.479</span> <span class="fl">7.49e-06</span> </span>
+<span id="cb4-4"><a></a>grass       <span class="sc">-</span><span class="fl">0.0006591</span>  <span class="fl">0.0032590</span>  <span class="sc">-</span><span class="fl">0.202</span>   <span class="fl">0.8397</span> </span>
+<span id="cb4-5"><a></a>soil         <span class="fl">0.0190915</span>  <span class="fl">0.0109412</span>   <span class="fl">1.745</span>   <span class="fl">0.0810</span> </span>
+<span id="cb4-6"><a></a>angle        <span class="fl">0.0078423</span>  <span class="fl">0.0128681</span>   <span class="fl">0.609</span>   <span class="fl">0.5422</span> </span>
+<span id="cb4-7"><a></a>distance    <span class="sc">-</span><span class="fl">0.0269270</span>  <span class="fl">0.0152854</span>  <span class="sc">-</span><span class="fl">1.762</span>   <span class="fl">0.0781</span> </span>
+<span id="cb4-8"><a></a></span>
+<span id="cb4-9"><a></a>(Dispersion parameter <span class="cf">for</span> poisson family taken to be <span class="dv">1</span>)</span>
+<span id="cb4-10"><a></a></span>
+<span id="cb4-11"><a></a>    Null deviance<span class="sc">:</span> <span class="fl">65.900</span>  on <span class="dv">24</span>  degrees of freedom</span>
+<span id="cb4-12"><a></a>Residual deviance<span class="sc">:</span> <span class="fl">16.944</span>  on <span class="dv">20</span>  degrees of freedom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
