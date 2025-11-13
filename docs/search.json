@@ -3218,5 +3218,124 @@
     "title": "Quasibinomial Logistic Regression",
     "section": "Quasi-likelihood in R (“proactive” approach)",
     "text": "Quasi-likelihood in R (“proactive” approach)\n\nglm(YesVotes/NumVotes ~ distance * pctBlack + I(distance^2), \n    data = rrdata, weights = NumVotes, family = quasibinomial)\n\n\nCoefficients:\n                   Estimate Std. Error t value Pr(&gt;|t|)   \n(Intercept)        8.365538   3.038714   2.753  0.03316 * \ndistance          -1.592867   0.433054  -3.678  0.01035 * \npctBlack          -0.062498   0.042440  -1.473  0.19127   \nI(distance^2)      0.044576   0.011195   3.982  0.00727 **\ndistance:pctBlack  0.009830   0.005003   1.965  0.09701 . \n\n(Dispersion parameter for quasibinomial family taken to be 10.91635)\n\n    Null deviance: 988.450  on 10  degrees of freedom\nResidual deviance:  72.018  on  6  degrees of freedom\n\n\n\nR estimates the dispersion parameter differently than I showed you, that’s why the results are a bit different."
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#puffin-nesting",
+    "href": "slides/20-poisson-counts.html#puffin-nesting",
+    "title": "Modeling Counts",
+    "section": "Puffin nesting",
+    "text": "Puffin nesting\nGoal: describe the nesting frequency of the common puffin in a 3m × 3m grid of plots.\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nnests\nnumber of nests (burrows) per 9 m2 quadrat\n\n\ngrass\ngrass cover percentage\n\n\nsoil\nmean soil depth in cm\n\n\nangle\nangle of slope in degrees\n\n\ndistance\ndistance from cliff edge in meters\n\n\n\n\n\nSource: Nettleship, D. N. (1972). Breeding success of the Common Puffin (Fratercula arctica L.) on different habitats at Great Island, Newfoundland. Ecological Monographs, 42(2), 239-268."
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#initial-model",
+    "href": "slides/20-poisson-counts.html#initial-model",
+    "title": "Modeling Counts",
+    "section": "Initial model",
+    "text": "Initial model\nFirst, consider the association between the number of nests and the distance from the cliff edge\nWhich version of Nests would you prefer to use in a linear model?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#slr-model",
+    "href": "slides/20-poisson-counts.html#slr-model",
+    "title": "Modeling Counts",
+    "section": "SLR model",
+    "text": "SLR model\nIf we wanted to use an SLR model, then we could consider the square-root transformation of the response\n\\[\\mu \\lbrace \\sqrt{{\\tt nests}} | {\\tt distance} \\rbrace = \\beta_0 + \\beta_1 {\\tt distance}\\]\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\n\n\n\n\n(Intercept)\n4.6313\n0.2114\n21.9123\n0\n\n\ndistance\n-0.0634\n0.0090\n-7.0167\n0\n\n\n\n\n\n\nThe diagnostics check out, so why might we prefer a different model?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#poisson-regression-model-for-counts",
+    "href": "slides/20-poisson-counts.html#poisson-regression-model-for-counts",
+    "title": "Modeling Counts",
+    "section": "Poisson regression model for counts",
+    "text": "Poisson regression model for counts\nRandom component: \\(Y_i = \\#\\) nests in a 9 m2 quadrat; Poisson distribution is reasonable\n\n\nLink function: \\(E(Y) = \\lambda\\) and \\(\\lambda &gt;0\\)\n\\(\\Longrightarrow \\log(\\lambda) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p = \\eta\\)\n\n\n\nInverse-link function: \\(E(Y) = e^{\\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p}\\)"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#eda",
+    "href": "slides/20-poisson-counts.html#eda",
+    "title": "Modeling Counts",
+    "section": "EDA",
+    "text": "EDA\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat structure are we looking for in this plot?\n\n\nThere are no 0 counts in this data set, how could we create this plot if we had observed 0s?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#model-fitting",
+    "href": "slides/20-poisson-counts.html#model-fitting",
+    "title": "Modeling Counts",
+    "section": "Model fitting",
+    "text": "Model fitting\n\nglm(nests ~ distance, data = puffin, family = poisson)\n\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)\n(Intercept)  3.12797    0.11049  28.311  &lt; 2e-16\ndistance    -0.03585    0.00562  -6.378 1.79e-10\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 65.900  on 24  degrees of freedom\nResidual deviance: 23.653  on 23  degrees of freedom\n\n\nFitted model: \\(\\log(\\widehat{\\lambda}) = 3.128 -0.036{\\tt distance}\\)\n\nHow can we interpret the coefficients?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#multiple-predictors",
+    "href": "slides/20-poisson-counts.html#multiple-predictors",
+    "title": "Modeling Counts",
+    "section": "Multiple predictors",
+    "text": "Multiple predictors\n\nfull &lt;- glm(nests ~ grass + soil + angle + distance, data = puffin,\n            family = poisson)\n\n\nCoefficients:\n              Estimate Std. Error z value Pr(&gt;|z|) \n(Intercept)  2.1202963  0.4733672   4.479 7.49e-06 \ngrass       -0.0006591  0.0032590  -0.202   0.8397 \nsoil         0.0190915  0.0109412   1.745   0.0810 \nangle        0.0078423  0.0128681   0.609   0.5422 \ndistance    -0.0269270  0.0152854  -1.762   0.0781 \n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 65.900  on 24  degrees of freedom\nResidual deviance: 16.944  on 20  degrees of freedom"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#linear-regression",
+    "href": "slides/20-poisson-counts.html#linear-regression",
+    "title": "Modeling Counts",
+    "section": "Linear regression",
+    "text": "Linear regression"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#poisson-regression",
+    "href": "slides/20-poisson-counts.html#poisson-regression",
+    "title": "Modeling Counts",
+    "section": "Poisson regression",
+    "text": "Poisson regression"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#generalized-linear-model",
+    "href": "slides/20-poisson-counts.html#generalized-linear-model",
+    "title": "Modeling Counts",
+    "section": "Generalized linear model",
+    "text": "Generalized linear model\n\nRandom component: \n\n\nWhat distribution does the response variable follow?\n\n\n\nLinear predictor (systematic component): \n\n\nWhat function of the predictors should we use?\n\n\n\nLink function: \n\n\nHow can we relate the expectation of \\(Y\\) and our linear predictor?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#random-component",
+    "href": "slides/20-poisson-counts.html#random-component",
+    "title": "Modeling Counts",
+    "section": "Random component",
+    "text": "Random component\nWhat distribution does the response variable follow?\n\nPossible values: We are counting the number of events that occur over a fixed interval, so \\(Y =0, 1, 2, \\ldots\\)\n\nPoisson distribution\n\\(P(Y = y) = \\frac{e^{-\\lambda} \\lambda^y}{y!}, \\quad \\text{for} \\quad y = 0, 2, 1, \\ldots\\)"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#linear-predictor",
+    "href": "slides/20-poisson-counts.html#linear-predictor",
+    "title": "Modeling Counts",
+    "section": "Linear predictor",
+    "text": "Linear predictor\nWhat function of the predictors should we use?\n\n\\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p\\)\n\n\n\\(\\eta =\\) “eta”"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#link-function",
+    "href": "slides/20-poisson-counts.html#link-function",
+    "title": "Modeling Counts",
+    "section": "Link function",
+    "text": "Link function\nHow can we relate the expectation of \\(Y\\) and our linear predictor?\n\n\n\\(E(Y) = \\lambda\\) between 0 and \\(\\infty\\)\n\n\\(\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p \\longrightarrow\\) between \\(-\\infty\\) and \\(\\infty\\)\n\nWhat function takes numbers between between 0 and \\(\\infty\\) as input and maps them to the real line?"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#link-function-1",
+    "href": "slides/20-poisson-counts.html#link-function-1",
+    "title": "Modeling Counts",
+    "section": "Link function",
+    "text": "Link function\nHow can we relate the expectation of \\(Y\\) and our linear predictor?\n\\(\\log(\\lambda) = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_p X_p = \\eta\\)"
+  },
+  {
+    "objectID": "activity/19H-sol-quasibinomial.html",
+    "href": "activity/19H-sol-quasibinomial.html",
+    "title": "Quasibinomial Logistic Regression",
+    "section": "",
+    "text": "Orobanche is a genus of parasitic plants without chlorophyll that grow on the roots of flowering plants. In an experiment, seeds from two varieties, Orobanche aegyptiaca 75 and Orobanche aegyptiaca 73, where brushed with extract from either a cucumber root or a bean root. Researchers recorded the number of seeds that eventually germinated.\nRun the code chunk below to load the data:\n\norobanche &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/orobanche.csv\")\n\nThe variables in the data set are:\n\ny: count of seeds germinated\nn: number of seeds\nvariety: either oa75 or oa73\nroot: either cucumber or bean\n\nLast class we fit the following binomial logistic regression model to these data:\n\\[\n\\text{logit}(\\pi_i) = \\beta_0 + \\beta_1 \\text{variety} + \\beta_2 \\text{root} + \\beta_3 \\text{variety} \\times \\text{root}\n\\]\nHowever, we found evidence of lack of fit."
+  },
+  {
+    "objectID": "activity/19H-sol-quasibinomial.html#data-overview",
+    "href": "activity/19H-sol-quasibinomial.html#data-overview",
+    "title": "Quasibinomial Logistic Regression",
+    "section": "",
+    "text": "Orobanche is a genus of parasitic plants without chlorophyll that grow on the roots of flowering plants. In an experiment, seeds from two varieties, Orobanche aegyptiaca 75 and Orobanche aegyptiaca 73, where brushed with extract from either a cucumber root or a bean root. Researchers recorded the number of seeds that eventually germinated.\nRun the code chunk below to load the data:\n\norobanche &lt;- read.csv(\"https://aloy.github.io/stat230-materials/data/orobanche.csv\")\n\nThe variables in the data set are:\n\ny: count of seeds germinated\nn: number of seeds\nvariety: either oa75 or oa73\nroot: either cucumber or bean\n\nLast class we fit the following binomial logistic regression model to these data:\n\\[\n\\text{logit}(\\pi_i) = \\beta_0 + \\beta_1 \\text{variety} + \\beta_2 \\text{root} + \\beta_3 \\text{variety} \\times \\text{root}\n\\]\nHowever, we found evidence of lack of fit."
+  },
+  {
+    "objectID": "activity/19H-sol-quasibinomial.html#exploring-overdispersion",
+    "href": "activity/19H-sol-quasibinomial.html#exploring-overdispersion",
+    "title": "Quasibinomial Logistic Regression",
+    "section": "Exploring overdispersion",
+    "text": "Exploring overdispersion\nBelow are the deviance residual plots we created last class. We didn’t see clear signs of non-linearity or outliers, so we should explore whether extra-binomial variation (overdispersion) is present.\n\n\n\n\n\n\n\n\n\n\n\n\n\nTask 1. Below is the R output from the summary() command. Use it to perform the dd hoc test of overdispersion. What do you conclude?\n\n\n\nCall:\nglm(formula = y/n ~ variety * root, family = binomial, data = orobanche, \n    weights = n)\n\nCoefficients:\n                         Estimate Std. Error z value Pr(&gt;|z|)  \n(Intercept)               -0.4122     0.1842  -2.238   0.0252 *\nvarietyoa75               -0.1459     0.2232  -0.654   0.5132  \nrootcucumber               0.5401     0.2498   2.162   0.0306 *\nvarietyoa75:rootcucumber   0.7781     0.3064   2.539   0.0111 *\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 98.719  on 20  degrees of freedom\nResidual deviance: 33.278  on 17  degrees of freedom\nAIC: 117.87\n\nNumber of Fisher Scoring iterations: 4\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nTo perform the ad hoc test for overdispersion, we calculate the dispersion parameter, \\(\\hat{\\psi}\\), using the formula: \\[\n\\hat{\\psi} = \\frac{\\text{Residual deviance}}{\\text{Degrees of Freedom}} = \\frac{33.278}{17} \\approx 1.958\n\\]\nThis is greater than 1, indicating potential overdispersion.\n\n\n\nTask 2. Regardless of your answer in Task 1, estimate the dispersion parameter, \\(\\psi\\), and calculate the \\(\\text{SE}_{quasibinomial}(\\hat{\\beta}_2)\\).\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nWe have the estimate of the dispersion parameter from Task 1. Now, we can calculate the adjusted standard error for \\(\\hat{\\beta}_2\\) (the coefficient for root).\n\\[\n\\text{SE}_{quasibinomial}(\\hat{\\beta}_2) = \\sqrt{\\hat{\\psi}} \\times \\text{SE}_{binomial}(\\hat{\\beta}_2) = \\sqrt{1.958} \\times 0.2498 \\approx 0.3495\n\\]\n\n\n\nTask 3. Using this adjusted standard error, conduct a hypothesis test for the null hypothesis that \\(\\beta_2 = 0\\) at the \\(\\alpha = 0.05\\) significance level. (This is for the root coefficient.) What do you conclude?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nUsing the adjusted standard error, we calculate the test statistic:\n\\[\nt = \\frac{\\hat{\\beta}_2 - 0}{\\text{SE}_{quasibinomial}(\\hat{\\beta}_2)} = \\frac{0.5401 - 0}{0.3495} \\approx 1.545\n\\]\nTo find the p-value, we use a t-distribution with 17 degrees of freedom:\n\n2 * (1 - pt(1.545, df = 17))\n\n[1] 0.1407576\n\n\nThis gives a p-value of approximately 0.140. We fail to reject the null hypothesis. There is not enough evidence to suggest suggest that there is an association between the root and germination rate after accounting for variety. (Notice that this is a change!)\n\n\n\nTask 4. Construct a 95% confidence interval for \\(\\beta_2\\) using the adjusted standard error.\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nUsing the adjusted standard error from Task 2, we can construct a 95% confidence interval for \\(\\beta_2\\):\n\\[\n\\hat{\\beta}_2 \\pm t^*_{17} \\times \\text{SE}_{quasibinomial}(\\hat{\\beta}_2) = 0.5401 \\pm 2.11 \\times 0.3495\n\\]\n\n\n\nTask 5. The deviance for the model without the interaction term is 39.686 with 18 degrees of freedom. Using this information, conduct a drop-in-deviance test for the interaction term that is adjusted for overdispersion. What do you conclude?\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe test statistic for the drop-in-deviance test is calculated as follows:\n\\[\n\\chi^2 = \\frac{(Deviance_{reduced} - Deviance_{full})/1}{\\hat{\\psi}} = \\frac{39.686 - 33.278}{1.958} \\approx 3.27\n\\]\nTo find the p-value, we use an F distribution with 1 and 17 degrees of freedom:\n\n1 - pf(3.27, df1 = 1, df2 = 17)\n\n[1] 0.08828123\n\n\nThere is weak evidence of an interaction effect between variety and root."
   }
 ]

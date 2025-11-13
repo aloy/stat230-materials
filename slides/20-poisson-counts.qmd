@@ -1,0 +1,375 @@
+---
+title: "Modeling Counts"
+subtitle: "Poisson regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, dev = 'svg', comment = NULL, eval = TRUE, echo = FALSE)
+
+library(ggplot2)
+library(ggformula)
+library(ggrepel)   # label outliers
+library(dplyr)
+library(car)
+library(gridExtra)
+library(broom)
+library(Sleuth3)
+library(ggthemes)
+library(GGally)
+
+puffin <- read.table("http://www.markirwin.net/stat149/Data/puffin.txt", header = TRUE)
+colnames(puffin)[1] <- "nests"
+puffin <- subset(puffin, nests > 0)
+```
+
+## Puffin nesting
+
+**Goal:** describe the nesting frequency of the common puffin in a 3m &#215; 3m grid of plots.
+
+<br>
+
+::: {style="font-size: 33px"}
+Variable | Description
+---------|--------------------
+`nests`  | number of nests (burrows) per 9 m<sup>2</sup> quadrat
+`grass`    | grass cover percentage
+`soil`     | mean soil depth in cm
+`angle`    | angle of slope in degrees
+`distance` | distance from cliff edge in meters
+:::
+
+::: {.footer style="text-align: left; margin-left: 50px"}
+Source: Nettleship, D. N. (1972). Breeding success of the Common Puffin (Fratercula arctica L.) on different habitats at Great Island, Newfoundland. *Ecological Monographs*, 42(2), 239-268.
+:::
+
+---
+
+```{r fig.height=5.5, fig.width=7, echo=FALSE, cache=TRUE, fig.align='center', out.width="100%"}
+ggpairs(puffin , 
+        upper = list(continuous = wrap("points", alpha = 0.5)),
+        diag = list(continuous = "densityDiag"),
+        lower = list(continuous = "cor"))
+```
+
+---
+
+## Initial model
+
+First, consider the association between the number of nests and the  distance from the cliff edge 
+
+**Which version of `Nests` would you prefer to use in a linear model?**
+
+```{r echo=FALSE, fig.height = 3.5, fig.width = 7, fig.align='center'}
+raw <- gf_jitter(nests ~ distance, data = puffin, height = 0.5, with = 0.5) %>%
+  gf_smooth(method = "lm") %>%
+  gf_labs(x = "Distance", y = "Nests")
+
+tform1 <- gf_point(sqrt(nests) ~ distance, data = puffin, height = 0.5, with = 0.5) %>%
+  gf_smooth(method = "lm") %>%
+  gf_labs(x = "Distance from cliff (meters)", y = expression(sqrt(Nests)))
+
+grid.arrange(raw, tform1, ncol = 2)
+```
+
+---
+
+## SLR model
+
+If we wanted to use an SLR model, then we could consider the square-root transformation of the response
+
+
+$$\mu \lbrace \sqrt{{\tt nests}} | {\tt distance} \rbrace = \beta_0 + \beta_1 {\tt distance}$$
+
+
+```{r echo=FALSE}
+ols <- lm(sqrt(nests) ~ distance, data = puffin)
+knitr::kable(tidy(ols), format = "html", digits = 4)
+```
+
+. . .
+
+**The diagnostics check out, so why might we prefer a different model?**
+
+
+## Linear regression
+
+
+```{r fig.height = 3.5, fig.width = 6, fig.align='center'}
+# Now make Poisson regression picture
+set.seed(0)
+old_dat <- data.frame(x=(x=runif(500, 3, 40)),
+                  y=rnorm(1000, (4.63127 + -0.06338*x)^2, sd = sigma(ols)))
+
+old_slab_dat <- data.frame(
+  x = c(10, 20, 40),
+  yhat = predict(ols, newdata = data.frame(distance = c(10, 20, 40)))^2
+)
+
+library(ggdist)
+ggplot(old_dat, aes(x, y)) +
+  geom_point(size = 0.1, alpha = 0.4) +
+  geom_function(fun = \(x) (4.63127 + -0.06338*x)^2) +
+    stat_slab(aes(x = x, ydist = "norm", arg1 = yhat, arg2 = sigma(ols)), data = old_slab_dat, alpha = 0.4, inherit.aes = FALSE, scale = 0.6, fill = "#f15a31", side="left") +
+  theme_bw() +
+  geom_vline(xintercept=c(10, 20, 40), lty=2) +
+  lims(x = c(0, 40)) +
+  labs(x = "Distance", y = "Number of nests")
+```
+
+## Poisson regression
+
+```{r fig.height = 3.5, fig.width = 6, fig.align='center'}
+# Now make Poisson regression picture
+set.seed(0)
+dat <- data.frame(x=(x=runif(500, 3, 40)),
+                  y=rpois(1000, exp(3.12797 + -0.03585*x)))
+
+## breaks: where you want to compute densities
+breaks <- c(0, 10, 20, 40)
+dat$section <- cut(dat$x, breaks)
+
+## Get the residuals
+dat$res <- dat$y - (3.12797 + -0.03585*dat$x)
+
+## Compute densities for each section, flip the axes, add means of sections
+## Note: densities need to be scaled in relation to section size
+dens <- do.call(rbind, lapply(split(dat, dat$section), function(x) {
+  d <- density(x$res, n=1000)
+  res <- data.frame(x=max(x$x)- d$y, y=d$x+mean(x$y))
+  res <- res[order(res$y), ]
+  ## Get some data for poisson lines as well
+  xs <- seq(min(x$y), max(x$y), len=1000)
+  res <- rbind(res, data.frame(y=xs,
+                x=max(x$x) - 50*dpois(round(xs), exp(3.12797 + -0.03585*max(x$x)))))
+  res$type <- rep(c("empirical", "poisson"), each=1000)
+  res
+}))
+dens$section <- rep(levels(dat$section), each=1000)
+
+ggplot(dat, aes(x, y)) +
+  geom_point(size = 0.1, alpha = 0.4) +
+  geom_function(fun = \(x) exp(3.12797 + -0.03585 * x)) +
+  # geom_smooth(method="loess", fill=NA, linewidth=1) +
+  geom_path(data=dens[dens$type=="poisson",], aes(x, y, group=section), 
+            color="orange", lwd=1.1) +
+  theme_bw() +
+  geom_vline(xintercept=breaks, lty=2) +
+  lims(x = c(3, 40)) +
+  labs(x = "Distance", y = "Number of nests")
+```
+
+
+
+
+## Generalized linear model
+
+::: {.fragment fragment-index=1}
+**Random component: **
+:::
+
+::: {.fragment fragment-index=2}
+What distribution does the response variable follow?
+:::
+
+<br>
+
+
+::: {.fragment fragment-index=1}
+**Linear predictor (systematic component): **
+:::
+
+::: {.fragment fragment-index=3}
+What function of the predictors should we use?
+:::
+
+<br>
+
+
+::: {.fragment fragment-index=1}
+**Link function: **
+:::
+
+::: {.fragment fragment-index=4}
+How can we relate the expectation of $Y$ and our linear predictor?
+:::
+
+
+## Random component
+
+What distribution does the response variable follow?
+
+<br>
+
+**Possible values:** We are counting the number of events that occur over a fixed interval, so $Y =0, 1, 2, \ldots$
+
+<br>
+
+**Poisson distribution**
+
+$P(Y = y) = \frac{e^{-\lambda} \lambda^y}{y!}, \quad \text{for} \quad y = 0, 2, 1, \ldots$
+
+
+
+## Linear predictor
+
+What function of the predictors should we use?
+
+<br>
+
+$\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$
+
+:::{.aside}
+$\eta =$ "eta"
+:::
+
+
+## Link function
+
+How can we relate the expectation of $Y$ and our linear predictor?
+
+. . .
+
+<br>
+
+$E(Y) = \lambda$ between 0 and $\infty$
+
+<br>
+
+$\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p \longrightarrow$ between $-\infty$ and $\infty$
+
+<br>
+
+What function takes numbers between between 0 and $\infty$ as input and maps them to the real line?
+
+
+## Link function
+
+How can we relate the expectation of $Y$ and our linear predictor?
+
+
+$\log(\lambda) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta$
+
+
+
+
+---
+
+## Poisson regression model for counts
+
+**Random component:** $Y_i = \#$ nests in a 9 m<sup>2</sup> quadrat; Poisson distribution is reasonable
+
+. . .
+
+<br>
+
+**Link function:** $E(Y) = \lambda$ and $\lambda >0$
+
+$\Longrightarrow \log(\lambda) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p = \eta$
+
+. . .
+
+<br>
+
+**Inverse-link function:** $E(Y) = e^{\beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p}$
+
+
+
+
+---
+
+## EDA
+
+:::: {.columns}
+
+::: {.column width="60%"}
+```{r fig.height = 4, fig.width=4, out.width="100%"}
+gf_jitter(log(nests) ~ distance, data = puffin, height = 0.25, width = 0.25, alpha = 0.5) 
+```
+
+:::
+
+::: {.column width="40%"}
+
+<!-- - Why did we use <br> `log(nests + 0.5)`? -->
+
+What structure are we looking for in this plot?
+
+<br>
+
+<br>
+
+
+There are no 0 counts in this data set, how could we create this plot if we had observed 0s?
+
+:::
+
+::::
+
+---
+
+## Model fitting
+
+
+```{r eval=FALSE, echo=TRUE}
+glm(nests ~ distance, data = puffin, family = poisson)
+```
+
+```{r include=FALSE}
+pois1 <- glm(nests ~ distance, data = puffin, family = poisson)
+summary(pois1)
+```
+
+```{r eval=FALSE, echo=TRUE}
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)
+(Intercept)  3.12797    0.11049  28.311  < 2e-16
+distance    -0.03585    0.00562  -6.378 1.79e-10
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 65.900  on 24  degrees of freedom
+Residual deviance: 23.653  on 23  degrees of freedom
+```
+
+<br>
+
+**Fitted model:** $\log(\widehat{\lambda}) = 3.128 -0.036{\tt distance}$
+
+. . .
+
+**How can we interpret the coefficients?**
+
+
+---
+
+## Multiple predictors
+
+```{r echo=TRUE}
+full <- glm(nests ~ grass + soil + angle + distance, data = puffin,
+            family = poisson)
+```
+
+```{r eval=FALSE, echo=TRUE}
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|) 
+(Intercept)  2.1202963  0.4733672   4.479 7.49e-06 
+grass       -0.0006591  0.0032590  -0.202   0.8397 
+soil         0.0190915  0.0109412   1.745   0.0810 
+angle        0.0078423  0.0128681   0.609   0.5422 
+distance    -0.0269270  0.0152854  -1.762   0.0781 
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 65.900  on 24  degrees of freedom
+Residual deviance: 16.944  on 20  degrees of freedom
+```
+

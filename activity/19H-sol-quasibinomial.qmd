@@ -1,0 +1,163 @@
+---
+title: "Quasibinomial Logistic Regression"
+format: html
+editor: source
+editor_options: 
+  chunk_output_type: console
+execute:
+  eval: true
+---
+
+
+```{r}
+#| include: false
+#| eval: true
+task <- 0
+library(car)
+library(ggformula)
+```
+
+## Data overview
+
+*Orobanche* is a genus of parasitic plants without chlorophyll that grow on the roots of flowering plants. In an experiment, seeds from two varieties, Orobanche aegyptiaca 75 and Orobanche aegyptiaca 73, where brushed with extract from either a cucumber root or a bean root. Researchers recorded the number of seeds that eventually germinated.
+
+Run the code chunk below to load the data:
+```{r}
+orobanche <- read.csv("https://aloy.github.io/stat230-materials/data/orobanche.csv")
+```
+
+The variables in the data set are:
+
+- `y`: count of seeds germinated
+- `n`: number of seeds
+- `variety`: either oa75 or oa73
+- `root`: either cucumber or bean
+
+Last class we fit the following binomial logistic regression model to these data:
+
+$$
+\text{logit}(\pi_i) = \beta_0 + \beta_1 \text{variety} + \beta_2 \text{root} + \beta_3 \text{variety} \times \text{root}
+$$
+
+However, we found evidence of lack of fit.
+
+## Exploring overdispersion
+
+Below are the deviance residual plots we created last class. We didn't see clear signs of non-linearity or outliers, so we should explore whether extra-binomial variation (overdispersion) is present.
+
+```{r}
+#| layout-ncol: 3
+#| fig-height: 3
+#| fig-width: 3
+#| echo: false
+interaction_mod <- glm(y/n ~ variety * root, data = orobanche, family = binomial, weights = n)
+
+additive_mod <- glm(y/n ~ variety + root, data = orobanche, family = binomial, weights = n)
+
+
+aug_interaction <- broom::augment(interaction_mod)
+
+gf_point(.resid ~ .fitted, data = aug_interaction, xlab = "Linear predictor", ylab = "Deviance residuals") |>
+  gf_hline(yintercept = 0, linetype = 2) |>
+  gf_labs(title = "Deviance Residuals vs Fitted Values") +
+  theme_classic()
+
+gf_point(.resid ~ variety, data = aug_interaction, xlab = "variety", ylab = "Deviance residuals") |>
+  gf_hline(yintercept = 0, linetype = 2) |>
+  gf_labs(title = "Deviance Residuals vs Variety")+
+  theme_classic()
+
+
+gf_point(.resid ~ root, data = aug_interaction, xlab = "root", ylab = "Deviance residuals") |>
+  gf_hline(yintercept = 0, linetype = 2) |>
+  gf_labs(title = "Deviance Residuals vs Root") +
+  theme_classic()
+
+
+```
+
+
+**Task 1.** Below is the R output from the `summary()` command. Use it to perform the dd hoc test of overdispersion. What do you conclude?
+
+```{r}
+#| echo: false
+summary(interaction_mod)
+```
+
+::: {.callout-tip collapse="true"}
+### Solution
+To perform the ad hoc test for overdispersion, we calculate the dispersion parameter, $\hat{\psi}$, using the formula:
+$$
+\hat{\psi} = \frac{\text{Residual deviance}}{\text{Degrees of Freedom}} = \frac{33.278}{17} \approx 1.958
+$$
+
+This is greater than 1, indicating potential overdispersion.
+:::
+
+
+**Task 2.** Regardless of your answer in Task 1, estimate the dispersion parameter, $\psi$, and calculate the $\text{SE}_{quasibinomial}(\hat{\beta}_2)$.
+
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+We have the estimate of the dispersion parameter from Task 1. Now, we can calculate the adjusted standard error for $\hat{\beta}_2$ (the coefficient for `root`).
+
+$$
+\text{SE}_{quasibinomial}(\hat{\beta}_2) = \sqrt{\hat{\psi}} \times \text{SE}_{binomial}(\hat{\beta}_2) = \sqrt{1.958} \times 0.2498 \approx 0.3495
+$$
+:::
+
+**Task 3.** Using this adjusted standard error, conduct a hypothesis test for the null hypothesis that $\beta_2 = 0$ at the $\alpha = 0.05$ significance level. (This is for the `root` coefficient.) What do you conclude?
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+Using the adjusted standard error, we calculate the test statistic: 
+
+$$
+t = \frac{\hat{\beta}_2 - 0}{\text{SE}_{quasibinomial}(\hat{\beta}_2)} = \frac{0.5401 - 0}{0.3495} \approx 1.545
+$$
+
+To find the p-value, we use a t-distribution with 17 degrees of freedom:
+
+```{r}
+2 * (1 - pt(1.545, df = 17))
+```
+
+This gives a p-value of approximately 0.140. We fail to reject the null hypothesis. There is not enough evidence to suggest suggest that there is an association between the root and germination rate after accounting for variety. (Notice that this is a change!)
+
+
+:::
+
+**Task 4.** Construct a 95% confidence interval for $\beta_2$ using the adjusted standard error. 
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+Using the adjusted standard error from Task 2, we can construct a 95% confidence interval for $\beta_2$:
+
+$$
+\hat{\beta}_2 \pm t^*_{17} \times \text{SE}_{quasibinomial}(\hat{\beta}_2) = 0.5401 \pm 2.11 \times 0.3495
+$$
+:::
+
+**Task 5.** The deviance for the model without the interaction term is 39.686 with 18 degrees of freedom. Using this information, conduct a drop-in-deviance test for the interaction term that is adjusted for overdispersion. What do you conclude?
+
+::: {.callout-tip collapse="true"}
+### Solution
+
+The test statistic for the drop-in-deviance test is calculated as follows:
+
+$$
+\chi^2 = \frac{(Deviance_{reduced} - Deviance_{full})/1}{\hat{\psi}} = \frac{39.686 - 33.278}{1.958} \approx 3.27
+$$
+
+To find the p-value, we use an F distribution with 1 and 17 degrees of freedom:
+
+```{r}
+1 - pf(3.27, df1 = 1, df2 = 17)
+```
+
+There is weak evidence of an interaction effect between variety and root.
+:::
