@@ -412,6 +412,30 @@
 <p><strong>How can we interpret the coefficients?</strong></p>
 </div>
 </section>
+<section id="interpreting-the-coefficients" class="slide level2">
+<h2>Interpreting the coefficients</h2>
+<p><span class="math inline">\(\log(\widehat{\lambda}) = \widehat{\beta}_0 + \widehat{\beta}_1 x\)</span></p>
+<p>How does the expected (average) number of events, <span class="math inline">\(\widehat{\lambda}\)</span>, change for a 1-unit increase in <span class="math inline">\(x\)</span>?</p>
+<div class="fragment">
+<p>Let’s consider <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(\widehat{\lambda} = e^{\widehat{\beta}_0 + \widehat{\beta}_1(0)}=e^{\widehat{\beta}_0}\)</span></p></li>
+<li><p><span class="math inline">\(\widehat{\lambda} = e^{\widehat{\beta}_0 + \widehat{\beta}_1(1)}=e^{\widehat{\beta}_0} e^{\widehat{\beta}_1}\)</span></p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>The expectation at <span class="math inline">\(x+1\)</span> is <span class="math inline">\(e^{\widehat{\beta}_1}\)</span> times the expectation at <span class="math inline">\(x\)</span></p>
+</div>
+</section>
+<section id="interpreting-the-coefficients-1" class="slide level2">
+<h2>Interpreting the coefficients</h2>
+<p>In our example: <span class="math inline">\(\log(\widehat{\lambda}) = 3.128 - 0.036 \text{distance}\)</span></p>
+<div class="fragment">
+<p><span class="math inline">\(e^{-0.036} \approx 0.965\)</span></p>
+<p><br></p>
+<p>A 1 meter increase in the distance from the cliff edge is associated with a decrease in the average number of nests per 9m<sup>2</sup> quadrat by a factor of 0.965 (i.e., a 3.5% decrease).</p>
+</div>
+</section>
 <section id="multiple-predictors" class="slide level2">
 <h2>Multiple predictors</h2>
 <div class="cell">

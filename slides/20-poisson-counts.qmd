@@ -107,7 +107,7 @@ knitr::kable(tidy(ols), format = "html", digits = 4)
 # Now make Poisson regression picture
 set.seed(0)
 old_dat <- data.frame(x=(x=runif(500, 3, 40)),
-                  y=rnorm(1000, (4.63127 + -0.06338*x)^2, sd = sigma(ols)))
+                  y=rnorm(1000, (4.63127 + -0.06338*x)^2, sd = 4*sigma(ols)))
 
 old_slab_dat <- data.frame(
   x = c(10, 20, 40),
@@ -118,7 +118,7 @@ library(ggdist)
 ggplot(old_dat, aes(x, y)) +
   geom_point(size = 0.1, alpha = 0.4) +
   geom_function(fun = \(x) (4.63127 + -0.06338*x)^2) +
-    stat_slab(aes(x = x, ydist = "norm", arg1 = yhat, arg2 = sigma(ols)), data = old_slab_dat, alpha = 0.4, inherit.aes = FALSE, scale = 0.6, fill = "#f15a31", side="left") +
+    stat_slab(aes(x = x, ydist = "norm", arg1 = yhat, arg2 = 4*sigma(ols)), data = old_slab_dat, alpha = 0.4, inherit.aes = FALSE, scale = 0.6, fill = "#f15a31", side="left") +
   theme_bw() +
   geom_vline(xintercept=c(10, 20, 40), lty=2) +
   lims(x = c(0, 40)) +
@@ -347,6 +347,40 @@ Residual deviance: 23.653  on 23  degrees of freedom
 . . .
 
 **How can we interpret the coefficients?**
+
+
+## Interpreting the coefficients
+
+$\log(\widehat{\lambda}) = \widehat{\beta}_0 + \widehat{\beta}_1 x$
+
+
+How does the expected (average) number of events, $\widehat{\lambda}$, change for a 1-unit increase in $x$?
+
+. . .
+
+Let's consider $x=0$ and $x=1$:
+
+* $\widehat{\lambda} = e^{\widehat{\beta}_0 + \widehat{\beta}_1(0)}=e^{\widehat{\beta}_0}$
+
+* $\widehat{\lambda} = e^{\widehat{\beta}_0 + \widehat{\beta}_1(1)}=e^{\widehat{\beta}_0} e^{\widehat{\beta}_1}$
+
+. . .
+
+The expectation at $x+1$ is $e^{\widehat{\beta}_1}$ times the expectation at $x$
+
+## Interpreting the coefficients
+
+In our example:  $\log(\widehat{\lambda}) = 3.128 - 0.036 \text{distance}$
+
+. . .
+
+$e^{-0.036} \approx 0.965$
+
+<br>
+
+
+A 1 meter increase in the distance from the cliff edge is associated with a decrease in the average number of nests per 9m<sup>2</sup> quadrat by a factor of 0.965 
+(i.e., a 3.5% decrease).
 
 
 ---
