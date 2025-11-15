@@ -2331,6 +2331,20 @@
     "text": "Model fitting\n\nglm(nests ~ distance, data = puffin, family = poisson)\n\n\nCoefficients:\n            Estimate Std. Error z value Pr(&gt;|z|)\n(Intercept)  3.12797    0.11049  28.311  &lt; 2e-16\ndistance    -0.03585    0.00562  -6.378 1.79e-10\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 65.900  on 24  degrees of freedom\nResidual deviance: 23.653  on 23  degrees of freedom\n\n\nFitted model: \\(\\log(\\widehat{\\lambda}) = 3.128 -0.036{\\tt distance}\\)\n\nHow can we interpret the coefficients?"
   },
   {
+    "objectID": "slides/20-poisson-counts.html#interpreting-the-coefficients",
+    "href": "slides/20-poisson-counts.html#interpreting-the-coefficients",
+    "title": "Modeling Counts",
+    "section": "Interpreting the coefficients",
+    "text": "Interpreting the coefficients\n\\(\\log(\\widehat{\\lambda}) = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x\\)\nHow does the expected (average) number of events, \\(\\widehat{\\lambda}\\), change for a 1-unit increase in \\(x\\)?\n\nLet’s consider \\(x=0\\) and \\(x=1\\):\n\n\\(\\widehat{\\lambda} = e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1(0)}=e^{\\widehat{\\beta}_0}\\)\n\\(\\widehat{\\lambda} = e^{\\widehat{\\beta}_0 + \\widehat{\\beta}_1(1)}=e^{\\widehat{\\beta}_0} e^{\\widehat{\\beta}_1}\\)\n\n\n\nThe expectation at \\(x+1\\) is \\(e^{\\widehat{\\beta}_1}\\) times the expectation at \\(x\\)"
+  },
+  {
+    "objectID": "slides/20-poisson-counts.html#interpreting-the-coefficients-1",
+    "href": "slides/20-poisson-counts.html#interpreting-the-coefficients-1",
+    "title": "Modeling Counts",
+    "section": "Interpreting the coefficients",
+    "text": "Interpreting the coefficients\nIn our example: \\(\\log(\\widehat{\\lambda}) = 3.128 - 0.036 \\text{distance}\\)\n\n\\(e^{-0.036} \\approx 0.965\\)\n\nA 1 meter increase in the distance from the cliff edge is associated with a decrease in the average number of nests per 9m2 quadrat by a factor of 0.965 (i.e., a 3.5% decrease)."
+  },
+  {
     "objectID": "slides/20-poisson-counts.html#multiple-predictors",
     "href": "slides/20-poisson-counts.html#multiple-predictors",
     "title": "Modeling Counts",
