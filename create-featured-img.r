@@ -1,5 +1,5 @@
 # Create a screenshot of the featured post for sharing on webpage
-deck <- "18-binomial-gof"
+deck <- "20-poisson-counts"
 quarto::quarto_render(paste0("slides/", deck, ".qmd"))
 webshot2::webshot(
   url = paste0("docs/slides/", deck, ".html"),

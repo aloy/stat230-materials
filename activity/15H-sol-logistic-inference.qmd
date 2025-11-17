@@ -44,7 +44,7 @@ broom::tidy(framingham_glm) |>
   gt::fmt_number(
     columns = c(estimate, std.error, statistic),
     decimals = 3
-  )
+  ) 
 ```
 
 **Task 1.** Calculate a 90% confidence interval for the coefficient of `BMI`. 

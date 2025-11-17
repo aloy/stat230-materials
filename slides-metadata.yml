@@ -127,8 +127,20 @@
   categories:
     - "Logistic Regression"
 - title: "Overdispersion"
-  date: 2025-11-07
+  date: 2025-11-12
   image: slides/featured/19-quasibinomial.png
   path: slides/19-quasibinomial.qmd
+  categories:
+    - "Logistic Regression"
+- title: "Poisson Regression"
+  date: 2025-11-14
+  image: slides/featured/20-poisson-counts.png
+  path: slides/20-poisson-counts.qmd
+  categories:
+    - "Logistic Regression"
+- title: "Poisson Regression Inference"
+  date: 2025-11-14
+  image: slides/featured/21-poisson-inference.png
+  path: slides/21-poisson-inference.qmd
   categories:
     - "Logistic Regression"

@@ -1,0 +1,301 @@
+---
+title: "Inference"
+subtitle: "Poisson regression -- Stat 230"
+format: 
+  revealjs:
+    chalkboard: 
+      buttons: false
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NULL, eval = TRUE, echo = FALSE)
+
+library(ggplot2)
+library(ggformula)
+library(ggrepel)   # label outliers
+library(dplyr)
+library(car)
+library(gridExtra)
+library(broom)
+library(Sleuth3)
+library(ggthemes)
+library(GGally)
+library(gt)
+
+puffin <- read.table("http://www.markirwin.net/stat149/Data/puffin.txt", header = TRUE)
+colnames(puffin)[1] <- "nests"
+puffin <- subset(puffin, nests > 0)
+
+puffin_mod <- glm(nests ~ grass + soil + angle + distance, data = puffin, 
+                  family = poisson)
+```
+
+
+## Review: Poisson regression model
+
+- If $Y_i =$ # of events in a fixed interval of time/space, then $Y_i \sim \text{Poisson}(\lambda)$ 
+
+
+- This leads to the Poisson regression model for counts:
+
+    $$\log(\lambda) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p$$
+    or equivalently
+
+
+## Assumptions
+
+1. **Linearity**: the log of the mean of Y, $\log(\lambda)$, must be a linear function of the predictors
+
+2. **Mean = Variance**: the mean of a Poisson random variable must be equal to its variance
+
+3. **Independence**: the observations must be independent
+
+<!-- ## EDA idea -->
+
+<!-- Plot the log rate vs. predictor variable -->
+
+<!-- Example: Plot the log cancer incidence rate vs. the median age by location -->
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="60%"} -->
+<!-- ```{r} -->
+<!-- #| fig-height: 3 -->
+<!-- #| fig-width: 5 -->
+<!-- #| out-width: 100% -->
+<!-- cancer <- cancer |>  -->
+<!--   mutate(cancer_incidence = (Cases/Person.years) * 100000) -->
+<!-- gf_point(log(cancer_incidence) ~ MedianAge, data = cancer,  -->
+<!--          color = ~Location, shape = ~Location) |> -->
+<!--   gf_line(linetype = ~Location) + -->
+<!--   scale_color_colorblind() + -->
+<!--   scale_shape_manual(values = c(1, 16)) + -->
+<!--   scale_linetype_manual(values = c(2, 1)) + -->
+<!--   labs(x = "Median Age", y = "log cancer incidence rate") -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="40%"} -->
+<!-- - Is the relationship linear? -->
+
+<!-- - Is the change in the rate with age the same for both groups? -->
+<!-- ::: -->
+<!-- :::: -->
+
+## Types of inference
+
+1. **Wald based**
+
+    For large enough sample sizes, the sampling distributions for the regression coefficients are approximately normal
+    
+    $\Longrightarrow$ We can use intro stat-type tests/intervals
+
+. . .
+
+2. **Likelihood based**
+
+    We can use the likelihood function (or deviance) to compare two fitted models
+    
+
+
+## Wald test
+
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=1}
+$H_0: \beta_i = 0 \quad$ vs. $\quad H_a: \beta_i \ne 0$
+:::
+:::
+
+::::
+
+:::: {.columns}
+::: {.column width="25%"}
+**Test statistic:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=2}
+$z = \dfrac{\widehat{\beta}_i}{SE(\widehat{\beta}_i)}$
+:::
+:::
+
+::::
+
+<br>
+
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reference distribution:**
+:::
+
+::: {.column width="75%"}
+::: {.fragment fragment-index=3}
+$N(0, 1)$
+:::
+:::
+
+::::
+
+## Poisson model for puffin nesting data
+
+```{r}
+tidy(puffin_mod) |> 
+dplyr::mutate(p.value = gtsummary::style_pvalue(p.value)) |>
+  gt::gt() |>
+  gt::fmt_number(
+    columns = c(estimate, std.error, statistic),
+    decimals = 3
+  ) |>
+  gt::tab_options(
+    table.width = pct(90),
+    table.font.size = px(32),
+  ) |>
+  gt::cols_width(
+    starts_with("term") ~ px(200),
+    starts_with("p.") ~ px(200),
+    everything() ~ px(200)
+  ) |>
+  cols_align(
+    align = "center",
+    columns = p.value
+  )
+```
+
+
+
+## Wald interval
+
+
+A normal-based confidence interval for ${\beta}_i$
+
+$$\widehat{\beta}_i \pm z^*_{1-\alpha/2} SE(\widehat{\beta}_i)$$
+
+. . .
+
+<br>
+
+But this is on the log scale, so we need to back transform!
+
+$$\left(e^{\widehat{\beta}_i - z^*_{1-\alpha/2} SE(\widehat{\beta}_i)}, \ e^{\widehat{\beta}_i + z^*_{1-\alpha/2} SE(\widehat{\beta}_i)} \right)$$
+
+## Poisson model puffin nesting data {.smaller}
+
+```{r}
+tidy(puffin_mod, conf.int = TRUE) |> 
+dplyr::mutate(p.value = gtsummary::style_pvalue(p.value)) |>
+  gt::gt() |>
+  gt::fmt_number(
+    columns = c(estimate, std.error, statistic, conf.low, conf.high),
+    decimals = 3
+  ) |>
+  gt::tab_options(
+    table.width = pct(98),
+    table.font.size = px(28),
+  ) |>
+  gt::cols_width(
+    starts_with("term") ~ px(200),
+    starts_with("p.") ~ px(200),
+    everything() ~ px(200)
+  ) |>
+  cols_align(
+    align = "center",
+    columns = p.value
+  )
+
+```
+
+. . .
+
+$−0.027	 \pm 1.96 (0.015)$
+
+. . .
+
+$(e^{-0.0564} \approx `r round(exp(-0.0564), 3)`, e^{-0.0024} \approx `r round(exp(0.0024), 3)`)$
+
+. . .
+
+
+
+## Likelihood ratio test {.smaller}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Full model:** 
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_k x_k + \beta_{k+1} x_{k+1} + \cdots + \beta_p x_p$
+:::
+::::
+
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reduced model: **
+:::
+
+::: {.column width="75%"}
+$\eta = \beta_0 + \beta_1x_1 + \beta_2x_2 + \cdots + \beta_k x_k$
+:::
+::::
+
+
+:::::{.fragment fragment-index=1}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Hypotheses: **
+:::
+
+::: {.column width="75%"}
+$H_0: \beta_{k+1} = \cdots = \beta_{p} = 0 \quad \text{vs.} \quad H_a:$ at least one $\beta_j \ne 0$
+:::
+
+::::
+
+:::::
+
+:::::{.fragment fragment-index=2}
+:::: {.columns}
+::: {.column width="25%"}
+**Test statistic: **
+:::
+::::
+
+
+$$LRT =\text{residual deviance(reduced model)} - \text{residual deviance(full model)}$$
+:::::
+
+:::::{.fragment fragment-index=3}
+
+:::: {.columns}
+::: {.column width="25%"}
+**Reference distribution:** 
+:::
+
+::: {.column width="75%"}
+$\chi^2$ distribution
+
+d.f. = # $\beta$s in full model $-$ # $\beta$s in reduced model
+:::
+
+::::
+:::::
+
+
+## How big is "big enough"?
+
+- Inference requires large enough sample sizes
+
+- This is reasonable if $n$ is "large" 
+
+- OR if $\widehat{\lambda}_i  > 5$
