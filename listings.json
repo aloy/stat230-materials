@@ -2,6 +2,8 @@
   {
     "listing": "/slides.html",
     "items": [
+      "/slides/20-poisson-counts.html",
+      "/slides/21-poisson-inference.html",
       "/slides/19-quasibinomial.html",
       "/slides/18-binomial-gof.html",
       "/slides/16-logistic-diagnostics.html",
