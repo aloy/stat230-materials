@@ -1,13 +1,25 @@
 ---
-title: "Inference for SLR"
-subtitle: "Stat 230: Applied Regression Analysis"
 format: 
-  revealjs:
-    theme: [serif, styles.scss]
-editor: source
-editor_options: 
-  chunk_output_type: console
+  revealjs: 
+    theme: slides.scss
+    transition: fade
+    width: 1400
+    height: 900
+    slide-number: true
+    toc: false
+    html-math-method: katex
 ---
+
+
+## {.center}
+
+<h1>Inference for SLR</h1>
+
+Adam Loy
+
+:::{.medium}
+Stat 230 - Spring 2026
+:::
 
 ```{r setup}
 #| include: false
@@ -29,23 +41,19 @@ library(gifski)
 blue_jays_male <- BlueJays |> filter(Sex == 1)
 
 
-theme_classic <- function() {
-  ggplot2::theme_classic() +
-    ggplot2::theme(
-      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
-      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
-      axis.line = ggplot2::element_line(color = "#003069"),
-      axis.text = ggplot2::element_text(color = "#003069"),
-      axis.ticks = ggplot2::element_line(color = "#003069"),
-      axis.title = ggplot2::element_text(color = "#003069")
+library(ggthemes)
+
+theme_clean <- function(base_size = 12, base_family = "sans") {
+  ggthemes::theme_clean(base_size = base_size, base_family = base_family) +
+    theme(
+      plot.background = element_blank()
     )
 }
 
-# set ggplot2 theme
-ggplot2::theme_set(theme_classic())
-```
 
-# Please sit with your group from last class
+ggplot2::theme_set(theme_clean(base_size = 16))
+
+```
 
 ## Warm up
 
@@ -68,7 +76,7 @@ blue_jays_male |>
   ggplot(aes(x = Mass, y = Head)) +
   geom_point(alpha = 0.6, color = "#003069") +
   geom_lm(color = "#f15a31") +
-  theme_classic() +
+  # theme_classic() +
   labs(x = "Body mass (grams)", y = "Head length (mm)")
 
 ```
@@ -88,7 +96,7 @@ blue_jays_male |>
   ggplot(aes(x = Mass, y = Head)) +
   # geom_point(alpha = 0.6, color = "#003069") +
   geom_lm(color = "#f15a31") +
-  theme_classic() +
+  # theme_classic() +
   labs(x = "Body mass (grams)", y = "Head length (mm)") 
 ```
 
@@ -206,10 +214,10 @@ $\quad \widehat{y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta
 
 ```{r}
 #| echo: false
-#| fig.height: 3
+#| fig.height: 2.5
 #| fig.width: 6
 
-
+set.seed(1234)
 
 boots <- bootstraps(blue_jays_male, times = 20, apparent = TRUE)
 
@@ -237,8 +245,8 @@ boot_aug3 <-
 labels <- c("Bootstrap01" = "Sample 1", "Bootstrap02" = "Sample 2", "Bootstrap03" = "Sample 3")
 
 ggplot(boot_aug3, aes(Mass, Head)) +
-  geom_line(aes(y = .fitted, group = id), col = "blue") +
-  geom_point() +
+  geom_point(alpha = 0.6) +
+  geom_line(aes(y = .fitted, group = id), col = "#00aeef") +
   facet_wrap(~id, labeller = as_labeller(labels)) +
   labs(x = "Body mass (grams)", y = "Head length (mm)")
 ```
@@ -251,7 +259,7 @@ ggplot(boot_aug3, aes(Mass, Head)) +
 #| fig.width: 5
 hop <- 
   ggplot(data = boot_coefs) +
-  geom_abline(aes(slope = Mass, intercept = `(Intercept)`, group = id), color = "#0072B2", size = 0.5) +
+  geom_abline(aes(slope = Mass, intercept = `(Intercept)`, group = id), color = "#00aeef", size = 0.5) +
   # theme_dviz_grid() +
   geom_point(data = blue_jays_male, aes(Mass, Head), color = "grey60", inherit.aes = FALSE) +
   labs(x = "Body mass (grams)", y = "Head length (mm)") +
@@ -287,7 +295,7 @@ ggplot(data = boot_coefs) +
 ```
 
 
-## Sampling distribution
+## Sampling distributions
 
 
 
@@ -316,11 +324,11 @@ boot_coefs <-
 
 slope_dist <- ggplot(boot_coefs) +
    ggdist::stat_dotsinterval(aes(x = slope), quantiles = 500, scale = 0.6, position = position_nudge(y = 0.175)) +
-  labs(title = "Distribution of the slope", y = "Density")
+  labs(y = "Density")
 
 intercept_dist <- ggplot(boot_coefs) +
   ggdist::stat_dotsinterval(aes(x = intercept), quantiles = 500, scale = 0.6, position = position_nudge(y = 0.175))  +
-  labs(title = "Distribution of the intercept", y = "Density")
+  labs(y = "Density")
 
 slope_dist + intercept_dist 
 ```

@@ -1,35 +1,40 @@
 ---
-title: "Welcome and Review"
-subtitle: "Stat 230: Applied Regression Analysis"
 format: 
-  revealjs:
-    theme: [serif, styles.scss]
-editor: source
+  revealjs: 
+    theme: slides.scss
+    transition: fade
+    width: 1400
+    height: 900
+    slide-number: true
+    toc: false
 ---
+
+```{r}
+#| label: setup
+#| include: false
+library(ggthemes)
+ggplot2::theme_set(theme_clean(base_size = 16))
+```
+
+
+
+## {.center}
+
+<h1>Simple Linear Regression</h1>
+
+Adam Loy
+
+:::{.medium}
+Stat 230 - Spring 2026
+:::
+
 
 ```{r}
 #| include: false
 data("bikes", package = "bayesrules")
 library(ggformula)
 
-# Define ggplot2 theme with background color
-theme_classic <- function() {
-  ggplot2::theme_classic() +
-    ggplot2::theme(
-      plot.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
-      panel.background = ggplot2::element_rect(fill = "#fffef5", color = NA),
-      axis.line = ggplot2::element_line(color = "#003069"),
-      axis.text = ggplot2::element_text(color = "#003069"),
-      axis.ticks = ggplot2::element_line(color = "#003069"),
-      axis.title = ggplot2::element_text(color = "#003069")
-    )
-}
-
-# set ggplot2 theme
-ggplot2::theme_set(theme_classic())
 ```
-
-# [PDF version of slides](pdf_slides/01-slides-slr-review.pdf)
 
 ## Welcome 👋
 
@@ -117,15 +122,15 @@ ggplot() +
 -   Share at least one thing other than just your name and major
 
 
-# Hi, I'm Emerson 👋
+<!-- # Hi, I'm Ellie 👋 -->
 
 
 
 
 
-# Simple Linear Regression Review
+# Regression Review
 
-## Regression in intro {.nostretch}
+## Key ideas from intro {.nostretch}
 
 ::::: columns
 ::: {.column width="60%"}
@@ -136,12 +141,15 @@ ggplot() +
 #| fig.width: 6
 #| fig.align: center
 #| out.width: 100%
-gf_point(rides ~ temp_actual, data = bikes, xlab = "Temperature (F)", ylab = "No. rides", color = "#003069") |>
-  gf_lm(rides ~ temp_actual, linewidth = 3, color = "#f15a31") 
+gf_point(rides ~ temp_actual, data = bikes, xlab = "Temperature (F)", ylab = "No. rides", color = "#003069", size = 1) |>
+  gf_lm(rides ~ temp_actual, size = 1.5, color = "#f15a31") 
 ```
 :::
 
 ::: {.column width="40%"}
+
+<br>
+
 -   Describe the scatterplot
 -   Write the equation of the regression line
 -   Interpret the slope and intercept
@@ -149,19 +157,141 @@ gf_point(rides ~ temp_actual, data = bikes, xlab = "Temperature (F)", ylab = "No
 :::
 :::::
 
-## Your turn
 
--   Work with your group
+## Q: Describe the scatterplot
 
--   If your card's suit is clubs, you're the designated speaker for your group (be ready!)
+```{r}
+#| fig.height: 3.5
+#| fig.width: 6
+#| fig.align: center
+#| out.width: 70%
+ gf_point(rides ~ temp_actual, data = bikes, xlab = "Temperature (F)", ylab = "No. rides", color = "#003069", size = 1) # |>
+#   gf_lm(rides ~ temp_actual, size = 1.5, color = "#f15a31") 
+```
 
--   Work through the review questions
+::::: columns
+::: {.column width="50%"}
 
--   Write your group's answer to each question on the whiteboard
+:::{.small}
+::: {.conceptest}
+1. There is a strong, positive, linear association between temperature and number of rides.
 
-## Regression in Stat 230
+2. There is a moderate, positive, linear association between temperature and number of rides.
+:::
+:::
 
-$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
+:::
+
+::: {.column width="50%"}
+
+
+:::{.small}
+::: {.conceptest}
+3. There is a moderate, positive, non-linear association between temperature and number of rides.
+
+4. There is a moderate, positive, linear association between temperature and number of rides, but there are a few extreme outliers.
+:::
+:::
+
+:::
+:::::
+
+
+## Q: Write the equation of the regression line
+
+Step 1: Read the set up on the handout
+
+Step 2: Which of the following is the correct equation of the regression line?
+
+<br>
+
+::: {.conceptest}
+1. $y = 520.1  - 18.7x$
+
+1. $\widehat{y} = 520.1  - 18.7x$
+
+1. $y = -18.7 + 520.1x$
+
+1. $\widehat{y} = -18.7 + 520.1x$
+:::
+
+## Q: Interpret the slope in context
+
+::: {.conceptest}
+1. For every one-hour increase in sleep duration, the model predicts an average decrease of 18.7 milliseconds in reaction time.
+
+1. For every one-millisecond decrease in reaction time, the model predicts an average increase of 18.7 hours of sleep.
+
+1. If a student gets 0 hours of sleep, their reaction time is predicted to be -18.7 milliseconds.
+
+1. Getting more sleep causes a person's reaction time to drop by exactly 18.7 milliseconds every night.
+:::
+
+
+## Q: Interpret the intercept in context
+
+::: {.conceptest}
+1. Yes; it represents the average reaction time (520.1 ms) for all participants in the study regardless of how much they slept.
+
+1. Yes; it represents the predicted reaction time (520.1 ms) for a participant who gets 0 hours of sleep.
+
+1. No; while it represents the predicted reaction time for 0 hours of sleep, this is an example of extrapolation because 0 hours was outside the observed range of 3–9 hours.
+
+1. No; the intercept is just a mathematical placeholder and never carries physical meaning in social science statistics.
+:::
+
+## Q: Make a prediction
+
+The researchers are asked to predict the reaction time for a healthy young adult who sleeps 10 hours per night. Using the regression equation  
+$\widehat{y}=520.1−18.7x$, which of the following is the most statistically sound conclusion?
+
+::: {.conceptest}
+1. The prediction is 333.1 ms; this is highly reliable because 10 hours is very close to the studied range.
+
+1. The prediction is 333.1 ms, but it is unreliable because we cannot assume the linear trend continues beyond the 3–9 hour range.
+
+1. The model cannot be used at all because 10 hours of sleep is biologically impossible for a young adult.
+
+1. The slope would likely change from negative to positive at 10 hours, making the reaction time 520.1 + 18.7(10).
+:::
+
+
+## Q: Purpose of randomization
+
+
+Why did the researchers randomly assign the 65 participants to specific sleep conditions (3–9 hours) rather than just letting them sleep as much as they usually do?
+
+::: {.conceptest}
+1. To ensure that the participants in the 3-hour group were already "short sleepers" who are used to exhaustion.
+
+1. To make the sample size in each sleep condition exactly equal, which is a requirement for linear regression.
+
+1. To balance out potential confounding variables (like caffeine intake or baseline fitness) across the different sleep groups.
+
+1. To increase the "power" of the study by ensuring the results can be generalized to the entire U.S. population.
+:::
+
+
+## Q: Generalizing results
+
+Can the results of this specific study be generalized to all young adults in the United States?
+
+::: {.conceptest}
+1. Yes; because the study used a controlled laboratory setting and random assignment, the results apply to everyone.
+
+1. Yes; because the age range (18–25) is a standard definition for "young adults" across the country.
+
+1. No; because the 65 participants were "recruited" (likely a convenience sample from one college), they may not represent the diversity of all U.S. young adults.
+
+1. No; the sample size of 65 is mathematically too small to ever represent a population as large as the United States.
+:::
+
+
+# Regression in Stat 230
+
+## Simple Linear Regression Model
+
+$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
 
 ```{r}
 #| fig.height: 3.5
@@ -178,17 +308,17 @@ bike_dsn <- data.frame(
 
 
 ggplot(data = bikes, aes(x = temp_actual, y = rides)) +
-  geom_point(alpha = 0.4, color = "#003069") +
+  geom_point(alpha = 0.4, size = 1.5, color = "#003069") +
   geom_lm(color = "#f15a31") +
   stat_slab(aes(x = temp_actual, ydist = "norm", arg1 = yhat, arg2 = resid_sd), data = bike_dsn, alpha = 0.4, inherit.aes = FALSE, scale = 0.6, fill = "#f15a31") +
-  theme_classic() +
+  # theme_classic() +
   xlab("Temperature") +
   ylab("No. rides")
 ```
 
 ## Simple Linear Regression Model
 
-$y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
+$Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$ where $\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)$
 
 <br>
 
@@ -208,7 +338,7 @@ $\quad E(Y|X)=\mu\{Y|X\} = \beta_0 + \beta_1 x_i$
 
 Fitted model equation:
 
-$\quad \widehat{y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+$\quad \widehat{Y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
 
 # Overview of Stat 230
 
@@ -277,7 +407,7 @@ timeline
 
 - Pre-class reading/video
 - Reflection questions
-- Homework due by the start of class
+- Homework due by the<br> start of class
 - Class meeting
 - Work on problems
 :::
@@ -329,5 +459,5 @@ Dynamic documents for assignments, case studies, projects
 1.  Explore the Moodle page
 2.  Read the syllabus -- if you have questions, ask them on the syllabus!
 3.  Review hypothesis tests and confidence intervals as necessary (the basic ideas)
-3.  Read section 7.4 of Sleuth
+3.  Read sections 2.6 and 2.7 of the textbook
 4.  Complete the pre-class questions (bring your answers to class)

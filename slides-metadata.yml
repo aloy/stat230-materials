@@ -1,146 +1,145 @@
 # Internal slide decks
 - title: "Course overview, SLR review"
   subtitle: "Day 01 of Stat 230"
-  date: 2025-09-15
-  image: slides/featured/01-slides-slr-review.png
+  date: 2026-03-230
   path: slides/01-slides-slr-review.qmd
   categories:
     - "SLR"
-- title: "Inference for SLR Coefficients"
-  subtitle: "Day 02"
-  date: 2025-09-17
-  image: slides/featured/02-slr-inference.png
-  path: slides/02-slr-inference.qmd
-  categories:
-    - "SLR"
-    - "Inference"
-- title: "Inference for SLR Prediction"
-  subtitle: "Day 04"
-  date: 2025-09-22
-  image: slides/featured/03-slr-prediction.png
-  path: slides/03-slr-prediction.qmd
-  categories:
-    - "SLR"
-    - "Inference"
-- title: "SLR Diagnostics and Transformations"
-  subtitle: "Day 05"
-  date: 2025-09-24
-  image: slides/featured/04-slr-diagnostics.png
-  path: slides/04-slr-diagnostics.qmd
-  categories:
-    - "SLR"
-    - "Diagnostics"
-    - "Transformations"
-- title: "SLR Transformations"
-  subtitle: "Day 06"
-  date: 2025-09-26
-  image: slides/featured/05-slr-transformations.png
-  path: slides/05-slr-transformations.qmd
-  categories:
-    - "SLR"
-    - "Transformations"
-- title: "Polynomial Regression"
-  subtitle: "Day 07"
-  date: 2025-09-29
-  image: slides/featured/06-mlr-polynomial.png
-  path: slides/06-mlr-polynomial.qmd
-  categories:
-    - "MLR"
-    - "Polynomial"
-- title: "Multiple Regression"
-  subtitle: "Day 08"
-  date: 2025-10-01
-  image: slides/featured/07-mlr-intro.png
-  path: slides/07-mlr-intro.qmd
-  categories:
-    - "MLR"
-- title: "Categorical Predictor Variables"
-  subtitle: "Day 10"
-  date: 2025-10-06
-  image: slides/featured/08-mlr-categorical.png
-  path: slides/08-mlr-categorical.qmd
-  categories:
-    - "MLR"
-- title: "Categorical Predictor Variables"
-  subtitle: "Day 11"
-  date: 2025-10-08
-  image: slides/featured/09-mlr-inference2.png
-  path: slides/09-mlr-inference2.qmd
-  categories:
-    - "MLR"
-- title: "MLR Diagnostics"
-  subtitle: "Day 12"
-  date: 2025-10-10
-  image: slides/featured/10-mlr-diagnostics.png
-  path: slides/10-mlr-diagnostics.qmd
-  categories:
-    - "MLR"
-- title: "Multicollinearity"
-  subtitle: "Day 13"
-  date: 2025-10-15
-  image: slides/featured/11-mlr-multicollinearity.png
-  path: slides/11-mlr-multicollinearity.qmd
-  categories:
-    - "MLR"
-- title: "MLR Model Selection"
-  subtitle: "Day 14"
-  date: 2025-10-17
-  image: slides/featured/12-mlr-selection.png
-  path: slides/12-mlr-selection.qmd
-  categories:
-    - "MLR"
-- title: "MLR Model Validation"
-  subtitle: "Day 14"
-  date: 2025-10-24
-  image: slides/featured/13-mlr-validation.png
-  path: slides/12-mlr-validation.qmd
-  categories:
-    - "MLR"
-- title: "Binary Logistic Regression"
-  date: 2025-10-27
-  image: slides/featured/14-binary-logistic.png
-  path: slides/14-binary-logistic.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Inference for Logistic Regression"
-  date: 2025-10-29
-  image: slides/featured/15-logistic-inference.png
-  path: slides/15-logistic-inference.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Diagnostics for Logistic Regression"
-  date: 2025-11-03
-  image: slides/featured/16-logistic-diagnostics.png
-  path: slides/16-logistic-diagnostics.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Binomial Logistic Regression"
-  date: 2025-11-03
-  image: slides/featured/17-logistic-binomial.png
-  path: slides/17-logistic-binomial.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Binomial GOF"
-  date: 2025-11-05
-  image: slides/featured/18-binomial-gof.png
-  path: slides/18-binomial-gof.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Overdispersion"
-  date: 2025-11-12
-  image: slides/featured/19-quasibinomial.png
-  path: slides/19-quasibinomial.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Poisson Regression"
-  date: 2025-11-14
-  image: slides/featured/20-poisson-counts.png
-  path: slides/20-poisson-counts.qmd
-  categories:
-    - "Logistic Regression"
-- title: "Poisson Regression Inference"
-  date: 2025-11-14
-  image: slides/featured/21-poisson-inference.png
-  path: slides/21-poisson-inference.qmd
-  categories:
-    - "Logistic Regression"
+# - title: "Inference for SLR Coefficients"
+#   subtitle: "Day 02"
+#   date: 2025-09-17
+#   image: slides/featured/02-slr-inference.png
+#   path: slides/02-slr-inference.qmd
+#   categories:
+#     - "SLR"
+#     - "Inference"
+# - title: "Inference for SLR Prediction"
+#   subtitle: "Day 04"
+#   date: 2025-09-22
+#   image: slides/featured/03-slr-prediction.png
+#   path: slides/03-slr-prediction.qmd
+#   categories:
+#     - "SLR"
+#     - "Inference"
+# - title: "SLR Diagnostics and Transformations"
+#   subtitle: "Day 05"
+#   date: 2025-09-24
+#   image: slides/featured/04-slr-diagnostics.png
+#   path: slides/04-slr-diagnostics.qmd
+#   categories:
+#     - "SLR"
+#     - "Diagnostics"
+#     - "Transformations"
+# - title: "SLR Transformations"
+#   subtitle: "Day 06"
+#   date: 2025-09-26
+#   image: slides/featured/05-slr-transformations.png
+#   path: slides/05-slr-transformations.qmd
+#   categories:
+#     - "SLR"
+#     - "Transformations"
+# - title: "Polynomial Regression"
+#   subtitle: "Day 07"
+#   date: 2025-09-29
+#   image: slides/featured/06-mlr-polynomial.png
+#   path: slides/06-mlr-polynomial.qmd
+#   categories:
+#     - "MLR"
+#     - "Polynomial"
+# - title: "Multiple Regression"
+#   subtitle: "Day 08"
+#   date: 2025-10-01
+#   image: slides/featured/07-mlr-intro.png
+#   path: slides/07-mlr-intro.qmd
+#   categories:
+#     - "MLR"
+# - title: "Categorical Predictor Variables"
+#   subtitle: "Day 10"
+#   date: 2025-10-06
+#   image: slides/featured/08-mlr-categorical.png
+#   path: slides/08-mlr-categorical.qmd
+#   categories:
+#     - "MLR"
+# - title: "Categorical Predictor Variables"
+#   subtitle: "Day 11"
+#   date: 2025-10-08
+#   image: slides/featured/09-mlr-inference2.png
+#   path: slides/09-mlr-inference2.qmd
+#   categories:
+#     - "MLR"
+# - title: "MLR Diagnostics"
+#   subtitle: "Day 12"
+#   date: 2025-10-10
+#   image: slides/featured/10-mlr-diagnostics.png
+#   path: slides/10-mlr-diagnostics.qmd
+#   categories:
+#     - "MLR"
+# - title: "Multicollinearity"
+#   subtitle: "Day 13"
+#   date: 2025-10-15
+#   image: slides/featured/11-mlr-multicollinearity.png
+#   path: slides/11-mlr-multicollinearity.qmd
+#   categories:
+#     - "MLR"
+# - title: "MLR Model Selection"
+#   subtitle: "Day 14"
+#   date: 2025-10-17
+#   image: slides/featured/12-mlr-selection.png
+#   path: slides/12-mlr-selection.qmd
+#   categories:
+#     - "MLR"
+# - title: "MLR Model Validation"
+#   subtitle: "Day 14"
+#   date: 2025-10-24
+#   image: slides/featured/13-mlr-validation.png
+#   path: slides/12-mlr-validation.qmd
+#   categories:
+#     - "MLR"
+# - title: "Binary Logistic Regression"
+#   date: 2025-10-27
+#   image: slides/featured/14-binary-logistic.png
+#   path: slides/14-binary-logistic.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Inference for Logistic Regression"
+#   date: 2025-10-29
+#   image: slides/featured/15-logistic-inference.png
+#   path: slides/15-logistic-inference.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Diagnostics for Logistic Regression"
+#   date: 2025-11-03
+#   image: slides/featured/16-logistic-diagnostics.png
+#   path: slides/16-logistic-diagnostics.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Binomial Logistic Regression"
+#   date: 2025-11-03
+#   image: slides/featured/17-logistic-binomial.png
+#   path: slides/17-logistic-binomial.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Binomial GOF"
+#   date: 2025-11-05
+#   image: slides/featured/18-binomial-gof.png
+#   path: slides/18-binomial-gof.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Overdispersion"
+#   date: 2025-11-12
+#   image: slides/featured/19-quasibinomial.png
+#   path: slides/19-quasibinomial.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Poisson Regression"
+#   date: 2025-11-14
+#   image: slides/featured/20-poisson-counts.png
+#   path: slides/20-poisson-counts.qmd
+#   categories:
+#     - "Logistic Regression"
+# - title: "Poisson Regression Inference"
+#   date: 2025-11-14
+#   image: slides/featured/21-poisson-inference.png
+#   path: slides/21-poisson-inference.qmd
+#   categories:
+#     - "Logistic Regression"

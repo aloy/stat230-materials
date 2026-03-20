@@ -226,70 +226,70 @@
   {
     "objectID": "slides/01-slides-slr-review.html#welcome",
     "href": "slides/01-slides-slr-review.html#welcome",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Welcome 👋",
     "text": "Welcome 👋\n\nI’m Adam (he/him)\nI teach statistics & data science\nI’m interested in statistics education, data visualization, and R programming"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#your-turn",
     "href": "slides/01-slides-slr-review.html#your-turn",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Your turn",
     "text": "Your turn\n\nForm groups based on value (2, 3, 4…) of the card dealt\nIntroduce yourself to your group\nShare at least one thing other than just your name and major"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#regression-in-intro",
     "href": "slides/01-slides-slr-review.html#regression-in-intro",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Regression in intro",
-    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
+    "text": "Regression in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#your-turn-1",
     "href": "slides/01-slides-slr-review.html#your-turn-1",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Your turn",
     "text": "Your turn\n\nWork with your group\nIf your card’s suit is clubs, you’re the designated speaker for your group (be ready!)\nWork through the review questions\nWrite your group’s answer to each question on the whiteboard"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#regression-in-stat-230",
     "href": "slides/01-slides-slr-review.html#regression-in-stat-230",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Regression in Stat 230",
     "text": "Regression in Stat 230\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model",
     "href": "slides/01-slides-slr-review.html#simple-linear-regression-model",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+    "text": "Simple Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#notation",
     "href": "slides/01-slides-slr-review.html#notation",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Notation",
-    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{Y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#overview-of-the-term",
     "href": "slides/01-slides-slr-review.html#overview-of-the-term",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Overview of the term",
     "text": "Overview of the term\nGoal: Develop models to answer research questions\n\n\n\n\n\ntimeline\n%%{init: {'theme':'neutral'}}%%\n    \n    Weeks 1-2 : Simple linear regression\n           : Review\n           : Inference\n           : Model diagnostics\n           \n    Weeks 3-5 : Multiple linear regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 6-8 : Logistic regression\n           : Interpretation\n           : Inference\n           : Model diagnostics\n           : Model selection\n           \n    Weeks 9-10 : Poisson regression\n           : Interpretation\n           : Inference"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#typical-week",
     "href": "slides/01-slides-slr-review.html#typical-week",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Typical week",
     "text": "Typical week\n\n\n\nMonday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nWednesday\n\nPre-class reading/video\nReflection questions\n\n\n\nClass meeting\nWork on problems\n\n\n\nFriday\n\nPre-class reading/video\nReflection questions\nHomework due by the start of class\nClass meeting\nWork on problems"
   },
   {
     "objectID": "slides/01-slides-slr-review.html#tools",
     "href": "slides/01-slides-slr-review.html#tools",
-    "title": "Welcome and Review",
+    "title": "Stat 230 - Fall 2025",
     "section": "Tools",
     "text": "Tools\n\n\nMoodle\n \nGradescope\n\nR and RStudio\n\nR Markdown\n\nClass website; look here for all materials, links, etc.\n\nSubmit assignments, get feedback\n\nOur computational engine\n\nDynamic documents for assignments, case studies, projects"
   },
@@ -723,142 +723,142 @@
   {
     "objectID": "slides/02-slr-inference.html#warm-up",
     "href": "slides/02-slr-inference.html#warm-up",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Warm up",
     "text": "Warm up\n\nWork through the warm-up questions with your group\nI’ll ask half of the groups to start with hypothesis tests, the other half will start with confidence intervals"
   },
   {
     "objectID": "slides/02-slr-inference.html#example",
     "href": "slides/02-slr-inference.html#example",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Example",
     "text": "Example\n\nA biologist collected data on the body measurements of captured blue jays\nLet’s explore the association between body mass and head length"
   },
   {
     "objectID": "slides/02-slr-inference.html#a-deterministic-model",
     "href": "slides/02-slr-inference.html#a-deterministic-model",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "A deterministic model",
-    "text": "A deterministic model\n\n\\(Y_i = \\beta_0 + \\beta_1 x_i\\)\nNo uncertainty!"
+    "text": "A deterministic model\n\nY_i = \\beta_0 + \\beta_1 x_i\nNo uncertainty!"
   },
   {
     "objectID": "slides/02-slr-inference.html#simple-linear-regression-model",
     "href": "slides/02-slr-inference.html#simple-linear-regression-model",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Simple Linear Regression Model",
-    "text": "Simple Linear Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+    "text": "Simple Linear Regression Model\ny_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i where \\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\n\n\nLinear relationship between x and y\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on x"
   },
   {
     "objectID": "slides/02-slr-inference.html#linear-regression-model",
     "href": "slides/02-slr-inference.html#linear-regression-model",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "text": "Linear Regression Model\nY_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i where \\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)"
   },
   {
     "objectID": "slides/02-slr-inference.html#linear-regression-model-1",
     "href": "slides/02-slr-inference.html#linear-regression-model-1",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "text": "Linear Regression Model\nY_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i where \\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)"
   },
   {
     "objectID": "slides/02-slr-inference.html#linear-regression-model-2",
     "href": "slides/02-slr-inference.html#linear-regression-model-2",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Linear Regression Model",
-    "text": "Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+    "text": "Linear Regression Model\nY_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i where \\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)"
   },
   {
     "objectID": "slides/02-slr-inference.html#notation",
     "href": "slides/02-slr-inference.html#notation",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Notation",
-    "text": "Notation\nMean function:\n\\(\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\\)\n\nFitted model equation:\n\\(\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)"
+    "text": "Notation\nMean function:\n\\quad E(Y|X)=\\mu\\{Y|X\\} = \\beta_0 + \\beta_1 x_i\n\nFitted model equation:\n\\quad \\widehat{y}_i = \\widehat{\\mu}\\{Y|X\\} = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i"
   },
   {
     "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
     "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Uncertainty in the parameters",
     "text": "Uncertainty in the parameters"
   },
   {
     "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
     "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-1",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Uncertainty in the parameters",
     "text": "Uncertainty in the parameters"
   },
   {
     "objectID": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
     "href": "slides/02-slr-inference.html#uncertainty-in-the-parameters-2",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Uncertainty in the parameters",
     "text": "Uncertainty in the parameters"
   },
   {
     "objectID": "slides/02-slr-inference.html#sampling-distribution",
     "href": "slides/02-slr-inference.html#sampling-distribution",
-    "title": "Inference for SLR",
-    "section": "Sampling distribution",
-    "text": "Sampling distribution"
-  },
-  {
-    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
-    "href": "slides/02-slr-inference.html#sampling-distribution-1",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Sampling distribution",
     "text": "Sampling distribution\nWe use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient"
   },
   {
+    "objectID": "slides/02-slr-inference.html#sampling-distribution-1",
+    "href": "slides/02-slr-inference.html#sampling-distribution-1",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nt distribution with df =  n - 2\n\n\n\nMean = \\beta_i\n\n\n\n\nStandard deviation = SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}"
+  },
+  {
     "objectID": "slides/02-slr-inference.html#sampling-distribution-2",
     "href": "slides/02-slr-inference.html#sampling-distribution-2",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Sampling distribution",
     "text": "Sampling distribution\n\nt distribution with \\(df =  n - 2\\)\n\n\n\nMean = \\(\\beta_i\\)\n\n\n\n\nStandard deviation = \\(SE(\\widehat{\\beta}_1) = \\widehat{\\sigma} / \\sqrt{\\sum (x_i - \\overline{x} )^2}\\)"
   },
   {
     "objectID": "slides/02-slr-inference.html#confidence-interval",
     "href": "slides/02-slr-inference.html#confidence-interval",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Confidence interval",
-    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\(\\widehat{\\beta}_i\\)\n\n±\n\n\\(t^* \\cdot SE(\\widehat{\\beta}_i)\\)"
+    "text": "Confidence interval\n\n\nstatistic\n\n±\n\ncritical value × standard error\n\n\n\n\n\\widehat{\\beta}_i\n\n±\n\nt^* \\cdot SE(\\widehat{\\beta}_i)"
   },
   {
     "objectID": "slides/02-slr-inference.html#hypothesis-test",
     "href": "slides/02-slr-inference.html#hypothesis-test",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Hypothesis test",
-    "text": "Hypothesis test\n\\(H_0: \\beta_i = \\#\\) vs. \\(H_a:\\) choose one of \\(\\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\\)\n\n\n\n\ntest statistic\n\n\\(= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\\)\n\n\n\n\n\n\n\\(=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\\)\n\n\n\n\nFind appropriate tail areas under the t-distribution with \\(df = n - 2\\)"
+    "text": "Hypothesis test\nH_0: \\beta_i = \\# vs. H_a: choose one of \\begin{array}{c} \\beta_i \\ne \\#\\\\ \\beta_i &lt;\\#  \\\\ \\beta_i &gt;\\# \\end{array}\n\n\n\n\ntest statistic\n\n= \\dfrac{\\text{estimate} - \\text{null value}}{\\text{SE}}\n\n\n\n\n\n\n=\\dfrac{\\widehat{\\beta}_i - \\text{null value}}{SE(\\widehat{\\beta}_i)}\n\n\n\n\nFind appropriate tail areas under the t-distribution with df = n - 2"
   },
   {
     "objectID": "slides/02-slr-inference.html#coefficient-table",
     "href": "slides/02-slr-inference.html#coefficient-table",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Coefficient table",
     "text": "Coefficient table\nStandard output for a regression model includes a coefficient table\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)   44.3      2.25       19.6  4.62e-28\n2 Mass           0.170    0.0307      5.52 7.28e- 7"
   },
   {
     "objectID": "slides/02-slr-inference.html#your-turn",
     "href": "slides/02-slr-inference.html#your-turn",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Your turn",
     "text": "Your turn\n\nWork through the questions on the handout\nWrite your group’s answer to each question on the whiteboard\nBe ready to share your answers with the class – a different person should speak than spoke last class"
   },
   {
     "objectID": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
     "href": "slides/02-slr-inference.html#a-note-on-reporting-test-results",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "A note on reporting test results",
-    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\(\\alpha = 0.05\\) isn’t magic, it’s simply “traditional” in many disciplines"
+    "text": "A note on reporting test results\n\nOnly report at most 4 decimals for a p-value\nReport the estimate, test statistic, df, and p-value\nRemember that \\alpha = 0.05 isn’t magic, it’s simply “traditional” in many disciplines"
   },
   {
     "objectID": "slides/02-slr-inference.html#conditions-required-for-inference",
     "href": "slides/02-slr-inference.html#conditions-required-for-inference",
-    "title": "Inference for SLR",
+    "title": "Stat 230 - Fall 2025",
     "section": "Conditions required for inference",
-    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on \\(x\\)"
+    "text": "Conditions required for inference\nOur model must be valid for inference to be valid\ny_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i where \\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\n\nConditions to check:\n\nLinear relationship is appropriate\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nVariance of the errors doesn’t depend on x"
   },
   {
     "objectID": "index.html",
@@ -3428,5 +3428,110 @@
     "title": "Inference",
     "section": "Poisson model puffin nesting data",
     "text": "Poisson model puffin nesting data\n\n\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\nconf.low\nconf.high\n\n\n\n\n(Intercept)\n2.120\n0.473\n4.479\n&lt;0.001\n1.185\n3.041\n\n\ngrass\n−0.001\n0.003\n−0.202\n0.8\n−0.007\n0.006\n\n\nsoil\n0.019\n0.011\n1.745\n0.081\n−0.003\n0.040\n\n\nangle\n0.008\n0.013\n0.609\n0.5\n−0.017\n0.034\n\n\ndistance\n−0.027\n0.015\n−1.762\n0.078\n−0.057\n0.003\n\n\n\n\n\n\n\n\n\\(−0.027  \\pm 1.96 (0.015)\\)\n\n\n\\((e^{-0.0564} \\approx 0.945, e^{-0.0024} \\approx 1.002)\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#section",
+    "href": "slides/01-slides-slr-review.html#section",
+    "title": "Stat 230 - Fall 2025",
+    "section": "",
+    "text": "Simple Linear Regression\n\nAdam Loy\n\nStat 230 - Spring 2026"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#regression-ideas-in-intro",
+    "href": "slides/01-slides-slr-review.html#regression-ideas-in-intro",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Regression ideas in intro",
+    "text": "Regression ideas in intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#key-ideas-from-intro",
+    "href": "slides/01-slides-slr-review.html#key-ideas-from-intro",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Key ideas from intro",
+    "text": "Key ideas from intro\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe the scatterplot\nWrite the equation of the regression line\nInterpret the slope and intercept\nMake a prediction"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-describe-the-scatterplot",
+    "href": "slides/01-slides-slr-review.html#q-describe-the-scatterplot",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Describe the scatterplot",
+    "text": "Q: Describe the scatterplot\n\n\n\n\n\n\nThere is a strong, positive, linear association between temperature and number of rides.\nThere is a moderate, positive, linear association between temperature and number of rides.\n\n\n\n\n\n\n\nThere is a moderate, positive, non-linear association between temperature and number of rides.\nThere is a moderate, positive, linear association between temperature and number of rides, but there are a few extreme outliers."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-write-the-equation-of-the-regression-line",
+    "href": "slides/01-slides-slr-review.html#q-write-the-equation-of-the-regression-line",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Write the equation of the regression line",
+    "text": "Q: Write the equation of the regression line\nStep 1: Read the set up on the handout\nStep 2: Which of the following is the correct equation of the regression line?\n\n\n\n\\(y = 520.1  - 18.7x\\)\n\\(\\widehat{y} = 520.1  - 18.7x\\)\n\\(y = -18.7 + 520.1x\\)\n\\(\\widehat{y} = -18.7 + 520.1x\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-interpret-the-slope-in-context",
+    "href": "slides/01-slides-slr-review.html#q-interpret-the-slope-in-context",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Interpret the slope in context",
+    "text": "Q: Interpret the slope in context\n\n\nFor every one-hour increase in sleep duration, the model predicts an average decrease of 18.7 milliseconds in reaction time.\nFor every one-millisecond decrease in reaction time, the model predicts an average increase of 18.7 hours of sleep.\nIf a student gets 0 hours of sleep, their reaction time is predicted to be -18.7 milliseconds.\nGetting more sleep causes a person’s reaction time to drop by exactly 18.7 milliseconds every night."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-interpret-the-intercept-in-context",
+    "href": "slides/01-slides-slr-review.html#q-interpret-the-intercept-in-context",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Interpret the intercept in context",
+    "text": "Q: Interpret the intercept in context\n\n\nYes; it represents the average reaction time (520.1 ms) for all participants in the study regardless of how much they slept.\nYes; it represents the predicted reaction time (520.1 ms) for a participant who gets 0 hours of sleep.\nNo; while it represents the predicted reaction time for 0 hours of sleep, this is an example of extrapolation because 0 hours was outside the observed range of 3–9 hours.\nNo; the intercept is just a mathematical placeholder and never carries physical meaning in social science statistics."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-make-a-prediction",
+    "href": "slides/01-slides-slr-review.html#q-make-a-prediction",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Make a prediction",
+    "text": "Q: Make a prediction\nThe researchers are asked to predict the reaction time for a healthy young adult who sleeps 10 hours per night. Using the regression equation\n\\(\\widehat{y}=520.1−18.7x\\), which of the following is the most statistically sound conclusion?\n\n\nThe prediction is 333.1 ms; this is highly reliable because 10 hours is very close to the studied range.\nThe prediction is 333.1 ms, but it is unreliable because we cannot assume the linear trend continues beyond the 3–9 hour range.\nThe model cannot be used at all because 10 hours of sleep is biologically impossible for a young adult.\nThe slope would likely change from negative to positive at 10 hours, making the reaction time 520.1 + 18.7(10)."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-purpose-of-randomization",
+    "href": "slides/01-slides-slr-review.html#q-purpose-of-randomization",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Purpose of randomization",
+    "text": "Q: Purpose of randomization\nWhy did the researchers randomly assign the 65 participants to specific sleep conditions (3–9 hours) rather than just letting them sleep as much as they usually do?\n\n\nTo ensure that the participants in the 3-hour group were already “short sleepers” who are used to exhaustion.\nTo make the sample size in each sleep condition exactly equal, which is a requirement for linear regression.\nTo balance out potential confounding variables (like caffeine intake or baseline fitness) across the different sleep groups.\nTo increase the “power” of the study by ensuring the results can be generalized to the entire U.S. population."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#q-generalizing-results",
+    "href": "slides/01-slides-slr-review.html#q-generalizing-results",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Q: Generalizing results",
+    "text": "Q: Generalizing results\nCan the results of this specific study be generalized to all young adults in the United States?\n\n\nYes; because the study used a controlled laboratory setting and random assignment, the results apply to everyone.\nYes; because the age range (18–25) is a standard definition for “young adults” across the country.\nNo; because the 65 participants were “recruited” (likely a convenience sample from one college), they may not represent the diversity of all U.S. young adults.\nNo; the sample size of 65 is mathematically too small to ever represent a population as large as the United States."
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#trial-list",
+    "href": "slides/01-slides-slr-review.html#trial-list",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Trial list",
+    "text": "Trial list\n\n\nFirst item\nSecond item\nThird item"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#theoretical-model",
+    "href": "slides/01-slides-slr-review.html#theoretical-model",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Theoretical model",
+    "text": "Theoretical model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)"
+  },
+  {
+    "objectID": "slides/01-slides-slr-review.html#simple-linear-regression-model-1",
+    "href": "slides/01-slides-slr-review.html#simple-linear-regression-model-1",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Simple Linear Regression Model",
+    "text": "Simple Linear Regression Model\n\\(Y_i = \\beta_0 + \\beta_1 x_i + \\varepsilon_i\\) where \\(\\varepsilon_i \\overset{\\rm iid}{\\sim} N (0, \\sigma^2)\\)\n\n\nLinear relationship between \\(x\\) and \\(y\\)\nErrors are independent and identically distributed (iid)\nErrors are normally distributed\nErrors have mean 0\nVariance of the errors doesn’t depend on \\(x\\)"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#section",
+    "href": "slides/02-slr-inference.html#section",
+    "title": "Stat 230 - Fall 2025",
+    "section": "",
+    "text": "Inference for SLR\n\nAdam Loy\n\nStat 230 - Spring 2026"
+  },
+  {
+    "objectID": "slides/02-slr-inference.html#sampling-distributions",
+    "href": "slides/02-slr-inference.html#sampling-distributions",
+    "title": "Stat 230 - Fall 2025",
+    "section": "Sampling distributions",
+    "text": "Sampling distributions"
   }
 ]

@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
-  <title>Stat 230 - Fall 2025 – Inference for SLR</title>
+  <title>Stat 230 - Fall 2025 – slr-inference</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,7 +28,23 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-eabcba74c034c5bef08fec41117c9ab5.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-85547ade0513d6de09454512a8a963b2.css">
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -125,18 +141,16 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Inference for SLR</h1>
-  <p class="subtitle">Stat 230: Applied Regression Analysis</p>
 
-<div class="quarto-title-authors">
+<section id="section" class="slide level2 center">
+<h2></h2>
+<h1>
+Inference for SLR
+</h1>
+<p>Adam Loy</p>
+<div class="medium">
+<p>Stat 230 - Spring 2026</p>
 </div>
-
-</section>
-<section>
-<section id="please-sit-with-your-group-from-last-class" class="title-slide slide level1 center">
-<h1>Please sit with your group from last class</h1>
-
 </section>
 <section id="warm-up" class="slide level2">
 <h2>Warm up</h2>
@@ -156,45 +170,45 @@
 <section id="a-deterministic-model" class="slide level2">
 <h2>A deterministic model</h2>
 <ul>
-<li><p><span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i\)</span></p></li>
+<li><p><span class="math inline">Y_i = \beta_0 + \beta_1 x_i</span></p></li>
 <li><p>No uncertainty!</p></li>
 </ul>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="simple-linear-regression-model" class="slide level2">
 <h2>Simple Linear Regression Model</h2>
-<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> where <span class="math inline">\(\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)\)</span></p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1 x_i + \varepsilon_i</span> where <span class="math inline">\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)</span></p>
 <p><br></p>
 <ul>
-<li>Linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span></li>
+<li>Linear relationship between <span class="math inline">x</span> and <span class="math inline">y</span></li>
 <li>Errors are independent and identically distributed (iid)</li>
 <li>Errors are normally distributed</li>
 <li>Errors have mean 0</li>
-<li>Variance of the errors doesn’t depend on <span class="math inline">\(x\)</span></li>
+<li>Variance of the errors doesn’t depend on <span class="math inline">x</span></li>
 </ul>
 </section>
 <section id="linear-regression-model" class="slide level2">
 <h2>Linear Regression Model</h2>
-<p><span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> where <span class="math inline">\(\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)\)</span></p>
+<p><span class="math inline">Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i</span> where <span class="math inline">\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)</span></p>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="linear-regression-model-1" class="slide level2">
 <h2>Linear Regression Model</h2>
-<p><span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> where <span class="math inline">\(\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)\)</span></p>
+<p><span class="math inline">Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i</span> where <span class="math inline">\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)</span></p>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="linear-regression-model-2" class="slide level2">
 <h2>Linear Regression Model</h2>
-<p><span class="math inline">\(Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> where <span class="math inline">\(\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)\)</span></p>
+<p><span class="math inline">Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i</span> where <span class="math inline">\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)</span></p>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
 <section id="notation" class="slide level2">
 <h2>Notation</h2>
 <p>Mean function:</p>
-<p><span class="math inline">\(\quad E(Y|X)=\mu\{Y|X\} = \beta_0 + \beta_1 x_i\)</span></p>
+<p><span class="math inline">\quad E(Y|X)=\mu\{Y|X\} = \beta_0 + \beta_1 x_i</span></p>
 <p><br></p>
 <p>Fitted model equation:</p>
-<p><span class="math inline">\(\quad \widehat{y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta}_1 x_i\)</span></p>
+<p><span class="math inline">\quad \widehat{y}_i = \widehat{\mu}\{Y|X\} = \widehat{\beta}_0 + \widehat{\beta}_1 x_i</span></p>
 </section>
 <section id="uncertainty-in-the-parameters" class="slide level2">
 <h2>Uncertainty in the parameters</h2>
@@ -208,28 +222,28 @@
 <h2>Uncertainty in the parameters</h2>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-8-1.png" width="480" class="r-stretch"></section>
-<section id="sampling-distribution" class="slide level2">
-<h2>Sampling distribution</h2>
+<section id="sampling-distributions" class="slide level2">
+<h2>Sampling distributions</h2>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-9-1.png" width="576" class="r-stretch"></section>
-<section id="sampling-distribution-1" class="slide level2">
+<section id="sampling-distribution" class="slide level2">
 <h2>Sampling distribution</h2>
 <p>We use the t distribution with df = n - 2 to model the sampling distribution of a regression coefficient</p>
 
 <img data-src="02-slr-inference_files/figure-revealjs/unnamed-chunk-10-1.png" width="576" class="r-stretch"></section>
-<section id="sampling-distribution-2" class="slide level2">
+<section id="sampling-distribution-1" class="slide level2">
 <h2>Sampling distribution</h2>
 <ul>
-<li>t distribution with <span class="math inline">\(df =  n - 2\)</span></li>
+<li>t distribution with <span class="math inline">df =  n - 2</span></li>
 </ul>
 <div class="fragment">
 <ul>
-<li>Mean = <span class="math inline">\(\beta_i\)</span></li>
+<li>Mean = <span class="math inline">\beta_i</span></li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Standard deviation = <span class="math inline">\(SE(\widehat{\beta}_1) = \widehat{\sigma} / \sqrt{\sum (x_i - \overline{x} )^2}\)</span></li>
+<li>Standard deviation = <span class="math inline">SE(\widehat{\beta}_1) = \widehat{\sigma} / \sqrt{\sum (x_i - \overline{x} )^2}</span></li>
 </ul>
 </div>
 </section>
@@ -246,35 +260,35 @@
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:15%;">
-<p><span class="math inline">\(\widehat{\beta}_i\)</span></p>
+<p><span class="math inline">\widehat{\beta}_i</span></p>
 </div><div class="column" style="width:7%;">
 <p>±</p>
 </div><div class="column" style="width:33%;">
-<p><span class="math inline">\(t^* \cdot SE(\widehat{\beta}_i)\)</span></p>
+<p><span class="math inline">t^* \cdot SE(\widehat{\beta}_i)</span></p>
 </div></div>
 </section>
 <section id="hypothesis-test" class="slide level2 scrollable">
 <h2>Hypothesis test</h2>
-<p><span class="math inline">\(H_0: \beta_i = \#\)</span> vs.&nbsp;<span class="math inline">\(H_a:\)</span> choose one of <span class="math inline">\(\begin{array}{c} \beta_i \ne \#\\ \beta_i &lt;\#  \\ \beta_i &gt;\# \end{array}\)</span></p>
+<p><span class="math inline">H_0: \beta_i = \#</span> vs.&nbsp;<span class="math inline">H_a:</span> choose one of <span class="math inline">\begin{array}{c} \beta_i \ne \#\\ \beta_i &lt;\#  \\ \beta_i &gt;\# \end{array}</span></p>
 <p><br></p>
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:30%;">
 <p>test statistic</p>
 </div><div class="column" style="width:70%;">
-<p><span class="math inline">\(= \dfrac{\text{estimate} - \text{null value}}{\text{SE}}\)</span></p>
+<p><span class="math inline">= \dfrac{\text{estimate} - \text{null value}}{\text{SE}}</span></p>
 </div></div>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:30%;">
 
 </div><div class="column" style="width:70%;">
-<p><span class="math inline">\(=\dfrac{\widehat{\beta}_i - \text{null value}}{SE(\widehat{\beta}_i)}\)</span></p>
+<p><span class="math inline">=\dfrac{\widehat{\beta}_i - \text{null value}}{SE(\widehat{\beta}_i)}</span></p>
 </div></div>
 </div>
 <div class="fragment">
 <p><br></p>
-<p>Find appropriate tail areas under the t-distribution with <span class="math inline">\(df = n - 2\)</span></p>
+<p>Find appropriate tail areas under the t-distribution with <span class="math inline">df = n - 2</span></p>
 </div>
 </section>
 <section id="coefficient-table" class="slide level2">
@@ -303,24 +317,24 @@
 <ul>
 <li><p>Only report at most 4 decimals for a p-value</p></li>
 <li><p>Report the estimate, test statistic, df, and p-value</p></li>
-<li><p>Remember that <span class="math inline">\(\alpha = 0.05\)</span> isn’t magic, it’s simply “traditional” in many disciplines</p></li>
+<li><p>Remember that <span class="math inline">\alpha = 0.05</span> isn’t magic, it’s simply “traditional” in many disciplines</p></li>
 </ul>
 </section>
 <section id="conditions-required-for-inference" class="slide level2">
 <h2>Conditions required for inference</h2>
 <p>Our model must be valid for inference to be valid</p>
-<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> where <span class="math inline">\(\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)\)</span></p>
+<p><span class="math inline">y_i = \beta_0 + \beta_1 x_i + \varepsilon_i</span> where <span class="math inline">\varepsilon_i \overset{\rm iid}{\sim} N (0, \sigma^2)</span></p>
 <p><br></p>
 <p>Conditions to check:</p>
 <ul>
 <li>Linear relationship is appropriate</li>
 <li>Errors are independent and identically distributed (iid)</li>
 <li>Errors are normally distributed</li>
-<li>Variance of the errors doesn’t depend on <span class="math inline">\(x\)</span></li>
+<li>Variance of the errors doesn’t depend on <span class="math inline">x</span></li>
 </ul>
 
 
-</section></section>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -341,7 +355,6 @@
   <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
   <script src="../site_libs/revealjs/plugin/search/search.js"></script>
   <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -377,7 +390,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -482,7 +495,7 @@
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
@@ -502,34 +515,16 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1400,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom
